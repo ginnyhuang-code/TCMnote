@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>炮製學筆記 · 習醫手帖</title>
+  <title>炮製學筆記・習醫手帖</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink:       #2C2825;
-      --ink-mid:   #5C5047;
-      --ink-light: #9C8E84;
-      --parchment: #F7F3EE;
-      --warm:      #EDE5D8;
-      --rule:      #D5C9BA;
-      --jade:      #2D6B4A;
-      --jade-light:#4A9B6F;
-      --active-bg: #E8F0EC;
+      --ink:        #2C2825;
+      --ink-mid:    #5C5047;
+      --ink-light:  #9C8E84;
+      --parchment:  #F5F2ED;
+      --warm:       #EAE4D8;
+      --rule:       #D0C8B8;
+      --green:      #2D5A3D;
+      --green-light:#4A7A5A;
+      --green-pale: #E8F0EB;
+      --green-mid:  #C8DDD0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,73 +30,65 @@
       min-height: 100vh;
     }
 
-    /* ── Top nav ── */
     .site-nav {
-      background: var(--ink);
+      background: var(--green);
       padding: 0 2rem;
       display: flex;
       align-items: center;
       gap: 2rem;
       height: 52px;
     }
+    .site-nav .site-title {
+      color: var(--green-mid);
+      font-family: 'Noto Serif TC', serif;
+      font-size: .95rem;
+      font-weight: 500;
+      margin-right: auto;
+      letter-spacing: .06em;
+    }
     .site-nav a {
-      color: var(--rule);
+      color: var(--green-mid);
       text-decoration: none;
       font-family: 'Noto Sans TC', sans-serif;
       font-size: .85rem;
       letter-spacing: .08em;
       transition: color .2s;
     }
-    .site-nav a:hover { color: var(--jade-light); }
+    .site-nav a:hover { color: #fff; }
     .site-nav .nav-current {
-      color: var(--jade-light);
+      color: #fff;
       font-family: 'Noto Sans TC', sans-serif;
       font-size: .85rem;
       letter-spacing: .08em;
-      cursor: default;
-    }
-    .site-nav .site-title {
-      color: var(--jade-light);
-      font-family: 'Noto Serif TC', serif;
-      font-size: .95rem;
-      font-weight: 500;
-      margin-right: auto;
     }
 
     /* ── Page header ── */
     .page-header {
       border-bottom: 1px solid var(--rule);
       padding: 3rem 2rem 2rem;
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
     }
     .page-header .eyebrow {
       font-family: 'Noto Sans TC', sans-serif;
       font-size: .78rem;
       letter-spacing: .15em;
-      color: var(--jade);
+      color: var(--green-light);
       margin-bottom: .6rem;
     }
     .page-header h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: .05em;
       color: var(--ink);
-      margin-bottom: .5rem;
-    }
-    .page-header .meta {
-      font-size: .85rem;
-      color: var(--ink-light);
-      font-family: 'Noto Sans TC', sans-serif;
     }
 
     /* ── Layout ── */
     .layout {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 0;
+      grid-template-columns: 190px 1fr;
       align-items: start;
     }
 
@@ -120,115 +113,92 @@
       border: none;
       cursor: pointer;
       text-align: left;
-      padding: .55rem .75rem;
+      padding: .5rem .75rem;
       border-radius: 4px;
-      font-family: 'Noto Serif TC', serif;
-      font-size: .85rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .82rem;
       color: var(--ink-mid);
       line-height: 1.5;
       transition: background .15s, color .15s;
     }
-    .sidebar nav button:hover {
-      background: var(--warm);
-      color: var(--ink);
-    }
+    .sidebar nav button:hover { background: var(--green-pale); color: var(--green); }
     .sidebar nav button.active {
-      background: var(--active-bg);
-      color: var(--jade);
+      background: var(--green-pale);
+      color: var(--green);
       font-weight: 500;
-      border-left: 2px solid var(--jade);
+      border-left: 2px solid var(--green);
       padding-left: calc(.75rem - 2px);
     }
 
-    /* ── Main content ── */
+    /* ── Main ── */
     .main { padding: 2rem 0 4rem 2.5rem; }
-
     .section { display: none; }
     .section.active { display: block; }
 
-    /* ── Section header ── */
     .section-header {
-      padding-bottom: 1.2rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid var(--rule);
-      margin-bottom: 2rem;
-    }
-    .section-header .tag {
-      font-family: 'Noto Sans TC', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .12em;
-      color: var(--jade);
-      margin-bottom: .4rem;
+      margin-bottom: 1.8rem;
     }
     .section-header h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--green);
       letter-spacing: .04em;
     }
 
-    /* ── Key box ── */
-    .key-box {
-      background: var(--warm);
-      border-left: 3px solid var(--jade);
-      padding: 1rem 1.4rem;
-      margin: 1.5rem 0;
+    /* ── Content styles ── */
+    .content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green);
+      margin: 1.8rem 0 .8rem;
+      padding-left: .8rem;
+      border-left: 3px solid var(--green);
+      font-family: 'Noto Sans TC', sans-serif;
+      letter-spacing: .04em;
+    }
+    .content h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--ink-mid);
+      margin: 1.2rem 0 .5rem;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .content p {
+      font-size: .92rem;
+      line-height: 2;
+      color: var(--ink);
+      margin-bottom: .8rem;
+    }
+    .content ul, .content ol {
+      margin: .5rem 0 1rem 1.5rem;
+    }
+    .content li {
+      font-size: .92rem;
+      line-height: 1.9;
+      color: var(--ink);
+      margin-bottom: .2rem;
+    }
+    .content li li { margin-top: .1rem; }
+
+    .box {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+    }
+    .box-green {
+      background: var(--green-pale);
+      border-left: 3px solid var(--green);
+      padding: .8rem 1.2rem;
+      margin: .8rem 0;
       border-radius: 0 4px 4px 0;
     }
-    .key-box .key-label {
-      font-family: 'Noto Sans TC', sans-serif;
-      font-size: .72rem;
-      letter-spacing: .12em;
-      color: var(--jade);
-      margin-bottom: .5rem;
-    }
-    .key-box .key-text {
-      font-size: .95rem;
-      line-height: 2;
-      color: var(--ink);
-      font-weight: 500;
-    }
-
-    /* ── Prose ── */
-    .prose p {
-      font-size: .95rem;
-      line-height: 2;
-      color: var(--ink);
-      margin-bottom: 1.2rem;
-      text-indent: 2em;
-    }
-    .prose p:last-child { margin-bottom: 0; }
-
-    /* ── Table ── */
-    .note-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-    }
-    .note-table th, .note-table td {
-      border: 1px solid var(--rule);
-      padding: .8rem 1rem;
+    .box-green p, .box-green li {
       font-size: .88rem;
-      line-height: 1.9;
-      vertical-align: top;
-    }
-    .note-table th {
-      background: var(--warm);
-      font-weight: 500;
-      color: var(--jade);
-      font-family: 'Noto Sans TC', sans-serif;
-      letter-spacing: .06em;
-      width: 25%;
-    }
-    .note-table td { color: var(--ink); }
-
-    /* ── Sub heading ── */
-    .sub-heading {
-      font-size: .85rem;
-      font-weight: 500;
-      color: var(--jade);
-      letter-spacing: .08em;
-      margin: 2rem 0 .8rem;
-      font-family: 'Noto Sans TC', sans-serif;
+      color: var(--ink-mid);
     }
 
     /* ── Mobile ── */
@@ -241,7 +211,6 @@
         padding: 1.5rem 0 1rem;
       }
       .sidebar nav { flex-direction: row; flex-wrap: wrap; gap: .4rem; }
-      .sidebar nav button { font-size: .8rem; padding: .4rem .6rem; }
       .main { padding: 1.5rem 0 3rem; }
     }
   </style>
@@ -251,112 +220,588 @@
 <nav class="site-nav">
   <span class="site-title">習醫手帖</span>
   <a href="index.html">首頁</a>
-  <span class="nav-current">炮製學</span>
+  <span class="nav-current">炮製學筆記</span>
 </nav>
 
 <div class="page-header">
-  <div class="eyebrow">中藥學・炮製技術</div>
+  <div class="eyebrow">讀書筆記・炮製學</div>
   <h1>炮製學筆記</h1>
-  <div class="meta">課堂筆記整理</div>
 </div>
 
 <div class="layout">
 
-  <!-- ── Sidebar ── -->
   <aside class="sidebar">
     <div class="sidebar-label">目錄</div>
     <nav>
-      <button class="active" onclick="show('s0', this)">炮製概論</button>
-      <button onclick="show('s1', this)">修治</button>
-      <button onclick="show('s2', this)">炒法</button>
-      <button onclick="show('s3', this)">炙法</button>
-      <button onclick="show('s4', this)">煆法</button>
-      <button onclick="show('s5', this)">蒸煮燉法</button>
-      <button onclick="show('s6', this)">其他製法</button>
+      <button class="active" onclick="show('s0', this)">常用輔料</button>
+      <button onclick="show('s1', this)">炮製對理化性質的影響</button>
+      <button onclick="show('s2', this)">炮製與臨床功效</button>
+      <button onclick="show('s3', this)">淨選</button>
+      <button onclick="show('s4', this)">切製</button>
+      <button onclick="show('s5', this)">炙法</button>
+      <button onclick="show('s6', this)">炒製</button>
+      <button onclick="show('s7', this)">煅製</button>
+      <button onclick="show('s8', this)">淬製・煮製・蒸製</button>
+      <button onclick="show('s9', this)">製霜・製麴</button>
+      <button onclick="show('s10', this)">燀法・水飛法</button>
     </nav>
   </aside>
 
-  <!-- ── Main ── -->
   <main class="main">
 
-    <!-- 炮製概論 -->
+    <!-- 常用輔料 -->
     <div class="section active" id="s0">
-      <div class="section-header">
-        <div class="tag">炮製概論</div>
-        <h2>炮製學總論</h2>
-      </div>
-      <div class="key-box">
-        <div class="key-label">定義</div>
-        <div class="key-text">炮製係指中藥在應用或製成各種劑型前，根據醫療、調配、製劑的需要，並結合藥材的自身特點，所進行的必要加工處理過程。</div>
-      </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
+      <div class="section-header"><h2>常用輔料</h2></div>
+      <div class="content">
+        <p>分為液體輔料與固體輔料：</p>
+        <h4>液體輔料</h4>
+        <ul>
+          <li>酒（酒炙黃芩）</li>
+          <li>醋（醋炙延胡索）</li>
+          <li>鹽水（鹽炙澤瀉）</li>
+          <li>薑汁（薑炙厚朴）</li>
+          <li>蜜（蜜炙甘草）</li>
+          <li>米泔水（米泔水炒蒼朮）</li>
+          <li>甘草汁（甘草湯製遠志）</li>
+          <li>吳茱萸汁（吳茱萸製黃連）</li>
+        </ul>
+        <h4>固體輔料</h4>
+        <ul>
+          <li>砂、土、麥麩、豆腐</li>
+        </ul>
       </div>
     </div>
 
-    <!-- 修治 -->
+    <!-- 炮製對理化性質的影響 -->
     <div class="section" id="s1">
-      <div class="section-header">
-        <div class="tag">修治</div>
-        <h2>修治法</h2>
-      </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
+      <div class="section-header"><h2>炮製對理化性質的影響</h2></div>
+      <div class="content">
+        <h3>生物鹼</h3>
+        <ul>
+          <li>酒製：提高生物鹼溶出率</li>
+          <li>醋製：提高水溶液中溶出量（醋製延胡索，增加止痛）</li>
+        </ul>
+
+        <h3>含苷類（配糖體 glycoside）</h3>
+        <p>大黃（anthraquinonli 瀉下）、甘草（三萜類 glycyrrhizin）</p>
+        <ul>
+          <li>易溶於水，為避免水解宜少泡多潤</li>
+          <li>易被酶分解，使有效成分減少（黃芩苷 baicaline 及漢黃芩苷 woogonoside 被水解→綠黃芩，故以熱水炮製（燙製）是為了破壞酶，防止水解）</li>
+          <li>切製好的黃芩，其 baicaline 含量：蒸 ＞ 煮 ＞ 冷水浸</li>
+          <li>易被酸水解</li>
+        </ul>
+
+        <h3>揮發油</h3>
+        <ul>
+          <li>及時處理藥材，以免揮發油損失（加水宜搶水洗）</li>
+        </ul>
+
+        <h3>鞣質（tannin）</h3>
+        <ul>
+          <li>含多酚基，易溶於水</li>
+          <li>耐高溫</li>
+          <li>有收斂作用</li>
+          <li>大黃含有 anthraquinonline 瀉下 + tannin 收斂→經加熱可使致瀉作用減弱，收斂作用相對增加</li>
+          <li>與鐵形成墨綠色化合物，應避免</li>
+        </ul>
+
+        <h3>有機酸</h3>
+        <ul>
+          <li>山楂炒後可破壞部分有機酸，降低胃腸道刺激</li>
+          <li>常用甘草水（含甘草酸）製含生物鹼藥物，增強療效</li>
+        </ul>
+
+        <h3>油脂類</h3>
+        <ul>
+          <li>潤腸通便、致瀉</li>
+          <li>加熱、壓榨去油以降低毒性（巴豆製霜）、消除副作用</li>
+        </ul>
+
+        <h3>樹脂類</h3>
+        <ul>
+          <li>酒、醋製提高溶解度</li>
+        </ul>
+
+        <h3>蛋白質 / 醣類</h3>
+        <ul>
+          <li>少用水處理，宜少泡多潤</li>
+        </ul>
+
+        <h3>無機化合物</h3>
+        <ul>
+          <li>煅燒（煅明礬）、煅紅醋淬</li>
+        </ul>
       </div>
     </div>
 
-    <!-- 炒法 -->
+    <!-- 炮製與臨床功效 -->
     <div class="section" id="s2">
-      <div class="section-header">
-        <div class="tag">炒法</div>
-        <h2>炒法</h2>
+      <div class="section-header"><h2>炮製與臨床功效</h2></div>
+      <div class="content">
+        <h3>淨製</h3>
+        <ul>
+          <li>去除雜質、非藥用部位（巴戟天的木心應去除）</li>
+          <li>去除混有外形相似的其他有毒藥物（八角茴香混入莽草）</li>
+        </ul>
+
+        <h3>切製</h3>
+        <ul>
+          <li>桂枝以氣勝，白芍以味勝（均切薄片，才可達氣味共存的目的）</li>
+        </ul>
+
+        <h3>炒製</h3>
+        <ul>
+          <li>炒焦（炒麥芽）：啟脾開胃</li>
+          <li>炒梔子：緩和苦寒之性</li>
+          <li>麩炒殭蠶：矯臭</li>
+          <li>荊芥：生用發汗解表，炒炭止血</li>
+          <li>炮薑：溫中散寒</li>
+          <li>川烏加熱後，降低毒性（烏頭鹼）</li>
+        </ul>
+
+        <h3>輔料製</h3>
+        <ul>
+          <li>酒製（辛熱行散）苦寒藥：緩和苦寒</li>
+          <li>酒製活血藥：作用增強、力速</li>
+          <li>醋製活血藥：緩、久（醋五靈脂）</li>
+          <li>鹽製（味）溫腎藥（氣厚）：氣味相扶</li>
+          <li>薑製：增強化痰止嘔（薑半夏）</li>
+          <li>蜜製（甘溫益氣）：增強止咳或補氣藥</li>
+        </ul>
+
+        <h3>藥汁製</h3>
+        <ul>
+          <li>吳茱萸（辛熱）製黃連（苦寒）：一冷一熱，陰陽相濟，無偏勝之害。瀉肝火以和胃氣（左金丸）</li>
+          <li>甘草汁製遠志：
+            <ul>
+              <li>遠志祛痰作用（含 tenuigenin 遠志皂苷），易溶於熱水。甘草鎮咳袪痰（含 glycyrrhizin 甘草甜素）。熱甘草水泡遠志，起協同作用，增強鎮咳袪痰作用</li>
+              <li>glycyrrhizin 水解成 glucuronic acid 具解毒作用，可減輕副作用</li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
+    </div>
+
+    <!-- 淨選 -->
+    <div class="section" id="s3">
+      <div class="section-header"><h2>淨選</h2></div>
+      <div class="content">
+        <h3>1. 清除雜質、黴變品</h3>
+        <ul>
+          <li>挑選</li>
+          <li>篩選：藥物和雜質體積大小不同</li>
+          <li>風選：藥物和雜質比重不同</li>
+          <li>水選（水洗、漂）去除泥沙、鹽分</li>
+        </ul>
+
+        <h3>2. 進行分檔（長短大小厚薄）</h3>
+        <p>雷公炮製17法的「度」，避免個小太過、個大不及</p>
+
+        <h3>3. 去除非藥用部位</h3>
+        <ul>
+          <li>去根、莖</li>
+          <li>去皮殼：去栓皮（杜仲、厚朴）、根皮（知母、桔梗）、果殼（白果）、種皮（苦杏仁）</li>
+          <li>去毛（刮、刷、燙、挖、撞）：避免對咽喉刺激，引起咳嗽</li>
+          <li>去心：蓮子（去種子胚芽）、遠志（去藥材木質部）——去心者免煩</li>
+          <li>去蘆（蘆頭）：人參、黨參（參蘆為湧吐劑）——去蘆頭者免吐</li>
+          <li>去核：花椒、山茱萸——去核者免滑</li>
+          <li>去瓤：枳殼——去瓤者免脹</li>
+          <li>去枝梗</li>
+          <li>去頭尾足翅（昆蟲）</li>
+          <li>去殘肉（龜板、鱉甲）</li>
+        </ul>
+
+        <h3>4. 分開藥用部位</h3>
+      </div>
+    </div>
+
+    <!-- 切製 -->
+    <div class="section" id="s4">
+      <div class="section-header"><h2>切製</h2></div>
+      <div class="content">
+        <h3>切製前的水處理</h3>
+        <ul>
+          <li>淋法：避免返熱爛葉，切後應即時乾燥</li>
+          <li>淘洗法（搶水洗）：快速洗滌，縮短藥材與水接觸時間，防止藥材「傷水」和有效成分流失。大多洗一次即可</li>
+          <li>泡法：少泡多潤原則</li>
+          <li>漂法：多量水、多次清洗。除去有毒物成分（川烏、天南星）、鹽份、腥臭味</li>
+          <li>潤法：保持濕潤狀態，內外濕度一致。分為浸潤、伏潤（悶潤）、露潤（吸濕回潤）</li>
+        </ul>
+
+        <h3>飲片切製目的</h3>
+        <ul>
+          <li>便於有效成分煎出（質堅宜薄、質鬆宜厚）</li>
+          <li>提高煎藥質量，並可避免藥材細粉糊化、黏鍋（飲片細而不粉）</li>
+          <li>利於炮製</li>
+          <li>利於調配、儲存</li>
+          <li>便於鑑別</li>
+          <li>利於製備</li>
+        </ul>
+
+        <h3>飲片類型</h3>
+        <ul>
+          <li>蝴蝶片：川芎</li>
+          <li>頂頭片（圓片、橫片）：熟地黃、當歸</li>
+          <li>斜片（懷牛膝）：又分馬蹄片（黃耆）、柳葉片、瓜子片</li>
+          <li>直片（順片）：當歸</li>
+          <li>絲狀片：細絲（質地硬者切細）厚朴、寬絲（質地軟者切寬）</li>
+          <li>盤香片：厚朴</li>
+          <li>如意片</li>
+          <li>段：黨參、懷牛膝</li>
+          <li>丁：正立方體</li>
+        </ul>
       </div>
     </div>
 
     <!-- 炙法 -->
-    <div class="section" id="s3">
-      <div class="section-header">
-        <div class="tag">炙法</div>
-        <h2>炙法</h2>
-      </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
-      </div>
-    </div>
-
-    <!-- 煆法 -->
-    <div class="section" id="s4">
-      <div class="section-header">
-        <div class="tag">煆法</div>
-        <h2>煆法</h2>
-      </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
-      </div>
-    </div>
-
-    <!-- 蒸煮燉法 -->
     <div class="section" id="s5">
-      <div class="section-header">
-        <div class="tag">蒸煮燉法</div>
-        <h2>蒸煮燉法</h2>
-      </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
+      <div class="section-header"><h2>炙法</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p><strong>定義：</strong>使液體輔料（常用酒、醋、鹽水、薑汁、蜜）滲入藥物組織內部的炮製方法。加入定量液體輔料，入鍋拌炒至藥材乾燥。</p>
+        </div>
+
+        <h3>炙法與加輔料炒的比較</h3>
+        <ul>
+          <li>炙法：液體輔料、溫度較低（文火）、翻炒時間稍長</li>
+          <li>加輔料炒：固體輔料、溫度較高（中火）、翻炒時間較短、固體輔料作為導熱介質</li>
+        </ul>
+
+        <h3>酒製（米酒）</h3>
+        <p>具活血通絡、袪風散寒、矯臭去腥作用</p>
+        <h4>目的</h4>
+        <ul>
+          <li>提高有效成分溶出率（如生物鹼）</li>
+          <li>增強活血通絡作用（當歸、川芎）</li>
+          <li>矯臭去腥（烏梢蛇等動物類藥物）</li>
+          <li>改變藥性，引藥上行：大黃、黃連、黃柏苦寒沉降下行，多用於清中下焦濕熱，酒製後可清上焦實熱</li>
+        </ul>
+        <h4>方法</h4>
+        <ul>
+          <li>先拌酒，後炒藥（質地堅硬的根、根莖類）</li>
+          <li>先炒藥，後拌酒（質地疏鬆，如五靈脂）</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>酒製黃芩：增加有效成分浸出、抑制苦寒之性，加強上行</li>
+          <li>酒製白芍：可緩和酸寒之性、增加芍藥苷 paeoniflorin 在水中溶解度而增加通經止痛效果</li>
+          <li>酒製大黃：緩和苦寒瀉下，引藥上行以清上焦實熱（抵當湯、瀉心湯）。SennosideA,B（雙聚物，具有瀉下作用）→經炮製後降解成 rhein 及 emodin（游離型，無瀉下作用）</li>
+        </ul>
+
+        <div class="box">
+          <h4>比較：黃芩的不同炮製</h4>
+          <ul>
+            <li>燙製：破壞酶，防止黃芩苷 baicaline 及漢黃芩苷 woogonoside 被水解</li>
+            <li>酒製：增加有效成分浸出、抑制苦寒之性，加強上行</li>
+          </ul>
+          <br>
+          <h4>比較：白芍的不同炮製</h4>
+          <ul>
+            <li>酒製：可緩和酸寒之性、增加芍藥苷 paeoniflorin 在水中溶解度而增加通經止痛效果</li>
+            <li>炒製：破壞安息香酸（苯甲酸），降低對胃腸道刺激</li>
+          </ul>
+        </div>
+
+        <h3>醋製</h3>
+        <p>入肝經血分，具收斂、解毒、散瘀止痛、矯味作用</p>
+        <h4>目的</h4>
+        <ul>
+          <li>引藥入肝，增強活血止痛（乳香、三稜、延胡索、五靈脂）、疏肝行氣（柴胡、香附）</li>
+          <li>降低毒性，減少副作用，適用於峻下逐水藥（大戟、甘遂、芫花）</li>
+          <li>矯味矯臭（五靈脂）</li>
+        </ul>
+        <h4>方法</h4>
+        <ul>
+          <li>先拌醋，後炒藥</li>
+          <li>先炒藥，後拌醋：樹脂類、動物糞便（若先拌醋，會黏成碎塊）</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>醋製延胡索：提升止痛有效成分生物鹼溶出（醋酸鹽）、增強行氣止痛（醋炒＞醋煮＞醋拌）</li>
+          <li>醋製香附</li>
+        </ul>
+
+        <div class="box">
+          <h4>比較：香附的不同炮製</h4>
+          <ul>
+            <li>醋製：入肝經，增強疏肝止痛</li>
+            <li>酒製：通經脈，散結滯，治寒疝腹痛</li>
+            <li>四制（酒醋鹽薑）：行氣解鬱、調經散結</li>
+            <li>香附炭：止血，治婦女崩漏</li>
+          </ul>
+        </div>
+
+        <h3>鹽製</h3>
+        <p>性味鹹寒，有清熱涼血、軟堅散結、潤燥作用</p>
+        <h4>目的</h4>
+        <ul>
+          <li>引藥下行，增強療效</li>
+          <li>增強滋陰降火（知母、黃柏）</li>
+          <li>緩和藥物辛燥（補骨脂、益智仁）</li>
+        </ul>
+        <h4>方法</h4>
+        <ul>
+          <li>先拌鹽水後炒</li>
+          <li>先炒後噴鹽水：含黏液質多（車前子、知母）遇水易發黏，鹽水不易滲入</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>鹽製杜仲（砂炒後噴鹽水或浸2%鹽水後烘烤）：鹽炒可直走下焦，增強補肝腎作用。生杜仲含杜仲膠，將有效成分包住，經炒斷絲（橫斷有絲、縱斷無絲）後，膠質被破壞，有效成分易煎出。步驟：去栓皮→切塊→翻炒砂子製砂熱→將杜仲放入鍋中翻炒，至藥材內面起冒，斷絲即可→取出過篩→噴少許食鹽水，攤開放涼</li>
+          <li>鹽製澤瀉（五苓散中，以澤瀉為使，鹹味泄腎氣）</li>
+        </ul>
+
+        <h3>薑製</h3>
+        <p>生薑含揮發油（增加血液循環）、薑辣素（刺激胃液分泌，促消化功能）。辛溫能散寒解表、溫中止嘔、袪痰止咳、解毒。</p>
+        <h4>目的</h4>
+        <ul>
+          <li>薑製溫散而開痰：緩和寒性、增強溫中止嘔</li>
+          <li>緩和副作用（厚朴有刺激咽部副作用），增強療效</li>
+          <li>降低毒性（實際上減毒關鍵是因為加熱煮過或炒乾而減毒，非薑本身作用）：薑半夏、薑製天南星（天南星科植物有黏膜刺激性、刺舌頭毒性，來自於草酸鈣針晶體）</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>薑製厚朴</li>
+        </ul>
+
+        <h3>蜜製</h3>
+        <p>蜂蜜生則性涼，熟（煉蜜）則性溫（能補中）、能解毒、潤燥、止痛、矯臭矯味</p>
+        <h4>目的</h4>
+        <ul>
+          <li>增強潤肺止咳（枇杷葉、百合）：蜜製甘緩而潤肺</li>
+          <li>增強補中益氣（甘草、黃耆）</li>
+          <li>緩和藥性（麻黃：緩和發汗解表，增強平喘止咳）</li>
+          <li>矯味矯臭</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>蜜製甘草：甘草生品甘涼，瀉火解毒，化痰止咳。蜜製甘草甘溫，補脾和胃。甘草甜素 glycyrrhizin（有皮質醇活性）→水解成甘草次酸 glycyrrhetinic acid + 葡萄醣醛酸 glucuronic acid。蜜製甘草後，皮質醇活性減弱，降低副作用</li>
+          <li>蜜製黃耆</li>
+          <li>蜜製麻黃</li>
+          <li>蜜製枇杷葉：生品清肺止咳，蜜製後潤肺止咳</li>
+        </ul>
       </div>
     </div>
 
-    <!-- 其他製法 -->
+    <!-- 炒製 -->
     <div class="section" id="s6">
-      <div class="section-header">
-        <div class="tag">其他製法</div>
-        <h2>其他製法</h2>
+      <div class="section-header"><h2>炒製</h2></div>
+      <div class="content">
+        <h3>清炒</h3>
+        <h4>炒黃（文火）</h4>
+        <ul>
+          <li>決明子炒黃（炒到種皮破裂）：生用滑腸（恩菎類），炒後緩和藥性，種皮破裂助於有效成分煎出</li>
+          <li>萊菔子炒黃：破壞分解苷類的酶</li>
+        </ul>
+        <h4>炒焦（中火）：增加健脾消食功效</h4>
+        <ul>
+          <li>山楂炒焦：生用善消食，活血化瘀。炒焦後酸味減弱，緩和藥性</li>
+          <li>梔子炒焦：炒後緩和苦寒之性，緩和其清熱涼血（梔子素、梔子苷）作用</li>
+        </ul>
+        <h4>炒炭（武火）：增強止血功能、降低烈性，但需燒存性</h4>
+        <ul>
+          <li>地榆炒炭</li>
+          <li>茜草炒炭</li>
+          <li>荊芥炭</li>
+        </ul>
+
+        <h3>加輔料炒（多中火或武火）</h3>
+        <ul>
+          <li>砂炒乾薑（炮薑：炒炭，要存性）</li>
+          <li>麩炒：和中養胃、賦色、焦香促進食欲
+            <ul>
+              <li>麩炒枳實：緩和藥性（去其揮發油、去其苦酸味）、防止橙皮苷 hesperidin 酶解</li>
+              <li>麩炒枳殼</li>
+            </ul>
+          </li>
+          <li>米炒班蝥：降低毒性（班蝥素）、去腥臭</li>
+          <li>土炒白朮：緩和藥性（揮發油損失，對胃腸刺激減少）、土炒後增強健脾和胃（黃土炒後成鹼性氧化物，可中和胃酸）</li>
+          <li>米泔水炒蒼朮：緩和藥性（去油、緩其燥性）</li>
+          <li>砂燙杜仲（斷絲）：增強療效（破壞膠質、有效成分溶出）</li>
+          <li>砂燙馬錢子：炒至黃棕色鼓起、十字裂紋，砸開內部紅褐色。馬錢子主成分為番木龞鹼（strychnine），溫度不可過高以免有效成分被破壞</li>
+          <li>蛤粉炒阿膠：火力較弱，傳熱慢，適合炒製膠類藥物</li>
+          <li>滑石粉炒：傳熱慢，適合炒韌性大的動物類藥（水蛭、象皮）</li>
+        </ul>
       </div>
-      <div class="prose">
-        <p>（待補充筆記）</p>
+    </div>
+
+    <!-- 煅製 -->
+    <div class="section" id="s7">
+      <div class="section-header"><h2>煅製</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p><strong>定義：</strong>於耐火容器或直接於火上用大火燒煅</p>
+          <p><strong>目的：</strong>改變藥材結構或成分</p>
+        </div>
+
+        <h3>功效</h3>
+        <ul>
+          <li>使質地疏鬆，易於粉碎或吸收（煅者去堅性）：煅瓦楞子（碳酸鈣→氧化鈣，增強制酸作用）</li>
+          <li>去除結晶水，增強收斂效果：煅明礬（成分為含水硫酸鋁鉀，煅後稱枯礬：硫酸鋁鉀）</li>
+          <li>緩和藥性</li>
+        </ul>
+        <p>適合：質地堅硬（龍骨、牡蠣）、含結晶水（明礬）</p>
+
+        <h3>方法</h3>
+        <h4>明煅法（直火煅法）：不隔絕空氣</h4>
+        <ul>
+          <li>直接火煅：適用煅燒後不會破碎的礦石（石膏）</li>
+          <li>鐵鍋煅</li>
+          <li>坩堝煅：嘟嚕罐是耐火土燒成的坩堝（藥料質重的用小型嘟嚕、藥料質輕的用大型嘟嚕）</li>
+        </ul>
+        <h4>燜煅法（扣鍋煅法）：密閉、缺氧條件下燒至黑色、存性</h4>
+        <ul>
+          <li>鐵鍋燜煅</li>
+          <li>灰火燜煅：無火焰</li>
+          <li>爐火燜煅（煅牡蠣）</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 淬製・煮製・蒸製 -->
+    <div class="section" id="s8">
+      <div class="section-header"><h2>淬製・煮製・蒸製</h2></div>
+      <div class="content">
+        <h3>淬製</h3>
+        <div class="box-green">
+          <p><strong>定義：</strong>由煅或砂燙後之高溫，趁熱投入冷的液體（醋或酒）中，使其急速降溫</p>
+        </div>
+        <h4>目的</h4>
+        <ul>
+          <li>使晶格間完全裂解，使結構酥脆</li>
+          <li>易於粉碎，利有效成分煎出</li>
+          <li>清除雜質、去腥味</li>
+          <li>醋淬磁石：醋酸鐵</li>
+          <li>醋淬龜板</li>
+        </ul>
+
+        <h3>煮製</h3>
+        <div class="box-green">
+          <p><strong>定義：</strong>用水或其他液體輔料同煮，也可加入其他藥材共煮。最好用銅鍋，不要用鐵鍋。</p>
+        </div>
+        <h4>目的</h4>
+        <ul>
+          <li>消除或降低毒性：清水煮川烏</li>
+          <li>緩和藥性，增強療效：甘草水煮遠志</li>
+          <li>清潔藥物：豆腐煮珍珠</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>甘草湯製遠志</li>
+          <li>藥炙（甘草、金銀花）川烏：川烏主要毒性成份為烏頭鹼</li>
+          <li>豆腐煮珍珠：去除表面油膩</li>
+        </ul>
+
+        <h3>蒸製</h3>
+        <h4>目的</h4>
+        <ul>
+          <li>增加溫補作用，多數是滋補類藥材（地黃、女貞子、五味子）。一般先將藥材用酒潤透後再蒸</li>
+          <li>改變藥物性能，擴大用藥範圍（生地清熱涼血，蒸製後為滋補作用）</li>
+          <li>減少副作用（黃精刺激喉嚨、大黃瀉下峻猛）</li>
+          <li>保存藥效、利於儲存（桑螵蛸）</li>
+          <li>便於軟化切片（木瓜、天麻）</li>
+        </ul>
+        <h4>注意事項</h4>
+        <ul>
+          <li>蒸籠下層要放適量清水（三分之二）</li>
+          <li>一般先用武火，帶圓氣後改為文火。圓氣是指在蒸製過程中，蒸鍋內的水燒開後，水蒸氣在鍋蓋周圍溢散的現象</li>
+          <li>若蒸太久，藥物上水，難於乾燥（會用鋼杯，避免上水）。上水是指在蒸製過程中，由於連續加熱、蒸製時間過長或處理不當，使藥物吸水過多、難以乾燥的現象</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>酒蒸地黃：藥性由寒轉溫，藥味由苦轉甜，功能由清轉補</li>
+          <li>酒蒸山茱萸</li>
+          <li>酒蒸女貞子：寒滑之性減弱，滋補肝腎作用增強</li>
+          <li>黑豆汁蒸何首烏：味轉甘厚而性轉溫、消除滑腸腹瀉副作用</li>
+          <li>清蒸桑螵蛸：消除致瀉副作用、殺死蟲卵、利於保存</li>
+          <li>黃酒蒸黃精：增強補脾潤肺益腎、去除麻味以免刺激咽喉</li>
+          <li>黃酒蒸肉蓯蓉：增強補腎助陽</li>
+          <li>醋蒸、酒蒸五味子：生品歛肺止咳、醋製增強酸澀收斂、酒製增強益腎固精</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 製霜・製麴 -->
+    <div class="section" id="s9">
+      <div class="section-header"><h2>製霜・製麴</h2></div>
+      <div class="content">
+        <h3>製霜</h3>
+        <h4>去油製霜</h4>
+        <ul>
+          <li>目的：降低毒性、緩和藥性：巴豆製霜降低毒性、緩和瀉下作用</li>
+          <li>消除副作用：柏子仁製霜消除滑腸副作用</li>
+          <li>例子：製杏仁霜：燀法→去油製霜</li>
+        </ul>
+        <h4>滲析製霜</h4>
+        <ul>
+          <li>目的：製造新藥，增強療效</li>
+          <li>製西瓜霜：提高芒硝純度，增強清熱瀉火功能</li>
+        </ul>
+        <h4>昇華製霜</h4>
+        <ul>
+          <li>目的：純淨藥物</li>
+          <li>製砒霜</li>
+        </ul>
+        <h4>煎煮製霜</h4>
+        <ul>
+          <li>目的：緩和藥性、擴大藥源</li>
+          <li>製鹿角霜</li>
+        </ul>
+        <h4>風化製霜</h4>
+        <ul>
+          <li>製元明粉（＝玄明粉＝風化硝）：無結晶水硫酸鈉（將芒硝風化而得）</li>
+        </ul>
+
+        <h3>製麴</h3>
+        <h4>目的</h4>
+        <ul>
+          <li>改變原有性能，產生新的治療作用，擴大用藥品種：六神麴、淡豆豉</li>
+          <li>增強療效：半夏麴（健脾溫胃、燥濕化痰）</li>
+        </ul>
+        <h4>步驟</h4>
+        <p>藥料粉碎、和麵粉拌勻→藥汁拌麴→成形→堆麴（排成品字）→發酵（自然發酵）</p>
+        <h4>製六神麴</h4>
+        <ul>
+          <li>藥料（杏仁、赤小豆粉末）拌麵粉</li>
+          <li>藥汁：青蒿、藿香、半夏、赤小豆</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 燀法・水飛法 -->
+    <div class="section" id="s10">
+      <div class="section-header"><h2>燀法・水飛法</h2></div>
+      <div class="content">
+        <h3>燀法</h3>
+        <div class="box-green">
+          <p><strong>定義：</strong>製於沸水中浸煮短暫時間，取出浸於冷水中，分離種皮</p>
+        </div>
+        <h4>目的</h4>
+        <ul>
+          <li>保存有效成分並去除非藥用部位：杏仁（破壞 emulsin 以保存苦杏仁苷 amygdalin、去其皮）。HCN 能鎮靜呼吸中樞，達鎮咳平喘</li>
+          <li>分離不同藥用部位：白扁豆分離出扁豆仁和扁豆衣</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>杏仁</li>
+          <li>桃仁</li>
+          <li>扁豆：生用消暑袪濕、炒用健脾養胃</li>
+          <li>郁李仁</li>
+        </ul>
+
+        <h3>水飛法</h3>
+        <div class="box-green">
+          <p><strong>定義：</strong>利用粗細粉末在水中懸浮性不同，將不溶於水的礦物或貝殼類藥物精反覆研磨，製成極細膩的粉末</p>
+        </div>
+        <h4>目的</h4>
+        <ul>
+          <li>使藥物質地細膩，便於內服外用</li>
+          <li>去除藥物中可溶於水的毒性物質</li>
+        </ul>
+        <h4>例子</h4>
+        <ul>
+          <li>水飛珍珠</li>
+          <li>硃砂水飛（水揮硃砂）：低溫研磨、主成分是硫化汞，去除可溶性汞鹽、砷毒物</li>
+        </ul>
       </div>
     </div>
 
