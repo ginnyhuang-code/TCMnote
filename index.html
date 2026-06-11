@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>習醫手帖・中醫學習筆記</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:       #2C2825;
+      --ink-mid:   #5C5047;
+      --ink-light: #9C8E84;
+      --parchment: #F7F3EE;
+      --warm:      #EDE5D8;
+      --rule:      #D5C9BA;
+      --jade:      #2D6B4A;
+      --jade-light:#4A9B6F;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Serif TC', serif;
+      background: var(--parchment);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      background: var(--ink);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      height: 52px;
+    }
+    .site-nav .site-title {
+      color: var(--jade-light);
+      font-family: 'Noto Serif TC', serif;
+      font-size: .95rem;
+      font-weight: 500;
+      margin-right: auto;
+    }
+    .site-nav a {
+      color: var(--rule);
+      text-decoration: none;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      transition: color .2s;
+    }
+    .site-nav a:hover { color: var(--jade-light); }
+    .site-nav .nav-current {
+      color: var(--jade-light);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      cursor: default;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .2em;
+      color: var(--jade);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .hero .desc {
+      font-size: .95rem;
+      color: var(--ink-light);
+      line-height: 2;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--jade);
+      margin: 2.5rem auto;
+      opacity: .5;
+    }
+
+    /* ── Book grid ── */
+    .books {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .book-card {
+      background: var(--warm);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .book-card:hover {
+      box-shadow: 0 4px 20px rgba(44,40,37,.1);
+      transform: translateY(-2px);
+    }
+    .book-card.coming-soon {
+      opacity: .55;
+      cursor: default;
+      pointer-events: none;
+    }
+    .book-icon { font-size: 1.6rem; margin-bottom: .2rem; }
+    .book-tag {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      color: var(--jade);
+    }
+    .book-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: .05em;
+    }
+    .book-author {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .8rem;
+      color: var(--ink-light);
+    }
+    .book-desc {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .85rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      border-top: 1px solid var(--rule);
+      padding-top: .8rem;
+      margin-top: .2rem;
+    }
+    .book-count {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .78rem;
+      color: var(--ink-light);
+      margin-top: auto;
+      padding-top: .4rem;
+    }
+    .coming-badge {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .72rem;
+      color: var(--ink-light);
+      background: var(--parchment);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: .2rem .7rem;
+      display: inline-block;
+      margin-top: .4rem;
+      align-self: flex-start;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .78rem;
+      color: var(--ink-light);
+      letter-spacing: .06em;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .books { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <span class="nav-current">首頁</span>
+  <a href="paozhi.html">炮製學</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">中醫學習筆記</div>
+  <h1>習醫手帖</h1>
+  <div class="desc">
+    記錄習醫路上的點滴與思考<br>
+    願學有所得，醫術日日精進
+  </div>
+  <div class="hero-rule"></div>
+</div>
+
+<div class="books">
+
+  <a class="book-card" href="paozhi.html">
+    <div class="book-icon">🌿</div>
+    <div class="book-tag">中藥學・炮製</div>
+    <div class="book-title">炮製學筆記</div>
+    <div class="book-desc">記錄各類中藥炮製方法與原理，包含修治、炒法、炙法、煆法、蒸煮等加工技術及其對藥性的影響。</div>
+    <div class="book-count">課堂筆記整理</div>
+  </a>
+
+</div>
+
+<footer class="site-footer">
+  習醫手帖・中醫學習筆記
+</footer>
+
+</body>
+</html>
