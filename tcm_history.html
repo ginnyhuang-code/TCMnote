@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>中醫學史與歷代典籍 · 阿容筆記</title>
+  <title>中醫學史與歷代典籍・習醫手帖</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --parchment: #F7F3EE;
-      --parchment-dark: #EDE7DC;
-      --gold: #8B6914;
-      --gold-light: #B8922A;
-      --ink: #2C2825;
-      --ink-light: #5A4E46;
-      --ink-faint: #9A8E87;
-      --accent: #C4442C;
+      --ink:        #2C2825;
+      --ink-mid:    #5C5047;
+      --ink-light:  #9C8E84;
+      --parchment:  #F5F2ED;
+      --warm:       #EAE4D8;
+      --rule:       #D0C8B8;
+      --green:      #2D5A3D;
+      --green-light:#4A7A5A;
+      --green-pale: #E8F0EB;
+      --green-mid:  #C8DDD0;
       --sidebar-w: 260px;
       --radius: 6px;
     }
@@ -31,24 +33,39 @@
 
     /* ── HEADER ── */
     header {
-      background: var(--ink);
-      color: var(--parchment);
+      background: var(--green);
+      color: #fff;
       padding: 0 2rem;
-      height: 56px;
+      height: 52px;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 2px solid var(--gold);
     }
-    header h1 {
+    header .site-title {
+      color: var(--green-mid);
       font-family: 'Noto Serif TC', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--gold-light);
+      font-size: .95rem;
+      font-weight: 500;
+      margin-right: auto;
       letter-spacing: .06em;
+    }
+    header .nav-link {
+      color: var(--green-mid);
+      text-decoration: none;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      transition: color .2s;
+    }
+    header .nav-link:hover { color: #fff; }
+    header .nav-page {
+      color: #fff;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
     }
 
     #menu-toggle {
@@ -64,7 +81,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--parchment);
+      background: #fff;
       border-radius: 2px;
       transition: .25s;
     }
@@ -79,12 +96,12 @@
     /* ── SIDEBAR ── */
     aside {
       width: var(--sidebar-w);
-      background: var(--parchment-dark);
-      border-right: 1px solid #D4C8BC;
+      background: var(--warm);
+      border-right: 1px solid #D0C8B8;
       overflow-y: auto;
       position: sticky;
-      top: 56px;
-      height: calc(100vh - 56px);
+      top: 52px;
+      height: calc(100vh - 52px);
       padding: 1.5rem 0 2rem;
       transition: transform .3s ease;
       flex-shrink: 0;
@@ -94,28 +111,28 @@
       font-family: 'Noto Serif TC', serif;
       font-size: .7rem;
       letter-spacing: .15em;
-      color: var(--ink-faint);
+      color: var(--ink-light);
       text-transform: uppercase;
       padding: 0 1.25rem .75rem;
-      border-bottom: 1px solid #D4C8BC;
+      border-bottom: 1px solid #D0C8B8;
       margin-bottom: .5rem;
     }
     .nav-item {
       display: block;
       padding: .55rem 1.25rem;
       font-size: .85rem;
-      color: var(--ink-light);
+      color: var(--ink-mid);
       cursor: pointer;
       border-left: 3px solid transparent;
       transition: all .18s;
       line-height: 1.4;
     }
-    .nav-item:hover { background: rgba(139,105,20,.08); color: var(--gold); }
-    .nav-item.active { border-left-color: var(--gold); color: var(--gold); background: rgba(139,105,20,.1); font-weight: 500; }
+    .nav-item:hover { background: rgba(45,90,61,.08); color: var(--green); }
+    .nav-item.active { border-left-color: var(--green); color: var(--green); background: rgba(45,90,61,.1); font-weight: 500; }
     .nav-chapter {
       font-size: .7rem;
       letter-spacing: .1em;
-      color: var(--ink-faint);
+      color: var(--ink-light);
       padding: 1rem 1.25rem .3rem;
       text-transform: uppercase;
     }
@@ -137,8 +154,8 @@
       font-family: 'Noto Serif TC', serif;
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--gold);
-      border-bottom: 2px solid var(--parchment-dark);
+      color: var(--green);
+      border-bottom: 2px solid var(--warm);
       padding-bottom: .75rem;
       margin-bottom: 1.75rem;
     }
@@ -147,7 +164,7 @@
       font-size: .7rem;
       font-family: 'Noto Sans TC', sans-serif;
       font-weight: 400;
-      color: var(--ink-faint);
+      color: var(--ink-light);
       letter-spacing: .1em;
       margin-bottom: .3rem;
       text-transform: uppercase;
@@ -156,7 +173,7 @@
     /* ── CARDS / BLOCKS ── */
     .era-block {
       background: white;
-      border: 1px solid #DDD5CA;
+      border: 1px solid #D0C8B8;
       border-radius: var(--radius);
       margin-bottom: 1.5rem;
       overflow: hidden;
@@ -177,8 +194,8 @@
     }
     .era-tag {
       font-size: .68rem;
-      color: var(--gold-light);
-      border: 1px solid var(--gold);
+      color: var(--green-mid);
+      border: 1px solid var(--green);
       border-radius: 3px;
       padding: .1rem .45rem;
       letter-spacing: .05em;
@@ -195,7 +212,7 @@
       align-items: start;
     }
     .info-label {
-      color: var(--gold);
+      color: var(--green);
       font-weight: 500;
       font-size: .78rem;
       letter-spacing: .05em;
@@ -204,7 +221,7 @@
 
     /* ── PERSON CARD ── */
     .person-card {
-      border: 1px solid #E2D8CF;
+      border: 1px solid #D0C8B8;
       border-radius: var(--radius);
       padding: 1rem 1.2rem;
       margin-bottom: 1rem;
@@ -213,7 +230,7 @@
     .person-card h4 {
       font-family: 'Noto Serif TC', serif;
       font-size: .95rem;
-      color: var(--gold);
+      color: var(--green);
       margin-bottom: .5rem;
       display: flex;
       align-items: center;
@@ -222,21 +239,21 @@
     .person-card h4 .years {
       font-size: .72rem;
       font-family: 'Noto Sans TC', sans-serif;
-      color: var(--ink-faint);
+      color: var(--ink-light);
       font-weight: 400;
     }
     .badge {
       font-size: .65rem;
-      background: var(--gold);
+      background: var(--green);
       color: white;
       border-radius: 3px;
       padding: .1rem .45rem;
     }
-    .badge.accent { background: var(--accent); }
+    .badge.accent { background: var(--green-light); }
 
     /* ── BOOK LIST ── */
     .book-item {
-      border-left: 3px solid var(--gold-light);
+      border-left: 3px solid var(--green-mid);
       padding: .6rem .9rem;
       margin-bottom: .75rem;
       background: white;
@@ -249,47 +266,47 @@
       margin-bottom: .25rem;
       font-size: .9rem;
     }
-    .book-item .book-author { font-size: .78rem; color: var(--ink-faint); margin-bottom: .3rem; }
-    .book-item p { font-size: .83rem; color: var(--ink-light); line-height: 1.65; }
+    .book-item .book-author { font-size: .78rem; color: var(--ink-light); margin-bottom: .3rem; }
+    .book-item p { font-size: .83rem; color: var(--ink-mid); line-height: 1.65; }
 
     /* ── KEY CONCEPT PILL ── */
     .tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0; }
     .tag {
       font-size: .72rem;
-      background: var(--parchment-dark);
-      color: var(--ink-light);
-      border: 1px solid #CEC4B8;
+      background: var(--warm);
+      color: var(--ink-mid);
+      border: 1px solid #D0C8B8;
       border-radius: 3px;
       padding: .15rem .55rem;
     }
-    .tag.gold { background: rgba(139,105,20,.12); color: var(--gold); border-color: var(--gold-light); }
+    .tag.gold { background: rgba(45,90,61,.12); color: var(--green); border-color: var(--green-mid); }
 
     ul.note-list { padding-left: 1.2rem; }
     ul.note-list li {
       font-size: .85rem;
       line-height: 1.7;
-      color: var(--ink-light);
+      color: var(--ink-mid);
       margin-bottom: .25rem;
     }
     ul.note-list li strong { color: var(--ink); }
 
     .divider {
       border: none;
-      border-top: 1px dashed #D4C8BC;
+      border-top: 1px dashed #D0C8B8;
       margin: 1.25rem 0;
     }
 
     .callout {
-      background: rgba(139,105,20,.07);
-      border: 1px solid rgba(139,105,20,.25);
+      background: rgba(45,90,61,.07);
+      border: 1px solid rgba(45,90,61,.25);
       border-radius: var(--radius);
       padding: .75rem 1rem;
       font-size: .82rem;
-      color: var(--ink-light);
+      color: var(--ink-mid);
       line-height: 1.7;
       margin: .75rem 0;
     }
-    .callout strong { color: var(--gold); }
+    .callout strong { color: var(--green); }
 
     /* ── OVERLAY ── */
     .overlay {
@@ -304,7 +321,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       main { padding: 1.5rem 1.25rem 3rem; }
-      aside { position: fixed; top: 56px; left: 0; height: calc(100vh - 56px); z-index: 90; }
+      aside { position: fixed; top: 52px; left: 0; height: calc(100vh - 52px); z-index: 90; }
       aside:not(.collapsed) { box-shadow: 4px 0 20px rgba(0,0,0,.15); }
     }
   </style>
@@ -315,8 +332,10 @@
   <button id="menu-toggle" aria-label="切換目錄">
     <span></span><span></span><span></span>
   </button>
-  <h1>中醫學史與歷代典籍</h1>
-
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html" class="nav-link">首頁</a>
+  <a href="reading.html" class="nav-link">讀書筆記</a>
+  <span class="nav-page">中醫學史</span>
 </header>
 
 <div class="overlay" id="overlay"></div>
@@ -419,7 +438,7 @@
             <span>西周後期巫醫分家，醫學開始獨立發展</span>
           </div>
           <hr class="divider" />
-          <p style="font-size:.82rem;color:var(--ink-light)">《周禮》以五氣、五聲、五色視其死生；酒為百藥之長；《山海經》累積藥物知識。</p>
+          <p style="font-size:.82rem;color:var(--ink-mid)">《周禮》以五氣、五聲、五色視其死生；酒為百藥之長；《山海經》累積藥物知識。</p>
         </div>
       </div>
     </div>
@@ -430,7 +449,7 @@
         <div class="chapter-tag">第三章</div>
         醫學理論體系初步形成
       </div>
-      <p style="font-size:.82rem;color:var(--ink-faint);margin-bottom:1.5rem">春秋戰國 · 秦漢 · 三國</p>
+      <p style="font-size:.82rem;color:var(--ink-light);margin-bottom:1.5rem">春秋戰國 · 秦漢 · 三國</p>
 
       <div class="era-block">
         <div class="era-block-head"><h3>學術背景</h3></div>
@@ -521,7 +540,7 @@
         <div class="chapter-tag">第四章</div>
         醫藥學的全面發展
       </div>
-      <p style="font-size:.82rem;color:var(--ink-faint);margin-bottom:1.5rem">魏晉南北朝 · 隋 · 唐 · 五代十國</p>
+      <p style="font-size:.82rem;color:var(--ink-light);margin-bottom:1.5rem">魏晉南北朝 · 隋 · 唐 · 五代十國</p>
 
       <div class="era-block">
         <div class="era-block-head"><h3>時代背景</h3></div>
@@ -539,7 +558,7 @@
         <div class="era-block-body">
           <div class="person-card">
             <h4>皇甫謐 <span class="years">215–282 西晉</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">42 歲中風後全心鑽研針灸。著《針灸甲乙經》：貫通《素問》《靈樞》《明堂孔穴針灸治要》。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">42 歲中風後全心鑽研針灸。著《針灸甲乙經》：貫通《素問》《靈樞》《明堂孔穴針灸治要》。</p>
           </div>
           <div class="person-card">
             <h4>王叔和 <span class="years">210–258 西晉</span></h4>
@@ -656,15 +675,15 @@
           </div>
           <div class="person-card">
             <h4>陳言（陳無擇） <span class="years">1131–1189</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">《三因極一病證方論》——提出<strong>三因論</strong>：外因（六淫）、內因（七情）、不內外因（飲食勞倦外傷等）。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">《三因極一病證方論》——提出<strong>三因論</strong>：外因（六淫）、內因（七情）、不內外因（飲食勞倦外傷等）。</p>
           </div>
           <div class="person-card">
             <h4>宋慈 <span class="years">1186–1249</span> <span class="badge">大宋提刑官</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《洗冤集錄》——<strong>世界現存第一部法醫學專著</strong>。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《洗冤集錄》——<strong>世界現存第一部法醫學專著</strong>。</p>
           </div>
           <div class="person-card">
             <h4>陳自明 <span class="years">1190–1270</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《婦人大全良方》——中國第一部比較完善的綜合性婦產科專著；另著《外科精要》。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《婦人大全良方》——中國第一部比較完善的綜合性婦產科專著；另著《外科精要》。</p>
           </div>
         </div>
       </div>
@@ -765,23 +784,23 @@
         <div class="era-block-body">
           <div class="person-card">
             <h4>成無己 <span class="years">1063–1156</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《註解傷寒論》——<strong>全面逐條注解《傷寒論》第一家</strong>，以《內經》《難經》解釋《傷寒論》醫理（以經釋經）。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《註解傷寒論》——<strong>全面逐條注解《傷寒論》第一家</strong>，以《內經》《難經》解釋《傷寒論》醫理（以經釋經）。</p>
           </div>
           <div class="person-card">
             <h4>滑壽 <span class="years">1304–1386</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《十四經發揮》：將十二正經與任督二脈合為<strong>十四經</strong>，整理規納經穴。著《診家樞要》（脈學）。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《十四經發揮》：將十二正經與任督二脈合為<strong>十四經</strong>，整理規納經穴。著《診家樞要》（脈學）。</p>
           </div>
           <div class="person-card">
             <h4>杜本 <span class="years">1276–1350</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">撰《敖氏傷寒金鏡錄》——<strong>現存最早的舌診專著</strong>。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">撰《敖氏傷寒金鏡錄》——<strong>現存最早的舌診專著</strong>。</p>
           </div>
           <div class="person-card">
             <h4>葛乾孫 <span class="years">1305–1353</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《十藥神書》——<strong>現存第一部治療肺癆（肺結核）的專著</strong>。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《十藥神書》——<strong>現存第一部治療肺癆（肺結核）的專著</strong>。</p>
           </div>
           <div class="person-card">
             <h4>忽思慧 <span class="years">元代</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">宮廷飲膳太醫，撰《飲膳正要》——<strong>現存最早的營養保健學專著</strong>。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">宮廷飲膳太醫，撰《飲膳正要》——<strong>現存最早的營養保健學專著</strong>。</p>
           </div>
         </div>
       </div>
@@ -814,7 +833,7 @@
           </div>
           <div class="person-card">
             <h4>陳實功 <span class="years">1555–1636</span> <span class="badge">外科</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《外科正宗》（1617）——向以「列症最詳，論治最精」著稱，反映明朝以前外科學重要成就。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《外科正宗》（1617）——向以「列症最詳，論治最精」著稱，反映明朝以前外科學重要成就。</p>
           </div>
           <div class="person-card">
             <h4>張介賓（景岳） <span class="years">1563–1640</span> <span class="badge">溫補學派</span></h4>
@@ -889,7 +908,7 @@
           </div>
           <div class="person-card">
             <h4>薛雪（生白） <span class="years">1661–1750</span></h4>
-            <p style="font-size:.83rem;color:var(--ink-light)">著《濕熱條辨》——於濕熱證治特稱高手，與葉桂同時齊名。</p>
+            <p style="font-size:.83rem;color:var(--ink-mid)">著《濕熱條辨》——於濕熱證治特稱高手，與葉桂同時齊名。</p>
           </div>
           <div class="person-card">
             <h4>吳瑭（鞠通） <span class="years">1758–1836</span></h4>
