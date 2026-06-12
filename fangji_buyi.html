@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>補益劑・方劑學筆記・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D;
+      --green-mid: #3D7A52;
+      --green-light: #5A9E6F;
+      --green-pale: #E8F2EC;
+      --parchment: #FAF7F2;
+      --ink: #1E2A1E;
+      --ink-light: #4A5A4A;
+      --rule: #C8D8C8;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: var(--parchment); color: var(--ink); line-height: 1.8; }
+
+    .site-nav {
+      background: var(--green-dark); padding: .9rem 2rem;
+      display: flex; align-items: center; gap: 1.2rem;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .site-nav .site-title { font-family: 'Noto Serif TC', serif; font-weight: 700; color: #fff; font-size: 1.05rem; margin-right: .4rem; }
+    .site-nav a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .9rem; }
+    .site-nav a:hover { color: #fff; }
+    .site-nav .nav-current { color: rgba(255,255,255,.5); font-size: .9rem; }
+
+    .breadcrumb { max-width: 1100px; margin: 0 auto; padding: 1.2rem 2rem .3rem; font-size: .83rem; color: var(--ink-light); }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb span.sep { margin: 0 .4rem; }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: #fff; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    .page-header .eyebrow { font-size: .8rem; letter-spacing: .12em; opacity: .7; margin-bottom: .5rem; }
+    .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 2rem; font-weight: 700; }
+    .page-header .subtitle { margin-top: .5rem; opacity: .8; font-size: .9rem; }
+
+    .layout { display: flex; max-width: 1100px; margin: 2rem auto 4rem; padding: 0 1.5rem; gap: 2rem; align-items: flex-start; }
+
+    .toc { width: 220px; flex-shrink: 0; position: sticky; top: 72px; background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 1.2rem; max-height: calc(100vh - 90px); overflow-y: auto; }
+    .toc-title { font-family: 'Noto Serif TC', serif; font-size: .85rem; font-weight: 700; color: var(--green-dark); margin-bottom: .8rem; padding-bottom: .5rem; border-bottom: 1px solid var(--rule); }
+    .toc ul { list-style: none; }
+    .toc li { margin: .2rem 0; }
+    .toc a { font-size: .78rem; color: var(--ink-light); text-decoration: none; display: block; padding: .18rem .4rem; border-radius: 4px; line-height: 1.5; }
+    .toc a:hover { background: var(--green-pale); color: var(--green-dark); }
+    .toc .toc-section { font-weight: 700; color: var(--green-dark); font-size: .78rem; margin-top: .7rem; padding: .2rem .4rem; }
+    .toc .toc-sub { padding-left: .8rem; }
+
+    .content { flex: 1; min-width: 0; }
+
+    .section { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1.8rem 2rem; margin-bottom: 1.5rem; }
+    .section-label { display: inline-block; background: var(--green-dark); color: #fff; font-size: .72rem; letter-spacing: .1em; padding: .2rem .7rem; border-radius: 4px; margin-bottom: .8rem; }
+    .section h2 { font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--green-pale); }
+    .section h3 { font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 700; color: var(--green-mid); margin: 1.2rem 0 .5rem; }
+    .section h4 { font-size: .9rem; font-weight: 700; color: var(--ink); margin: .8rem 0 .3rem; }
+    .section p { font-size: .9rem; color: var(--ink); margin-bottom: .6rem; }
+    .section ul { padding-left: 1.4rem; margin-bottom: .6rem; }
+    .section ul li { font-size: .9rem; margin-bottom: .3rem; color: var(--ink); }
+
+    .formula-box { background: var(--green-pale); border-left: 4px solid var(--green-mid); border-radius: 0 6px 6px 0; padding: .8rem 1rem; margin: .8rem 0; font-size: .88rem; }
+    .formula-box .formula-title { font-family: 'Noto Serif TC', serif; font-weight: 700; color: var(--green-dark); font-size: 1rem; margin-bottom: .3rem; }
+    .formula-box .mnemonic { font-size: .8rem; color: var(--green-mid); margin-bottom: .4rem; font-style: italic; }
+    .formula-box .herbs { color: var(--ink-light); font-size: .85rem; }
+
+    .compare-box { background: #FFF9F0; border: 1px solid #E8D5A0; border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: .88rem; }
+    .compare-box .compare-title { font-weight: 700; color: #8B6914; margin-bottom: .4rem; font-size: .9rem; }
+    .compare-box ul { padding-left: 1.2rem; }
+    .compare-box li { margin-bottom: .3rem; }
+
+    .caution { display: inline-block; background: #FFF0F0; border: 1px solid #F0BABA; color: #C0392B; font-size: .78rem; padding: .15rem .6rem; border-radius: 4px; margin: .3rem 0; }
+
+    .intro-card { background: var(--green-pale); border-radius: 10px; padding: 1.2rem 1.5rem; margin-bottom: 1.5rem; font-size: .9rem; }
+    .intro-card ul { padding-left: 1.2rem; }
+    .intro-card li { margin-bottom: .3rem; }
+
+    .variant-box { background: #F5F0FF; border: 1px solid #C8B8E8; border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: .88rem; }
+    .variant-box .variant-title { font-weight: 700; color: #5B3FA0; margin-bottom: .4rem; font-size: .9rem; }
+    .variant-box ul { padding-left: 1.2rem; }
+    .variant-box li { margin-bottom: .3rem; }
+
+    .site-footer { text-align: center; padding: 1.5rem; font-size: .8rem; color: var(--ink-light); border-top: 1px solid var(--rule); }
+
+    @media (max-width: 768px) { .layout { flex-direction: column; } .toc { width: 100%; position: static; } }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <a href="fangji.html">方劑學筆記</a>
+  <span class="nav-current">補益劑</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span class="sep">›</span>
+  <a href="reading.html">讀書筆記</a><span class="sep">›</span>
+  <a href="fangji.html">方劑學筆記</a><span class="sep">›</span>
+  <span>補益劑</span>
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">方劑學筆記・讀書筆記</div>
+  <h1>補益劑</h1>
+  <div class="subtitle">王玟玲醫師授課</div>
+</div>
+
+<div class="layout">
+
+  <!-- TOC -->
+  <aside class="toc">
+    <div class="toc-title">目錄</div>
+    <ul>
+      <li><a href="#intro">補益劑概論</a></li>
+
+      <li class="toc-section">補氣劑</li>
+      <li class="toc-sub"><a href="#sijunzi">四君子湯</a></li>
+      <li class="toc-sub"><a href="#buzhongyiqi">補中益氣湯</a></li>
+      <li class="toc-sub"><a href="#shengyangweizao">升陽益胃湯</a></li>
+      <li class="toc-sub"><a href="#yiqicongming">益氣聰明湯</a></li>
+      <li class="toc-sub"><a href="#renshengejie">人參蛤蚧散</a></li>
+      <li class="toc-sub"><a href="#shengmai">生脈散</a></li>
+      <li class="toc-sub"><a href="#yupingfeng">玉屏風散</a></li>
+
+      <li class="toc-section">補血劑</li>
+      <li class="toc-sub"><a href="#siwu">四物湯</a></li>
+      <li class="toc-sub"><a href="#dangguibuxue">當歸補血湯</a></li>
+      <li class="toc-sub"><a href="#guipi">歸脾湯</a></li>
+
+      <li class="toc-section">氣血雙補</li>
+      <li class="toc-sub"><a href="#bazhen">八珍湯</a></li>
+      <li class="toc-sub"><a href="#taishanpanshi">泰山磐石散</a></li>
+
+      <li class="toc-section">補陰劑</li>
+      <li class="toc-sub"><a href="#liuwei">六味地黃丸</a></li>
+      <li class="toc-sub"><a href="#zuogui">左歸丸</a></li>
+      <li class="toc-sub"><a href="#dabuyin">大補陰丸</a></li>
+      <li class="toc-sub"><a href="#huqian">虎潛丸</a></li>
+      <li class="toc-sub"><a href="#yiguan">一貫煎</a></li>
+      <li class="toc-sub"><a href="#baihe">百合固金湯</a></li>
+      <li class="toc-sub"><a href="#erzhi">二至丸</a></li>
+      <li class="toc-sub"><a href="#yiwei">益胃湯</a></li>
+
+      <li class="toc-section">補陽劑</li>
+      <li class="toc-sub"><a href="#shenqi">腎氣丸</a></li>
+      <li class="toc-sub"><a href="#shibu">十補丸</a></li>
+      <li class="toc-sub"><a href="#yougui">右歸丸</a></li>
+
+      <li class="toc-section">陰陽雙補</li>
+      <li class="toc-sub"><a href="#dihuangyin">地黃飲子</a></li>
+      <li class="toc-sub"><a href="#huanshao">還少丹</a></li>
+      <li class="toc-sub"><a href="#guiluerxian">龜鹿二仙膠</a></li>
+      <li class="toc-sub"><a href="#qibao">七寶美髯丹</a></li>
+
+      <li class="toc-section">氣血陰陽並補</li>
+      <li class="toc-sub"><a href="#zhigancao">炙甘草湯</a></li>
+      <li class="toc-sub"><a href="#butian">補天大造丸</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- 概論 -->
+    <div class="section" id="intro">
+      <span class="section-label">概論</span>
+      <h2>補益劑概論</h2>
+      <div class="intro-card">
+        <p>虛則補之，損者益之。補益劑針對氣血陰陽不足的虛證。</p>
+        <ul>
+          <li><strong>先天稟賦不足</strong>：基因造成，如肌肉萎縮（健脾+補腎+復健針灸）、長腿毛（補腎+補中益氣湯）</li>
+          <li><strong>營養不足</strong>：老人肌少症、牙口不好、減肥過度（酮體過多）、退化性關節炎減肥過頭</li>
+          <li><strong>勞倦過度</strong>：熬夜、作息不正常（常與憂思傷神合併）</li>
+          <li><strong>外傷仆損</strong>：初期活血化瘀+清熱解毒；中後期（骨頭生長）才可用補養劑（補益氣血、健脾、補肝腎+龜板促生長）</li>
+          <li><strong>更年期婦女骨質疏鬆</strong>：兩筋健步丸、龜鹿二仙膠（中後期才能介入）</li>
+        </ul>
+      </div>
+      <h3>使用注意</h3>
+      <ul>
+        <li>補藥不可過度：胃癌肝癌、二便不通，不可過補</li>
+        <li>補益劑有些滋膩礙胃（如熟地），需加健脾和胃、理氣藥物助運化</li>
+        <li>不可對路人甲講病人病情；直系可說，旁系需確認身分（涉及保險問題）</li>
+      </ul>
+    </div>
+
+    <!-- 補氣劑 -->
+    <div class="section" id="sijunzi">
+      <span class="section-label">補氣劑・補脾胃氣虛</span>
+      <h2>四君子湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">四君子湯</div>
+        <div class="mnemonic">人服豬肝</div>
+        <div class="herbs">人參、茯苓、白朮、炙甘草</div>
+      </div>
+      <h3>病機與主治</h3>
+      <p>脾胃氣虛，氣血生化不足、水濕生成。水濕用茯苓、白朮；益氣健脾以人參、白朮為主。藥偏甘溫，陰虛化火合併脾胃氣虛，需搭配滋陰藥（4g四君子配麥門冬1g，預防化燥）。</p>
+      <p>科中一天12g；胃有問題者（如加護病房病人）改粉劑，覆蓋胃黏膜。古代用「白飲」（米湯）配服，養胃氣生津液。</p>
+      <h3>加減</h3>
+      <ul>
+        <li>子宮下垂：加黃耆（補氣升提）、菟絲子、肉蓯蓉；月經前發生可補腎氣</li>
+        <li>小兒開脾：四君子湯+焦三仙（山楂、神麴、麥芽），飯前半小時</li>
+        <li>傷口潰瘍/化放療後口腔問題：急性期甘露飲、導赤散；後期用四君子湯加減</li>
+      </ul>
+      <div class="compare-box">
+        <div class="compare-title">比較：理中湯</div>
+        四君子的茯苓換成<strong>乾薑</strong>，溫中祛寒。用在脾胃虛寒症（舌苔白而滑、水津液較多、脈沉細、下痢、噁心嘔吐）。
+      </div>
+
+      <div class="variant-box">
+        <div class="variant-title">變方：香砂六君子湯</div>
+        六君子湯（四君子+陳皮、半夏）+砂仁、木香。用於胃脘悶脹、嘔吐、痞悶。與半夏瀉心湯同為慢性胃炎常用方；半夏瀉心湯也可輔助胃幽門螺旋桿菌治療。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：保元湯</div>
+        <div class="mnemonic">拿肉乾、將旗昇，才能考到狀元 — 肉甘薑耆參</div>
+        有肉桂，偏助陽。主治少氣、畏寒，脈沉細無力（無數熱現象）。用在勞怯（疲勞過度）。注意：勞怯若是陰虛內熱虛勞（脈細數無力），應用補陰降火藥，熟地改生地，加黃柏、知母。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：參苓白朮散</div>
+        <div class="mnemonic">四君子湯+一（早）要接連撒便</div>
+        薏苡仁、（大棗）、山藥、桔梗、蓮子肉、砂仁、白扁豆。科中一天9g。<br>
+        益氣健脾、滲濕止瀉（脾虛夾濕）：腸鳴泄瀉、舌淡苔白膩、胸脘痞悶。<br>
+        也可用在肺虛久咳（慢性支氣管炎、COPD）；培土生金法（過敏性鼻炎、氣喘）；老人肌少症（燉山藥排骨湯）。<br>
+        注意：一般病人會使大便乾硬；陰虛火旺、陽亢忌用；高血壓患者留意血壓。
+      </div>
+    </div>
+
+    <div class="section" id="buzhongyiqi">
+      <span class="section-label">補氣劑</span>
+      <h2>補中益氣湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">補中益氣湯</div>
+        <div class="herbs">黃耆、人參（或黨參）、白朮、炙甘草、當歸、陳皮、升麻、柴胡</div>
+      </div>
+      <h3>主治</h3>
+      <ul>
+        <li><strong>脾胃氣虛、肢倦少氣懶言</strong>：慢性虛勞可合六味地黃丸</li>
+        <li><strong>氣虛下陷</strong>：改善平滑肌循環、肌肉強度（子宮肌瘤脫垂仍需手術）</li>
+        <li><strong>氣虛發熱（表衛不固）</strong>：反覆感冒、肺炎，37–37.3度 mild fever，吹風更甚但溫度仍維持。注意：陰虛內熱（五心煩熱、口乾眼澀）不適合，應用六味地黃丸加生地、知柏</li>
+        <li><strong>婦女功能性子宮出血</strong>：月經大量出血可合芎歸膠艾湯；子宮息肉出血效果不好，需刮除</li>
+        <li><strong>化療副作用</strong>：提升白血球用黨參、黃耆、補中益氣；紅血球底用四物湯；血小板底用歸脾湯</li>
+      </ul>
+      <h3>組方說明</h3>
+      <p>升麻引陽明清氣、柴胡引少陽清氣，做升陽舉陷，須配伍人參、黃耆效果才會呈現。</p>
+      <div class="variant-box">
+        <div class="variant-title">變方：舉元煎</div>
+        含升麻，補氣強心、升提攝血（補氣生血）。加強人參、黃耆。心衰竭病人加附子，效果才明顯。用於出血過多造成血壓下降（需先找出出血源）。
+      </div>
+    </div>
+
+    <div class="section" id="shengyangweizao">
+      <span class="section-label">補氣劑</span>
+      <h2>升陽益胃湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">升陽益胃湯</div>
+        <div class="herbs">黃耆（君）、六君子湯、羌活、獨活、防風…</div>
+      </div>
+      <h3>主治</h3>
+      <p>脾胃虛弱，濕熱滯留中焦（脾胃氣虛，濕鬱升熱）。肢體重著、脈濡數。舌苔厚膩、有虛熱現象（有濕與熱的表現）。用於慢性疲勞合併頭痛頭暈。</p>
+      <div class="compare-box">
+        <div class="compare-title">比較：益氣聰明湯 vs 升陽益胃湯</div>
+        升陽益胃湯有濕；益氣聰明湯是單純清陽不升，無濕的差異。
+      </div>
+      <p>臨床也會用到<strong>羌活勝濕湯</strong>：下雨天淋雨頭昏重持續（下雨前加重），可配合葛根湯。葛根湯用熱水沖泡後服用，頭痛脹感可緩解。</p>
+    </div>
+
+    <div class="section" id="yiqicongming">
+      <span class="section-label">補氣劑</span>
+      <h2>益氣聰明湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">益氣聰明湯</div>
+        <div class="herbs">黃耆、人參、升麻、葛根、蔓荊子、白芍、黃柏、炙甘草</div>
+      </div>
+      <h3>主治</h3>
+      <p>勞役，中氣不足，清陽不升。讀書考試可用甘麥大棗湯（情緒穩定）；心陰虛心血虛用天王補心丹；讀書沒力氣不持久（清陽不升），用生脈散或益氣聰明湯。</p>
+      <p>補益藥一般早中服用，晚上讓病人好好休息；非常嚴重勞損才三餐服。注意有無虛火（方中有黃柏補腎生水清熱、白芍柔肝和血）。</p>
+    </div>
+
+    <div class="section" id="renshengejie">
+      <span class="section-label">補氣劑・肺氣虛</span>
+      <h2>人參蛤蚧散</h2>
+      <div class="formula-box">
+        <div class="formula-title">人參蛤蚧散</div>
+        <div class="herbs">蛤蚧、人參、杏仁、桑白皮、知母…</div>
+      </div>
+      <h3>主治</h3>
+      <p>肺腎氣虛、腎不納氣的慢性虛喘（氣喘小朋友、呼吸道較敏感）。蛤蚧入肺腎，1g約70元。針對痰黃稠效果較薄弱，可佐加黃芩、魚腥草。知母清熱潤肺。</p>
+      <p>慢性肺部疾病病人肺泡無法有效排痰，可用葦莖湯加魚腥草、冬瓜子、薏仁、蘆根排痰（當作肺癰處理）。需同時處理肺腎虛衰才有效。</p>
+    </div>
+
+    <div class="section" id="shengmai">
+      <span class="section-label">補氣劑・肺氣虛</span>
+      <h2>生脈散</h2>
+      <div class="formula-box">
+        <div class="formula-title">生脈散</div>
+        <div class="mnemonic">暑熱生脈五味子</div>
+        <div class="herbs">人參、麥冬、五味子</div>
+      </div>
+      <h3>主治與功能</h3>
+      <ul>
+        <li>益氣生津、斂陰止汗。下午三點後不要再服，避免睡眠障礙。</li>
+        <li><strong>氣陰兩虛多汗</strong>：大病後自汗（頭頸以上，動則疲倦）</li>
+        <li><strong>手汗</strong>：過勞氣陰兩虛→生脈散；營衛不調→桂枝湯；天氣越冷越濕加重→羌活勝濕湯、桂枝湯</li>
+        <li><strong>暑熱傷氣耗陰</strong>：體質易中暑，平時可泡茶飲。嚴重中暑/熱衰需緊急處置，生脈散效果不佳</li>
+        <li><strong>補益肺氣、滋陰潤肺</strong>：久咳肺虛、上氣不接下氣（脈虛弱）</li>
+        <li><strong>冠心病</strong>：加丹參、延胡索（活血止痛）。服warfarin者避免丹參（交互作用），須注意紫斑、凝血時間延長</li>
+        <li><strong>心衰</strong>：如獨參湯，加強人參劑量；也可加附子強化心臟輸出；低血壓亦可用</li>
+      </ul>
+      <h3>用藥選擇</h3>
+      <ul>
+        <li>陰虛有熱或慢性氣管症狀：用西洋參即可，不需高麗參</li>
+        <li>一般補充體力：人參鬚替代（一把一百元）</li>
+        <li>五味子：需歛肺者加（如常需講話），劑量不用太多，怕酸者注意</li>
+        <li>科中生脈散容易受潮，保存需留意</li>
+      </ul>
+    </div>
+
+    <div class="section" id="yupingfeng">
+      <span class="section-label">補氣劑</span>
+      <h2>玉屏風散</h2>
+      <div class="formula-box">
+        <div class="formula-title">玉屏風散</div>
+        <div class="mnemonic">白天起大風</div>
+        <div class="herbs">黃耆、防風、白朮（生薑、大棗）</div>
+      </div>
+      <h3>主治</h3>
+      <p>益氣固表止汗。氣虛發熱、表衛不固（風一吹全身夯夯），可當平常保養用藥，建議固定運動（散步30分鐘改善鼻過敏）。</p>
+      <p>最常用於虛人腠理不固、容易感冒。脈浮，不一定很虛，頂多肺氣虛。若合併過敏性鼻炎有水飲（脈細澀），需用小青龍湯。過敏氣喘小朋友有外感時，先處理外感，再補氣調理。睡眠障礙可給酸棗仁湯一天1g。</p>
+      <div class="compare-box">
+        <div class="compare-title">比較：桂枝湯</div>
+        外感風寒、營衛不和。常外感的小朋友可用桂枝湯加減。玉屏風散補中益氣、健脾效果較明顯。
+      </div>
+    </div>
+
+    <!-- 補血劑 -->
+    <div class="section" id="siwu">
+      <span class="section-label">補血劑</span>
+      <h2>四物湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">四物湯</div>
+        <div class="mnemonic">窮鬼掃地</div>
+        <div class="herbs">川芎、當歸、白芍、熟地</div>
+      </div>
+      <h3>主治與注意</h3>
+      <ul>
+        <li>子宮內膜異位症體質的女生，吃四物湯後痛經會更痛（可能有巧克力囊腫），盡量避開</li>
+        <li>吃完拉肚子：因熟地潤腸，可把熟地改成黃精；當歸也有潤腸作用，有人會過敏起紅疹，改用替代物</li>
+        <li>血虛更嚴重：加鹿角膠（如慢性腎臟病第4–5期造血功能差，打EPO效果不好時用鹿茸補血，注意化燥）</li>
+        <li>加黃耆或人參（當歸補血湯）：補氣生血</li>
+      </ul>
+      <div class="variant-box">
+        <div class="variant-title">變方：芎歸膠艾湯</div>
+        四物湯+阿膠、甘草、艾葉。針對衝任虛損、血虛有寒、崩漏下血、月經過多（需先排除子宮肌瘤）。君藥：阿膠（補血滋陰安胎）、艾葉（溫經止血安胎）。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：桃紅四物湯</div>
+        四物湯+桃仁、紅花。養血活血，合併血瘀（血塊、腹痛）。多囊性卵巢或月經週期不規律者，避開桃仁、紅花（有懷孕風險）。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：聖愈湯</div>
+        四物湯+人參、黃耆。補氣養血，四肢乏力、體倦神疲。
+      </div>
+    </div>
+
+    <div class="section" id="dangguibuxue">
+      <span class="section-label">補血劑</span>
+      <h2>當歸補血湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">當歸補血湯</div>
+        <div class="herbs">黃耆：當歸 = 5:1（最佳比例）</div>
+      </div>
+      <h3>主治</h3>
+      <p>補氣生血。用於<strong>血虛發熱</strong>，肌熱面紅。看似白虎湯證（脈洪大），但此為洪大而虛、重按無力。</p>
+      <ul>
+        <li>血虛發熱：重症患者革具顴紅、產後血虛發熱均需補血</li>
+        <li>勞倦內傷，血虛氣弱，陰不維陽，陽氣浮越於外</li>
+        <li>冬天手腳冰冷：當歸補血湯煮羊肉加生薑片</li>
+      </ul>
+      <div class="caution">禁用：陰虛火旺</div>
+    </div>
+
+    <div class="section" id="guipi">
+      <span class="section-label">補血劑</span>
+      <h2>歸脾湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">歸脾湯</div>
+        <div class="mnemonic">人人拿香草，願將神龍當大豬騎</div>
+        <div class="herbs">人參、酸棗仁、木香、炙甘草、遠志、生薑、茯神、龍眼肉、當歸、大棗、白朮、黃耆</div>
+      </div>
+      <h3>主治</h3>
+      <ul>
+        <li><strong>心脾氣血兩虛失眠</strong>：茯神、龍眼肉、酸棗仁（寧心安神）、遠志（安神益智）。龍眼肉泡熱水睡前喝助眠。</li>
+        <li><strong>脾不統血</strong>：崩漏、功能性子宮出血、血小板低下。免疫造成者合用清熱涼血藥（紫草、生地、仙鶴草）；leukemia患者血小板低下也用清血熱藥。</li>
+        <li>化療：血小板底以歸脾湯為底</li>
+      </ul>
+      <div class="compare-box">
+        <div class="compare-title">比較：補中益氣湯</div>
+        兩者同有人參、黃耆、白朮、甘草，但歸脾湯多了<strong>安神</strong>功效。
+      </div>
+    </div>
+
+    <!-- 氣血雙補 -->
+    <div class="section" id="bazhen">
+      <span class="section-label">氣血雙補</span>
+      <h2>八珍湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">八珍湯</div>
+        <div class="herbs">四君子湯（人服豬肝）+ 四物湯（窮鬼掃地）</div>
+      </div>
+      <h3>主治</h3>
+      <p>氣血兩虛（如失血過多）。單用四物湯補氣生血效果較差，合四君子效果較好。</p>
+      <div class="variant-box">
+        <div class="variant-title">變方：十全大補湯</div>
+        八珍湯+黃耆、肉桂。黃耆補氣生陽固表止汗；肉桂溫補命門填補元陽。較虛寒疲倦者用十全大補；單純氣血兩虧用八珍湯。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：人參養榮湯</div>
+        十全大補湯+遠志+五味子+陳皮−川芎。益氣補血、養心安神。形體消瘦病人常見（尤其糖尿病患者）。
+      </div>
+    </div>
+
+    <div class="section" id="taishanpanshi">
+      <span class="section-label">氣血雙補</span>
+      <h2>泰山磐石散</h2>
+      <div class="formula-box">
+        <div class="formula-title">泰山磐石散</div>
+        <div class="herbs">益氣健脾、養血安胎</div>
+      </div>
+      <h3>主治</h3>
+      <p>滑胎，安胎。懷孕婦女禁用或慎用：活血化瘀、溫燥、通下類用藥（薏仁、半夏、肉桂等）。自體免疫疾病病人準備懷孕時吃aspirin，懷孕後換heparin保住胎兒（轉介風濕免疫科輔助）。</p>
+    </div>
+
+    <!-- 補陰劑 -->
+    <div class="section" id="liuwei">
+      <span class="section-label">補陰劑</span>
+      <h2>六味地黃丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">六味地黃丸</div>
+        <div class="mnemonic">於某地服瀉藥</div>
+        <div class="herbs">山茱萸、牡丹皮、熟地、茯苓、澤瀉、山藥</div>
+      </div>
+      <h3>主治</h3>
+      <p>滋補肝腎基礎方，腎陰虛為主（下焦證）。腎陰虧虛、髓海不充、相火妄動、陰虛火旺。三補三瀉：三補（熟地、山茱萸、山藥）滋養腎陰；三瀉（牡丹皮、茯苓、澤瀉）瀉濕濁、清虛熱、降相火。</p>
+      <h3>使用注意</h3>
+      <ul>
+        <li>單純補腎陰：可不加三瀉；有虛火：加三瀉或知母、黃柏</li>
+        <li>熟地、當歸潤腸，胃氣虛病人胃脘脹不舒；脾虛泄瀉慎用，可把熟地換黃精</li>
+        <li>澤瀉：近曲腎小管有毒性，CKD 3B期以後慎用；科中0.5–2g安全劑量</li>
+        <li>空心溫水服；胃腸不好可飯後吃，或加健脾理氣藥</li>
+      </ul>
+      <h3>臨床應用</h3>
+      <ul>
+        <li>腰膝痠軟、頭暈目眩（精髓不足）；盜汗（虛熱內擾）；遺精；牙齒動搖</li>
+        <li>足跟痛：腎虛足跟痛雙側全天都痛（坐躺均痛），與足底筋膜炎（晨起踩地痛、有痛點）鑑別</li>
+        <li>小兒骨遲：身體健康活動力智商可的小孩，發育稍晚；腦性麻痺效果不好</li>
+      </ul>
+      <div class="variant-box">
+        <div class="variant-title">變方：都氣丸</div>
+        六味+五味子。納氣歛肺，用於咳嗽、氣喘、COPD（肺腎兩虛）。合併氣虛可用生脈散加六味地黃丸。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：知柏地黃丸</div>
+        六味+黃柏、知母（鹽炒入腎）。針對陰虛火旺（脈弦滑、尺部旺）。用於陰虛火旺高血壓、更年期潮熱盜汗、五心煩熱、足底熱。
+        <div style="margin-top:.5rem">比較：桂附八味丸（六味+附子、肉桂）治相火不足，怕冷、小便清長、尺部弱，與知柏地黃丸截然不同。</div>
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：杞菊地黃丸</div>
+        六味+枸杞子、菊花。3C護眼，可泡茶飲（400cc水，枸杞一小把，菊花五朵）。長期近距離用眼合熱敷，保養陽明經循環。脾胃不好者菊花不要太多（礙胃生口水）。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：麥味地黃丸</div>
+        六味+麥冬、五味子。再加人參即生脈散+六味地黃丸，用於肺腎陰虛咳嗽調養、氣陰兩虛疲勞。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：滋水清肝飲</div>
+        六味地黃丸+加味逍遙散。滋陰養血、疏肝清熱，熟地改生地。用於陰虛肝鬱為主（甲亢陰虛火旺合肝鬱化火）。
+      </div>
+    </div>
+
+    <div class="section" id="zuogui">
+      <span class="section-label">補陰劑</span>
+      <h2>左歸丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">左歸丸</div>
+        <div class="mnemonic">山牛歸山，狗兔歸陸地</div>
+        <div class="herbs">山茱萸、牛膝、龜板、山藥、枸杞、菟絲子、鹿角膠、熟地</div>
+      </div>
+      <h3>主治</h3>
+      <p>六味減三瀉，再加菟絲子、枸杞、川牛膝、鹿角膠、龜板膠。滋陰補腎、填精益髓。</p>
+      <ul>
+        <li><strong>男性不孕</strong>：遺精滑瀉、促進精蟲活動力（型態異常效果較差；無精症需泌尿科處理）</li>
+        <li><strong>女性不孕</strong>：促排卵（配合中藥可增加約四顆）</li>
+        <li><strong>骨質疏鬆</strong>：填精益髓</li>
+      </ul>
+      <h3>使用注意</h3>
+      <ul>
+        <li>鹿角：溫補腎陽，陰虛火旺者去除（否則口乾舌燥）；排卵後高溫不足（腎陽較不足）才加入</li>
+        <li>加強補腎強筋骨：川牛膝改懷牛膝（川牛膝偏活血祛瘀）</li>
+        <li>劑量：一天3錢（約9g）分三次；蜜丸一錢約6–7顆，一天最少1錢，早晨服</li>
+        <li>口乾舌燥者改六味地黃丸加五子衍宗丸（不上火且活動力增加）</li>
+      </ul>
+    </div>
+
+    <div class="section" id="dabuyin">
+      <span class="section-label">補陰劑</span>
+      <h2>大補陰丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">大補陰丸</div>
+        <div class="mnemonic">伯母睡地板</div>
+        <div class="herbs">黃柏、知母、豬脊髓、熟地、龜板</div>
+      </div>
+      <h3>主治</h3>
+      <p>陰虛火旺，熱象明顯。熟地、龜板補陰；知母、黃柏處理相火亢盛。會傷胃氣，需注意腸胃狀況。</p>
+      <ul>
+        <li>骨蒸潮熱（常見於自體免疫疾病SLE發作前，全身肌肉痠痛無力，熱從骨頭往外透）：龜板拿掉，熟地改生地，配合鱉甲</li>
+        <li>滋陰：龜板 &gt; 鱉甲；清虛熱：鱉甲 &gt; 龜板</li>
+      </ul>
+      <h3>加減</h3>
+      <ul>
+        <li>盜汗：煅龍骨、煅牡蠣（收澀止汗）；陰虛盜汗用地骨皮退熱除蒸</li>
+        <li>遺精：加補腎澀精藥</li>
+        <li>咳血吐血：白茅根（清熱利尿）、旱蓮草（配女貞子成二至丸，陰虛火旺經血淋漓）、仙鶴草（脾不統血、血小板低下）</li>
+      </ul>
+    </div>
+
+    <div class="section" id="huqian">
+      <span class="section-label">補陰劑</span>
+      <h2>虎潛丸（健步丸）</h2>
+      <div class="formula-box">
+        <div class="formula-title">虎潛丸</div>
+        <div class="mnemonic">熟地鎖斑虎，將咬陳伯母</div>
+        <div class="herbs">熟地、鎖陽、龜板、虎骨（狗骨替代）、乾薑、芍藥、陳皮、黃柏、知母</div>
+      </div>
+      <h3>主治與比較</h3>
+      <div class="compare-box">
+        <div class="compare-title">健步丸 vs 養筋健步丸 vs 虎潛丸</div>
+        <ul>
+          <li><strong>健步丸</strong>：萎症、退化性關節炎、腰膝退化</li>
+          <li><strong>虎潛丸</strong>：腎陰不足、陰虛內熱的萎症</li>
+          <li><strong>養筋健步丸</strong>：杜仲、補骨脂、懷牛膝、龜板、熟地（六味地黃丸部分）+生脈散。用於受傷/手術後肌肉萎縮、老人肌少症合併退化性關節炎。人參黃耆補養比例大，陰虛火旺、甲亢、高血壓患者血壓可能升高，需從小劑量調整。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="yiguan">
+      <span class="section-label">補陰劑</span>
+      <h2>一貫煎</h2>
+      <div class="formula-box">
+        <div class="formula-title">一貫煎</div>
+        <div class="mnemonic">一貫殺狗，當地廉價賣出</div>
+        <div class="herbs">沙參、枸杞、當歸、生地、川楝子、麥冬</div>
+      </div>
+      <h3>主治</h3>
+      <p>滋陰疏肝（生地）。肝腎陰虛、肝氣鬱滯，脈象較細弱，口乾舌燥，情志問題。婦科常用（不孕症、不寐）。</p>
+      <div class="compare-box">
+        <div class="compare-title">比較：逍遙散 / 柴胡疏肝散 / 丹梔逍遙散</div>
+        <ul>
+          <li><strong>逍遙散</strong>：疏肝解鬱+血虛脾虛，健脾涼血為主。用於乳房脹痛（經前乳脹、PMS），肝鬱化火則脈弦數。香附、麥芽配合，或喝玫瑰花茶。</li>
+          <li><strong>一貫煎</strong>：肝腎陰虛的疏肝解鬱（選擇差別在肝腎陰虛 vs 健脾涼血）</li>
+          <li><strong>柴胡疏肝散</strong>：偏疏肝理氣和血止痛，用於肝鬱氣滯血瘀的胸脅疼痛</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="baihe">
+      <span class="section-label">補陰劑</span>
+      <h2>百合固金湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">百合固金湯</div>
+        <div class="herbs">生地、熟地、百合、麥冬、玄參、貝母、桔梗、當歸、芍藥、甘草</div>
+      </div>
+      <h3>主治</h3>
+      <p>肺腎陰虧、虛火上炎。主治腎保肺、止咳化痰：咳嗽氣喘、痰中帶血、咽喉燥痛（痰很難清，需多喝溫水）。慢性咽喉炎、長時間講話者適用。</p>
+      <p>桔梗載藥上行、化痰散結，痰較深層可拉到5錢（需告知病人會咳嗽加重，是正常排痰）。</p>
+      <h3>臨床搭配</h3>
+      <ul>
+        <li>晚上加補薊消毒飲（抗發炎，含黃芩、黃連、銀翹）</li>
+        <li>早上強化百合固金+響聲破笛丸</li>
+        <li>上氣不接下氣：再加生脈散</li>
+      </ul>
+      <h3>加減</h3>
+      <ul>
+        <li>咳喘嚴重：加杏仁（降氣）、五味子</li>
+        <li>咳血：加白芨（腫瘤造成的咳血效果差）</li>
+      </ul>
+      <div class="caution">外感肺熱咳喘不可使用（會惡化）；脾胃較虛者可能腹瀉</div>
+    </div>
+
+    <div class="section" id="erzhi">
+      <span class="section-label">補陰劑</span>
+      <h2>二至丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">二至丸</div>
+        <div class="herbs">女貞子、旱蓮草（桑葚）</div>
+      </div>
+      <h3>主治</h3>
+      <p>補腎養肝。少年白（效果無奈）；早衰（非勞心勞力型效果不錯），可配六味系列調理。藥性偏寒苦，需注意下焦有無虛寒（骨盆腔）。透明性白帶者較嚴重。桑葚增強滋陰補血。</p>
+    </div>
+
+    <div class="section" id="yiwei">
+      <span class="section-label">補陰劑</span>
+      <h2>益胃湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">益胃湯</div>
+        <div class="herbs">沙參、麥冬、生地、玉竹（另有石斛養胃陰）</div>
+      </div>
+      <h3>主治</h3>
+      <p>養陰益胃。胃陰虧損：舌紅苔少甚至無苔、口乾舌燥、不能食（無脹氣感），脈細數。與脾胃氣虛鑑別（後者舌苔厚、胖大、脈無力）。</p>
+      <p>吃一週後胃口好轉、舌頭從紅轉淡紅、津液增加，此時藥要停掉（否則變胖大舌體、苔白膩、胃不舒服）。</p>
+      <div class="compare-box">
+        <div class="compare-title">比較：升陽益胃湯</div>
+        升陽益胃湯偏燥濕、健脾、益氣；益胃湯是養陰益胃。胃陰虛患者若給香砂六君子，會更不能食（更燥熱）。
+      </div>
+      <p>合併氣虛（汗多氣短）：胃陰虛嚴重者補氣只用黨參，不加其他燥濕健脾藥。先把胃陰養回來，胃口好後症狀自然改善。</p>
+    </div>
+
+    <!-- 補陽劑 -->
+    <div class="section" id="shenqi">
+      <span class="section-label">補陽劑</span>
+      <h2>腎氣丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">腎氣丸</div>
+        <div class="herbs">六味（於某地服瀉藥）+桂、附（各1兩）</div>
+      </div>
+      <h3>主治</h3>
+      <ul>
+        <li>下半身或腰部冷感（穿厚也無效）</li>
+        <li>陽痿早洩（腎陽不足虛證，脈沉細無力）</li>
+        <li>消渴（腎陽不足型）</li>
+        <li>陽痿過勞時腰膝冷痛加劇：加溫腎壯陽藥</li>
+      </ul>
+      <div class="caution">腎陰不足、虛火上炎患者不可使用</div>
+      <div class="compare-box">
+        <div class="compare-title">補充：男子不孕</div>
+        <strong>五子衍宗丸</strong>：菟絲子、五味子、枸杞子、覆盆子、車前子（固腎固精）。再加二仙（仙靈脾、仙茅）可用於早洩、遺精。左歸丸口乾舌燥者改六味地黃丸加五子衍宗（不上火且活動力增加）。
+      </div>
+      <div class="variant-box">
+        <div class="variant-title">變方：加味腎氣丸（濟生腎氣丸）</div>
+        腎氣丸（炮附2兩）+車前子、牛膝。君藥以附子為主。針對腎陽虛水腫造成小便不利（下肢水腫利水消腫）。
+      </div>
+    </div>
+
+    <div class="section" id="shibu">
+      <span class="section-label">補陽劑</span>
+      <h2>十補丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">十補丸</div>
+        <div class="herbs">腎氣丸（桂附六味）+五味子、鹿茸</div>
+      </div>
+      <h3>主治</h3>
+      <p>腎陽不足、精血虛損（尺弱、陽痿遺精、足冷足腫）。面色黧黑（陽虛水泛，水氣上泛）。</p>
+      <h3>鹿類藥物比較</h3>
+      <ul>
+        <li><strong>鹿茸</strong>：研細末，一天1–3g分三次，一錢300元。益精髓效果佳。偏雄性激素，必須小量（大量：陽生風動、頭暈鼻衄，脈從尺弱變滑而有力）</li>
+        <li><strong>鹿角膠</strong>：每次5–10g，一錢50元</li>
+        <li><strong>鹿角霜</strong>：偏外用，傷口久難癒（收斂止血），一錢4元</li>
+      </ul>
+      <p>肉桂引導陽氣、引火歸原。心腎不交作夢：黃連+肉桂針對睡眠障礙（引火歸原）。</p>
+    </div>
+
+    <div class="section" id="yougui">
+      <span class="section-label">補陽劑</span>
+      <h2>右歸丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">右歸丸</div>
+        <div class="mnemonic">父子姍姍當種地，卻吃狗兔鹿肉想壯陽</div>
+        <div class="herbs">附子、山藥、山茱萸、當歸、杜仲、熟地、枸杞、菟絲子、鹿角膠、肉桂</div>
+      </div>
+      <h3>主治</h3>
+      <p>溫補腎陽、填精益髓。命門火衰（陽衰無子、陽痿遺精）。左歸偏腎陰不足，右歸偏腎陽不足。組成是腎氣丸扣掉三瀉，再加其他。</p>
+      <h3>加減</h3>
+      <ul>
+        <li>氣虛：加人參（高麗參）；左歸選西洋參</li>
+        <li>陽痿不舉：加巴戟天、肉蓯蓉</li>
+        <li>陽虛泄瀉：配合四神丸</li>
+      </ul>
+      <div class="variant-box">
+        <div class="variant-title">變方：右歸飲</div>
+        右歸丸+甘草。處方較小，可先從小處方加減。
+      </div>
+    </div>
+
+    <!-- 陰陽雙補 -->
+    <div class="section" id="dihuangyin">
+      <span class="section-label">陰陽雙補</span>
+      <h2>地黃飲子</h2>
+      <div class="formula-box">
+        <div class="formula-title">地黃飲子</div>
+        <div class="herbs">熟地、山茱萸、石斛（補陰）、巴戟天、肉蓯蓉、桂附（溫腎陽引火歸原）、菖蒲、遠志、茯苓（交通心腎開竅化痰）、薄荷</div>
+      </div>
+      <h3>主治</h3>
+      <p>喑痱（喑：舌強不能言；痱：足廢不能用），屬中風症候之一。本方用在<strong>虛證</strong>（精氣不能上呈，脈沉細弱，足冷，面赤是虛陽上浮，口乾不欲飲）。</p>
+      <div class="compare-box">
+        <div class="compare-title">實證 vs 虛證</div>
+        實證（風痰阻塞）：輕阻絡，重閉竅痰濁，用半夏、膽南星、二陳加減，加活血化瘀。
+      </div>
+      <h3>加減</h3>
+      <ul>
+        <li>痰火為旺：刪桂附，加川貝母、竹瀝、膽南星、天竹黃</li>
+        <li>補氣：人參、黃耆（需高麗參等級）</li>
+      </ul>
+      <div class="caution">肝陽偏亢禁用</div>
+    </div>
+
+    <div class="section" id="huanshao">
+      <span class="section-label">陰陽雙補</span>
+      <h2>還少丹</h2>
+      <div class="formula-box">
+        <div class="formula-title">還少丹</div>
+        <div class="herbs">溫補脾腎為主（含楮實子、小茴香…）</div>
+      </div>
+      <h3>主治</h3>
+      <p>脾腎虛寒的牙齦浮動（與用藥過補、牙周病鑑別）。小茴香理氣開胃，有類似雌激素表現，婦科廣泛使用。過度減肥賀爾蒙偏低、月經不調：先調整飲食，再用補養方（左歸加減，或還少丹）。</p>
+    </div>
+
+    <div class="section" id="guiluerxian">
+      <span class="section-label">陰陽雙補</span>
+      <h2>龜鹿二仙膠</h2>
+      <div class="formula-box">
+        <div class="formula-title">龜鹿二仙膠</div>
+        <div class="mnemonic">人騎龜鹿</div>
+        <div class="herbs">人參、黃耆、龜板、鹿角膠</div>
+      </div>
+      <h3>主治</h3>
+      <p>精血不足、更年期障礙、骨質疏鬆（龜板已證實可改善骨質再生）、骨折後骨癒合不良（配養筋健步丸）。建議用膠狀片，蜜丸易口乾舌燥。</p>
+      <p>體質較燥者，鹿角膠可減少（龜板:鹿膠=1:1為參考比例）。莊松容精氣神源丸為龜鹿二仙膠兩倍濃縮（一錢約33元）。</p>
+    </div>
+
+    <div class="section" id="qibao">
+      <span class="section-label">陰陽雙補</span>
+      <h2>七寶美髯丹</h2>
+      <div class="formula-box">
+        <div class="formula-title">七寶美髯丹</div>
+        <div class="mnemonic">烏牛欺負兔，當何故</div>
+        <div class="herbs">首烏、牛膝、枸杞、茯苓、菟絲子、當歸、補骨脂</div>
+      </div>
+      <h3>主治</h3>
+      <p>烏髮、脫髮治療，用在肝腎不足的脫髮。</p>
+      <ul>
+        <li>肝腎不足脫髮：治療效果最明顯</li>
+        <li>自體免疫疾病脫髮：用腎陰虛處方，陰虛化火則知柏地黃，清熱滋陰降火</li>
+        <li>基因雄性禿（5α-reductase造成毛囊破壞）：補養方效果不錯，需早期治療，配合針灸、生髮液</li>
+      </ul>
+    </div>
+
+    <!-- 氣血陰陽並補 -->
+    <div class="section" id="zhigancao">
+      <span class="section-label">氣血陰陽並補</span>
+      <h2>炙甘草湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">炙甘草湯</div>
+        <div class="herbs">炙甘草4兩（最大量）、人參、桂枝、生薑、大棗（溫補陽氣）、生地、麻仁、阿膠、麥門冬（補血養陰）</div>
+      </div>
+      <h3>主治</h3>
+      <p>脈結代、心動悸。陽氣、陰血不足，病位在心。炙甘草4兩可控制心律（減肥病人心悸）。</p>
+      <ul>
+        <li>法洛氏心臟病：晚上睡覺心跳很低、心出量不足，睡前服炙甘草湯改善心氣不足</li>
+        <li>心律不整（心肺功能）；脈促胸滿去芍藥（仲景差異）</li>
+        <li>陰虛肺萎：麥門冬湯；虛寒型：甘草乾薑湯（陽虛肺萎、吐血沫）</li>
+      </ul>
+      <div class="variant-box">
+        <div class="variant-title">加減復脈湯</div>
+        溫病後期邪熱久滯、陰液虧虛（低熱不退、脈虛大）。
+      </div>
+    </div>
+
+    <div class="section" id="butian">
+      <span class="section-label">氣血陰陽並補</span>
+      <h2>補天大造丸</h2>
+      <div class="formula-box">
+        <div class="formula-title">補天大造丸</div>
+        <div class="herbs">紫河車（人胎盤）、溫腎補精、益氣養血藥</div>
+      </div>
+      <h3>主治</h3>
+      <p>五臟虛損，腎精不足精血虧損的不孕症、肺腎兩虛喘咳（配人參、蛤蚧、胡桃肉、地龍）。</p>
+      <p>紫河車：膠囊吞服，一天1.5–3g分2–3次。有激素作用，可刺激乳腺、子宮、卵巢發育；改善更年期障礙；促紅血球生成（鹿茸也可）。甘鹹溫，用藥較溫和，注意來源（需確認乾淨胚胎，避免感染）。</p>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+</body>
+</html>
