@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中醫學史與歷代典籍 · 阿容筆記</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --parchment: #F7F3EE;
+      --parchment-dark: #EDE7DC;
+      --gold: #8B6914;
+      --gold-light: #B8922A;
+      --ink: #2C2825;
+      --ink-light: #5A4E46;
+      --ink-faint: #9A8E87;
+      --accent: #C4442C;
+      --sidebar-w: 260px;
+      --radius: 6px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: var(--parchment);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--gold);
+    }
+    header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: .06em;
+    }
+
+    #menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    #menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--parchment);
+      border-radius: 2px;
+      transition: .25s;
+    }
+
+    /* ── LAYOUT ── */
+    .page-body {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      width: var(--sidebar-w);
+      background: var(--parchment-dark);
+      border-right: 1px solid #D4C8BC;
+      overflow-y: auto;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      padding: 1.5rem 0 2rem;
+      transition: transform .3s ease;
+      flex-shrink: 0;
+    }
+    aside.collapsed { transform: translateX(calc(-1 * var(--sidebar-w))); position: fixed; z-index: 90; }
+    aside h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      padding: 0 1.25rem .75rem;
+      border-bottom: 1px solid #D4C8BC;
+      margin-bottom: .5rem;
+    }
+    .nav-item {
+      display: block;
+      padding: .55rem 1.25rem;
+      font-size: .85rem;
+      color: var(--ink-light);
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all .18s;
+      line-height: 1.4;
+    }
+    .nav-item:hover { background: rgba(139,105,20,.08); color: var(--gold); }
+    .nav-item.active { border-left-color: var(--gold); color: var(--gold); background: rgba(139,105,20,.1); font-weight: 500; }
+    .nav-chapter {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: var(--ink-faint);
+      padding: 1rem 1.25rem .3rem;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTENT ── */
+    main {
+      flex: 1;
+      min-width: 0;
+      padding: 2.5rem 3rem 4rem;
+      transition: margin-left .3s ease;
+    }
+    main.expanded { margin-left: 0; }
+
+    .section { display: none; }
+    .section.active { display: block; animation: fadeIn .3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      border-bottom: 2px solid var(--parchment-dark);
+      padding-bottom: .75rem;
+      margin-bottom: 1.75rem;
+    }
+    .section-title .chapter-tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 400;
+      color: var(--ink-faint);
+      letter-spacing: .1em;
+      margin-bottom: .3rem;
+      text-transform: uppercase;
+    }
+
+    /* ── CARDS / BLOCKS ── */
+    .era-block {
+      background: white;
+      border: 1px solid #DDD5CA;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .era-block-head {
+      background: var(--ink);
+      color: var(--parchment);
+      padding: .6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .era-block-head h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+    }
+    .era-tag {
+      font-size: .68rem;
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      padding: .1rem .45rem;
+      letter-spacing: .05em;
+    }
+    .era-block-body { padding: 1.2rem 1.4rem; }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: .3rem .8rem;
+      margin-bottom: .6rem;
+      font-size: .85rem;
+      line-height: 1.6;
+      align-items: start;
+    }
+    .info-label {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: .78rem;
+      letter-spacing: .05em;
+      padding-top: .05em;
+    }
+
+    /* ── PERSON CARD ── */
+    .person-card {
+      border: 1px solid #E2D8CF;
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      background: var(--parchment);
+    }
+    .person-card h4 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: .95rem;
+      color: var(--gold);
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .person-card h4 .years {
+      font-size: .72rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      color: var(--ink-faint);
+      font-weight: 400;
+    }
+    .badge {
+      font-size: .65rem;
+      background: var(--gold);
+      color: white;
+      border-radius: 3px;
+      padding: .1rem .45rem;
+    }
+    .badge.accent { background: var(--accent); }
+
+    /* ── BOOK LIST ── */
+    .book-item {
+      border-left: 3px solid var(--gold-light);
+      padding: .6rem .9rem;
+      margin-bottom: .75rem;
+      background: white;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .book-item .book-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: .25rem;
+      font-size: .9rem;
+    }
+    .book-item .book-author { font-size: .78rem; color: var(--ink-faint); margin-bottom: .3rem; }
+    .book-item p { font-size: .83rem; color: var(--ink-light); line-height: 1.65; }
+
+    /* ── KEY CONCEPT PILL ── */
+    .tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0; }
+    .tag {
+      font-size: .72rem;
+      background: var(--parchment-dark);
+      color: var(--ink-light);
+      border: 1px solid #CEC4B8;
+      border-radius: 3px;
+      padding: .15rem .55rem;
+    }
+    .tag.gold { background: rgba(139,105,20,.12); color: var(--gold); border-color: var(--gold-light); }
+
+    ul.note-list { padding-left: 1.2rem; }
+    ul.note-list li {
+      font-size: .85rem;
+      line-height: 1.7;
+      color: var(--ink-light);
+      margin-bottom: .25rem;
+    }
+    ul.note-list li strong { color: var(--ink); }
+
+    .divider {
+      border: none;
+      border-top: 1px dashed #D4C8BC;
+      margin: 1.25rem 0;
+    }
+
+    .callout {
+      background: rgba(139,105,20,.07);
+      border: 1px solid rgba(139,105,20,.25);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      font-size: .82rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin: .75rem 0;
+    }
+    .callout strong { color: var(--gold); }
+
+    /* ── OVERLAY ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(44,40,37,.4);
+      z-index: 85;
+    }
+    .overlay.show { display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      main { padding: 1.5rem 1.25rem 3rem; }
+      aside { position: fixed; top: 56px; left: 0; height: calc(100vh - 56px); z-index: 90; }
+      aside:not(.collapsed) { box-shadow: 4px 0 20px rgba(0,0,0,.15); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button id="menu-toggle" aria-label="切換目錄">
+    <span></span><span></span><span></span>
+  </button>
+  <h1>中醫學史與歷代典籍</h1>
+
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="page-body">
+  <aside id="sidebar">
+    <h2>課程目錄</h2>
+
+    <span class="nav-chapter">上古至漢</span>
+    <span class="nav-item active" data-target="ch1">第一、二章　醫藥起源</span>
+    <span class="nav-item" data-target="ch2">第三章　理論體系初建</span>
+
+    <span class="nav-chapter">魏晉至唐</span>
+    <span class="nav-item" data-target="ch3">第四章　醫藥全面發展</span>
+
+    <span class="nav-chapter">宋金元明清</span>
+    <span class="nav-item" data-target="ch4">第五章　兩宋成就</span>
+    <span class="nav-item" data-target="ch5">第六章　金元四大家</span>
+    <span class="nav-item" data-target="ch6">第七章　明代新發展</span>
+    <span class="nav-item" data-target="ch7">第八章　清代前中期</span>
+
+    <span class="nav-chapter">近代</span>
+    <span class="nav-item" data-target="ch8">第九章　近百年中西論爭</span>
+  </aside>
+
+  <main id="main">
+
+    <!-- ═══ CH1 醫藥起源 ═══ -->
+    <div class="section active" id="ch1">
+      <div class="section-title">
+        <div class="chapter-tag">第一、二章</div>
+        醫藥起源 ‧ 夏商西周
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head">
+          <h3>史前・神話時代</h3>
+          <span class="era-tag">醫藥起源</span>
+        </div>
+        <div class="era-block-body">
+          <div class="info-row">
+            <span class="info-label">神話人物</span>
+            <span>伏羲氏（演八卦）、神農氏（嘗百草，一日遇七十毒）、黃帝、岐伯、雷公、伯高、少師（四象醫學）</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">器物</span>
+            <span>石器、蚌器、骨器</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">衛生保健</span>
+            <span>居處選擇、衣著、用火、導引（藉舞蹈動作達醫療保健功效）、婚姻優生觀念</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">醫藥知識</span>
+            <span>嘗百草、針灸、外治法</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">醫源說</span>
+            <span>醫源於聖人、巫、動物本能（三說並存）</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head">
+          <h3>商代</h3>
+          <span class="era-tag">醫巫混雜</span>
+        </div>
+        <div class="era-block-body">
+          <ul class="note-list">
+            <li>奴隸制度、農業、青銅、陶器、酒的應用</li>
+            <li>崇尚神鬼祖先，<strong>甲骨文</strong>記載王室占卜及疾病</li>
+            <li>醫巫混雜階段</li>
+            <li><strong>小疾臣</strong>：最早的醫官</li>
+          </ul>
+          <div class="callout"><strong>伊尹</strong>（廚師出身，後為宰相）：將單方配置為湯液，生藥變熟藥，開複方之先河。</div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head">
+          <h3>西周</h3>
+          <span class="era-tag">醫政萌芽</span>
+        </div>
+        <div class="era-block-body">
+          <div class="info-row">
+            <span class="info-label">官職分工</span>
+            <span>醫（掌醫事）、士（治病）、府（掌藥物器具）、史（掌文書醫案）、徒（看護）</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">考核制度</span>
+            <span>年終由醫師考察醫生全年醫療成績，以制定級別與俸祿</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">醫學分科</span>
+            <span>《周禮》記載史上<strong>第一次醫學分科</strong>：食醫（營養）、疾醫（內科）、瘍醫（外科）、獸醫</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">重要轉變</span>
+            <span>西周後期巫醫分家，醫學開始獨立發展</span>
+          </div>
+          <hr class="divider" />
+          <p style="font-size:.82rem;color:var(--ink-light)">《周禮》以五氣、五聲、五色視其死生；酒為百藥之長；《山海經》累積藥物知識。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CH2 秦漢三國 ═══ -->
+    <div class="section" id="ch2">
+      <div class="section-title">
+        <div class="chapter-tag">第三章</div>
+        醫學理論體系初步形成
+      </div>
+      <p style="font-size:.82rem;color:var(--ink-faint);margin-bottom:1.5rem">春秋戰國 · 秦漢 · 三國</p>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>學術背景</h3></div>
+        <div class="era-block-body">
+          <div class="tag-list">
+            <span class="tag gold">元氣學說</span>
+            <span class="tag gold">陰陽學說</span>
+            <span class="tag gold">五行學說</span>
+            <span class="tag gold">天人相應論</span>
+          </div>
+          <ul class="note-list" style="margin-top:.6rem">
+            <li>秦統一文字、貨幣、車軌、度量衡</li>
+            <li>西漢初黃老哲學（無為而治），社會較安定</li>
+            <li>董仲舒提出罷黜百家、獨尊儒術</li>
+            <li>張騫、班超出使西域，藥材輸入中國</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>古代醫家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>扁鵲 <span class="years">戰國</span></h4>
+            <ul class="note-list">
+              <li>看病能見五臟癥結</li>
+              <li>長桑君授予禁方書</li>
+              <li>提出五臟、腸胃、血脈、血氣、陰陽概念</li>
+              <li>六不治（不治六種病人）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>淳于意（倉公） <span class="years">西漢</span></h4>
+            <ul class="note-list">
+              <li>為後世醫家書寫<strong>醫案</strong>（當時稱「診籍」）樹立榜樣</li>
+              <li>先師孫光、後師公乘陽慶，獲《黃帝扁鵲脈書》等</li>
+              <li>可讀《史記·扁鵲倉公列傳》</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>華佗 <span class="years">145–208</span> <span class="badge accent">外科鼻祖</span></h4>
+            <ul class="note-list">
+              <li>開創中藥全身麻醉法——<strong>麻沸散</strong>（大花曼陀羅）</li>
+              <li>精通外科、針灸、醫療體育（<strong>五禽之戲</strong>）</li>
+              <li>死於曹操之手，臨終交獄卒《中藏經》（傳說所作）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>張仲景 <span class="years">150–219</span> <span class="badge">醫聖</span></h4>
+            <ul class="note-list">
+              <li>著《傷寒雜病論》——六經辨證，奠定藥物方劑學體系，稱「眾方之祖」</li>
+              <li>人稱「座堂醫生」</li>
+              <li>後經王叔和整理成《傷寒論》＋《金匱要略》兩書</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>三大醫學專書</h3></div>
+        <div class="era-block-body">
+          <div class="book-item">
+            <div class="book-title">《黃帝內經》</div>
+            <div class="book-author">成書年代有爭議，西漢中期匯集成書</div>
+            <p>陰陽五行、天人相應；確立臟腑、經脈、氣血為醫學核心。《通評虛實論》：頭痛耳鳴，九竅不利，腸胃之所生也。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《神農本草經》</div>
+            <div class="book-author">非一時一人，東漢加工整理成書</div>
+            <p>共載 365 種藥物，分上、中、下三品（創設藥物分類法）。確立「辨證論治」原則。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《傷寒雜病論》→《傷寒論》＋《金匱要略》</div>
+            <div class="book-author">東漢張仲景著；晉王叔和整理</div>
+            <p>《金匱要略》為醫學史上第一部以內科雜病為主的專著。秦漢「傷寒」幾乎是「溫熱病」的同義語。現存最早版本為元刻。</p>
+          </div>
+          <div class="callout">
+            <strong>馬王堆漢墓（1973，湖南長沙）</strong>：足臂十一脈灸經、陰陽十一脈灸經、<strong>五十二病方</strong>（最早醫方）、導引圖（體操圖）、胎產書。<br />
+            <strong>封診式</strong>（1975，湖北秦墓竹簡）：最早法醫書。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CH3 魏晉隋唐 ═══ -->
+    <div class="section" id="ch3">
+      <div class="section-title">
+        <div class="chapter-tag">第四章</div>
+        醫藥學的全面發展
+      </div>
+      <p style="font-size:.82rem;color:var(--ink-faint);margin-bottom:1.5rem">魏晉南北朝 · 隋 · 唐 · 五代十國</p>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>時代背景</h3></div>
+        <div class="era-block-body">
+          <ul class="note-list">
+            <li>魏晉時期道教長生不老觀、<strong>煉丹術</strong>蓬勃發展（近代製藥化學之先聲）</li>
+            <li>寒食散（五石散）：稱長壽補虛壯陽，實際上是成癮毒藥</li>
+            <li>唐朝多元文化發展、科學發展世界第一（日本唐化運動）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>重要醫家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>皇甫謐 <span class="years">215–282 西晉</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">42 歲中風後全心鑽研針灸。著《針灸甲乙經》：貫通《素問》《靈樞》《明堂孔穴針灸治要》。</p>
+          </div>
+          <div class="person-card">
+            <h4>王叔和 <span class="years">210–258 西晉</span></h4>
+            <ul class="note-list">
+              <li>總結脈學，編纂《脈經》——現存最早脈學著作（確立寸口脈法、歸納 24 脈象）</li>
+              <li>整理編纂張仲景《傷寒雜病論》</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>葛洪 <span class="years">283–343 東晉</span> <span class="badge">製藥化學始祖</span></h4>
+            <ul class="note-list">
+              <li>道士、化學家（煉丹）、醫學家</li>
+              <li>著《肘後備急方》（中醫第一部臨床急救手冊）、《抱朴子內外篇》</li>
+              <li>妻子鮑姑長於針灸（醫學史上第一位女灸家）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>陶弘景 <span class="years">456–536 南朝梁</span> <span class="badge">山中宰相</span></h4>
+            <ul class="note-list">
+              <li>著《本草經集注》：按自然屬性分類，載藥 730 種（新增 365 種）</li>
+              <li>長於天文曆算、醫藥、冶煉</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>巢元方 <span class="years">550–630 隋</span></h4>
+            <ul class="note-list">
+              <li>奉召撰《諸病源候論》：中國第一本由朝廷敕編、集體撰作的醫學理論著作</li>
+              <li>病因學提出「乖戾之氣」也會致病（即傳染病）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>孫思邈 <span class="years">581–682 唐</span> <span class="badge">藥王</span></h4>
+            <ul class="note-list">
+              <li>著《千金要方》《千金翼方》——我國第一部醫學臨床百科全書</li>
+              <li>重視醫德（《大醫精誠》）；反對服石求長生</li>
+              <li>針灸貢獻：阿是穴、孔穴主對法、同身寸法</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>王燾 <span class="years">670–755 唐</span></h4>
+            <ul class="note-list">
+              <li>著《外臺秘要》——醫學文獻整理大師</li>
+              <li>以經統穴，將所有腧穴分列於十二經脈中</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>藥典與本草</h3></div>
+        <div class="era-block-body">
+          <div class="book-item">
+            <div class="book-title">《新修本草》（唐本草）蘇敬主編</div>
+            <p>世界第一部由國家頒行的藥典；新增 114 種藥物；首創藥物圖譜《藥圖》與《圖經》。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《本草拾遺》陳藏器</div>
+            <p>按臨證病理變化分類（十劑分類法）：宣、通、補、泄、輕、重、滑、澀、燥、濕。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>醫學教育</h3></div>
+        <div class="era-block-body">
+          <div class="info-row">
+            <span class="info-label">官辦起源</span>
+            <span>劉宋元嘉二十年（443）秦承祖奏請國家辦理醫學教育——政府創辦醫學教育最早明確記載</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">隋唐</span>
+            <span>設<strong>太醫署</strong>（醫學教育兼醫療），唐朝分醫、針、按摩、咒禁四科</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CH4 兩宋 ═══ -->
+    <div class="section" id="ch4">
+      <div class="section-title">
+        <div class="chapter-tag">第五章</div>
+        醫藥學突出成就（兩宋）
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>時代背景與制度</h3></div>
+        <div class="era-block-body">
+          <ul class="note-list">
+            <li>三大發明：火藥、指南針、<strong>活字印刷術</strong>（促進醫書流傳）</li>
+            <li>宋朝文官統治，始有「儒醫」</li>
+            <li>1057 年設置<strong>校正醫書局</strong>——首次由政府設立醫書校正專門機構</li>
+            <li>醫政與醫學教育分立：翰林醫官院（醫政）＋太醫局（教育）</li>
+            <li>1076 年設<strong>太醫局熟藥所</strong>——官藥局的創始，南宋改名太平惠民局</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>重要醫家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>王惟一 <span class="years">987–1067</span> <span class="badge">針灸銅人</span></h4>
+            <ul class="note-list">
+              <li>1026 年撰《銅人腧穴針灸圖經》三卷，記載腧穴 657 個</li>
+              <li>鑄造<strong>針灸銅人</strong>兩具（供考試與教學）：外封黃蠟，針刺正確則水銀流出</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>錢乙 <span class="years">1032–1113</span> <span class="badge">兒科之聖</span></h4>
+            <ul class="note-list">
+              <li>門人閻孝忠輯其經驗成《小兒藥證直訣》</li>
+              <li>以五臟虛實為綱的辨證方法；小兒「易虛易實，易寒易熱」，治療以柔潤為原則</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>陳言（陳無擇） <span class="years">1131–1189</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">《三因極一病證方論》——提出<strong>三因論</strong>：外因（六淫）、內因（七情）、不內外因（飲食勞倦外傷等）。</p>
+          </div>
+          <div class="person-card">
+            <h4>宋慈 <span class="years">1186–1249</span> <span class="badge">大宋提刑官</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《洗冤集錄》——<strong>世界現存第一部法醫學專著</strong>。</p>
+          </div>
+          <div class="person-card">
+            <h4>陳自明 <span class="years">1190–1270</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《婦人大全良方》——中國第一部比較完善的綜合性婦產科專著；另著《外科精要》。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>重要醫書</h3></div>
+        <div class="era-block-body">
+          <div class="book-item">
+            <div class="book-title">《太平聖惠方》王懷隱等</div>
+            <p>強調辨明陰陽虛實寒熱表裡；先論後方，體現理法方藥完整辨證論治體系。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《和劑局方》★</div>
+            <p>中國第一部官方成藥製劑手冊；最初為熟藥所配方底冊。偏用溫燥，後受金元醫家批評。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《聖濟總錄》北宋徽宗敕編</div>
+            <p>「藥理」一詞首見於此書。涵蓋內外婦兒五官針灸養生，共 66 門。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《經史證類備急本草》唐慎微</div>
+            <p>博採群書，積累豐富藥學資料；為宋以後本草學的重要依據。</p>
+          </div>
+          <div class="book-item">
+            <div class="book-title">《衛濟寶書》</div>
+            <p>首先記述癌腫，「癌」字為該書首創字。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CH5 金元 ═══ -->
+    <div class="section" id="ch5">
+      <div class="section-title">
+        <div class="chapter-tag">第六章</div>
+        金元四大家
+      </div>
+
+      <div class="callout" style="margin-bottom:1.5rem">
+        <strong>明代王綸歸納：</strong>外感法仲景，內傷法東垣，熱病用河間，雜病用丹溪。
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>河間學派</h3><span class="era-tag">寒涼攻邪</span></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>劉完素 <span class="years">1120–1200</span> <span class="badge">河間</span></h4>
+            <ul class="note-list">
+              <li>主張<strong>六氣為外邪</strong>，倡火熱病機理論</li>
+              <li>主寒涼攻邪，善用防風通聖散、雙解散</li>
+              <li>以《素問》五運六氣為基礎，創六氣化火學說</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>張從正 <span class="years">1156–1228</span> <span class="badge">攻下派</span></h4>
+            <ul class="note-list">
+              <li>汗、吐、下三法驅邪</li>
+              <li>「損有餘乃補其不足」</li>
+              <li>著《儒門事親》十五卷</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>易水學派</h3><span class="era-tag">補土溫補</span></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>張元素 <span class="years">1151–1234</span> <span class="badge">易水</span></h4>
+            <ul class="note-list">
+              <li>主張<strong>臟腑強弱</strong>才是治病要素（臟腑辨證、扶養胃氣）</li>
+              <li>創<strong>藥物歸經</strong>、升降浮沉學說</li>
+              <li>著《醫學啟源》</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>李杲（東垣） <span class="years">1180–1251</span> <span class="badge">補土派</span></h4>
+            <ul class="note-list">
+              <li>「內傷脾胃，百病由生」</li>
+              <li>著《脾胃論》《內外傷辨惑論》</li>
+              <li>創<strong>補中益氣湯</strong>、龍膽瀉肝湯等名方</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>朱震亨（丹溪） <span class="years">1281–1358</span> <span class="badge">滋陰派</span></h4>
+            <ul class="note-list">
+              <li>「<strong>陽有餘、陰不足</strong>論」及「相火論」</li>
+              <li>治病強調氣、血、痰、鬱</li>
+              <li>著《格致餘論》《局方發揮》</li>
+              <li>反對拘泥《局方》溫燥之弊</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>其他重要醫家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>成無己 <span class="years">1063–1156</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《註解傷寒論》——<strong>全面逐條注解《傷寒論》第一家</strong>，以《內經》《難經》解釋《傷寒論》醫理（以經釋經）。</p>
+          </div>
+          <div class="person-card">
+            <h4>滑壽 <span class="years">1304–1386</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《十四經發揮》：將十二正經與任督二脈合為<strong>十四經</strong>，整理規納經穴。著《診家樞要》（脈學）。</p>
+          </div>
+          <div class="person-card">
+            <h4>杜本 <span class="years">1276–1350</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">撰《敖氏傷寒金鏡錄》——<strong>現存最早的舌診專著</strong>。</p>
+          </div>
+          <div class="person-card">
+            <h4>葛乾孫 <span class="years">1305–1353</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《十藥神書》——<strong>現存第一部治療肺癆（肺結核）的專著</strong>。</p>
+          </div>
+          <div class="person-card">
+            <h4>忽思慧 <span class="years">元代</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">宮廷飲膳太醫，撰《飲膳正要》——<strong>現存最早的營養保健學專著</strong>。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CH6 明代 ═══ -->
+    <div class="section" id="ch6">
+      <div class="section-title">
+        <div class="chapter-tag">第七章</div>
+        明代新發展
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>重要醫家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>李時珍 <span class="years">1518–1593</span> <span class="badge">本草學家</span></h4>
+            <ul class="note-list">
+              <li>著《本草綱目》192 萬字，歷 27 個寒暑三易其稿（1590 年完成）</li>
+              <li>以 16 部 62 類為綱目分類，參考 925 種書籍</li>
+              <li>著《瀕湖脈學》《奇經八脈考》</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>楊繼洲 <span class="years">1522–1620</span></h4>
+            <ul class="note-list">
+              <li>著《針灸大成》10 卷——承前啟後，流傳甚廣</li>
+              <li>提出「十二字次第手法」與「下手八法」針刺手法</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>陳實功 <span class="years">1555–1636</span> <span class="badge">外科</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《外科正宗》（1617）——向以「列症最詳，論治最精」著稱，反映明朝以前外科學重要成就。</p>
+          </div>
+          <div class="person-card">
+            <h4>張介賓（景岳） <span class="years">1563–1640</span> <span class="badge">溫補學派</span></h4>
+            <ul class="note-list">
+              <li>溫補學派創始者，特別重視人體本元</li>
+              <li>著《類經》《景岳全書》（含《新方八陣》）</li>
+              <li>將李梃 48 問簡化為<strong>《十問歌》</strong>（十問歌至今仍用）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>吳有性（又可） <span class="years">1582–1652</span></h4>
+            <ul class="note-list">
+              <li>著《溫疫論》——<strong>中國醫學史上第一部論述急性傳染病的專著</strong></li>
+              <li>提出「<strong>癘氣</strong>」（雜氣）致病學說，開傳染病學研究先河</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>徐春甫 <span class="years">1520–1596</span></h4>
+            <ul class="note-list">
+              <li>著《古今醫統》影響最大</li>
+              <li>1568 年組織創立<strong>「一體堂宅仁醫會」</strong>——最早的民間醫學學術團體</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>溫病學說形成脈絡</h3></div>
+        <div class="era-block-body">
+          <div class="tag-list">
+            <span class="tag gold">明·吳有性《溫疫論》雜氣論</span>
+            <span class="tag gold">清·葉桂《溫熱論》衛氣營血辨證</span>
+            <span class="tag gold">清·薛雪《濕熱條辨》</span>
+            <span class="tag gold">清·吳瑭《溫病條辨》三焦辨證</span>
+            <span class="tag gold">清·王士雄《溫熱經緯》集大成</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>明代醫書分科（太醫院 13 科）</h3></div>
+        <div class="era-block-body">
+          <div class="tag-list">
+            <span class="tag">大方脈</span><span class="tag">婦人</span><span class="tag">傷寒</span>
+            <span class="tag">小方脈</span><span class="tag">針灸</span><span class="tag">口齒</span>
+            <span class="tag">咽喉</span><span class="tag">眼</span><span class="tag">瘡瘍</span>
+            <span class="tag">接骨</span><span class="tag">金鏃</span><span class="tag">祝由</span>
+            <span class="tag">按摩</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CH7 清代 ═══ -->
+    <div class="section" id="ch7">
+      <div class="section-title">
+        <div class="chapter-tag">第八章</div>
+        清代前中期（鴉片戰爭前）
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>溫病四大家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>葉桂（天士） <span class="years">1667–1746</span> <span class="badge">溫病宗師</span></h4>
+            <ul class="note-list">
+              <li>創立<strong>衛氣營血辨證</strong>綱領</li>
+              <li>痘麻斑疹治療尤為高手（天花、麻疹、猩紅熱）</li>
+              <li>著作多為門人整理：《溫熱篇》《臨證指南醫案》等</li>
+              <li>名言：「醫可為而不可為……吾死，子孫慎勿輕言醫。」</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>薛雪（生白） <span class="years">1661–1750</span></h4>
+            <p style="font-size:.83rem;color:var(--ink-light)">著《濕熱條辨》——於濕熱證治特稱高手，與葉桂同時齊名。</p>
+          </div>
+          <div class="person-card">
+            <h4>吳瑭（鞠通） <span class="years">1758–1836</span></h4>
+            <ul class="note-list">
+              <li>著《溫病條辨》，提出<strong>三焦辨證</strong>理論</li>
+              <li>京師溫疫流行，吳瑭活人甚眾</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>王士雄（孟英） <span class="years">1808–1867</span></h4>
+            <ul class="note-list">
+              <li>纂《溫熱經緯》五卷——<strong>溫病學說集大成者</strong></li>
+              <li>因愛女死於霍亂，撰《霍亂論》</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>其他重要醫家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>王清任 <span class="years">1768–1831</span></h4>
+            <ul class="note-list">
+              <li>親赴刑場觀察屍體解剖，前後歷 42 年，著《醫林改錯》</li>
+              <li>批判「靈機發於心」之誤，發揮<strong>腦主記憶</strong>之說</li>
+              <li>創補氣活血法（氣虛血瘀說）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>趙學敏 <span class="years">約 1719–1805</span></h4>
+            <ul class="note-list">
+              <li>著《本草綱目拾遺》十卷——總結《本草綱目》之後藥物學發展</li>
+              <li>著《串雅》內外編——民間走方醫（鈴醫）方藥匯編</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>道光二年（1822）</strong>：奉旨以「針灸之法究非奉君之宜」，太醫院針灸科永久停止（民間仍繼續使用）。
+      </div>
+    </div>
+
+    <!-- ═══ CH8 近代 ═══ -->
+    <div class="section" id="ch8">
+      <div class="section-title">
+        <div class="chapter-tag">第九章</div>
+        近百年中西醫論爭
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>中西醫匯通三家</h3></div>
+        <div class="era-block-body">
+          <div class="person-card">
+            <h4>唐宗海 <span class="years">1862–1918</span> <span class="badge">匯通第一人</span></h4>
+            <ul class="note-list">
+              <li>中醫界明確提出中西醫匯通口號的第一人</li>
+              <li>主張「折衷歸於一是」；重中輕西，厚古薄今</li>
+              <li>著《中西匯通醫書五種》</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>張錫純 <span class="years">1860–1933</span></h4>
+            <ul class="note-list">
+              <li>「采西人之所長，以補吾人之所短」——衷中參西</li>
+              <li>著《醫學衷中參西錄》（彙集十八年臨床經驗）</li>
+            </ul>
+          </div>
+          <div class="person-card">
+            <h4>惲鐵樵 <span class="years">1878–1935</span></h4>
+            <ul class="note-list">
+              <li>中西醫文化基礎不同；以中醫為主體，吸取科學方法</li>
+              <li>中醫界第一個挺身回應余雲岫廢除中醫挑戰者</li>
+              <li>著《群經見智錄》、《傷寒論研究》等</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="era-block">
+        <div class="era-block-head"><h3>三次中西醫論爭</h3></div>
+        <div class="era-block-body">
+          <div class="callout">
+            <strong>第一次（1912–1920s）— 中醫告負</strong><br />
+            北洋政府學制中排除中醫（「教育系統漏列中醫案」）；梁啟超否定五行說；余雲岫著《靈素商兌》宣戰中醫基礎理論。惲鐵樵著書反擊。
+          </div>
+          <div class="callout">
+            <strong>第二次（1929）— 中醫略勝</strong><br />
+            余雲岫等提出廢止中醫四項議案，通過《規定舊醫登記案原則》。全國 281 名代表在上海召開大會抗議，最終撤銷禁錮法令。<strong>3 月 17 日</strong>定為「中國國醫節」。
+          </div>
+          <div class="callout">
+            <strong>第三次（1950s）— 陷入困境</strong><br />
+            余雲岫提出「改造舊醫」；衛生部副部長王斌稱中醫為封建醫。因毛澤東大力扶持，王斌、賀誠被撤職。「中西醫結合」說法興起。
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.getElementById('menu-toggle');
+  const overlay = document.getElementById('overlay');
+
+  // 側欄切換
+  menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    overlay.classList.toggle('show');
+  });
+  overlay.addEventListener('click', () => {
+    sidebar.classList.add('collapsed');
+    overlay.classList.remove('show');
+  });
+
+  // 初始：在桌面展開，手機收起
+  if (window.innerWidth <= 768) {
+    sidebar.classList.add('collapsed');
+  }
+
+  // 導航切換
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.dataset.target;
+
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+      item.classList.add('active');
+      document.getElementById(target).classList.add('active');
+
+      // 手機上點選後收起側欄
+      if (window.innerWidth <= 768) {
+        sidebar.classList.add('collapsed');
+        overlay.classList.remove('show');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
