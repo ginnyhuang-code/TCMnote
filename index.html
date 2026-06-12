@@ -59,14 +59,14 @@
     <div class="cat-icon">📚</div>
     <div class="cat-title">讀書筆記</div>
     <div class="cat-desc">中醫經典與教材的閱讀整理，記錄重要理論與藥物知識。</div>
-    <div class="cat-count">3 篇</div>
+    <div class="cat-count">2 篇</div>
   </a>
-  <a class="cat-card" href="jenzhen.html">
+  <div class="cat-card coming">
     <div class="cat-icon">🏥</div>
     <div class="cat-title">跟診筆記</div>
     <div class="cat-desc">跟隨老師臨床診治的觀察記錄與學習心得。</div>
-    <div class="cat-count"></div>
-  </a>
+    <div class="coming-badge">即將新增</div>
+  </div>
   <div class="cat-card coming">
     <div class="cat-icon">📄</div>
     <div class="cat-title">期刊筆記</div>
@@ -81,13 +81,5 @@
   </div>
 </div>
 <footer class="site-footer">習醫手帖・中醫學習筆記</footer>
-<script>
-  document.querySelectorAll('a.cat-card').forEach(card => {
-    const page = card.getAttribute('href');
-    const count = localStorage.getItem(page);
-    const el = card.querySelector('.cat-count');
-    if (count && el) el.textContent = count + ' 篇';
-  });
-</script>
 </body>
 </html>
