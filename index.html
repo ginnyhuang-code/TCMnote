@@ -5,81 +5,271 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>習醫手帖</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink:        #2C2825;
-      --ink-mid:    #5C5047;
-      --ink-light:  #9C8E84;
-      --parchment:  #F5F2ED;
-      --warm:       #EAE4D8;
-      --rule:       #D0C8B8;
-      --green:      #2D5A3D;
-      --green-light:#4A7A5A;
-      --green-pale: #E8F0EB;
-      --green-mid:  #C8DDD0;
+      --green-dark: #2D5A3D;
+      --green-mid: #3D7A52;
+      --green-light: #5A9E6F;
+      --green-pale: #E8F2EC;
+      --parchment: #FAF7F2;
+      --ink: #1E2A1E;
+      --ink-light: #4A5A4A;
+      --rule: #C8D8C8;
+      --white: #FFFFFF;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Noto Serif TC', serif; background: var(--parchment); color: var(--ink); min-height: 100vh; }
-    .site-nav { background: var(--green); padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 52px; }
-    .site-nav .site-title { color: var(--green-mid); font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 500; margin-right: auto; letter-spacing: .06em; }
-    .site-nav .nav-current { color: #fff; font-family: 'Noto Sans TC', sans-serif; font-size: .95rem; letter-spacing: .08em; }
-    .hero { max-width: 700px; margin: 0 auto; padding: 5rem 2rem 3rem; text-align: center; }
-    .hero .eyebrow { font-family: 'Noto Sans TC', sans-serif; font-size: .88rem; letter-spacing: .2em; color: var(--green-light); margin-bottom: 1.2rem; }
-    .hero h1 { font-size: 2.7rem; font-weight: 700; letter-spacing: .08em; color: var(--ink); margin-bottom: 1rem; }
-    .hero .desc { font-size: 1.05rem; color: var(--ink-light); line-height: 2; font-family: 'Noto Sans TC', sans-serif; }
-    .hero-rule { width: 60px; height: 1px; background: var(--green); margin: 2.5rem auto; opacity: .4; }
-    .categories { max-width: 860px; margin: 0 auto; padding: 0 2rem 6rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.5rem; }
-    .cat-card { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 2rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: .6rem; transition: box-shadow .2s, transform .2s, border-color .2s; }
-    .cat-card:hover { box-shadow: 0 4px 20px rgba(45,90,61,.1); transform: translateY(-2px); border-color: var(--green-light); }
-    .cat-card.coming { opacity: .55; cursor: default; pointer-events: none; background: var(--warm); }
-    .cat-icon { font-size: 1.8rem; }
-    .cat-title { font-size: 1.2rem; font-weight: 700; color: var(--ink); letter-spacing: .04em; }
-    .cat-desc { font-family: 'Noto Sans TC', sans-serif; font-size: .9rem; color: var(--ink-light); line-height: 1.7; }
-    .cat-count { font-family: 'Noto Sans TC', sans-serif; font-size: .8rem; color: var(--green-light); margin-top: .4rem; }
-    .coming-badge { font-family: 'Noto Sans TC', sans-serif; font-size: .78rem; color: var(--ink-light); background: var(--parchment); border: 1px solid var(--rule); border-radius: 20px; padding: .2rem .7rem; display: inline-block; margin-top: .2rem; align-self: flex-start; }
-    .site-footer { border-top: 1px solid var(--rule); padding: 1.5rem 2rem; text-align: center; font-family: 'Noto Sans TC', sans-serif; font-size: .85rem; color: var(--ink-light); letter-spacing: .06em; }
-    @media (max-width: 480px) { .hero h1 { font-size: 2rem; } .categories { grid-template-columns: 1fr; } }
+    body { font-family: 'Noto Sans TC', sans-serif; background: var(--parchment); color: var(--ink); line-height: 1.8; }
+
+    /* Nav */
+    .site-nav {
+      background: var(--green-dark); padding: .9rem 2rem;
+      display: flex; align-items: center; gap: 1.2rem;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .site-nav .site-title { font-family: 'Noto Serif TC', serif; font-weight: 700; color: #fff; font-size: 1.05rem; }
+    .site-nav a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .9rem; }
+    .site-nav a:hover { color: #fff; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: #fff; padding: 3.5rem 2rem 3rem; text-align: center;
+    }
+    .hero h1 { font-family: 'Noto Serif TC', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: .6rem; }
+    .hero p { opacity: .8; font-size: .95rem; margin-bottom: 2rem; }
+
+    /* Search */
+    .search-wrap { max-width: 560px; margin: 0 auto; position: relative; }
+    .search-wrap input {
+      width: 100%; padding: .85rem 1.2rem .85rem 3rem;
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-family: 'Noto Sans TC', sans-serif;
+      outline: none; background: #fff; color: var(--ink);
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    .search-wrap input::placeholder { color: #aaa; }
+    .search-icon {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      color: var(--green-mid); font-size: 1.1rem; pointer-events: none;
+    }
+
+    /* Search results dropdown */
+    .search-results {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+      background: #fff; border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+      max-height: 380px; overflow-y: auto;
+      z-index: 200; display: none;
+    }
+    .search-results.active { display: block; }
+    .result-item {
+      display: flex; align-items: flex-start; gap: .8rem;
+      padding: .8rem 1.2rem; border-bottom: 1px solid var(--rule);
+      text-decoration: none; color: var(--ink);
+      transition: background .15s;
+    }
+    .result-item:last-child { border-bottom: none; }
+    .result-item:hover { background: var(--green-pale); }
+    .result-icon { font-size: 1.1rem; margin-top: .1rem; flex-shrink: 0; }
+    .result-main { flex: 1; min-width: 0; }
+    .result-title { font-weight: 700; font-size: .9rem; color: var(--green-dark); }
+    .result-desc { font-size: .78rem; color: var(--ink-light); margin-top: .1rem; line-height: 1.5; }
+    .result-tag { font-size: .72rem; color: var(--green-mid); background: var(--green-pale); padding: .1rem .5rem; border-radius: 4px; display: inline-block; margin-top: .2rem; }
+    .result-empty { padding: 1.2rem; text-align: center; color: var(--ink-light); font-size: .88rem; }
+
+    /* Main content */
+    .content { max-width: 900px; margin: 2.5rem auto 4rem; padding: 0 2rem; }
+    .section-title {
+      font-family: 'Noto Serif TC', serif; font-size: .95rem; font-weight: 700;
+      color: var(--ink-light); margin-bottom: 1rem; padding-bottom: .4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
+    .card {
+      display: block; background: var(--white); border: 1px solid var(--rule);
+      border-radius: 10px; padding: 1.4rem; text-decoration: none; color: var(--ink);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .card:hover { box-shadow: 0 4px 16px rgba(45,90,61,.12); transform: translateY(-2px); }
+    .card-emoji { font-size: 1.6rem; margin-bottom: .5rem; }
+    .card-title { font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: .4rem; }
+    .card-desc { font-size: .82rem; color: var(--ink-light); line-height: 1.6; margin-bottom: .6rem; }
+    .card-count { font-size: .75rem; color: var(--green-mid); }
+    .card.disabled { opacity: .55; pointer-events: none; }
+    .card-soon { font-size: .72rem; color: #aaa; background: #f0f0f0; padding: .1rem .5rem; border-radius: 4px; display: inline-block; }
+
+    .site-footer { text-align: center; padding: 1.5rem; font-size: .8rem; color: var(--ink-light); border-top: 1px solid var(--rule); }
   </style>
 </head>
 <body>
+
 <nav class="site-nav">
   <span class="site-title">習醫手帖</span>
-  <span class="nav-current">首頁</span>
+  <a href="index.html">首頁</a>
 </nav>
+
 <div class="hero">
-  <div class="eyebrow">中醫學習筆記</div>
   <h1>習醫手帖</h1>
-  <div class="desc">記錄習醫路上的點滴<br>讀書、跟診、期刊、醫案</div>
-  <div class="hero-rule"></div>
-</div>
-<div class="categories">
-  <a class="cat-card" href="reading.html">
-    <div class="cat-icon">📚</div>
-    <div class="cat-title">讀書筆記</div>
-    <div class="cat-desc">中醫經典與教材的閱讀整理，記錄重要理論與藥物知識。</div>
-    <div class="cat-count">2 篇</div>
-  </a>
-  <div class="cat-card coming">
-    <div class="cat-icon">🏥</div>
-    <div class="cat-title">跟診筆記</div>
-    <div class="cat-desc">跟隨老師臨床診治的觀察記錄與學習心得。</div>
-    <div class="coming-badge">即將新增</div>
-  </div>
-  <div class="cat-card coming">
-    <div class="cat-icon">📄</div>
-    <div class="cat-title">期刊筆記</div>
-    <div class="cat-desc">中西醫相關期刊文獻的閱讀摘要與評析。</div>
-    <div class="coming-badge">即將新增</div>
-  </div>
-  <div class="cat-card coming">
-    <div class="cat-icon">📋</div>
-    <div class="cat-title">醫案體悟</div>
-    <div class="cat-desc">臨床病案記錄與診治過程中的思考與體悟。</div>
-    <div class="coming-badge">即將新增</div>
+  <p>記錄習醫路上的點滴・讀書、跟診、期刊、醫案</p>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜尋方劑、藥物、症狀、章節…" autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
   </div>
 </div>
+
+<div class="content">
+  <div class="section-title">筆記分類</div>
+  <div class="cards">
+    <a class="card" href="reading.html">
+      <div class="card-emoji">📚</div>
+      <div class="card-title">讀書筆記</div>
+      <div class="card-desc">中醫經典與教材的閱讀整理，記錄重要理論與藥物知識。</div>
+      <div class="card-count">3 個科目</div>
+    </a>
+    <a class="card" href="jenzhen.html">
+      <div class="card-emoji">🏥</div>
+      <div class="card-title">跟診筆記</div>
+      <div class="card-desc">跟隨老師臨床診治的觀察記錄與學習心得。</div>
+    </a>
+    <div class="card disabled">
+      <div class="card-emoji">📄</div>
+      <div class="card-title">期刊筆記</div>
+      <div class="card-desc">中西醫相關期刊文獻的閱讀摘要與評析。</div>
+      <div class="card-soon">即將新增</div>
+    </div>
+    <div class="card disabled">
+      <div class="card-emoji">📋</div>
+      <div class="card-title">醫案體悟</div>
+      <div class="card-desc">臨床病案記錄與診治過程中的思考與體悟。</div>
+      <div class="card-soon">即將新增</div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+
+<script>
+// ── 搜尋索引 ──────────────────────────────────────────────
+// 每次新增頁面時，在此加入對應條目
+const INDEX = [
+
+  // ── 讀書筆記 ──
+  { title: '讀書筆記', desc: '中醫學史、炮製學、方劑學等科目總覽', tags: ['讀書', '筆記', '總覽'], url: 'reading.html', icon: '📚', cat: '讀書筆記' },
+
+  // ── 中醫學史 ──
+  { title: '中醫學史與歷代典籍', desc: '中醫發展歷史脈絡、歷代重要典籍導覽', tags: ['中醫學史', '典籍', '黃帝內經', '傷寒論', '神農本草經', '金匱要略', '本草綱目', '溫病條辨', '歷史'], url: 'tcm_history.html', icon: '📖', cat: '讀書筆記' },
+
+  // ── 炮製學 ──
+  { title: '炮製學', desc: '常用輔料、炮製對理化性質的影響、各炮製方法', tags: ['炮製', '輔料', '炙法', '炒製', '煅製', '蒸製', '酒炙', '醋炙', '鹽炙', '薑炙', '蜜炙', '水飛'], url: 'paozhi.html', icon: '🔥', cat: '讀書筆記' },
+
+  // ── 方劑學目錄 ──
+  { title: '方劑學筆記', desc: '各類方劑總覽', tags: ['方劑', '方劑學', '王玟玲'], url: 'fangji.html', icon: '📋', cat: '讀書筆記' },
+
+  // ── 治風劑 ──
+  { title: '治風劑', desc: '疏散外風與平息內風，外感頭痛、皮膚風疹、中風、顏面神經麻痺等', tags: ['治風劑', '風邪', '外風', '內風', '肝風'], url: 'fangji_zhifeng.html', icon: '🌿', cat: '方劑學' },
+  { title: '川芎茶調散', desc: '外感風邪頭痛，引經藥，清茶送服', tags: ['川芎茶調散', '頭痛', '外感', '引經藥', '太陽', '陽明', '少陽', '厥陰', '川芎', '羌活', '白芷', '細辛', '薄荷', '荊芥', '防風'], url: 'fangji_zhifeng.html#chuanxiong', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '大秦艽湯', desc: '風邪初中經絡，口眼歪斜，顏面神經麻痺', tags: ['大秦艽湯', '顏面神經', '口眼歪斜', '中風', '秦艽', '四物湯', '養血活血'], url: 'fangji_zhifeng.html#daqinjiao', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '消風散', desc: '風疹、濕疹、蕁麻疹，疏風除濕清熱', tags: ['消風散', '風疹', '濕疹', '蕁麻疹', '皮膚炎', '過敏', '蟬蛻', '荊芥', '防風', '石膏', '蒼朮', '皮膚科'], url: 'fangji_zhifeng.html#xiaofeng', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '小活絡丹', desc: '風寒濕痹，關節疼痛，坐骨神經痛', tags: ['小活絡丹', '大活絡丹', '痹證', '關節炎', '風溼', '類風溼', '坐骨神經痛', '川烏', '草烏', '地龍', '乳香', '沒藥'], url: 'fangji_zhifeng.html#xiaohuoluo', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '牽正散', desc: '口眼歪斜、面肌抽動，三叉神經痛，偏頭痛', tags: ['牽正散', '口眼歪斜', '三叉神經痛', '偏頭痛', '全蠍', '僵蠶', '白附子', '顏面神經'], url: 'fangji_zhifeng.html#qianzheng', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '玉真散', desc: '破傷風，牙關緊急，角弓反張', tags: ['玉真散', '破傷風', '角弓反張', '牙關緊急', '白附子', '天麻', '防風'], url: 'fangji_zhifeng.html#yuzhen', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '鎮肝熄風湯', desc: '肝陽上亢、肝風內動，頭昏目眩耳鳴', tags: ['鎮肝熄風湯', '肝陽上亢', '肝風內動', '高血壓', '眩暈', '耳鳴', '龍骨', '牡蠣', '龜板', '赭石', '牛膝'], url: 'fangji_zhifeng.html#zhenganzixifeng', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '天麻鉤藤飲', desc: '肝腎不足、肝陽上亢、高血壓，內耳眩暈', tags: ['天麻鉤藤飲', '高血壓', '眩暈', '肝陽', '天麻', '鉤藤', '杜仲', '桑寄生', '內耳'], url: 'fangji_zhifeng.html#tianma', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '羚角鉤藤飲', desc: '溫熱病熱極動風，高熱抽搐', tags: ['羚角鉤藤飲', '鉤藤飲', '熱極動風', '抽搐', '羚羊角', '鉤藤', '桑葉', '菊花', '溫病'], url: 'fangji_zhifeng.html#lingjiaogouten', icon: '🌿', cat: '方劑學・治風劑' },
+  { title: '大定風珠', desc: '陰虛風動，溫病後期虛風內動，甲亢', tags: ['大定風珠', '三甲復脈湯', '阿膠雞子黃湯', '陰虛風動', '虛風', '甲亢', '甲狀腺', '雞子黃', '阿膠', '龜板', '鱉甲'], url: 'fangji_zhifeng.html#dadingfengzhu', icon: '🌿', cat: '方劑學・治風劑' },
+
+  // ── 補益劑 ──
+  { title: '補益劑', desc: '補氣、補血、補陰、補陽、陰陽雙補各類方劑總覽', tags: ['補益劑', '補氣', '補血', '補陰', '補陽', '虛證'], url: 'fangji_buyi.html', icon: '🌱', cat: '方劑學' },
+  { title: '四君子湯', desc: '補脾胃氣虛，益氣健脾', tags: ['四君子湯', '人參', '茯苓', '白朮', '炙甘草', '脾胃氣虛', '健脾', '香砂六君子', '參苓白朮散', '理中湯', '保元湯'], url: 'fangji_buyi.html#sijunzi', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '補中益氣湯', desc: '脾胃氣虛、氣虛下陷、氣虛發熱、表衛不固', tags: ['補中益氣湯', '氣虛下陷', '表衛不固', '升麻', '柴胡', '黃耆', '子宮脫垂', '反覆感冒', '化療'], url: 'fangji_buyi.html#buzhongyiqi', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '升陽益胃湯', desc: '脾胃虛弱、濕熱滯留中焦，慢性疲勞', tags: ['升陽益胃湯', '脾胃虛弱', '濕熱', '慢性疲勞', '黃耆', '六君子湯', '羌活'], url: 'fangji_buyi.html#shengyangweizao', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '益氣聰明湯', desc: '中氣不足，清陽不升，讀書疲勞', tags: ['益氣聰明湯', '清陽不升', '中氣不足', '讀書', '疲勞', '記憶', '黃柏', '白芍'], url: 'fangji_buyi.html#yiqicongming', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '人參蛤蚧散', desc: '肺腎氣虛、腎不納氣，慢性虛喘', tags: ['人參蛤蚧散', '蛤蚧', '肺腎氣虛', '腎不納氣', '虛喘', '氣喘', 'COPD', '杏仁'], url: 'fangji_buyi.html#renshengejie', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '生脈散', desc: '益氣生津歛陰止汗，氣陰兩虛，冠心病，暑熱', tags: ['生脈散', '人參', '麥冬', '五味子', '氣陰兩虛', '多汗', '手汗', '暑熱', '冠心病', '心衰', '久咳'], url: 'fangji_buyi.html#shengmai', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '玉屏風散', desc: '益氣固表止汗，容易感冒，過敏性鼻炎', tags: ['玉屏風散', '黃耆', '防風', '白朮', '固表', '感冒', '過敏', '鼻炎', '表衛不固'], url: 'fangji_buyi.html#yupingfeng', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '四物湯', desc: '補血，血虛，月經不調', tags: ['四物湯', '川芎', '當歸', '白芍', '熟地', '血虛', '月經', '芎歸膠艾湯', '桃紅四物湯', '聖愈湯'], url: 'fangji_buyi.html#siwu', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '當歸補血湯', desc: '補氣生血，血虛發熱，手腳冰冷', tags: ['當歸補血湯', '當歸', '黃耆', '補氣生血', '血虛發熱', '手腳冰冷', '貧血'], url: 'fangji_buyi.html#dangguibuxue', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '歸脾湯', desc: '心脾氣血兩虛失眠，脾不統血，血小板低下', tags: ['歸脾湯', '失眠', '心脾', '脾不統血', '血小板', '崩漏', '龍眼肉', '酸棗仁', '遠志', '茯神'], url: 'fangji_buyi.html#guipi', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '八珍湯', desc: '氣血兩虛，十全大補湯，人參養榮湯', tags: ['八珍湯', '十全大補湯', '人參養榮湯', '氣血兩虛', '四君子', '四物湯', '肉桂', '黃耆'], url: 'fangji_buyi.html#bazhen', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '泰山磐石散', desc: '安胎，滑胎，益氣健脾養血安胎', tags: ['泰山磐石散', '安胎', '滑胎', '懷孕', '妊娠', '孕婦'], url: 'fangji_buyi.html#taishanpanshi', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '六味地黃丸', desc: '滋補肝腎，腎陰虛，頭暈耳鳴，腰膝痠軟', tags: ['六味地黃丸', '腎陰虛', '熟地', '山茱萸', '山藥', '澤瀉', '茯苓', '牡丹皮', '頭暈', '耳鳴', '腰膝痠軟', '知柏地黃丸', '杞菊地黃丸', '都氣丸', '麥味地黃丸', '滋水清肝飲'], url: 'fangji_buyi.html#liuwei', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '左歸丸', desc: '填精益髓，不孕症，骨質疏鬆，促排卵', tags: ['左歸丸', '不孕症', '骨質疏鬆', '精蟲', '促排卵', '龜板', '鹿角膠', '菟絲子', '枸杞', '牛膝'], url: 'fangji_buyi.html#zuogui', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '大補陰丸', desc: '陰虛火旺，骨蒸潮熱，盜汗，遺精', tags: ['大補陰丸', '陰虛火旺', '骨蒸潮熱', '盜汗', '遺精', '黃柏', '知母', '龜板', 'SLE'], url: 'fangji_buyi.html#dabuyin', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '虎潛丸', desc: '腎陰不足陰虛內熱萎症，健步丸，養筋健步丸', tags: ['虎潛丸', '健步丸', '養筋健步丸', '萎症', '退化性關節炎', '腰膝退化', '肌少症'], url: 'fangji_buyi.html#huqian', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '一貫煎', desc: '滋陰疏肝，肝腎陰虛肝鬱，不孕，不寐', tags: ['一貫煎', '滋陰疏肝', '肝腎陰虛', '肝鬱', '不孕', '不寐', '沙參', '枸杞', '當歸', '生地', '川楝子', '麥冬'], url: 'fangji_buyi.html#yiguan', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '百合固金湯', desc: '肺腎陰虧虛火上炎，咳嗽痰中帶血，慢性咽喉炎', tags: ['百合固金湯', '肺腎陰虧', '虛火', '咳嗽', '痰中帶血', '咽喉炎', '百合', '麥冬', '貝母', '桔梗', '生地', '熟地'], url: 'fangji_buyi.html#baihe', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '二至丸', desc: '補腎養肝，少年白，早衰脫髮', tags: ['二至丸', '女貞子', '旱蓮草', '少年白', '脫髮', '早衰', '桑葚'], url: 'fangji_buyi.html#erzhi', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '益胃湯', desc: '養陰益胃，胃陰虧損，口乾舌燥不能食', tags: ['益胃湯', '胃陰虧損', '養胃陰', '沙參', '麥冬', '生地', '玉竹', '石斛', '口乾'], url: 'fangji_buyi.html#yiwei', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '腎氣丸', desc: '溫補腎陽，腰部冷感，陽痿，濟生腎氣丸', tags: ['腎氣丸', '濟生腎氣丸', '五子衍宗丸', '腎陽虛', '陽痿', '早洩', '腰冷', '水腫', '附子', '肉桂'], url: 'fangji_buyi.html#shenqi', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '十補丸', desc: '腎陽不足精血虛損，鹿茸，遺精足冷', tags: ['十補丸', '鹿茸', '鹿角膠', '鹿角霜', '腎陽不足', '精血虛損', '遺精', '五味子'], url: 'fangji_buyi.html#shibu', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '右歸丸', desc: '溫補腎陽填精益髓，命門火衰，陽痿遺精', tags: ['右歸丸', '右歸飲', '命門火衰', '腎陽虛', '陽痿', '遺精', '附子', '肉桂', '鹿角膠', '杜仲'], url: 'fangji_buyi.html#yougui', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '地黃飲子', desc: '喑痱，舌強不能言，足廢不能用，陰陽雙補', tags: ['地黃飲子', '喑痱', '舌強', '中風', '陰陽雙補', '巴戟天', '肉蓯蓉', '石斛', '菖蒲', '遠志'], url: 'fangji_buyi.html#dihuangyin', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '還少丹', desc: '溫補脾腎，牙齦浮動，月經不調', tags: ['還少丹', '溫補脾腎', '牙齦浮動', '月經不調', '楮實子', '小茴香'], url: 'fangji_buyi.html#huanshao', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '龜鹿二仙膠', desc: '精血不足，更年期障礙，骨質疏鬆，骨折癒合', tags: ['龜鹿二仙膠', '龜板', '鹿角膠', '更年期', '骨質疏鬆', '骨折', '精血不足'], url: 'fangji_buyi.html#guiluerxian', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '七寶美髯丹', desc: '肝腎不足脫髮，烏髮，首烏', tags: ['七寶美髯丹', '首烏', '脫髮', '烏髮', '肝腎不足', '菟絲子', '枸杞', '牛膝', '補骨脂'], url: 'fangji_buyi.html#qibao', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '炙甘草湯', desc: '脈結代心動悸，心律不整，氣血陰陽並補', tags: ['炙甘草湯', '脈結代', '心動悸', '心律不整', '炙甘草', '阿膠', '麥門冬', '加減復脈湯'], url: 'fangji_buyi.html#zhigancao', icon: '🌱', cat: '方劑學・補益劑' },
+  { title: '補天大造丸', desc: '五臟虛損，腎精不足，紫河車', tags: ['補天大造丸', '紫河車', '胎盤', '五臟虛損', '不孕', '肺腎兩虛', '喘咳'], url: 'fangji_buyi.html#butian', icon: '🌱', cat: '方劑學・補益劑' },
+
+];
+
+// ── 搜尋邏輯 ──────────────────────────────────────────────
+const input = document.getElementById('searchInput');
+const resultsBox = document.getElementById('searchResults');
+
+function search(q) {
+  if (!q.trim()) { resultsBox.classList.remove('active'); return; }
+  const kw = q.trim().toLowerCase();
+  const matched = INDEX.filter(item => {
+    return item.title.toLowerCase().includes(kw) ||
+           item.desc.toLowerCase().includes(kw) ||
+           item.tags.some(t => t.toLowerCase().includes(kw)) ||
+           item.cat.toLowerCase().includes(kw);
+  });
+  renderResults(matched, kw);
+}
+
+function renderResults(items, kw) {
+  resultsBox.innerHTML = '';
+  if (items.length === 0) {
+    resultsBox.innerHTML = '<div class="result-empty">找不到相關內容</div>';
+    resultsBox.classList.add('active');
+    return;
+  }
+  items.slice(0, 12).forEach(item => {
+    const a = document.createElement('a');
+    a.className = 'result-item';
+    a.href = item.url;
+    a.innerHTML = `
+      <div class="result-icon">${item.icon}</div>
+      <div class="result-main">
+        <div class="result-title">${highlight(item.title, kw)}</div>
+        <div class="result-desc">${highlight(item.desc, kw)}</div>
+        <span class="result-tag">${item.cat}</span>
+      </div>`;
+    resultsBox.appendChild(a);
+  });
+  resultsBox.classList.add('active');
+}
+
+function highlight(text, kw) {
+  if (!kw) return text;
+  const re = new RegExp(`(${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return text.replace(re, '<mark style="background:#d4edda;border-radius:2px;padding:0 1px">$1</mark>');
+}
+
+input.addEventListener('input', e => search(e.target.value));
+input.addEventListener('focus', e => { if (e.target.value) search(e.target.value); });
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) resultsBox.classList.remove('active');
+});
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { resultsBox.classList.remove('active'); input.blur(); }
+});
+</script>
 </body>
 </html>
