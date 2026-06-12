@@ -65,6 +65,7 @@
     <div class="cat-icon">🏥</div>
     <div class="cat-title">跟診筆記</div>
     <div class="cat-desc">跟隨老師臨床診治的觀察記錄與學習心得。</div>
+    <div class="cat-count"></div>
   </a>
   <div class="cat-card coming">
     <div class="cat-icon">📄</div>
@@ -81,10 +82,12 @@
 </div>
 <footer class="site-footer">習醫手帖・中醫學習筆記</footer>
 <script>
-  const count = localStorage.getItem('readingCount');
-  if (count) {
-    document.querySelector('a[href="reading.html"] .cat-count').textContent = count + ' 篇';
-  }
+  document.querySelectorAll('a.cat-card').forEach(card => {
+    const page = card.getAttribute('href');
+    const count = localStorage.getItem(page);
+    const el = card.querySelector('.cat-count');
+    if (count && el) el.textContent = count + ' 篇';
+  });
 </script>
 </body>
 </html>
