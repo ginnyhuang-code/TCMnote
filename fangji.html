@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方劑學筆記・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D;
+      --green-mid: #3D7A52;
+      --green-light: #5A9E6F;
+      --green-pale: #E8F2EC;
+      --parchment: #FAF7F2;
+      --ink: #1E2A1E;
+      --ink-light: #4A5A4A;
+      --rule: #C8D8C8;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+    .site-nav {
+      background: var(--green-dark);
+      padding: .9rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav .site-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.05rem;
+      margin-right: .4rem;
+    }
+    .site-nav a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .9rem; }
+    .site-nav a:hover { color: #fff; }
+    .site-nav .nav-current { color: rgba(255,255,255,.5); font-size: .9rem; }
+
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem .3rem;
+      font-size: .83rem;
+      color: var(--ink-light);
+    }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb span { margin: 0 .4rem; }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: #fff;
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+    }
+    .page-header .eyebrow {
+      font-size: .8rem;
+      letter-spacing: .12em;
+      opacity: .7;
+      margin-bottom: .5rem;
+    }
+    .page-header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(45,90,61,.12);
+      transform: translateY(-2px);
+    }
+    .card-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: .5rem;
+    }
+    .card-desc {
+      font-size: .85rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-bottom: .8rem;
+    }
+    .card-tag {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green-mid);
+      font-size: .75rem;
+      padding: .15rem .6rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .8rem;
+      color: var(--ink-light);
+      border-top: 1px solid var(--rule);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <span class="nav-current">方劑學筆記</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span>
+  <a href="reading.html">讀書筆記</a><span>›</span>
+  <span>方劑學筆記</span>
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">讀書筆記</div>
+  <h1>方劑學筆記</h1>
+</div>
+
+<div class="content">
+  <div class="section-title">各論</div>
+  <div class="cards">
+    <a class="card" href="fangji_zhifeng.html">
+      <div class="card-title">治風劑</div>
+      <div class="card-desc">疏散外風與平息內風，包含川芎茶調散、消風散、鎮肝熄風湯、大定風珠等方</div>
+      <div class="card-tag">王玟玲醫師授課</div>
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+<script>
+  const count = document.querySelectorAll('.card').length;
+  localStorage.setItem('fangji.html', count);
+</script>
+</body>
+</html>
