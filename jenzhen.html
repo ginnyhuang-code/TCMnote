@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跟診筆記・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #2C2825; --ink-mid: #5C5047; --ink-light: #9C8E84;
+      --parchment: #F5F2ED; --warm: #EAE4D8; --rule: #D0C8B8;
+      --green: #2D5A3D; --green-light: #4A7A5A; --green-pale: #E8F0EB; --green-mid: #C8DDD0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Serif TC', serif; background: var(--parchment); color: var(--ink); min-height: 100vh; }
+    .site-nav { background: var(--green); padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 52px; }
+    .site-nav .site-title { color: var(--green-mid); font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 500; margin-right: auto; letter-spacing: .06em; }
+    .site-nav a { color: var(--green-mid); text-decoration: none; font-size: .95rem; letter-spacing: .08em; transition: color .2s; }
+    .site-nav a:hover { color: #fff; }
+    .site-nav .nav-current { color: #fff; font-size: .95rem; letter-spacing: .08em; }
+    .breadcrumb { max-width: 860px; margin: 0 auto; padding: 1.5rem 2rem .5rem; font-size: .85rem; color: var(--ink-light); }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .4rem; }
+    .page-header { max-width: 860px; margin: 0 auto; padding: 1rem 2rem 2rem; border-bottom: 1px solid var(--rule); }
+    .page-header .eyebrow { font-size: .82rem; letter-spacing: .15em; color: var(--green-light); margin-bottom: .5rem; }
+    .page-header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: .05em; }
+    .content { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 6rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1rem; }
+    .card { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1.6rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: .5rem; transition: box-shadow .2s, border-color .2s; }
+    .card:hover { box-shadow: 0 3px 16px rgba(45,90,61,.1); border-color: var(--green-light); }
+    .card-title { font-size: 1.05rem; font-weight: 500; color: var(--ink); letter-spacing: .04em; }
+    .card-desc { font-size: .88rem; color: var(--ink-light); line-height: 1.6; }
+    .card-tag { font-size: .78rem; color: var(--green-light); letter-spacing: .08em; margin-top: .2rem; }
+    .site-footer { border-top: 1px solid var(--rule); padding: 1.5rem 2rem; text-align: center; font-size: .85rem; color: var(--ink-light); letter-spacing: .06em; }
+    @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <span class="nav-current">跟診筆記</span>
+</nav>
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span><span>跟診筆記</span>
+</div>
+<div class="page-header">
+  <div class="eyebrow">中醫學習筆記</div>
+  <h1>跟診筆記</h1>
+</div>
+<div class="content">
+  <div class="cards">
+    <a class="card" href="jenzhen_neike.html">
+      <div class="card-title">內科跟診用藥分析</div>
+      <div class="card-desc">張恒鴻、林彩蕙、陳瑩陵、謝慶良醫師。SLE、乾燥症、RA、眼科、腎病、消化、神經等九大分類用藥思路整理。</div>
+      <div class="card-tag">內科 · 33 則病例</div>
+    </a>
+  </div>
+</div>
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+</body>
+</html>

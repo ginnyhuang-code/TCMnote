@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>內科跟診筆記・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    :root {
+      --ink: #2C2825; --ink-mid: #5C5047; --ink-light: #9C8E84;
+      --parchment: #F5F2ED; --warm: #EAE4D8; --rule: #D0C8B8;
+      --green: #2D5A3D; --green-light: #4A7A5A; --green-pale: #E8F0EB; --green-mid: #C8DDD0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans TC', serif; background: var(--parchment); color: var(--ink); min-height: 100vh; }
+
+    .site-nav { background: var(--green); padding: 0 2rem; display: flex; align-items: center; gap: 2rem; height: 52px; }
+    .site-nav .site-title { color: var(--green-mid); font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 500; margin-right: auto; letter-spacing: .06em; }
+    .site-nav a { color: var(--green-mid); text-decoration: none; font-size: .95rem; letter-spacing: .08em; transition: color .2s; }
+    .site-nav a:hover { color: #fff; }
+    .site-nav .nav-current { color: #fff; font-size: .95rem; letter-spacing: .08em; }
+
+    .breadcrumb { max-width: 900px; margin: 0 auto; padding: 1.5rem 2rem .5rem; font-size: .85rem; color: var(--ink-light); }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .4rem; }
+
+    .page-header { max-width: 900px; margin: 0 auto; padding: 1rem 2rem 2rem; border-bottom: 1px solid var(--rule); }
+    .page-header .eyebrow { font-size: .82rem; letter-spacing: .15em; color: var(--green-light); margin-bottom: .5rem; }
+    .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: .05em; }
+    .page-header .meta { font-size: .85rem; color: var(--ink-light); margin-top: .5rem; }
+
+    .content { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+    /* 統計卡片 */
+    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: .75rem; margin-bottom: 2rem; }
+    .stat-card { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; text-align: center; }
+    .stat-card .num { font-family: 'Noto Serif TC', serif; font-size: 1.8rem; font-weight: 700; color: var(--green); }
+    .stat-card .label { font-size: .78rem; color: var(--ink-light); margin-top: .2rem; }
+
+    /* 分頁按鈕 */
+    .tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+    .tab-btn { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--rule); background: #fff; color: var(--ink-mid); font-size: .82rem; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all .2s; }
+    .tab-btn:hover { border-color: var(--green-light); color: var(--green); }
+    .tab-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+    /* 面板 */
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+    .panel-title { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); border-left: 4px solid var(--green); padding-left: .75rem; margin-bottom: 1.25rem; }
+
+    .chart-wrap { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem; margin-bottom: 1.25rem; }
+    .chart-wrap h3 { font-size: .85rem; color: var(--ink-light); letter-spacing: .08em; margin-bottom: 1rem; }
+    .chart-wrap canvas { width: 100% !important; }
+
+    .insight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: .75rem; margin-bottom: 1.5rem; }
+    .insight-card { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; }
+    .insight-card h4 { font-size: .85rem; font-weight: 500; color: var(--ink); margin-bottom: .4rem; }
+    .insight-card p { font-size: .82rem; color: var(--ink-light); line-height: 1.65; }
+
+    .site-footer { border-top: 1px solid var(--rule); padding: 1.5rem 2rem; text-align: center; font-size: .85rem; color: var(--ink-light); letter-spacing: .06em; }
+
+    @media (max-width: 480px) { .stats { grid-template-columns: repeat(3,1fr); } .insight-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="../index.html">首頁</a>
+  <a href="jenzhen.html">跟診筆記</a>
+  <span class="nav-current">內科</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../index.html">首頁</a><span>›</span>
+  <a href="jenzhen.html">跟診筆記</a><span>›</span>
+  <span>內科用藥分析</span>
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">跟診筆記・用藥分析</div>
+  <h1>內科跟診用藥思路</h1>
+  <div class="meta">張恒鴻醫師・林彩蕙醫師・陳瑩陵醫師・謝慶良醫師</div>
+</div>
+
+<div class="content">
+
+  <div class="stats">
+    <div class="stat-card"><div class="num">8</div><div class="label">SLE / 狼瘡</div></div>
+    <div class="stat-card"><div class="num">7</div><div class="label">乾燥症</div></div>
+    <div class="stat-card"><div class="num">3</div><div class="label">RA 類風濕</div></div>
+    <div class="stat-card"><div class="num">5</div><div class="label">眼科</div></div>
+    <div class="stat-card"><div class="num">2</div><div class="label">腎病</div></div>
+    <div class="stat-card"><div class="num">4</div><div class="label">消化</div></div>
+    <div class="stat-card"><div class="num">4</div><div class="label">神經</div></div>
+    <div class="stat-card"><div class="num">2</div><div class="label">皮膚</div></div>
+    <div class="stat-card"><div class="num">4</div><div class="label">其他</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="show('sle',this)">SLE（8則）</button>
+    <button class="tab-btn" onclick="show('sjo',this)">乾燥症（7則）</button>
+    <button class="tab-btn" onclick="show('ra',this)">RA（3則）</button>
+    <button class="tab-btn" onclick="show('eye',this)">眼科（5則）</button>
+    <button class="tab-btn" onclick="show('kidney',this)">腎病（2則）</button>
+    <button class="tab-btn" onclick="show('gi',this)">消化（4則）</button>
+    <button class="tab-btn" onclick="show('neuro',this)">神經（4則）</button>
+    <button class="tab-btn" onclick="show('skin',this)">皮膚（2則）</button>
+    <button class="tab-btn" onclick="show('other',this)">其他（4則）</button>
+  </div>
+
+  <!-- SLE -->
+  <div class="panel active" id="panel-sle">
+    <div class="panel-title">SLE・系統性紅斑狼瘡</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:240px;"><canvas id="sleChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>核心病機</h4><p>腎虛為本，熱毒為標，瘀血濕濁為關鍵病理。自體免疫攻擊肝血 → 滋陰清熱為主軸。</p></div>
+      <div class="insight-card"><h4>神經症狀</h4><p>牡丹皮＋白芍護肝血；四肢麻木加知柏地黃丸；心跳快加甘露飲。</p></div>
+      <div class="insight-card"><h4>晚發型（50歲後）</h4><p>男女比1:1，較輕微。人衰老：肝腎陰虛 → 脾腎陽虛，可加虎潛丸、歸脾湯。</p></div>
+      <div class="insight-card"><h4>氣虛型（肥胖）</h4><p>補中益氣湯為主；舌診儀顯示三焦有濕、氣虛血瘀時參考。</p></div>
+      <div class="insight-card"><h4>衛教重點</h4><p>禁烤炸辣、苜蓿芽、補品；不熬夜；避免光敏感。</p></div>
+      <div class="insight-card"><h4>皮疹</h4><p>消風散＋甘露飲＋牡丹皮＋薏苡仁；光敏感性紅疹可加板藍根。</p></div>
+    </div>
+  </div>
+
+  <!-- 乾燥症 -->
+  <div class="panel" id="panel-sjo">
+    <div class="panel-title">乾燥症</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:240px;"><canvas id="sjoChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>核心病機</h4><p>陰虛為本，瘀痺燥為標。天癸漸竭，衝任虛損，燥邪乘虛而入；或風寒濕入裡化燥傷陰。</p></div>
+      <div class="insight-card"><h4>治則</h4><p>急性期（發炎）：清營湯（銀翹連葉犀增丹）。慢慢加入活絡滋陰益氣；酸甘化陰防滋膩。</p></div>
+      <div class="insight-card"><h4>大便乾結</h4><p>腸液津虧 → 加太子參健脾益氣，加強腺體分泌。</p></div>
+      <div class="insight-card"><h4>失眠</h4><p>酸棗仁湯最常用；打疫苗後眠差亦可用。</p></div>
+      <div class="insight-card"><h4>問診要點</h4><p>發病前狀態、素食？反覆感冒（伏邪）？睡眠？經帶胎產史（耗陰化火）。</p></div>
+      <div class="insight-card"><h4>間質性腎炎合併</h4><p>以西醫為主（奎寧、類固醇、leflunomide），中醫輔助減少發炎。</p></div>
+    </div>
+  </div>
+
+  <!-- RA -->
+  <div class="panel" id="panel-ra">
+    <div class="panel-title">RA・類風濕性關節炎</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:220px;"><canvas id="raChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>底層病機</h4><p>與SLE、乾燥症同源，陰虛為本，故知柏地黃丸出現率最高（3/3則）。</p></div>
+      <div class="insight-card"><h4>關節變形、晨僵</h4><p>桂枝芍藥知母湯＋虎潛丸；泡熱水緩解、冬天加重 → 寒濕痹。</p></div>
+      <div class="insight-card"><h4>濕熱明顯</h4><p>消風散、涼膈散、龍膽瀉肝湯；便秘 → 調胃承氣湯。</p></div>
+      <div class="insight-card"><h4>纖維肌痛症合併</h4><p>當歸捻痛湯＋知柏地黃丸＋香砂六君子湯護胃；衛教：少量多餐，備蘇打餅。</p></div>
+      <div class="insight-card"><h4>外用輔助</h4><p>手指按摩器；魔鬼爪根精油（非洲植物）。</p></div>
+      <div class="insight-card"><h4>纖維肌痛症</h4><p>痛部位會移動、個性龜毛緊張；抑肝散＋牡丹皮；針灸：曲池、手三里、外關。</p></div>
+    </div>
+  </div>
+
+  <!-- 眼科 -->
+  <div class="panel" id="panel-eye">
+    <div class="panel-title">眼科</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:240px;"><canvas id="eyeChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>飛蚊症</h4><p>急性（閃光）→ 滋陰降火湯；慢性 → 滋腎明目湯；最常用：杞菊地黃丸。</p></div>
+      <div class="insight-card"><h4>眼底血管</h4><p>動脈阻塞（眼中風）→ 通竅活血湯；靜脈阻塞（火焰狀出血）→ 血府逐瘀湯；氣虛出血 → 歸脾湯。</p></div>
+      <div class="insight-card"><h4>黃斑部病變（乾性）</h4><p>杞菊地黃丸＋桂枝茯苓丸＋養肝腎活血化瘀；引經藥用防風。</p></div>
+      <div class="insight-card"><h4>女性眼疾</h4><p>一定調月經，肝腎同源，當歸白芍最重要；四物五子丸治經行目澀。</p></div>
+      <div class="insight-card"><h4>引經藥</h4><p>防風最常用；羌活、白芷、蒿本 → 引藥上達眼目。右眼氣、左眼血。</p></div>
+      <div class="insight-card"><h4>鼻過敏引起眼過敏</h4><p>優先處理鼻過敏（荊防敗毒散＋桑菊飲＋辛夷清肺湯），眼症自然改善。</p></div>
+    </div>
+  </div>
+
+  <!-- 腎病 -->
+  <div class="panel" id="panel-kidney">
+    <div class="panel-title">腎病</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:200px;"><canvas id="kidneyChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>核心思路</h4><p>處理underlying disease為主；利水一點即可，引藥到腎，過多利水反不好。</p></div>
+      <div class="insight-card"><h4>分型用藥</h4><p>心臟差 → 濟生腎氣丸；代謝型三高 → 知柏地黃丸；心肺腎合併 → 濟生腎氣丸＋生脈散＋炙甘草湯。</p></div>
+      <div class="insight-card"><h4>減少發炎纖維化</h4><p>連翹＋丹參（減少腎發炎 → 纖維化 → 萎縮的進程）。</p></div>
+      <div class="insight-card"><h4>養陰注意</h4><p>養陰須有陰虛表現（舌紅脈數少苔）；若苔膩先清濕熱，用知柏地黃丸。</p></div>
+    </div>
+  </div>
+
+  <!-- 消化 -->
+  <div class="panel" id="panel-gi">
+    <div class="panel-title">消化系統</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:200px;"><canvas id="giChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>便秘</h4><p>手術傷神經 → 潤法（仁劑）；老人大腸無力 → 補氣（太子參、西洋參、黃芪）；滋陰 → 肺陰胃陰。</p></div>
+      <div class="insight-card"><h4>腸胃炎腹瀉</h4><p>熱瀉 → 葛芩連湯；脾虛 → 參苓白朮散；噁心 → 半夏＋紫蘇葉。</p></div>
+      <div class="insight-card"><h4>腹脹</h4><p>大柴胡湯推動大腸；半夏厚朴湯降逆；砂仁＋紫蘇梗疏氣。</p></div>
+      <div class="insight-card"><h4>胃悶痛</h4><p>香砂六君子湯＋半夏瀉心湯；白及護胃黏膜；麥芽神麴消食開胃。</p></div>
+    </div>
+  </div>
+
+  <!-- 神經 -->
+  <div class="panel" id="panel-neuro">
+    <div class="panel-title">神經系統</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:220px;"><canvas id="neuroChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>周邊神經病變</h4><p>桂枝茯苓丸促循環＋天麻鉤藤針對麻木；最可能病因：DM、化學毒物。</p></div>
+      <div class="insight-card"><h4>眩暈</h4><p>苓桂朮甘湯增加內耳循環；良性陣發性姿勢性眩暈（耳石脫落）最常見。</p></div>
+      <div class="insight-card"><h4>記憶力衰退</h4><p>黃芪黨參補氣＋石菖蒲遠志開竅＋肉蓯蓉補腎；衛教：記憶需不斷訓練形成迴路。</p></div>
+      <div class="insight-card"><h4>纖維肌痛症</h4><p>抑肝散＋牡丹皮生地；痛部位移動、個性緊張為特點；針灸：陰陵泉、陽陵泉、委中。</p></div>
+    </div>
+  </div>
+
+  <!-- 皮膚 -->
+  <div class="panel" id="panel-skin">
+    <div class="panel-title">皮膚系統</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:180px;"><canvas id="skinChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>血虛風燥（皮膚乾癢）</h4><p>當歸飲子：四物＋祛風益氣；熟地改生地涼血；何首烏養血潤燥。</p></div>
+      <div class="insight-card"><h4>濕熱皮疹</h4><p>消風散＋甘露飲＋薏苡仁；足癬：本質虛，常見濕熱。</p></div>
+      <div class="insight-card"><h4>見熱象不必急清熱</h4><p>產後易汗夾熱：當歸補血湯（血虛生熱）；小建中湯治手足煩熱、咽乾口燥。</p></div>
+      <div class="insight-card"><h4>出血辨證</h4><p>脈有力（熱）→ 側柏葉荊芥炭；肺咳血 → 仙鶴草；血尿 → 涼血；月經後期點滴不淨 → 黃芪。</p></div>
+    </div>
+  </div>
+
+  <!-- 其他 -->
+  <div class="panel" id="panel-other">
+    <div class="panel-title">其他</div>
+    <div class="chart-wrap">
+      <h3>最常用藥物頻率</h3>
+      <div style="position:relative;height:200px;"><canvas id="otherChart"></canvas></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><h4>高血壓</h4><p>天麻鉤藤飲＋白虎湯＋龍膽瀉肝湯；丹參白芍活血。</p></div>
+      <div class="insight-card"><h4>痛風</h4><p>急性：四妙散＋銀翹＋桃紅＋金錢草。間歇期：化痰瘀＋黃芪。外用：如意金黃散。</p></div>
+      <div class="insight-card"><h4>睡眠呼吸中止症</h4><p>散腫潰堅湯（痰核）＋大柴胡湯（肥胖）；衛教：多游泳（雙側交替動作）。</p></div>
+      <div class="insight-card"><h4>AS 強直性脊椎炎</h4><p>天王補心丹＋柴胡桂枝湯；衛教：多游泳（雙側交替動作較佳）。</p></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const green = '#2D5A3D';
+function barChart(id, labels, data) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  new Chart(el, {
+    type: 'bar',
+    data: { labels, datasets: [{ data, backgroundColor: green, borderRadius: 4, borderSkipped: false }] },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { stepSize: 1, font: { size: 11 } } },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+barChart('sleChart',   ['天麻鉤藤飲','甘露飲','知柏地黃丸','牡丹皮','天王補心丹','白芍','桂枝茯苓丸','加味逍遙散'], [5,4,4,3,2,2,2,2]);
+barChart('sjoChart',   ['甘露飲','天麻鉤藤飲','天王補心丹','知柏地黃丸','酸棗仁湯','桑菊飲','白虎湯','牡丹皮'], [5,4,3,3,2,2,2,2]);
+barChart('raChart',    ['知柏地黃丸','桂枝芍藥知母湯','消風散','涼膈散','龍膽瀉肝湯','當歸捻痛湯','虎潛丸'], [3,1,1,1,1,1,1]);
+barChart('eyeChart',   ['杞菊地黃丸','滋腎明目湯','加味逍遙散','生脈散','防風','穀精草','女貞子','覆盆子'], [3,2,2,2,2,2,2,2]);
+barChart('kidneyChart',['濟生腎氣丸','連翹','丹參','車前子','五苓散','玉米鬚','王不留行','續斷'], [2,2,2,1,1,1,1,1]);
+barChart('giChart',    ['大柴胡湯','半夏厚朴湯','香砂六君子湯','葛芩連湯','參苓白朮散','甘露飲','厚朴'], [3,1,1,1,1,1,1]);
+barChart('neuroChart', ['天麻','鉤藤','苓桂朮甘湯','天王補心丹','抑肝散','桂枝茯苓丸','石菖蒲','遠志'], [2,2,2,1,1,1,1,1]);
+barChart('skinChart',  ['當歸飲子','消風散','六味地黃丸','甘露飲','牡丹皮','薏苡仁','白芍'], [1,1,1,1,1,1,1]);
+barChart('otherChart', ['天麻鉤藤飲','知柏地黃丸','白虎湯','散腫潰堅湯','清暑益氣湯','荊防敗毒散','柴胡桂枝湯'], [2,2,1,1,1,1,1]);
+</script>
+</body>
+</html>
