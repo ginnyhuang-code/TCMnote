@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>治風劑・方劑學筆記・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D;
+      --green-mid: #3D7A52;
+      --green-light: #5A9E6F;
+      --green-pale: #E8F2EC;
+      --parchment: #FAF7F2;
+      --ink: #1E2A1E;
+      --ink-light: #4A5A4A;
+      --rule: #C8D8C8;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      background: var(--green-dark);
+      padding: .9rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav .site-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.05rem;
+      margin-right: .4rem;
+    }
+    .site-nav a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    .site-nav a:hover { color: #fff; }
+    .site-nav .nav-current {
+      color: rgba(255,255,255,.5);
+      font-size: .9rem;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem .3rem;
+      font-size: .83rem;
+      color: var(--ink-light);
+    }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb span.sep { margin: 0 .4rem; }
+
+    /* ── Page header ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: #fff;
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+    }
+    .page-header .eyebrow {
+      font-size: .8rem;
+      letter-spacing: .12em;
+      opacity: .7;
+      margin-bottom: .5rem;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .page-header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .page-header .subtitle {
+      margin-top: .5rem;
+      opacity: .8;
+      font-size: .9rem;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    /* ── Sidebar TOC ── */
+    .toc {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 72px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+    .toc-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: .8rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .toc ul { list-style: none; }
+    .toc li { margin: .25rem 0; }
+    .toc a {
+      font-size: .8rem;
+      color: var(--ink-light);
+      text-decoration: none;
+      display: block;
+      padding: .2rem .4rem;
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+    .toc a:hover { background: var(--green-pale); color: var(--green-dark); }
+    .toc .toc-section {
+      font-weight: 700;
+      color: var(--green-dark);
+      font-size: .8rem;
+      margin-top: .7rem;
+      padding: .2rem .4rem;
+    }
+    .toc .toc-sub { padding-left: .8rem; }
+
+    /* ── Content ── */
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Section block */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-label {
+      display: inline-block;
+      background: var(--green-dark);
+      color: #fff;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      padding: .2rem .7rem;
+      border-radius: 4px;
+      margin-bottom: .8rem;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .section h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--green-pale);
+    }
+    .section h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-mid);
+      margin: 1.2rem 0 .5rem;
+    }
+    .section h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: .8rem 0 .3rem;
+    }
+    .section p {
+      font-size: .9rem;
+      color: var(--ink);
+      margin-bottom: .6rem;
+    }
+    .section ul {
+      padding-left: 1.4rem;
+      margin-bottom: .6rem;
+    }
+    .section ul li {
+      font-size: .9rem;
+      margin-bottom: .3rem;
+      color: var(--ink);
+    }
+
+    /* Formula box */
+    .formula-box {
+      background: var(--green-pale);
+      border-left: 4px solid var(--green-mid);
+      border-radius: 0 6px 6px 0;
+      padding: .8rem 1rem;
+      margin: .8rem 0;
+      font-size: .88rem;
+    }
+    .formula-box .formula-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      color: var(--green-dark);
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+    .formula-box .mnemonic {
+      font-size: .8rem;
+      color: var(--green-mid);
+      margin-bottom: .4rem;
+      font-style: italic;
+    }
+    .formula-box .herbs {
+      color: var(--ink-light);
+      font-size: .85rem;
+    }
+
+    /* Contrast box */
+    .compare-box {
+      background: #FFF9F0;
+      border: 1px solid #E8D5A0;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      font-size: .88rem;
+    }
+    .compare-box .compare-title {
+      font-weight: 700;
+      color: #8B6914;
+      margin-bottom: .4rem;
+      font-size: .9rem;
+    }
+
+    /* Caution tag */
+    .caution {
+      display: inline-block;
+      background: #FFF0F0;
+      border: 1px solid #F0BABA;
+      color: #C0392B;
+      font-size: .78rem;
+      padding: .15rem .6rem;
+      border-radius: 4px;
+      margin: .3rem 0;
+    }
+
+    /* Summary table */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .83rem;
+      margin-top: .8rem;
+    }
+    .summary-table th {
+      background: var(--green-dark);
+      color: #fff;
+      padding: .6rem .8rem;
+      text-align: center;
+      font-weight: 600;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .summary-table td {
+      padding: .6rem .8rem;
+      border: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .summary-table tr:nth-child(even) td { background: var(--green-pale); }
+    .summary-table .cat {
+      font-weight: 700;
+      color: var(--green-dark);
+      white-space: nowrap;
+    }
+
+    /* Intro card */
+    .intro-card {
+      background: var(--green-pale);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: .9rem;
+    }
+    .intro-card ul { padding-left: 1.2rem; }
+    .intro-card li { margin-bottom: .3rem; }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .8rem;
+      color: var(--ink-light);
+      border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .toc { width: 100%; position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <span class="nav-current">方劑學・治風劑</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span class="sep">›</span>
+  <a href="reading.html">讀書筆記</a><span class="sep">›</span>
+  <a href="fangji.html">方劑學筆記</a><span class="sep">›</span>
+  <span>治風劑</span>
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">方劑學筆記・讀書筆記</div>
+  <h1>治風劑</h1>
+  <div class="subtitle">王玟玲醫師授課</div>
+</div>
+
+<div class="layout">
+
+  <!-- TOC -->
+  <aside class="toc">
+    <div class="toc-title">目錄</div>
+    <ul>
+      <li><a href="#intro">治風劑概論</a></li>
+      <li class="toc-section">疏散外風</li>
+      <li class="toc-sub"><a href="#chuanxiong">川芎茶調散</a></li>
+      <li class="toc-sub"><a href="#daqinjiao">大秦艽湯</a></li>
+      <li class="toc-sub"><a href="#xiaofeng">消風散</a></li>
+      <li class="toc-sub"><a href="#xiaohuoluo">小活絡丹</a></li>
+      <li class="toc-sub"><a href="#qianzheng">牽正散</a></li>
+      <li class="toc-sub"><a href="#yuzhen">玉真散</a></li>
+      <li class="toc-section">平息內風</li>
+      <li class="toc-sub"><a href="#zhenganzixifeng">鎮肝熄風湯</a></li>
+      <li class="toc-sub"><a href="#tianma">天麻鉤藤飲</a></li>
+      <li class="toc-sub"><a href="#lingjiaogouten">羚角鉤藤飲</a></li>
+      <li class="toc-sub"><a href="#dadingfengzhu">大定風珠</a></li>
+      <li class="toc-section">筆者結論</li>
+      <li><a href="#summary">病症總覽表</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- 概論 -->
+    <div class="section" id="intro">
+      <span class="section-label">概論</span>
+      <h2>治風劑概論</h2>
+      <div class="intro-card">
+        <ul>
+          <li>風這個概念比較抽象，用<strong>特性</strong>來看待疾病。</li>
+          <li>若病人有<strong>內風</strong>，要慎用外風劑，因為外風藥比較溫躁。</li>
+          <li>藥物整體偏溫躁，<strong>血虛、陰虛</strong>要慎用。</li>
+        </ul>
+      </div>
+      <h3>風邪特性</h3>
+      <ul>
+        <li><strong>輕揚</strong>：治療方向向上、向外，疏散風邪，出汗、毛孔張開，惡寒、怕風。</li>
+        <li><strong>善行數變</strong>：主要用在皮膚科，如蕁麻疹，移走不定、快速變化。</li>
+        <li><strong>風性主動</strong>：抽搐、震顫，包括手震顫、乾風內動等。</li>
+        <li><strong>風為百病之長</strong>：風會夾帶其他病邪，如風寒、風濕、風熱。</li>
+      </ul>
+      <h3>風邪所致病症</h3>
+      <ul>
+        <li>風邪著於肌肉、筋骨、關節 → 還會夾痰、熱、濕 → 關節疼痛</li>
+        <li>風邪上犯 → 頭痛眩暈（外感或內風均可）</li>
+        <li>風邪鬱於肌腠 → 風疹、濕疹</li>
+        <li>風毒（破傷風侵入）→ 建議急診處理</li>
+        <li>中風顏面神經、小孩抽搐、中風後遺症 → 偏內風</li>
+        <li>內風五風 → 偏向型態的表現</li>
+      </ul>
+    </div>
+
+    <!-- 疏散外風 -->
+    <div class="section" id="chuanxiong">
+      <span class="section-label">疏散外風</span>
+      <h2>川芎茶調散</h2>
+      <div class="formula-box">
+        <div class="formula-title">川芎茶調散</div>
+        <div class="mnemonic">薄荷搶信紙傳抄經方</div>
+        <div class="herbs">薄荷、羌活、細辛、白芷、川芎、炙甘草、荊芥、防風</div>
+      </div>
+      <h3>主治</h3>
+      <p>常用於<strong>外感風邪頭痛</strong>，風寒或頭風狀況。整體藥偏溫躁，用<strong>清茶送服</strong>，茶葉苦涼，清利頭目，制約風藥溫燥升散，使降中有升、升中有降。</p>
+
+      <h3>引經藥（頭痛部位）</h3>
+      <ul>
+        <li><strong>太陽頭痛</strong>（膀胱經，後腦杓連項頸）：羌活</li>
+        <li><strong>陽明頭痛</strong>（胃經，前額眉棱骨）：白芷（辛溫）、葛根（甘辛涼）</li>
+        <li><strong>少陽頭痛</strong>（膽經，兩側顳部）：川芎</li>
+        <li><strong>厥陰頭痛</strong>（肝經，顛頂痛）：吳茱萸、藁本</li>
+        <li><strong>少陰頭痛</strong>（腦痛連齒）：細辛</li>
+      </ul>
+      <p>川芎可提供腦部供血，鎮痛鎮靜，增強腦部循環，可過 BBB，用於中風後遺症，亦可控制平滑肌收縮、增強冠狀血流、預防心肌缺氧。整帖含較多揮發油，<strong>只能微煎，不能久煎</strong>。</p>
+
+      <h3>其他應用</h3>
+      <ul>
+        <li>血管性頭痛</li>
+        <li>緊張性頭痛：加引經藥、芍藥甘草湯、血府逐瘀湯（柔筋活血）</li>
+        <li>慢性鼻塞性頭痛：疏通循環、通竅</li>
+        <li>落髮：合併引經藥，引藥疏散周邊血液循環；可配合外用生髮液、針灸</li>
+        <li>水土不服輕度發熱頭痛（無外感內傷）</li>
+        <li>產後頭風（有外感才用；若因虛，則補氣血補肝腎）</li>
+      </ul>
+
+      <h3>加減</h3>
+      <ul>
+        <li>風熱頭痛：去羌活、細辛，加菊花、蔓荊子</li>
+        <li>風濕頭痛：加蒼朮</li>
+        <li>痰濕：加半夏、白朮、天麻</li>
+        <li>瘀血：桃仁、紅花、血府逐瘀湯</li>
+        <li>肝鬱化火：加丹梔逍遙散</li>
+        <li>活血搜風通絡（病程較長）：全蠍、蜈蚣等動物類用藥</li>
+        <li>化躁：加麥門冬</li>
+      </ul>
+      <div class="caution">禁用：氣虛、血虛、肝陽上亢、肝風內動（溫躁耗陰）</div>
+    </div>
+
+    <div class="section" id="daqinjiao">
+      <span class="section-label">疏散外風</span>
+      <h2>大秦艽湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">大秦艽湯</div>
+        <div class="herbs">秦艽、防風、羌活、獨活、白芷、細辛、四物湯（川芎、當歸、白芍、熟地）、白朮、茯苓、甘草、生地、石膏、黃芩</div>
+      </div>
+      <h3>主治</h3>
+      <p>風邪初中經絡，六經中風輕證，風邪散見不拘一經。表現口眼歪斜、舌強不能言語、手足不能運動。</p>
+      <h3>病機</h3>
+      <p>正氣不足，營血虛弱不能養筋，經絡空虛，風邪乘虛而入。</p>
+      <h3>組方思路</h3>
+      <ul>
+        <li>君：秦艽——祛風通絡</li>
+        <li>臣：防風、羌活、獨活、白芷、細辛——辛散祛風</li>
+        <li>佐：四物湯（窮鬼掃地）——養血活血（血足則筋榮，絡通則風散）</li>
+        <li>佐：白朮、茯苓、甘草——益氣健脾，化生氣血</li>
+        <li>佐：生地、石膏、黃芩——清熱涼血（若無內熱可去除）</li>
+      </ul>
+      <h3>加減</h3>
+      <ul>
+        <li>半身不遂：全蠍</li>
+        <li>痰濕重：去生地、熟地，加半夏、南星</li>
+        <li>語言不利：石菖蒲、殭蠶（通竅）</li>
+      </ul>
+      <h3>臨床應用</h3>
+      <p>常用於<strong>顏面神經麻痺</strong>（睡醒臉部歪斜，身體不偏癱）。可因病毒感染或過勞感受風邪。初期西醫給類固醇和維他命B群；中醫初期給祛風清熱涼血藥，後期加養血活血。風寒者可用桂枝湯加減。</p>
+      <div class="caution">禁用：肝腎陰虛、風痰上擾等內風（辛溫發散藥）</div>
+    </div>
+
+    <div class="section" id="xiaofeng">
+      <span class="section-label">疏散外風</span>
+      <h2>消風散</h2>
+      <div class="formula-box">
+        <div class="formula-title">消風散</div>
+        <div class="mnemonic">乾媽通知高風叔，當地竟產牛仔褲</div>
+        <div class="herbs">甘草、胡麻仁、木通、知母、石膏、防風、蒼朮、當歸、生地、荊芥、蟬蛻、牛蒡子、苦參</div>
+      </div>
+      <h3>主治</h3>
+      <p>風熱或風濕造成的<strong>風疹、濕疹</strong>（蕁麻疹、濕疹、慢性皮膚炎、過敏性皮炎）。功用：疏風除濕、清熱養血。</p>
+      <h3>組方</h3>
+      <ul>
+        <li>君：荊芥、防風（疏散風邪止癢）、蟬蛻（甘寒入肝，疏散風熱透疹止癢）</li>
+        <li>臣：蒼朮（祛風燥濕，有水泡時用）、石膏（清熱瀉火，紅一大片時重用）</li>
+        <li>血分熱重、皮疹紅赤：重用生地，加赤芍、紫草、丹皮；濕熱：車前子、地膚子</li>
+      </ul>
+      <h3>臨床應用</h3>
+      <ul>
+        <li>蕁麻疹：區分誘發條件（食物、藥物、肝鬱化火），發作時排除誘因；若急性咽喉水腫送急診，消風散太慢。</li>
+        <li>寒性蕁麻疹（吹風、碰冷水誘發）：表衛不固，用桂枝湯加減，不用消風散。</li>
+        <li>肝鬱化火誘發蕁麻疹：加味逍遙散，加黃芩、生地。</li>
+        <li>濕疹（夏天多）：清熱燥濕，需先洗乾淨再擦乾。</li>
+        <li>異位性皮膚炎：滋陰藥（六味系列加減）；嚴重者先用類固醇再擦乳液。</li>
+        <li>風疹屬虛寒者不宜；食用辛辣、發物者請忌口。</li>
+      </ul>
+      <div class="caution">禁用：陰血不足、骨蒸潮熱（燥濕藥傷陰）；風疹虛寒者不宜</div>
+    </div>
+
+    <div class="section" id="xiaohuoluo">
+      <span class="section-label">疏散外風</span>
+      <h2>小活絡丹</h2>
+      <div class="formula-box">
+        <div class="formula-title">小活絡丹</div>
+        <div class="herbs">川烏、草烏、天南星、地龍、乳香、沒藥</div>
+        <div class="mnemonic">服法：荊芥、酒送服（祛風，助藥勢直達病所）</div>
+      </div>
+      <h3>主治</h3>
+      <p>風寒濕痹，肢體關節伸展不利。溫通經絡、止痛。用於風溼性關節炎、類風溼性關節炎、坐骨神經痛，以及風、寒、濕、痰、瘀血阻絡。</p>
+      <h3>組方說明</h3>
+      <ul>
+        <li>川烏、草烏：需炮製，先煎3–5分鐘減毒，避免烏頭鹼中毒，止痛效果佳。</li>
+        <li>地龍：入絡，中風後遺症常用，包煎（避免病人看到）。</li>
+        <li>乳香、沒藥：活血通絡。</li>
+      </ul>
+      <h3>加減</h3>
+      <ul>
+        <li>類風溼 ESR 偏高：加黃芩、丹皮、生地控制發炎</li>
+        <li>濕邪重：加防己、薏苡仁</li>
+        <li>風邪重：加羌活、防風、秦艽</li>
+        <li>血瘀重：加桃仁、紅花</li>
+        <li>皮膚麻木不仁（頑麻）：動物類通絡止痛藥</li>
+      </ul>
+      <div class="caution">適合體實氣壯（邪實正不衰）；陰虛有熱、孕婦慎用</div>
+
+      <div class="compare-box">
+        <div class="compare-title">比較：大活絡丹</div>
+        加強益氣養血、滋陰助陽，用在<strong>正氣不足（正虛，邪實正氣衰）</strong>所造成的中風偏癱。組成包含白花蛇、烏梢蛇、威靈仙、草烏、全蠍等活絡止痛藥。大小活絡丹均有抗凝血、局部促進血液循環作用。
+      </div>
+    </div>
+
+    <div class="section" id="qianzheng">
+      <span class="section-label">疏散外風</span>
+      <h2>牽正散</h2>
+      <div class="formula-box">
+        <div class="formula-title">牽正散</div>
+        <div class="herbs">全蠍、僵蠶、白附子</div>
+      </div>
+      <h3>主治</h3>
+      <p>突然的口眼歪斜或面肌抽動，屬風中頭面經絡。用於<strong>顏面神經麻痺、三叉神經痛、偏頭痛</strong>，屬風痰阻絡（偏寒性）。功用：祛風化痰、通絡解痙。</p>
+      <h3>組方說明</h3>
+      <ul>
+        <li>白附子：走陽明經</li>
+        <li>全蠍：通絡（注意毒性）</li>
+        <li>僵蠶：祛風化痰、通絡止痙；亦可抗驚涎，與蟬蛻並用（動物類高蛋白，注意過敏）</li>
+      </ul>
+      <h3>加減</h3>
+      <ul>
+        <li>初期：加羌活、防風、白芷（或單用入陽明的白芷）</li>
+        <li>後期嚴重：加活血藥（桃仁、紅花）、天麻（神經再生修復）、黃耆</li>
+        <li>嚴重抽搐：加蜈蚣</li>
+        <li>三叉神經痛急性發作：黃連解毒湯（清熱解毒）</li>
+      </ul>
+      <div class="caution">禁用：氣虛、血虛、肝風內動的口眼歪斜</div>
+    </div>
+
+    <div class="section" id="yuzhen">
+      <span class="section-label">疏散外風</span>
+      <h2>玉真散</h2>
+      <div class="formula-box">
+        <div class="formula-title">玉真散</div>
+        <div class="mnemonic">白天男瘋婆子</div>
+        <div class="herbs">白附子、天麻、南星、防風、羌活、白芷</div>
+      </div>
+      <h3>主治</h3>
+      <p>破傷風（破傷風桿菌刺激神經，造成牙關緊急、身體強直、角弓反張）。功用：祛風化痰、定搐止痛、促進血循。臨床上通常建議直接急診打疫苗，<strong>此方僅供參考</strong>，臨床運用少見。</p>
+      <div class="caution">禁用：氣陰兩傷、肝經熱盛；孕婦禁忌；方偏溫躁</div>
+    </div>
+
+    <!-- 平息內風 -->
+    <div class="section" id="zhenganzixifeng">
+      <span class="section-label">平息內風・內風實證</span>
+      <h2>鎮肝熄風湯</h2>
+      <div class="formula-box">
+        <div class="formula-title">鎮肝熄風湯</div>
+        <div class="herbs">赭石、龍骨、牡蠣、龜板（均用生）、懷牛膝（引氣血下行用川牛膝）、玄參、天冬⋯</div>
+      </div>
+      <h3>主治</h3>
+      <p>肝陽上亢、肝風內動，頭昏目眩、耳鳴、口眼漸歪斜。病機：肝腎陰虛、肝風內動（類中風，與出血型 stroke 較相關）。</p>
+      <h3>組方思路</h3>
+      <ul>
+        <li>赭石、龍骨、牡蠣、龜板（生）：滋陰潛陽（煅製用於外科收斂傷口）</li>
+        <li>懷牛膝：降逆（引氣血下行）</li>
+        <li>玄參、天冬：滋陰</li>
+      </ul>
+      <p>若血壓問題加上突然暴怒，可能造成出血型 stroke（血壓升高→腦血管破裂）。</p>
+    </div>
+
+    <div class="section" id="tianma">
+      <span class="section-label">平息內風・內風實證</span>
+      <h2>天麻鉤藤飲</h2>
+      <div class="formula-box">
+        <div class="formula-title">天麻鉤藤飲</div>
+        <div class="herbs">天麻、鉤藤、杜仲、桑寄生⋯（含補益肝腎藥）</div>
+      </div>
+      <h3>主治</h3>
+      <p>肝腎不足、肝陽上亢、化熱生風的高血壓患者。與鎮肝熄風湯相比，多了<strong>補益肝腎</strong>（杜仲、桑寄生）。亦用於內耳性眩暈（肝陽偏亢、肝風上擾型）。</p>
+      <h3>高血壓各型鑑別</h3>
+      <ul>
+        <li>肝膽火旺（舌紅、臉紅、脈滑有力）：龍膽瀉肝湯 + 鉤藤、石決明；不加牛膝、杜仲（怕血壓飆高）</li>
+        <li>肝火旺盛心煩易怒：加龍膽草、夏枯草</li>
+        <li>脈弦而細（入肝經）：加生地、枸杞</li>
+      </ul>
+    </div>
+
+    <div class="section" id="lingjiaogouten">
+      <span class="section-label">平息內風・內風實證</span>
+      <h2>羚角鉤藤飲</h2>
+      <div class="formula-box">
+        <div class="formula-title">羚角鉤藤飲</div>
+        <div class="mnemonic">少婦背竹籃，領羊草地勾桑菊</div>
+        <div class="herbs">白芍、茯苓、川貝、竹茹、羚羊角、甘草、生地、鉤藤、桑葉、菊花</div>
+      </div>
+      <h3>主治</h3>
+      <p>溫熱病邪傳入厥陰，肝經熱盛、熱極動風，高熱抽搐。用羚羊角（老師少用）。主要養陰清熱、柔肝舒筋，重用生地、白芍。</p>
+
+      <div class="compare-box">
+        <div class="compare-title">比較：鉤藤飲</div>
+        組成：羚羊角、人參、全蠍、天麻、鉤藤、炙甘草。清熱熄風、益氣解痙，適合<strong>氣陰虧虛</strong>的病人。溫熱病邪傳入厥陰熱極動風者，不宜含人參的處方。
+      </div>
+    </div>
+
+    <div class="section" id="dadingfengzhu">
+      <span class="section-label">平息內風・內風虛證</span>
+      <h2>大定風珠</h2>
+      <div class="formula-box">
+        <div class="formula-title">大定風珠</div>
+        <div class="herbs">炙草、地黃、白芍、阿膠、麥冬、麻仁、雞子黃、五味子、龜板、鱉甲、牡蠣（由三甲復脈湯加減）</div>
+      </div>
+      <h3>主治</h3>
+      <p>陰虛風動，溫病後期，邪熱灼傷真陰或誤汗重傷陰液所造成的<strong>虛風內動</strong>。舌紅苔少、脈虛弱。</p>
+      <h3>組方</h3>
+      <ul>
+        <li>君：雞子黃、阿膠——滋陰養液、熄虛風（針對真液受損）</li>
+        <li>龜板、鱉甲、牡蠣——滋陰潛陽</li>
+      </ul>
+      <h3>臨床應用</h3>
+      <ul>
+        <li>日本腦炎後期、眩暈後、甲狀腺亢進（脈虛弱者，加健脾益氣）</li>
+        <li>甲亢：全身代謝增加，心悸、血壓飆高、掉髮、月經不調、腹瀉、體重減輕、煩躁、難眠、手顫。TSH&lt;0.05%，freeT4/T3升高。脈弦滑數偏陽亢→滋陰潛陽；脈虛弱→大定風珠加健脾益氣。</li>
+        <li>溫病後期低熱不退：加地骨皮、白薇、生地退虛熱；氣陰兩虛加西洋參。</li>
+      </ul>
+      <div class="caution">禁用：熱極生風實證；陰虛但熱邪旺盛（應用清熱藥）</div>
+
+      <div class="compare-box">
+        <div class="compare-title">比較：三甲復脈湯</div>
+        熱生厥盛、脈細數，主要滋陰熄風，生龜板1兩、鱉甲1錢、牡蠣5錢，熄風比例較高（注意處方比例差別）。
+      </div>
+      <div class="compare-box">
+        <div class="compare-title">比較：阿膠雞子黃湯</div>
+        偏滋陰養血，控制<strong>睡眠障礙</strong>。柔肝熄風用石決明、鉤藤、牡蠣；茯神養心安神。臟躁證、考試前緊張可用甘麥大棗湯加茯神；亦用於產後憂鬱症。
+      </div>
+    </div>
+
+    <!-- 千容結論 -->
+    <div class="section" id="summary">
+      <span class="section-label">筆者結論</span>
+      <h2>病症總覽表</h2>
+      <p style="font-size:.85rem;color:var(--ink-light);margin-bottom:1rem;">※ 臨床上肢體運動功能異常：要區分中風、痹證、痙證</p>
+      <p style="font-size:.85rem;color:var(--ink-light);margin-bottom:1rem;">※《素問》：「諸風掉眩，皆屬於肝。」</p>
+      <div style="overflow-x:auto;">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>病症</th>
+              <th>特徵</th>
+              <th>代表方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cat">皮膚濕疹</td>
+              <td>外風入中</td>
+              <td>消風散</td>
+            </tr>
+            <tr>
+              <td class="cat">頭痛</td>
+              <td>外風入中</td>
+              <td>川芎茶調散</td>
+            </tr>
+            <tr>
+              <td class="cat">中風入經絡</td>
+              <td>外風入中（真中風）</td>
+              <td>大秦艽湯、牽正散</td>
+            </tr>
+            <tr>
+              <td class="cat">中風後遺症・風溼性關節炎（痹證）</td>
+              <td>內風（肝風）自發（類中風）</td>
+              <td>
+                <strong>內風實證：</strong>鎮肝熄風湯、天麻鉤藤飲、羚角鉤藤飲<br>
+                大活絡丹（邪實正衰）、小活絡丹（邪實正不衰）<br>
+                <strong>內風虛證：</strong>大定風珠
+              </td>
+            </tr>
+            <tr>
+              <td class="cat">痙證（四肢抽搐、角弓反張）</td>
+              <td>外風（破傷風）</td>
+              <td>玉真散</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+</body>
+</html>
