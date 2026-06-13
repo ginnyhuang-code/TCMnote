@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王敦正醫師脈學筆記</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #2D5A3D;
+    --green-mid: #4A7C59;
+    --green-light: #E8F3EC;
+    --green-pale: #F2F8F4;
+    --gold: #8B6914;
+    --gold-light: #F5EDD6;
+    --ink: #1C2B22;
+    --ink-mid: #3D4F44;
+    --ink-soft: #6B7D70;
+    --border: #C5D9C9;
+    --white: #FDFFFE;
+    --yin: #3A5C7A;
+    --yin-light: #EAF1F7;
+    --yang: #8B3A2A;
+    --yang-light: #FAF0ED;
+    --neutral: #5A5A3A;
+    --neutral-light: #F5F5E8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--green-pale);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--green-dark);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+  header .subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: #A8CEB4;
+    margin-bottom: 0.6rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+  }
+  header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+  header .meta {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: #8BB89A;
+  }
+
+  /* ── Layout ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+  /* ── Navigation Tabs ── */
+  .tabs {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tabs-inner {
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    scrollbar-width: none;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    border: none;
+    background: none;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.88rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--green-mid); }
+  .tab-btn.active { color: var(--green-dark); border-bottom-color: var(--green-dark); font-weight: 500; }
+
+  /* ── Section panels ── */
+  .panel { display: none; padding: 2rem 0 3rem; }
+  .panel.active { display: block; }
+
+  /* ── Intro / 總論 cards ── */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .intro-card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 1.4rem 1.5rem;
+  }
+  .intro-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: var(--green-dark);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .intro-card p, .intro-card li {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+  .intro-card ul { padding-left: 1.2rem; }
+  .intro-card li { margin-bottom: 0.2rem; }
+
+  /* ── Two-column yin-yang framework ── */
+  .yin-yang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 600px) { .yin-yang-grid { grid-template-columns: 1fr; } }
+  .yin-box {
+    background: var(--yin-light);
+    border: 1px solid #B8D0E0;
+    border-radius: 8px;
+    padding: 1.2rem 1.3rem;
+  }
+  .yang-box {
+    background: var(--yang-light);
+    border: 1px solid #DEB8AD;
+    border-radius: 8px;
+    padding: 1.2rem 1.3rem;
+  }
+  .yin-box h4 { color: var(--yin); font-family: 'Noto Serif TC', serif; margin-bottom: 0.7rem; font-size: 0.95rem; }
+  .yang-box h4 { color: var(--yang); font-family: 'Noto Serif TC', serif; margin-bottom: 0.7rem; font-size: 0.95rem; }
+  .yin-box p, .yang-box p { font-size: 0.85rem; line-height: 1.85; color: var(--ink-mid); }
+
+  /* ── Pulse cards (各脈) ── */
+  .pulse-search {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .pulse-search input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--ink);
+    background: white;
+  }
+  .pulse-search input:focus { outline: 2px solid var(--green-mid); border-color: transparent; }
+  .filter-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .filter-btn {
+    border: 1px solid var(--border);
+    background: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--green-dark);
+    color: white;
+    border-color: var(--green-dark);
+  }
+
+  .pulse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.3rem;
+  }
+
+  .pulse-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .pulse-card:hover { box-shadow: 0 4px 16px rgba(45,90,61,0.1); }
+
+  .pulse-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1.2rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .pulse-header.yin-pulse { background: linear-gradient(90deg, var(--yin-light), #f0f6fb); }
+  .pulse-header.yang-pulse { background: linear-gradient(90deg, var(--yang-light), #fdf6f4); }
+  .pulse-header.neutral-pulse { background: linear-gradient(90deg, var(--neutral-light), #f8f8f2); }
+
+  .pulse-badge {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .pulse-badge.yin { background: var(--yin); color: white; }
+  .pulse-badge.yang { background: var(--yang); color: white; }
+  .pulse-badge.neutral { background: var(--neutral); color: white; }
+
+  .pulse-title-group { flex: 1; }
+  .pulse-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .pulse-tagline { font-size: 0.75rem; color: var(--ink-soft); margin-top: 0.1rem; }
+
+  .toggle-icon {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    transition: transform 0.2s;
+  }
+  .pulse-card.open .toggle-icon { transform: rotate(180deg); }
+
+  .pulse-body { display: none; border-top: 1px solid var(--border); }
+  .pulse-card.open .pulse-body { display: block; }
+
+  .pulse-section {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid #EFF3F0;
+  }
+  .pulse-section:last-child { border-bottom: none; }
+  .pulse-section-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green-mid);
+    margin-bottom: 0.5rem;
+  }
+  .pulse-section p {
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  /* Six-position table */
+  .six-positions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+  }
+  .pos-item {
+    background: var(--green-pale);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+  }
+  .pos-label {
+    font-weight: 500;
+    color: var(--green-dark);
+    font-size: 0.78rem;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .pos-side {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 0.05rem 0.35rem;
+    border-radius: 3px;
+    font-weight: 400;
+  }
+  .pos-side.left { background: #DDEAF5; color: #2A5080; }
+  .pos-side.right { background: #FDEEDD; color: #7A4010; }
+  .pos-content { color: var(--ink-mid); line-height: 1.7; }
+
+  /* Poem block */
+  .poem-block {
+    background: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding: 0.7rem 1rem;
+    border-radius: 0 6px 6px 0;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.85rem;
+    line-height: 2;
+    color: var(--ink);
+  }
+
+  /* Tag badges for type */
+  .type-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 12px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+  .type-tag.yin { background: var(--yin-light); color: var(--yin); border: 1px solid #B8D0E0; }
+  .type-tag.yang { background: var(--yang-light); color: var(--yang); border: 1px solid #DEB8AD; }
+  .type-tag.yin-yang { background: var(--neutral-light); color: var(--neutral); border: 1px solid #C8C8A0; }
+
+  /* ── Section: 診脈框架 ── */
+  .framework-section { margin-bottom: 2rem; }
+  .section-heading {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.2rem;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-heading::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 1.2rem;
+    background: var(--green-mid);
+    border-radius: 2px;
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  .method-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.3rem;
+  }
+  .method-card h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem;
+    color: var(--green-dark);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .method-card h4 .num {
+    width: 22px; height: 22px;
+    background: var(--green-dark);
+    color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    flex-shrink: 0;
+  }
+  .method-card p { font-size: 0.84rem; color: var(--ink-mid); line-height: 1.85; }
+
+  /* Positions diagram */
+  .positions-diagram {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .positions-diagram h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .pos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    text-align: center;
+  }
+  .pos-table th {
+    background: var(--green-dark);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-weight: 400;
+    font-family: 'Noto Serif TC', serif;
+  }
+  .pos-table td {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+  }
+  .pos-table .left-col { background: var(--yin-light); color: var(--yin); }
+  .pos-table .right-col { background: var(--yang-light); color: var(--yang); }
+  .pos-table .pos-name { background: var(--green-pale); font-weight: 500; color: var(--green-dark); }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .pulse-grid { grid-template-columns: 1fr; }
+    .six-positions { grid-template-columns: 1fr; }
+  }
+
+  /* Hidden state for search */
+  .pulse-card.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="subtitle">中醫脈診學習筆記</div>
+  <h1>王敦正醫師 · 脈學講義整理</h1>
+  <div class="meta">資料來源：脈診講義（PPT）＋ 六部各論（講課筆記）· 2014</div>
+</header>
+
+<!-- Tabs -->
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showPanel('overview')">學習綱領</button>
+    <button class="tab-btn" onclick="showPanel('framework')">診脈框架</button>
+    <button class="tab-btn" onclick="showPanel('pulses')">二十八脈各論</button>
+    <button class="tab-btn" onclick="showPanel('critical')">七絕脈</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ════ PANEL 1: 總綱 ════ -->
+<div class="panel active" id="panel-overview">
+  <div class="intro-grid" style="margin-top:0.5rem;">
+    <div class="intro-card">
+      <h3>學習方針</h3>
+      <ul>
+        <li>掌握<strong>兩綱脈</strong>（陰陽），明辨<strong>六要脈</strong>（表裏寒熱虛實）</li>
+        <li>要獨立思考，重反覆實踐</li>
+        <li>先掌握常脈，後區別病脈</li>
+        <li>從證辨脈象，從脈定病證</li>
+      </ul>
+    </div>
+    <div class="intro-card">
+      <h3>兩綱脈 · 陰陽</h3>
+      <div class="yin-yang-grid" style="margin-top:0.3rem;">
+        <div class="yin-box">
+          <h4>陰脈</h4>
+          <p>沉、遲、澀、小<br>主裏、寒、虛</p>
+        </div>
+        <div class="yang-box">
+          <h4>陽脈</h4>
+          <p>浮、數、滑、大<br>主表、熱、實</p>
+        </div>
+      </div>
+    </div>
+    <div class="intro-card">
+      <h3>六要脈 · 表裏寒熱虛實</h3>
+      <ul>
+        <li><strong>表脈</strong>浮 ← → 裏脈沉</li>
+        <li><strong>寒脈</strong>遲 ← → 熱脈數</li>
+        <li><strong>虛脈</strong>小 ← → 實脈大</li>
+      </ul>
+    </div>
+    <div class="intro-card">
+      <h3>脈學發展史</h3>
+      <ul>
+        <li>扁鵲 — 首用脈法診病</li>
+        <li>《內經》— 脈法具體記載</li>
+        <li>張機（張仲景）— 脈法實踐</li>
+        <li>王熙（王叔和）— 《脈經》十卷，脈學專輯創始人</li>
+        <li>李時珍（字東璧）— 《瀕湖脈學》，推廣普及</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-heading">陰陽辨脈要點</div>
+  <div class="yin-yang-grid">
+    <div class="yin-box">
+      <h4>陰證脈象</h4>
+      <p>脈多見<strong>沉、微、細、澀</strong>或遲弱無力。主症：身寒喜溫、倦怠無力、倦臥神疲、面色暗淡、舌胖苔滑、聲低息怯、納少便溏、小便清長、四肢不溫。</p>
+    </div>
+    <div class="yang-box">
+      <h4>陽証脈象</h4>
+      <p>脈多見<strong>浮、數、滑、大</strong>或洪實有力。主症：身熱喜涼、舉動輕快、狂躁不安、面色潮紅、舌絳苔黃、煩而多言、大便秘結、小便短赤、腹痛拒按。</p>
+    </div>
+    <div class="yin-box">
+      <h4>真陰不足</h4>
+      <p>脈象多見<strong>細數無力</strong>。主症：面白顴赤、咽乾心煩、手足心熱、骨蒸盜汗、舌乾無苔。</p>
+    </div>
+    <div class="yang-box">
+      <h4>真陽不足</h4>
+      <p>脈象多見<strong>大而無力</strong>。主症：面色㿠白、喘滿身腫、肢冷便溏、唇淡口和、兩足痿弱、陽痿精冷。</p>
+    </div>
+    <div class="yin-box">
+      <h4>亡陰</h4>
+      <p>脈多見<strong>細數無力</strong>。主症：多汗味鹹、口渴喜冷飲、身煩熱、手足溫、呼吸粗。</p>
+    </div>
+    <div class="yang-box">
+      <h4>亡陽</h4>
+      <p>脈多見<strong>沉伏</strong>。主症：多汗味淡、口不渴喜熱飲、身惡寒、手足冷、呼吸弱。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PANEL 2: 診脈框架 ════ -->
+<div class="panel" id="panel-framework">
+
+  <div class="framework-section">
+    <div class="section-heading">寸口分配臟腑</div>
+    <div class="positions-diagram">
+      <table class="pos-table">
+        <thead>
+          <tr>
+            <th>脈位</th>
+            <th class="left-col">左手</th>
+            <th class="right-col">右手</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pos-name">寸</td>
+            <td class="left-col">心</td>
+            <td class="right-col">肺（胸）</td>
+          </tr>
+          <tr>
+            <td class="pos-name">關</td>
+            <td class="left-col">肝膽</td>
+            <td class="right-col">脾胃</td>
+          </tr>
+          <tr>
+            <td class="pos-name">尺</td>
+            <td class="left-col">腎水</td>
+            <td class="right-col">命門火</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="framework-section">
+    <div class="section-heading">診脈方法</div>
+    <div class="method-grid">
+      <div class="method-card">
+        <h4><span class="num">時</span>時間與準備</h4>
+        <p>以清晨（平旦）為佳。需安靜、調勻呼吸，使氣血均勻平靜，脈律才能反映真正脈象。</p>
+      </div>
+      <div class="method-card">
+        <h4><span class="num">姿</span>體位姿勢</h4>
+        <p>手臂與心臟須置於同一高度，手掌向上，前臂放平。</p>
+      </div>
+      <div class="method-card">
+        <h4><span class="num">指</span>指法輕重</h4>
+        <p>中指先輕放於手腕高骨（關脈）處，食指（寸）、無名指（尺）隨之輕放。指力：5分（中取）、3分（輕取）、7分（重取）施加於脈管上。</p>
+      </div>
+      <div class="method-card">
+        <h4><span class="num">運</span>五種運指法</h4>
+        <p>
+          <strong>舉</strong>（輕）→ 診浮脈<br>
+          <strong>按</strong>（重）→ 診沉脈<br>
+          <strong>尋</strong>（不輕不重）→ 診緩脈<br>
+          <strong>推</strong>（挪移內外）→ 診芤、革脈<br>
+          <strong>竟</strong>（上下揣摩）→ 診長、短脈
+        </p>
+      </div>
+      <div class="method-card">
+        <h4><span class="num">息</span>計息方法</h4>
+        <p>一呼一吸為一息。正常人：一呼脈再動、一吸脈再動，呼吸定息脈五動（即一息五至）。必須診滿五十動，有時兩至三個五十次，大約需 5～10 分鐘。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="framework-section">
+    <div class="section-heading">診脈步驟順序</div>
+    <div class="intro-card" style="max-width:500px;">
+      <ul>
+        <li><strong>1. 定位</strong>——先分浮沉（辨表裏）</li>
+        <li><strong>2. 數息</strong>——定遲數（辨寒熱）</li>
+        <li><strong>3. 辨形</strong>——定大小長短（辨氣血盛衰）</li>
+        <li><strong>4. 審勢</strong>——別虛實散弱（辨邪正）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="framework-section">
+    <div class="section-heading">診家樞要 · 上下來去至止</div>
+    <div class="intro-card">
+      <ul>
+        <li><strong>上</strong>：自尺部上于寸口 → 陽生於陰</li>
+        <li><strong>下</strong>：自寸口下于尺部 → 陰生於陽</li>
+        <li><strong>來</strong>：自骨肉之分出于皮膚之際 → 氣之升也</li>
+        <li><strong>去</strong>：自皮膚之際還于骨肉之分 → 氣之降也</li>
+        <li><strong>至</strong>（應）：脈之應指</li>
+        <li><strong>止</strong>（息）：脈之歇止</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="framework-section">
+    <div class="section-heading">脈象分類概覽</div>
+    <div class="method-grid">
+      <div class="method-card">
+        <h4>脈位深淺 — 辨表裏</h4>
+        <p>浮脈（表）← → 沉脈（裏）</p>
+      </div>
+      <div class="method-card">
+        <h4>脈數多寡 — 辨寒熱</h4>
+        <p>遲脈（寒）← → 數脈（熱）</p>
+      </div>
+      <div class="method-card">
+        <h4>脈搏強弱 — 辨虛實</h4>
+        <p>虛脈（虛）← → 實脈（實）</p>
+      </div>
+      <div class="method-card">
+        <h4>脈幅大小 — 辨氣血</h4>
+        <p>小脈（氣血衰）← → 大脈（氣血盛）</p>
+      </div>
+      <div class="method-card">
+        <h4>脈體長短 — 辨範圍</h4>
+        <p>長脈（超出三部）、短脈（不及三部）</p>
+      </div>
+      <div class="method-card">
+        <h4>脈形變化</h4>
+        <p>滑脈、澀脈、弦脈（波形形態改變）</p>
+      </div>
+      <div class="method-card">
+        <h4>脈律變化</h4>
+        <p>促脈（數中一止）、結脈（遲中一止）、代脈（遲中一止，良久復來）</p>
+      </div>
+      <div class="method-card">
+        <h4>合併脈象</h4>
+        <p>兩種或三種脈象合併：緩、洪、微、緊、濡、弱、革、牢、動、伏、散、芤</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PANEL 3: 各脈詳論 ════ -->
+<div class="panel" id="panel-pulses">
+  <div class="pulse-search">
+    <input type="text" id="searchInput" placeholder="搜尋脈名、主病、症狀…" oninput="filterPulses()">
+    <div class="filter-btns">
+      <button class="filter-btn active" onclick="filterByType('all', this)">全部</button>
+      <button class="filter-btn" onclick="filterByType('陽', this)">陽脈</button>
+      <button class="filter-btn" onclick="filterByType('陰', this)">陰脈</button>
+      <button class="filter-btn" onclick="filterByType('兼', this)">兼性脈</button>
+    </div>
+  </div>
+
+  <div class="pulse-grid" id="pulseGrid">
+
+    <!-- 1. 浮脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="浮 表證 裏虛 外感 浮脈">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">1. 浮脈</div>
+          <div class="pulse-tagline">輕取即得，按之稍弱，不中空</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>輕取即得，按之稍弱，但不中空。《脈經》：「舉之有餘，按之不足。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">正常脈象</div>
+          <p>浮為陽脈，在時應秋，在臟應肺；瘦人肌薄見浮，皆屬常脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p><strong>浮主表證</strong>：外感表證、上焦病及某些傳染病初期。<br><strong>浮主裏虛</strong>：「裏虛而浮精血脫」，浮無力示氣血不足，如貧血、肝硬化腹水、腫瘤末期，標誌預後不良。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">比類辨別</div>
+          <p>芤：浮大中空，有邊無中；虛：浮大遲緩無力；浮脈形不大，亦無中空之象。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">傷風感冒；頭痛、目眩、發燒、惡寒等外感表證；兼虛則主心氣不足，心悸、氣短、恍惚不安</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">風寒襲肺，肺氣不宣；咳嗽、痰稀、鼻流清涕、頭痛惡寒的風寒表證</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝木剋土，脾受其邪；脾虛腹脹之疾</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃虛弱（可能無力）；納呆、脘悶、大便溏</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">下焦濕熱；小便不利，淋澀疼痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">下焦風熱所致；便秘不暢</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">浮脈惟從肉上行，如循榆莢似毛輕。<br>三秋得令知無恙，久病逢之卻可驚。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 沉脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="沉 裏 下痢 浮腫 嘔吐 積滯">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">2. 沉脈</div>
+          <div class="pulse-tagline">重按始得，輕取不應</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>重按始得，輕取不應。《脈經》：「舉之不足，按之有餘。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">正常脈象</div>
+          <p>沉為陰脈，在時應冬，在臟屬腎；肥人脂厚見沉脈，皆屬常脈，不做病論。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>沉脈主裏，常見於下痢、浮腫、嘔吐、停食積熱、郁結氣滯等。沉而有力為裏實（水、寒、積滯）；沉而無力為裏虛（陽氣衰微）。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>沉遲→裏寒；沉數→裏熱；沉濡→水濕；沉弦→內痛；沉牢→冷痛。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">比類辨別</div>
+          <p>沉脈近筋骨而在肌肉中部，跳動均勻，重按可得；伏脈必須推筋著骨始得脈動。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不振，寒飲停胸；胸痛滿悶</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不宣，停痰蓄飲；咳喘上氣；兼緊兼滑→寒邪鬱閉，咳喘痰稀鼻塞</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">飲食不節，脾胃受損或寒痰結聚；納少、脹滿虛痞，甚發痃癖腹痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃虛寒；中脘虛脹，納呆脘悶</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">寒鬱少陰，腎經受邪；腰背冷痛、尿頻；女子痛經、經閉</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火不足；腰痠冷痛，五更晨瀉</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">水行潤下脈來沉，筋骨之間軟滑勻。<br>女子寸兮男子尺，四時如此號為平。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 遲脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="遲 寒 陰盛 冷痛 虛寒 一息三至">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">3. 遲脈</div>
+          <div class="pulse-tagline">一息三至，來去較慢</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>一息三至，來去較慢。《脈經》：「呼吸三至，來去極遲。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>遲脈屬陰，主臟、主寒、主陰盛陽衰，為寒症主脈。遲而有力→冷痛；遲而無力→虛寒。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮遲→表寒；沉遲→裏寒；遲滑→痰氣；遲澀→血虛；遲細→陽衰；遲弦→飲積。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">比類辨別</div>
+          <p>遲脈一息三至，緩脈稍快於遲，一息四至。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不足，寒濕痹結胸膈；胸悶不暢，胸痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足，寒痰阻滯；咳嗽、氣喘、胸悶</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">寒積肝脈，營虛不達；脅下疼痛，四肢拘攣</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾虛運化失常；納呆、腹脹、便溏、泛吐清水、口淡不渴、四肢不溫</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎虛不能溫化水液；尿頻、遺尿、少腹冷痛（師曰：與BPH接近）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎陽不振，命門火衰；少腹冷痛、腰膝清冷無力、五更晨瀉</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">遲來一息至惟三，陽不勝陰氣血寒，<br>但把浮沉分表裏，消陰須益火之源。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 數脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="數 熱 實火 虛火 一息六至 表熱 裏熱">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">4. 數脈</div>
+          <div class="pulse-tagline">一息六至，往來急數</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>一次呼吸，脈動六次。《脈經》：「數脈去來促急，一息六七至。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>數脈主腑：有力為實火，無力為虛火；浮數→表熱，沉數→裏熱。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>洪數→內有實熱或生瘡瘍；細數→陰虛內熱；弦數→肝火亢盛；滑數→痰火實熱；數大無力按之豁然而空→虛陽外越。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心火亢盛；面赤口渴、口舌生瘡、咽喉腫痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">熱邪壅肺；咳喘氣逆、痰黃黏稠、咳吐膿血臭痰（肺癰）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝火上炎；目赤、頭眩、清竅不利、善怒煩躁</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃火熾盛；齦腫齒痛、嘈雜吞酸、渴飲思冷</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">膀胱蓄熱；小便淋漓不暢、尿少澀痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎水不足，虛火上燔；五心煩熱、顴紅盜汗；熱擾精室則見遺精</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">數脈息間常六至，陰微陽盛必狂煩。<br>浮沉表裏分虛實，惟有兒童作吉看。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 虛脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="虛 氣血不足 無力 無神 肺痿 傷暑">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">5. 虛脈</div>
+          <div class="pulse-tagline">輕按便得，舉之無力，按之空虛</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>輕按便得，舉之無力，按之空虛。《脈經》：「遲大而軟，按之不足，隱指豁豁然空。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>虛脈為無力、無神，凡氣血不足，以及肺痿、傷暑、多汗、驚悸諸疾，皆見虛脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>虛而浮→氣虛；虛而澀→血虛；虛而數→陰虛；虛而遲→陽虛；虛而軟→表虛自汗；虛而小→痿痺腳氣；虛而芤遲→亡血失精。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">元氣不足，心失所養；心悸不安、失眠、頭暈</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣虧虛，衛陽不固；自汗懶言、氣短咳逆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝血不足，筋失濡養；筋軟無力、全身酸困（睡起時腳軟）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾氣虛弱，納運失常；納少、食後腹脹、身倦無力、浮腫便溏</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎精虧損，封藏失職；腰膝痠軟、滑精早洩</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火衰，下元虛弱；形寒肢冷、陽痿不舉、遺精早洩</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">舉之遲大按之鬆，脈狀無涯類谷空，<br>莫把芤虛為一例，芤來浮大似慈蔥。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 實脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="實 邪盛 熱 腑實 三焦火盛 大而且堅">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">6. 實脈</div>
+          <div class="pulse-tagline">大而且堅，鼓指有力</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>大而且堅，鼓指有力。《脈經》：「實脈大而長，微強，按之隱指幅幅然。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>實為火熱有餘之象，凡邪氣有餘、陽熱內鬱所致高熱譫語、腑實便堅、三焦火盛、食滯脇痛，皆見實脈。平人見實脈，靜而和緩，是正氣充實的健康之象。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>實而緊→寒積稽留；實且滑→痰凝邪盛；實而清長→臟氣充；實而數大→腑熱聚。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心經積熱；口舌生瘡、心煩咽痛，甚則喜笑不休、發狂怒罵</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺經有熱；咳喘氣逆、痰黃胸痛、咽痛口渴</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣鬱結；腹脅脹痛、目赤腫痛、口苦呃逆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">中焦運化不通；脘腹脹滿、反胃呃逆<br>💡 左右關實脈：中焦有火，口苦口氣重，如胃食道逆流，可用黃連＋吳茱萸</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">膀胱積熱；小便淋瀝澀痛及尿血（似腎、膀胱結石）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">下焦實熱壅塞；便秘、腹脹痛</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">浮沉皆得大而長，應指無虛幅幅強。<br>熱蘊三焦成壯火，通腸發汗使安康。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 大脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="大 應指滿大 邪盛 陽熱 虛勞亡血">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">7. 大脈</div>
+          <div class="pulse-tagline">應指滿大，倍於尋常</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法</div>
+          <p>應指滿大，倍於尋常。《醫師秘笈》：「滿指寬大則名曰大。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>大而有力→邪盛，主陽熱邪盛有餘；大而無力→常由虛勞亡血所致。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮而大→虛或表熱；沉而大→裏熱或腎病；弦而大→實熱；濡而大→虛熱；緩而大→濕熱；洪而大→胃實；實而大→積氣。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">比類辨別</div>
+          <p>大脈形大應指；洪脈既大且數；實脈既大且長；長脈但長不大。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <p style="font-size:0.82rem; color:var(--ink-soft);">（王師講義於此脈未列六部詳論，請參照兼脈主病及臨床辨證。）</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">大比常脈增一倍，形大力強應指滿。<br>其氣來盛去亦盛，體健逢此不為殃。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 小脈（含大脈） -->
+    <div class="pulse-card" data-type="陰" data-keywords="小 細 諸虛 氣少血衰 貧血 慢性消耗">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">8. 小脈（細脈）</div>
+          <div class="pulse-tagline">形小如線，減常一倍</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法</div>
+          <p>舉按探取，應指顯然。形小如線，減常一倍。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>細主諸虛，氣少血衰（貧血），勞損不足（慢性消耗性疾病），亦主濕侵。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>細而數→熱邪；細而緊→寒邪；沉而細→濕痺；細而弱→盜汗；細而微→冷利；細而弦→肝虛；細而澀→血虛。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">陰血不足，心失所養；心悸怔忡、失眠多夢、健忘（→天王補心丹）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺陰不足，清肅失職；虛煩心熱、乾咳盜汗、聲音嘶啞、口咽乾燥（響聲破笛丸）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝血不足，不能上養於目；目澀、頭眩、視力模糊</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">（較無此問題）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎陰不足；腰痠乏力、耳鳴遺精</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火衰，不能溫煦脾陽；腹冷便泄、完穀不化<br>💡 冒冷汗、虛冷、腸胃絞痛→灸五柱穴；若痛經則移關元</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">細來累累細如絲，應指沉沉無絕期。<br>春夏少年防不利，秋冬老弱卻相宜。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 長脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="長 有餘 超過三部 如循長竿 積聚">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">9. 長脈</div>
+          <div class="pulse-tagline">脈體超過三指，如循長竿</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法</div>
+          <p>上竟下竟，如循長竿，脈體超過三指之外。《瀕湖脈學》：「長脈不大不小，如循長竿末梢，為平；如引繩、如循長竿，為病。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>長失緩和，見硬滿勁急，則為病脈，多為有餘之象。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮長→外感或陰氣不足；長洪有力→陽毒內蘊；長而滑→痰熱壅盛；長而弦→肝病；長而牢→積聚。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心火過旺，耗傷陰液；心中煩悶、失眠多夢</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣壅塞，宣降失職；胸滿氣逆、喘咳上氣</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣橫逆，胃失和降；胸脅脹悶、刺痛、噁逆、噯氣</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾氣鬱滯，胃失和降；胃脘脹痛、嘔呃噁逆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">下焦寒氣，上逆衝脈；少腹攻衝作痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎氣充沛，根脈旺盛（無病症）；若兼弦脈→眩暈、動脈硬化</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">過於本位脈名長，弦則非然旦滿脹。<br>弦脈與長爭較遠？良工尺度自能量。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. 短脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="短 氣虛 不及 食積 痰氣 氣壅">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">10. 短脈</div>
+          <div class="pulse-tagline">不及本位，應指而回</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>短為不及、不足之脈，主氣虛不足。無力→氣虛；有力→氣壅；亦主痰氣、食積壅阻氣逆。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心氣虛弱，無力鼓動脈搏；心悸不安、氣短失眠</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣虛損，宣降失職；氣短、咳喘、乏力自汗</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣鬱結，氣鬱不暢；脅痛脹滿、善太息</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾虛氣滯，胃失和降；脘悶、納呆、噯氣、嘔逆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">寒氣鬱滯；小腹疼痛（婦人多見月經淋瀝不斷）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火衰；陽痿、遺精、早瀉（→六味地黃丸、腎氣丸）</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">兩頭縮縮名為短，澀短遲遲細且難。<br>短澀無力氣血弱，短促有力痰食節。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. 滑脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="滑 痰 食滯 實熱 蓄血 妊娠 如珠圓滑">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">11. 滑脈 <span class="type-tag yin-yang">陽中陰</span></div>
+          <div class="pulse-tagline">往來流利，按之如珠</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法與脈經</div>
+          <p>不輕不重，舉按並行，按之如珠，應指圓滑，從形、從勢診。《脈訣》：「尺脈滑利，妊娠可喜，滑疾不散，胎必三月；但疾不散，五月可別。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>凡實熱、痰逆、食滯、蓄血，脈必滑而有力。「夫滑者，陽氣之盛也，其為病本多主熱而有餘。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮而滑→風痰在肺；沉而滑→痰食裏熱；數而滑→痰火宿食；短而滑→氣塞；大而滑→邪熱；緩而滑→熱中；遲而滑→下利。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">痰火擾心；心悸、失眠；兼大而實→心經積熱痰熱，蒙蔽清竅，舌強狂亂</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">痰熱阻肺，宣降失職；咳嗽、胸悶、痰稠色黃、口乾、頭暈</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝有鬱熱，上蒙清竅；耳鳴、目赤、頭痛頭暈</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾濕熱鬱；吞酸、噯腐、噁心、口臭</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">熱鬱膀胱；溲短赤痛、淋瀝不暢</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火旺，熱逼精瀉；腰痠、滑精、耳鳴、頭暈</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">滑脈如珠替替然，往來流利卻還前。<br>莫將滑數為同類，數脈惟看至數同。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. 澀脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="澀 氣血虧虛 血虛 氣鬱 津液不足 如刀刮竹">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">12. 澀脈</div>
+          <div class="pulse-tagline">指下遲鈍，細遲而短，如輕刀刮竹</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">診法</div>
+          <p>指下遲鈍，細遲而短。滑伯仁說：「澀，不滑也，虛細而往來難，三五不調，如雨沾細砂，如輕刀刮竹。」</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>澀脈有虛實之分：<br>虛者→氣血虧虛，營血運行困難（津血虧少、男子傷精、女子半產失血）；<br>實者→氣、食、痰邪阻滯脈道，氣血運行不暢，脈澀有力。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不足，寒阻心脈；胸悶、心痛、心悸、怔忡</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣虛弱，宣降失職；咳嗽、氣短、倦怠懶言、聲音低怯</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝血不足，筋脈失養；脅痛、周身疼痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃陽不足，寒凝血滯；胃脘刺痛，痛有定處（如胃潰瘍）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎精虧損，陰液不足；腰膝痠軟、健忘、失眠、頭暈耳鳴；婦人血虛經閉、月經澀少</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">血虛津虧，腸失滋養；腸燥便難；妊娠時血虛不足以養胎，有墬胎之慮</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">細遲短澀往來難，散止依稀應指間。<br>如雨沾沙容易散，病蠶食葉慢而艱。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. 弦脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="弦 肝 痛 拘急 痰飲 疝瘕 如按琴弦">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">13. 弦脈 <span class="type-tag yin-yang">陽中陰</span></div>
+          <div class="pulse-tagline">挺然指下，如按琴弦</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>見弦脈多為肝氣脅痛、肝風眩暈，以及拘急、痙病、咳飲、水氣、瘧疾、疝瘕、腹痛、冷痺諸疾。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>弦數→肝經有火；弦遲→虛寒；弦緊→瘀血疝瘕；弦細→拘急；沉弦→懸飲內痛；滑弦→痰飲；弦大無力→虛；弦長→積滯。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">寒邪鬱閉，心陽不宣；胸悶、氣短、息弱、心悸</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">痰飲停胸，肺氣不宣；胸脅滿悶，咳嗽氣逆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣鬱結，膽失疏泄；胸脅脹痛、善嘆息</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃失調，寒客氣滯；脘腹疼痛、喜按</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">少腹積寒；疝痛、腰膝痠軟、腎虛、滑精、早洩</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">寒積少陰，腎精虧損；陽痿早洩、寒疝、腹痛</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">弦脈迢迢端直長，肝經木旺土應傷。<br>怒氣滿胸常欲叫，翳蒙瞳子目淋浪。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. 促脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="促 數而一止 氣滯 血瘀 熱盛 陽極">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">14. 促脈</div>
+          <div class="pulse-tagline">數而一止，止後能回</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>①氣滯血結、食積痰停，凡氣怒上逆、胸滿煩燥、汗鬱作喘、血瘀發斑、狂奔、癰腫實熱，皆可見促脈。②臟氣乖違，脈動歇止無力。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮而促→陽明熱盛；促而洪實有力→熱邪滯絡；促而無力損小→虛脫、心力衰竭、陰陽不相接續。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心火亢盛；心胸煩熱、心悸失眠，甚則狂躁喜笑不休</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">痰熱阻肺；咳喘、喉中痰鳴</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">瘀血積蓄；脅肋刺痛、局部灼熱</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">中焦停飲；腸鳴脘悶、食慾不振</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">相火過旺，熱逼精瀉；滑精、腰痠、盜汗（→知柏地黃丸）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火旺，腎陰被灼；滑精、腰痠、頭暈、耳鳴</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">促脈數而時一止，此為陽極欲亡陰。<br>三焦鬱火炎炎盛，進必無生退可生。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. 結脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="結 遲緩一止 氣滯 痰結 血凝 癥瘕積聚">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">15. 結脈</div>
+          <div class="pulse-tagline">遲緩一止，止後能回</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>遲緩中有止，因氣滯、痰結，致血行不疏通。主氣血凝滯、老痰內結、宿食停積、癥瘕積聚、疝痛氣塊、七情氣鬱（結而有力）。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮結→寒邪滯經；沉結→積氣在內；澀結→積瘀在內；滑結→老痰；數結→熱盛。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不足，寒痰瘀阻；心悸、氣短、胸悶疼痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足，痰飲壅結；咳喘、胸滿、氣逆痰鳴</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣鬱結，氣滯血瘀；脅肋刺痛、胸悶嘆息</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾虛失運，食滯脘腹；納呆、噯腐、脘腹滿痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎精虧損，筋骨失養；腰膝痠軟、下肢痿弱</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火衰，陰寒內積；陽痿精冷（精子結構問題、活動不足），婦人宮寒不孕</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">結脈緩而時一止，獨陰偏盛欲亡陽。<br>浮為氣滯沉為積，汗下分明在主張。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. 代脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="代 臟氣衰微 良久復來 歇止 心悸">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">16. 代脈</div>
+          <div class="pulse-tagline">遲中一止，良久復來</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>代為臟氣衰微，無力繼續，故脈歇止難復，常見於久病大虛、臟氣衰憊之人，病較結脈為重。結代並見則為心悸。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">比類辨別</div>
+          <p>促脈數而一止、結脈遲而一止，歇止時間較短，止後能迅復；代脈歇止時間較長，故良久復來。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不足；胸悶、心悸、氣短</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足，胸陽痺阻；胸痺氣短、心悸自汗</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">脾失健運；胸脅痞塞、氣鬱不疏、脘悶納呆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃脘停滯；脘腹痞痛、納呆腹脹</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎弱陽虛；腰膝痠軟、少腹脹痛、失眠便秘</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">大腸津少液虧；便秘、腸結、二便不暢</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">動而中止不能還，復動因而作代看。<br>病者得之猶可療，平人卻與壽相關。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17. 緩脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="緩 一息四至 從容 濕 脾 健康脈">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">17. 緩脈 <span class="type-tag yin-yang">陰中陽</span></div>
+          <div class="pulse-tagline">來去從容，一息四至，不浮不沉</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>往來遲緩、柔軟而慢，或緩而滑大、緩而遲細，乃為病脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>浮緩→傷衛；沉緩→營弱；緩大→風虛；緩細→濕痺；緩滑→熱中；緩澀→血虛；緩遲細→陽虛；緩大無力→陰虛。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心氣不足；心慌氣短；若風邪外襲則項背筋脈拘緊</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足，不能佈施津液；肢體皮膚麻木不仁、背痠不適</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝血不足；頭暈；婦人多見月經澀少或經閉</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾氣虛弱，健運失常；腹滿便秘、納呆以及身重</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎氣虛弱，膀胱失約；腰困便頻而清，虛乏無力</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎陽不足，寒濕下蓄；腸鳴腹瀉、下肢浮腫</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">緩脈阿阿四至通，柳梢裊裊颭輕風。<br>欲從脈裏求神氣，只在從容和緩中。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18. 洪脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="洪 形大滿指 來盛去衰 熱盛 心火">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">18. 洪脈</div>
+          <div class="pulse-tagline">形大滿指，來盛去衰</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>洪大有力（太過）→營絡大熱，血氣燔灼；若洪大無力（不及）→心氣虛泛或陰虛所致。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">兼脈主病</div>
+          <p>洪大→熱盛；浮洪→表熱或虛熱；沉洪→裏熱；洪緊→胸脹或便難下血；洪滑→熱痰；洪急→脹滿。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心火上炎；頭痛、目赤、口瘡、心煩以及失眠</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">熱邪壅肺，肺失清肅；咳喘氣急、口燥咽乾</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝陰受灼，筋失其養；煩躁易怒、遍身疼痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃火燔熾；齒腫、咽痛、便秘以及吞酸</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">膀胱有熱；小便淋瀝、疼痛不爽，甚則血尿</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">大腸瘀熱；大便秘結；熱傷陰絡→便血腹痛</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">脈來洪盛去還衰，滿指滔滔應夏時。<br>若在春秋冬月裡，升陽散火莫狐疑。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 19. 微脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="微 極細而軟 似有似無 氣血虧虛 元陽虧損">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">19. 微脈</div>
+          <div class="pulse-tagline">極細而軟，似有似無</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>微脈為氣血虧虛之候，見微脈多為氣血不足、元陽虧損之兆。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心經氣血不足；驚悸、怔忡、失眠、健忘</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足；咳嗽、氣短、痰稀、苔白、倦怠、畏寒</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝陰不足，氣血虛衰；胸悶氣短、四肢冷拘</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃虛寒；脘痞腹脹、納穀不化、乏力便溏</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎經虧損，衝任不足；遺精、腰膝痠軟、脊冷乏力；女子崩中下血</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火衰，元陽不足；腹冷、便溏</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">微脈輕微瞥瞥乎，按之欲絕有如無。<br>微為陽弱細陰弱，細比于微略較粗。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 20. 緊脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="緊 寒 疼痛 如切繩 傷寒 驚風">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">20. 緊脈 <span class="type-tag yin-yang">陰中陽</span></div>
+          <div class="pulse-tagline">博動應指，數而有力，如切繩索</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>緊脈主寒，亦主疼痛、呃逆、傷寒、下利、驚風、宿食、冷痰之疾。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">寒邪襲表；發熱惡寒、頭痛無汗</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">寒邪束表，肺氣鬱閉；咳嗽上氣、惡寒發熱</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">寒滯經脈；脅肋疼痛、四肢拘急</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃陽不振，寒至脘腹；嘔吐、脘脹、納少、腹痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">寒鬱下焦；少腹冷痛、小便不暢</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">寒滯下焦；疝氣奔豚</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">舉如轉索切如繩，脈象因之得緊名。<br>總是寒邪來作寇，內為腹痛外身疼。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 21. 濡脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="濡 浮細無力 虛症 濕邪 氣虛 亡血">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">21. 濡脈</div>
+          <div class="pulse-tagline">浮取即得細軟無力，中按則無</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>濡脈大多主虛症、主濕邪，有不及而無太過。凡氣虛、乏力、亡血、自汗、喘乏、遺精、泄瀉、骨蒸、驚悸，皆見濡脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不足，衛氣不固；心悸、怔忡、自汗</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足，衛外不固；咳嗽、氣短、自汗乏力</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝血不足，血不榮筋；疲困乏力、筋緩不收</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾氣虛弱，納運失常；納少腹脹、浮腫、乏力</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">精血虧損，腎氣不足；遺精、滑泄以及尿頻</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎陽虛乏，陽虛不運；腹痛、溏泄、疝痛</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">濡形浮細按須輕，水面浮綿力不禁。<br>病後產中猶有藥，平人若見是無根。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 22. 弱脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="弱 沉細軟 氣衰 氣血虧損 陽氣衰微 遺精">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">22. 弱脈</div>
+          <div class="pulse-tagline">沉取方得，細弱無力，重按欲絕</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>弱脈屬陰，為氣衰所致，主氣血虧損、元氣虛耗、陽氣衰微，以及遺精虛汗、筋骨痿弱、驚恐自汗、面色蒼白、語聲低微、崩漏下血等證。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽虛乏；心悸、乏力、氣短、自汗，甚則形寒肢冷</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足；咳喘無力、氣虛懶言、畏寒自汗</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝血不足，筋失濡養；肢麻痿軟、筋急攣縮</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃虛弱，納健失常；納呆不食、腹脹便溏</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎氣不足，膀胱不固；腰背痠軟、耳鳴失聰、尿頻</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎陽虛衰；陽痿、滑精、精冷、早泄</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">弱來無力按之柔，柔細而沉不見浮。<br>陽陷入陰精血弱，白頭猶可少年愁。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 23. 革脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="革 浮大中空 如按鼓皮 氣盛不固 血虛 失精 半產">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">23. 革脈 <span class="type-tag yin-yang">陽中陰</span></div>
+          <div class="pulse-tagline">浮取搏指，如按鼓皮，中空外堅</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>革脈主氣盛不固、血虛不足、虛勞亡血，失精、半產、漏下，精血大虧，氣無所戀，脈來浮虛，內虛外急，狀如鼓皮。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心氣、心陽不足；心悸、氣短、自汗、胸悶</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣不足，痰涎壅滯；咳嗽、氣短、咳吐白痰、胸悶不暢</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">氣滯寒凝；腹痛、竄痛、少腹積塊時隱時現</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃虛寒；腹脘疼痛、喜按喜熱</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎精不足，下焦虛寒；滑精早洩、少腹冷痛、腰痠膝軟、婦人白帶增加</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎陽虛憊；虛損失精；女子半產、崩漏、下血</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">革脈形如按鼓皮，芤弦相合脈寒虛。<br>女人半產並崩漏，男子營虛或夢遣。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 24. 牢脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="牢 沉大弦長 陰霾堅積 五積 寒瘕 氣結">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">24. 牢脈 <span class="type-tag yin-yang">陰中陽</span></div>
+          <div class="pulse-tagline">浮取難得，重按有力，如弦縷，勁而不移</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>牢脈主陰霾堅積內著所滯的五積、寒瘕，以及氣結、心腹疼痛、風痙拘急者。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心經氣血凝滯；心煩不寐、繞臍作痛之伏梁病</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣鬱滯；氣促、咳逆、胸痛吐血之息賁病</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣鬱結；右下脇腫塊疼痛、狀如覆杯，甚發咳逆之肝積症</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃虛弱，寒滯中焦；胃脘疼痛、泛酸嘔逆</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎氣弱衰，寒邪上衝；少腹氣痛上衝咽喉，甚發心悸目眩胸悶氣急之奔豚症</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">下焦寒疝；少腹疼痛、癥積固定、瘕聚散聚無常之疾</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">弦長實大脈牢堅，牢位常居沉伏間。<br>革脈芤弦自浮起，革虛牢實要詳看。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 25. 動脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="動 滑數如豆 驚 痛 陰陽相搏 關部">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">25. 動脈</div>
+          <div class="pulse-tagline">滑數如豆，關部明顯</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>動為陰陽相搏所致，若因驚、因痛，致使陰陽失和，氣血衝動，則可見動脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陰不足，心陽亢奮；心悸、怔忡不寐。若動滑而不疾→妊子脈象</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">陽不勝陰（自汗）或痰熱內結（煩熱、咳喘）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">陰寒邪勝，經氣受損；經脈拘急、腹脅疼痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾胃失和；腹瀉、胃痛、下痢</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎陽不足或火旺陰虛；男子熱逼精泄，女子血崩</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">陰不勝陽→發熱；熱傷陰絡→大便下血</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">動脈搖搖數在關，無頭無尾豆形圓。<br>其原本是陰陽搏，虛則搖兮勝則安。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 26. 伏脈 -->
+    <div class="pulse-card" data-type="陰" data-keywords="伏 推筋著骨 氣閉 熱閉 寒閉 劇烈疼痛">
+      <div class="pulse-header yin-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yin">陰</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">26. 伏脈</div>
+          <div class="pulse-tagline">推筋著骨，重按始得</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>實邪內伏，氣血阻滯，症見氣閉、熱閉、寒閉、痛閉，以及痰食水飲阻滯、劇烈疼痛，皆可見伏而有力之脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心陽不振；心慌、氣短、恍惚不安</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">寒痰壅閉，肺氣不宣；咳喘、胸悶、氣促、痰鳴</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝氣不疏，寒邪鬱閉；脅肋脹痛、腰間竄痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃寒食積；脘腹劇痛、嘔吐頻作、胸悶不舒</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎精不足，寒氣凝聚；疝瘕腹痛</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">命門火衰，寒凝濕滯；小腹疼痛、泄痢清穀</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">伏脈推筋著骨尋，指間裁動隱然深。<br>傷寒欲汗陽將解，厥逆臍疼症屬陰。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 27. 散脈 -->
+    <div class="pulse-card" data-type="陽" data-keywords="散 浮散無根 陽虛不斂 元氣離散 臟腑衰竭">
+      <div class="pulse-header yang-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge yang">陽</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">27. 散脈</div>
+          <div class="pulse-tagline">輕取似有，按之即無，有表無裏</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>散脈是陽虛不斂，氣血耗散，臟腑衰竭之候。凡元氣離散、氣虛血耗、心悸浮腫、咳逆上氣、墜胎將產者，可見散脈。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">心氣不足，心陽虧耗；心悸、怔忡、恍惚</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺氣大虛，衛外不固；大汗不止、疲倦乏力、喘促氣短</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">脾失健運，水飲停滯；身重浮腫之溢飲症</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">脾陽不振，水濕失運；臌脹浮腫（腹水）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">腎氣衰敗，下元虛損；腰痠乏力、滑精早洩</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">腎陽衰絕，元氣衰竭；多出現危證</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">散似楊花散漫飛，去來無定至難齊。<br>產為生兆胎為墮，久病逢之急速醫。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 28. 芤脈 -->
+    <div class="pulse-card" data-type="兼" data-keywords="芤 浮大中空 如按蔥管 失血 吐血 崩中">
+      <div class="pulse-header neutral-pulse" onclick="toggleCard(this)">
+        <div class="pulse-badge neutral">兼</div>
+        <div class="pulse-title-group">
+          <div class="pulse-name">28. 芤脈 <span class="type-tag yin-yang">陽中陰</span></div>
+          <div class="pulse-tagline">浮取虛大，如按蔥管，兩邊實中空</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-section">
+          <div class="pulse-section-title">本脈主病</div>
+          <p>芤主失血。凡吐血、衄血、咳血、嘔血，以及崩中、便血、尿血，因陰血大傷，心力不衰，氣無所依，乃至脈來浮大中空。</p>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">六部各論</div>
+          <div class="six-positions">
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>寸</div><div class="pos-content">上焦熱盛，迫血妄行；咳血、衄血</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>寸</div><div class="pos-content">肺經積熱，迫血妄行；胸痛、咳血</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>關</div><div class="pos-content">肝鬱化火，灼傷血絡；吐血、出血</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>關</div><div class="pos-content">胃熱灼傷血絡；吐血之疾（似胃潰瘍、胃出血）</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side left">左</span>尺</div><div class="pos-content">熱灼膀胱，血絡受損；尿血</div></div>
+            <div class="pos-item"><div class="pos-label"><span class="pos-side right">右</span>尺</div><div class="pos-content">熱傷腸絡；大便出血（痔瘡→腹壓升高致靜脈曲張，需改變生活習慣，多攝纖維質）</div></div>
+          </div>
+        </div>
+        <div class="pulse-section">
+          <div class="pulse-section-title">體狀詩</div>
+          <div class="poem-block">芤形浮大軟如蔥，邊實須知內已空。<br>火犯陽經血上溢，熱擾陰絡下流紅。</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pulse-grid -->
+</div>
+
+<!-- ════ PANEL 4: 七絕脈 ════ -->
+<div class="panel" id="panel-critical">
+  <div class="section-heading" style="color:#8B2020;">七絕脈 — 危候脈象</div>
+  <div style="background:#FFF5F5; border:1px solid #DEB8B8; border-radius:8px; padding:1rem 1.3rem; margin-bottom:1.5rem;">
+    <p style="font-size:0.88rem; color:#5A2020; line-height:1.9;">七絕脈（又稱「怪脈」）是臟腑之氣衰竭、陰陽離決時所出現的危候脈象，見之預後極差，臨床上應立即重視。</p>
+  </div>
+  <div class="intro-grid">
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">雀啄脈</h3>
+      <p>如雀啄食，連連博指，三五至忽然止絕，少頃復來。<br><small style="color:#888;">（脾胃之氣絕）</small></p>
+    </div>
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">屋漏脈</h3>
+      <p>如屋殘漏下，半時一滴，濺起無力。<br><small style="color:#888;">（胃氣已絕）</small></p>
+    </div>
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">彈石脈</h3>
+      <p>如沉于筋間，劈劈急硬，如指彈石。<br><small style="color:#888;">（腎氣已絕）</small></p>
+    </div>
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">解索脈</h3>
+      <p>如指下散亂，乍數乍疏，如索之解。<br><small style="color:#888;">（腎與命門之氣絕）</small></p>
+    </div>
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">魚翔脈</h3>
+      <p>如脈本不動而末強搖，似有似無，如魚之翔。<br><small style="color:#888;">（心氣已絕）</small></p>
+    </div>
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">蝦游脈</h3>
+      <p>如浮于指下，始則冉冉不動，少焉而去，久而忽然一躍，進退難尋。<br><small style="color:#888;">（大腸氣絕）</small></p>
+    </div>
+    <div class="intro-card" style="border-color:#DEB8B8;">
+      <h3 style="color:#8B2020;">釜沸脈</h3>
+      <p>如浮於指下，有出無入，無復止數，如釜湯沸。<br><small style="color:#888;">（三陽熱極，陰液耗盡）</small></p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleCard(header) {
+  const card = header.closest('.pulse-card');
+  card.classList.toggle('open');
+}
+
+let currentTypeFilter = 'all';
+
+function filterByType(type, btn) {
+  currentTypeFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterPulses() {
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  document.querySelectorAll('.pulse-card').forEach(card => {
+    const type = card.dataset.type || '';
+    const keywords = (card.dataset.keywords || '') + card.innerText;
+    const matchType = currentTypeFilter === 'all' || type === currentTypeFilter;
+    const matchQuery = !query || keywords.toLowerCase().includes(query);
+    card.classList.toggle('hidden', !(matchType && matchQuery));
+  });
+}
+</script>
+
+</body>
+</html>
