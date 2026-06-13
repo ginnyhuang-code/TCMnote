@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>臟腑辨證整理・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D;
+      --green-mid: #3D7A52;
+      --green-light: #5A9E6F;
+      --green-pale: #E8F2EC;
+      --parchment: #FAF7F2;
+      --ink: #1E2A1E;
+      --ink-light: #4A5A4A;
+      --rule: #C8D8C8;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* 導覽列 */
+    .site-nav {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: .9rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .site-nav .site-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: .05em;
+    }
+    .site-nav a {
+      color: #D7E8DD;
+      text-decoration: none;
+      font-size: .95rem;
+    }
+    .site-nav a:hover { color: var(--white); }
+    .site-nav .nav-current {
+      color: var(--white);
+      font-size: .95rem;
+      font-weight: 500;
+    }
+
+    /* 麵包屑 */
+    .breadcrumb {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.3rem 2rem .4rem;
+      font-size: .85rem;
+      color: var(--ink-light);
+    }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .45rem; color: var(--rule); }
+
+    /* 頁首 */
+    .page-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: .4rem 2rem 1.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .page-header .eyebrow {
+      font-size: .8rem;
+      letter-spacing: .25em;
+      color: var(--green-mid);
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .page-header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2.1rem;
+      color: var(--green-dark);
+      font-weight: 700;
+    }
+    .page-header .lead {
+      margin-top: .6rem;
+      color: var(--ink-light);
+      font-size: .95rem;
+    }
+
+    /* 版型：左目錄 + 右內容 */
+    .layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      padding: 1.6rem 2rem 3rem;
+      align-items: flex-start;
+    }
+    .sidebar {
+      flex: 0 0 220px;
+      position: sticky;
+      top: 1.4rem;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: .8rem;
+    }
+    .sidebar nav button {
+      font-family: 'Noto Sans TC', sans-serif;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .65rem .8rem;
+      border-radius: 8px;
+      font-size: .92rem;
+      color: var(--ink-light);
+      transition: background .18s, color .18s;
+      line-height: 1.5;
+    }
+    .sidebar nav button:hover { background: var(--green-pale); color: var(--green-dark); }
+    .sidebar nav button.active {
+      background: var(--green-dark);
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    main { flex: 1 1 auto; min-width: 0; }
+    .section { display: none; }
+    .section.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .section-header { margin-bottom: 1.2rem; }
+    .section-header h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.5rem;
+      color: var(--green-dark);
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--green-pale);
+    }
+
+    .content h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.18rem;
+      color: var(--green-mid);
+      margin: 1.6rem 0 .7rem;
+    }
+
+    .box-green {
+      background: var(--green-pale);
+      border-left: 4px solid var(--green-light);
+      border-radius: 0 8px 8px 0;
+      padding: .9rem 1.1rem;
+      margin: 1rem 0;
+      font-size: .95rem;
+    }
+    .box-green p { margin: .2rem 0; }
+    .box-green strong { color: var(--green-dark); }
+
+    /* 證型分組 */
+    .bz-group {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin: .9rem 0;
+    }
+    .bz-label {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      color: var(--green-dark);
+      font-size: 1.05rem;
+      margin-bottom: .6rem;
+      display: inline-block;
+      border-bottom: 2px solid var(--green-pale);
+      padding-bottom: .15rem;
+    }
+    .bz-row {
+      display: flex;
+      gap: .6rem;
+      padding: .4rem 0;
+      border-top: 1px dashed var(--rule);
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .bz-row:first-of-type { border-top: none; }
+    .organ {
+      flex: 0 0 auto;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: .8rem;
+      padding: .1rem .55rem;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+    .bz-items { flex: 1 1 200px; color: var(--ink); }
+    .bz-items .note { color: var(--ink-light); font-size: .88rem; }
+
+    ul { margin: .5rem 0 .5rem 1.3rem; }
+    li { margin: .25rem 0; }
+
+    .site-footer {
+      text-align: center;
+      padding: 1.6rem;
+      font-size: .82rem;
+      color: var(--ink-light);
+      border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem 1.1rem 2.4rem; gap: 1rem; }
+      .sidebar { position: static; flex: none; width: 100%; }
+      .sidebar nav { flex-direction: row; flex-wrap: wrap; }
+      .sidebar nav button { flex: 1 1 auto; text-align: center; }
+      .page-header h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <a href="zhenduan.html">中醫診斷學</a>
+  <span class="nav-current">臟腑辨證整理</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span>
+  <a href="reading.html">讀書筆記</a><span>›</span>
+  <a href="zhenduan.html">中醫診斷學</a><span>›</span>
+  臟腑辨證整理
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">中醫診斷學・辨證</div>
+  <h1>臟腑辨證整理</h1>
+  <p class="lead">依虛證、實證、臟腑兼病三大架構整理各臟腑常見證型，附水腫、小便、遺精、崩漏等辨證重點提示。</p>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav>
+      <button class="active" onclick="show('s1', this)">重點提示</button>
+      <button onclick="show('s2', this)">虛證</button>
+      <button onclick="show('s3', this)">實證</button>
+      <button onclick="show('s4', this)">臟腑兼病辨證</button>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- 重點提示 -->
+    <div class="section active" id="s1">
+      <div class="section-header"><h2>辨證重點提示</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p><strong>與水腫有關：</strong>肺（風水相搏）、脾（脾氣虛、脾陽虛、寒濕困脾）、腎（腎陽虛水泛）。</p>
+        </div>
+        <div class="box-green">
+          <p><strong>小便辨虛實：</strong>小便實熱找膀胱；小便虛寒找腎。</p>
+          <p>① 小便清長、夜尿：腎陽虛、腎氣不固。</p>
+          <p>② 小便短少：腎陽虛水泛（水腫）。</p>
+        </div>
+        <div class="box-green">
+          <p><strong>遺精：</strong>滑精（腎陽虛）、夢遺（腎陰虛）。</p>
+        </div>
+        <div class="box-green">
+          <p><strong>崩漏成因：</strong>血熱、瘀血、氣虛不固（含脾不統血、腎氣不固）。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 虛證 -->
+    <div class="section" id="s2">
+      <div class="section-header"><h2>虛證（依臟腑）</h2></div>
+      <div class="content">
+
+        <div class="bz-group">
+          <span class="bz-label">氣虛</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">心氣虛</span></div>
+          <div class="bz-row"><span class="organ">肺</span><span class="bz-items">肺氣虛</span></div>
+          <div class="bz-row"><span class="organ">大腸</span><span class="bz-items">腸虛滑瀉</span></div>
+          <div class="bz-row"><span class="organ">脾</span><span class="bz-items">脾氣虛、脾氣下陷、脾不統血</span></div>
+          <div class="bz-row"><span class="organ">胃</span><span class="bz-items">胃氣虛</span></div>
+          <div class="bz-row"><span class="organ">腎</span><span class="bz-items">腎氣不固、腎氣不納</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">陽虛（虛寒）</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">心陽虛、心陽暴脫</span></div>
+          <div class="bz-row"><span class="organ">脾</span><span class="bz-items">脾陽虛</span></div>
+          <div class="bz-row"><span class="organ">胃</span><span class="bz-items">胃陽虛</span></div>
+          <div class="bz-row"><span class="organ">腎</span><span class="bz-items">腎陽虛、腎虛水泛（陰水）</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">血虛</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">心血虛</span></div>
+          <div class="bz-row"><span class="organ">肝</span><span class="bz-items">肝血虛、血虛動風</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">陰虛（虛熱）</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">心陰虛</span></div>
+          <div class="bz-row"><span class="organ">肺</span><span class="bz-items">肺陰虛</span></div>
+          <div class="bz-row"><span class="organ">大腸</span><span class="bz-items">腸燥津虧 <span class="note">（無虛熱症狀）</span></span></div>
+          <div class="bz-row"><span class="organ">胃</span><span class="bz-items">胃陰虛 <span class="note">（無虛熱症狀）</span></span></div>
+          <div class="bz-row"><span class="organ">肝</span><span class="bz-items">肝陰虛、陰虛動風、肝陽上亢、肝陽化風</span></div>
+          <div class="bz-row"><span class="organ">腎</span><span class="bz-items">腎陰虛</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">其他</span>
+          <div class="bz-row"><span class="organ">腎</span><span class="bz-items">腎精不足</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 實證 -->
+    <div class="section" id="s3">
+      <div class="section-header"><h2>實證（依臟腑）</h2></div>
+      <div class="content">
+
+        <div class="bz-group">
+          <span class="bz-label">血瘀</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">瘀阻腦絡</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">氣滯</span>
+          <div class="bz-row"><span class="organ">肝</span><span class="bz-items">肝鬱氣滯</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">實寒</span>
+          <div class="bz-row"><span class="organ">胃</span><span class="bz-items">寒滯胃脘</span></div>
+          <div class="bz-row"><span class="organ">肝</span><span class="bz-items">寒滯肝脈</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">實熱</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">心火亢盛</span></div>
+          <div class="bz-row"><span class="organ">小腸</span><span class="bz-items">小腸實熱 <span class="note">（心火下移小腸）</span></span></div>
+          <div class="bz-row"><span class="organ">肺</span><span class="bz-items">肺熱熾盛</span></div>
+          <div class="bz-row"><span class="organ">大腸</span><span class="bz-items">腸熱腑實</span></div>
+          <div class="bz-row"><span class="organ">胃</span><span class="bz-items">胃熱熾盛</span></div>
+          <div class="bz-row"><span class="organ">肝</span><span class="bz-items">肝火上炎、熱極生風</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">表證</span>
+          <div class="bz-row"><span class="organ">肺</span><span class="bz-items">風寒犯肺、風熱犯肺、燥邪犯肺</span></div>
+          <div class="bz-row"><span class="organ">肺・膀胱</span><span class="bz-items">風水相搏（陽水）</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">痰</span>
+          <div class="bz-row"><span class="organ">心</span><span class="bz-items">痰蒙心竅（痰濕）、痰火擾神（痰熱）</span></div>
+          <div class="bz-row"><span class="organ">肺</span><span class="bz-items">痰熱壅肺、寒痰阻肺、飲停胸脇</span></div>
+          <div class="bz-row"><span class="organ">膽</span><span class="bz-items">膽鬱痰擾</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">濕</span>
+          <div class="bz-row"><span class="organ">大腸</span><span class="bz-items">大腸濕熱</span></div>
+          <div class="bz-row"><span class="organ">脾</span><span class="bz-items">寒濕困脾（陰黃）、濕熱蘊脾（陽黃）</span></div>
+          <div class="bz-row"><span class="organ">膀胱</span><span class="bz-items">膀胱濕熱</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">其他</span>
+          <div class="bz-row"><span class="organ">大腸</span><span class="bz-items">蟲積腸道</span></div>
+          <div class="bz-row"><span class="organ">胃</span><span class="bz-items">食滯胃脘</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 臟腑兼病辨證 -->
+    <div class="section" id="s4">
+      <div class="section-header"><h2>臟腑兼病辨證</h2></div>
+      <div class="content">
+
+        <div class="bz-group">
+          <span class="bz-label">氣虛</span>
+          <div class="bz-row"><span class="bz-items">心肺氣虛、脾肺氣虛</span></div>
+          <div class="box-green"><p><strong>說明：</strong>肺主一身之氣，氣虛以肺虛為主。</p></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">血虛</span>
+          <div class="bz-row"><span class="bz-items">心肝血虛</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">氣血兩虛</span>
+          <div class="bz-row"><span class="bz-items">心脾兩虛（心血虛 ＋ 脾氣虛）</span></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">陰虛</span>
+          <div class="bz-row"><span class="bz-items">心腎不交（心腎陰虛）、肺腎陰虛、肝腎陰虛</span></div>
+          <div class="box-green">
+            <p><strong>說明：</strong>腎陰為五臟六腑之陰的根本。</p>
+            <p>腎陰滋養肝陰、肺陰；腎陰上濟心火，稱作「心腎相交」。</p>
+          </div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">陽虛</span>
+          <div class="bz-row"><span class="bz-items">心腎陽虛、脾腎陽虛</span></div>
+          <div class="box-green"><p><strong>說明：</strong>腎陽溫煦脾陽、心陽。</p></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">肝氣</span>
+          <div class="bz-row"><span class="bz-items">肝鬱脾虛、肝胃不和、肝火犯肺</span></div>
+          <div class="box-green"><p><strong>說明：</strong>肝病易侵擾其他臟而發病。</p></div>
+        </div>
+
+        <div class="bz-group">
+          <span class="bz-label">肝膽</span>
+          <div class="bz-row"><span class="bz-items">肝膽濕熱</span></div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
