@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>劉學融醫師針灸手法班 · 習醫手帖</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #2D5A3D;
+    --green-mid: #4A7C59;
+    --green-light: #E8F3EC;
+    --green-pale: #F2F8F4;
+    --gold: #8B6914;
+    --gold-light: #F5EDD6;
+    --ink: #1C2B22;
+    --ink-mid: #3D4F44;
+    --ink-soft: #6B7D70;
+    --border: #C5D9C9;
+    --red-light: #FDF0EE;
+    --red-border: #DEB8B0;
+    --red: #8B3020;
+    --blue-light: #EEF3FA;
+    --blue-border: #B0C4DE;
+    --blue: #2A4A7A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--green-pale);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* ── Nav ── */
+  .site-nav {
+    background: var(--green-dark);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 52px;
+    font-size: 0.85rem;
+  }
+  .site-nav a { color: #A8CEB4; text-decoration: none; transition: color 0.2s; }
+  .site-nav a:hover { color: white; }
+  .site-nav .sep { color: #5A8A6A; }
+  .site-nav .current { color: white; }
+
+  /* ── Header ── */
+  header {
+    background: var(--green-dark);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+  header .label { font-size: 0.78rem; letter-spacing: 0.2em; color: #A8CEB4; margin-bottom: 0.5rem; font-weight: 300; }
+  header h1 { font-family: 'Noto Serif TC', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 0.05em; }
+  header .meta { margin-top: 0.5rem; font-size: 0.8rem; color: #8BB89A; }
+
+  /* ── Sidebar Layout ── */
+  .layout { display: flex; gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  .sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 1rem;
+    align-self: flex-start;
+  }
+  .sidebar-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar a {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-mid);
+    text-decoration: none;
+    padding: 0.35rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.2rem;
+    transition: all 0.15s;
+  }
+  .sidebar a:hover { background: var(--green-light); color: var(--green-dark); }
+  .sidebar a.sub { padding-left: 1.2rem; font-size: 0.78rem; color: var(--ink-soft); }
+  .sidebar a.sub:hover { color: var(--green-dark); }
+
+  .main { flex: 1; min-width: 0; }
+
+  /* ── Section heading ── */
+  .section-heading {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.25rem;
+    color: white;
+    background: var(--green-dark);
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    margin: 2rem 0 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-heading:first-child { margin-top: 0; }
+
+  /* ── 治療原則 ── */
+  .principle-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .principle-box h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem;
+    color: var(--green-dark);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .principle-box p, .principle-box li {
+    font-size: 0.87rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+  .principle-box ul { padding-left: 1.2rem; }
+
+  /* 接經表 */
+  .channel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    margin-top: 0.6rem;
+  }
+  .channel-table th {
+    background: var(--green-dark);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    font-weight: 400;
+    text-align: center;
+  }
+  .channel-table td {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border);
+    text-align: center;
+    color: var(--ink-mid);
+  }
+  .channel-table tr:nth-child(even) td { background: var(--green-pale); }
+
+  /* ── Disease cards ── */
+  .disease-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .card-header {
+    background: linear-gradient(90deg, var(--green-light), white);
+    padding: 0.9rem 1.3rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    user-select: none;
+  }
+  .card-header:hover { background: linear-gradient(90deg, #D8EEE0, white); }
+  .card-num {
+    width: 30px; height: 30px;
+    background: var(--green-dark);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .card-title-group { flex: 1; }
+  .card-title { font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .card-subtitle { font-size: 0.75rem; color: var(--ink-soft); margin-top: 0.1rem; }
+  .toggle-icon { color: var(--ink-soft); font-size: 0.8rem; transition: transform 0.2s; }
+  .disease-card.open .toggle-icon { transform: rotate(180deg); }
+  .card-body { display: none; }
+  .disease-card.open .card-body { display: block; }
+
+  /* 四欄格 */
+  .four-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  @media (max-width: 700px) { .four-cols { grid-template-columns: 1fr; } }
+
+  .col-section {
+    padding: 1rem 1.2rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .col-section:nth-child(2n) { border-right: none; }
+  .col-section:last-child, .col-section:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
+  .col-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--green-mid);
+    margin-bottom: 0.5rem;
+  }
+  .col-section p, .col-section li {
+    font-size: 0.84rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+  .col-section ul { padding-left: 1.1rem; }
+
+  /* 重點框 */
+  .tip-box {
+    background: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 0.6rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.84rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+  .tip-box.warn {
+    background: var(--red-light);
+    border-color: var(--red);
+    color: var(--red);
+  }
+  .tip-box.info {
+    background: var(--blue-light);
+    border-color: var(--blue-border);
+    color: var(--blue);
+  }
+
+  /* 藥方標籤 */
+  .herb-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+  .herb-tag {
+    background: var(--gold-light);
+    border: 1px solid #D4B86A;
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 20px;
+    font-family: 'Noto Serif TC', serif;
+  }
+  .acupoint-tag {
+    background: var(--green-light);
+    border: 1px solid var(--border);
+    color: var(--green-dark);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 20px;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  /* 手腕總結 */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    padding: 1rem 1.2rem;
+  }
+  .summary-item {
+    background: var(--green-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.83rem;
+    color: var(--green-dark);
+    text-align: center;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  /* ── Note box ── */
+  .note-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.87rem;
+    color: var(--ink-mid);
+    line-height: 1.95;
+  }
+  .note-box strong { color: var(--green-dark); font-weight: 500; }
+
+  strong { color: var(--green-dark); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html">習醫手帖</a>
+  <span class="sep">›</span>
+  <a href="jenzhen.html">跟診筆記</a>
+  <span class="sep">›</span>
+  <span class="current">劉學融醫師針灸手法班</span>
+</nav>
+
+<header>
+  <div class="label">跟診筆記</div>
+  <h1>劉學融醫師 · 針灸手法班</h1>
+  <div class="meta">2021.10 – 2022.3 · 千容筆記</div>
+</header>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-title">目錄</div>
+    <a href="#principles">針灸治療原則</a>
+    <a href="#forearm">Part 1 前臂、手腕、手指</a>
+    <a href="#dequervain" class="sub">媽媽手</a>
+    <a href="#tennis" class="sub">網球肘</a>
+    <a href="#golf" class="sub">高爾夫球肘</a>
+    <a href="#cts" class="sub">腕隧道症候群</a>
+    <a href="#tfcc" class="sub">TFCC 損傷</a>
+    <a href="#trigger" class="sub">板機指</a>
+    <a href="#sprain" class="sub">韌帶關節囊扭傷</a>
+    <a href="#wrist-summary" class="sub">手腕常見疾病總結</a>
+    <a href="#shoulder">Part 2 肩膀</a>
+    <a href="#impingement" class="sub">肩夾擠症候群</a>
+    <a href="#frozen" class="sub">五十肩</a>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- 針灸治療原則 -->
+    <div id="principles" class="section-heading">針灸治療原則</div>
+
+    <div class="principle-box">
+      <h3>三大核心：經絡 · 激痛點（Trigger Point）· 筋膜</h3>
+      <ul>
+        <li><strong>倒馬針</strong>：在同一條經絡中取相鄰兩針或三針並列，加強療效。</li>
+        <li><strong>接經</strong>：對側取穴（上取下，左取右）。</li>
+        <li><strong>全息率</strong>、<strong>動氣</strong>：全身對應取穴原則。</li>
+      </ul>
+    </div>
+
+    <div class="principle-box">
+      <h3>接經對應表</h3>
+      <table class="channel-table">
+        <thead><tr><th>手經</th><th>接足經</th></tr></thead>
+        <tbody>
+          <tr><td>手陽明大腸</td><td>足陽明胃</td></tr>
+          <tr><td>手太陰肺</td><td>足厥陰肝</td></tr>
+          <tr><td>手太陽小腸</td><td>足太陽膀胱</td></tr>
+          <tr><td>足太陰脾</td><td>手少陰心</td></tr>
+          <tr><td>手少陽三焦</td><td>足少陽膽</td></tr>
+          <tr><td>足少陰腎</td><td>手厥陰心包</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="principle-box">
+      <h3>激痛點（Trigger Point）特性</h3>
+      <ul>
+        <li>都在<strong>肌肉上</strong>（不在 origin、insertion 上）</li>
+        <li>Taut band 筋結，有壓痛感</li>
+        <li>按壓時伸展範圍受限</li>
+        <li>有 Twitch 跳動反應</li>
+      </ul>
+    </div>
+
+    <div class="principle-box">
+      <h3>小針刀</h3>
+      <ul>
+        <li>作用：破壞組織、解除沾黏、放鬆肌肉與筋膜</li>
+        <li>技巧：徒手進針，一手輕搭、另一手瞬間進針，做扇形切割</li>
+        <li>位置：Origin、Insertion、Trigger points</li>
+      </ul>
+    </div>
+
+    <div class="note-box">
+      ★ 一個疾病產生，至少要考慮 <strong>2 個關節</strong>（如手腕＋手肘）<br>
+      ★ 一個動作的完成，一定是<strong>先大肌肉動作，再小肌肉動作</strong>。例如治療板機指，屈指肌是問題，但大塊屈肌也會作用，也要找內上髁附近 trigger point。
+    </div>
+
+    <!-- Part 1 前臂、手腕、手指 -->
+    <div id="forearm" class="section-heading">Part 1 · 前臂、手腕、手指</div>
+
+    <div class="note-box">
+      <strong>前臂激痛點位置：</strong><br>
+      伸肌（伸腕）→ <strong>手三里下 1 寸</strong>（扭傷穴）：進針需中尺骨頭，患者手放鬆，另一手抵住皮膚進針<br>
+      屈肌（屈腕）→ 前臂上 1/3 內面，請患者緊握拳頭、屈腕<br>
+      旋前圓肌（手臂旋前）→ 前臂上 1/3 內面<br>
+      旋前方肌 → <strong>外關</strong>
+    </div>
+
+    <!-- 媽媽手 -->
+    <div id="dequervain" class="disease-card open">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">1</div>
+        <div class="card-title-group">
+          <div class="card-title">媽媽手（De Quervain's Syndrome）</div>
+          <div class="card-subtitle">狹窄性肌腱滑膜炎</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">病理機轉</div>
+            <p>長期拇指<strong>伸展、外展</strong>（抱小孩、擠乳）→ 腕伸肌支持帶增厚 → 伸拇短肌、外展拇長肌肌腱和滑膜受壓迫，管道狹窄</p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p><strong>Finkelstein's test (+)</strong><br>不只考慮軟組織發炎，還要考慮鼻菸壺（第一隔間）<strong>空間狹窄</strong>、肌肉張力問題。</p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <p>屬<strong>手陽明大腸經</strong>位置</p>
+            <div class="tip-box">
+              遠端取穴：針輸穴<strong>三間</strong>（以痛為輸）、<strong>溫溜</strong>（急性痛用郄穴）<br>
+              接經（對側足陽明胃）：<strong>足三里</strong>（合穴）<br>
+              全息率（手腕對應踝關節）：倒馬針 <strong>解溪、陷谷</strong>、動氣
+            </div>
+            <p>拇指<strong>外展</strong>，另一手搭前臂，找肌肉收縮處（約手腕上方 4 寸），用小針刀放鬆<strong>外展拇長肌激痛點</strong>。</p>
+            <p>仍需考慮：<strong>舟狀骨</strong>易錯位（鬆動術）、橈尺關節鬆開、肋骨/胸椎/肩胛骨（解剖列車）、肩頸（本）。</p>
+            <div class="herb-tags">
+              <span class="acupoint-tag">三間</span>
+              <span class="acupoint-tag">溫溜</span>
+              <span class="acupoint-tag">足三里</span>
+              <span class="acupoint-tag">解溪</span>
+              <span class="acupoint-tag">陷谷</span>
+              <span class="acupoint-tag">扭傷穴</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.2rem; border-top: 1px solid var(--border);">
+          <div class="col-label">鑑別診斷（手腕橈側痛）</div>
+          <p>① <strong>間隔症候群</strong>（intersection syndrome）：握拳手腕內外旋有爆裂音，第二掌骨上橈側伸腕長短肌腱發炎，疼痛部位與媽媽手重疊。治療：扭傷穴。</p>
+          <p>② <strong>拇指腕掌關節炎</strong>（CMC joint arthritis）：退化性，Thumb Grind test (+)，中年婦女常見。治療：美顏針局部針在關節腔，開中藥（勿用小針刀，太刺激）。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 網球肘 -->
+    <div id="tennis" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">2</div>
+        <div class="card-title-group">
+          <div class="card-title">網球肘（肱骨外上髁炎）</div>
+          <div class="card-subtitle">腕部伸肌肌腱炎</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">病理機轉</div>
+            <p>腕部<strong>伸肌</strong>肌腱炎，附著於肱骨<strong>外上髁</strong>處疼痛</p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p>觸診：肱骨外上髁局部壓痛<br><strong>伸腕阻抗測試</strong>：請患者握拳做伸腕，醫師給阻抗，誘發外上髁疼痛</p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <p>伸肌三陽經都有走到。針局部阿是穴效果較弱。</p>
+            <div class="tip-box">
+              重要！針<strong>伸肌群 trigger point（扭傷穴附近）</strong>，不只一個點，都要找出來放鬆。<br>
+              全息率對應外上髁（對側小腿外側）→ 針<strong>陽陵泉、足三里、腓骨下</strong>，請患者動（動氣）<br>
+              同時考慮空間問題（手腕腕骨）
+            </div>
+            <div class="herb-tags">
+              <span class="acupoint-tag">扭傷穴</span>
+              <span class="acupoint-tag">陽陵泉</span>
+              <span class="acupoint-tag">足三里</span>
+              <span class="acupoint-tag">腓骨下</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 高爾夫球肘 -->
+    <div id="golf" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">3</div>
+        <div class="card-title-group">
+          <div class="card-title">高爾夫球肘（肱骨內上髁炎）</div>
+          <div class="card-subtitle">旋前圓肌、橈側屈腕肌受損</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">病理機轉</div>
+            <p>最常影響：右手的<strong>旋前圓肌、橈側屈腕肌</strong></p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p>觸診：肱骨<strong>內上髁</strong>局部壓痛<br><strong>屈腕、旋前阻抗測試</strong>：內上髁 origin 疼痛</p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <p>針橈側屈腕肌、旋前圓肌 trigger point（前臂上 1/3 內面）</p>
+            <div class="tip-box">
+              心經（俞穴：<strong>神門</strong>）→ 接脾經（俞穴）→ 全息 → <strong>陰陵泉</strong><br>
+              舟狀骨復位：左右、拔伸、折頂，不要擠壓<br>
+              放鬆手肘（正面、反面兩種手法）：按住鷹嘴
+            </div>
+            <div class="herb-tags">
+              <span class="acupoint-tag">神門</span>
+              <span class="acupoint-tag">陰陵泉</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 腕隧道症候群 -->
+    <div id="cts" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">4</div>
+        <div class="card-title-group">
+          <div class="card-title">腕隧道症候群（CTS）</div>
+          <div class="card-subtitle">正中神經壓迫 → 麻 1–3 指＋第 4 指一半</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">病理機轉</div>
+            <p>腕橫韌帶繃太緊，壓迫<strong>正中神經</strong>（支配大拇指到無名指一半感覺）</p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p>先鑑別：循環不好（糖尿病、化療）vs 真正神經壓迫<br>
+            <strong>Tinel sign (+)</strong>：伸腕繃緊韌帶再敲<br>
+            <strong>Phalen Test (+)</strong>：屈腕</p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <div class="tip-box warn">
+              大多人針心包經內關強刺激，但病人不舒服，學長較少用！
+            </div>
+            <p>接經：腎經（<strong>太溪、水泉</strong>）、全息</p>
+            <div class="tip-box">
+              ★ 小針刀：伸腕，推大小魚際找壓痛點（<strong>腕橫韌帶</strong>接在大小魚際上），小針刀鬆開，方向垂直韌帶，扇形切割。<br>
+              放鬆前臂<strong>旋前圓肌、屈肌 trigger point</strong>（前臂上 1/3 內面，請患者旋前、屈腕來找）
+            </div>
+            <div class="herb-tags">
+              <span class="acupoint-tag">太溪</span>
+              <span class="acupoint-tag">水泉</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.2rem; border-top: 1px solid var(--border);">
+          <div class="col-label">鑑別診斷</div>
+          <p>① <strong>肘隧道症候群</strong>：尺神經壓迫，麻 4、5 指，屈肘做 Tinel sign (+)</p>
+          <p>② <strong>旋前圓肌症候群（PTS）</strong>：也是正中神經壓迫、也麻 3 指半，但 Tinel sign (-)、Phalen Test (-)。PE：旋前阻抗測試後做敲擊試驗。治療：先鬆旋前圓肌 → 調整腕骨。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TFCC -->
+    <div id="tfcc" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">5</div>
+        <div class="card-title-group">
+          <div class="card-title">三角纖維軟骨複合體損傷（TFCC）</div>
+          <div class="card-subtitle">外力衝擊超過緩衝力導致損傷</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">病理機轉</div>
+            <p>TFCC 功能：穩定腕骨、提供緩衝。衝擊力（手撐地加扭轉或臥推）超過緩衝力時損傷。局部循環不好，恢復慢，需衛教保護患部。</p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷（見一症便是）</div>
+            <p>① 手往<strong>橈側</strong>偏，按壓尺骨莖突下方（<strong>Fovea sign</strong>）<br>
+            ② <strong>伸腕往尺側擠壓</strong>誘發疼痛<br>
+            ③ 嚴重者旋前旋後即痛（阻抗測試）</p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <p>改善疼痛、增加局部血液循環，幫助活動度，讓 TFCC 自行修復。</p>
+            <div class="tip-box">
+              伸肌、旋前圓肌、旋後肌 trigger point 鬆開<br>
+              加<strong>旋前方肌 trigger point：外關</strong>（不用進很深，3 分即可）；怕針者可 15 度進針，淺淺挑開筋膜。<br>
+              小腸經，接膀胱經
+            </div>
+            <div class="tip-box info">
+              車禍跌倒隔天全身痛 = 肌肉緊繃（身體保護機制）。力量往上傳，骨鬆患者注意<strong>肱骨斷裂</strong>，需考慮肩膀。<br>
+              針 <strong>AC joint</strong>（肩鎖關節）：沿鎖骨摸到盡頭的空腔，直刺，針會咬緊才算在關節腔內。鎖骨中段才有肺，AC joint 不要怕。
+            </div>
+            <div class="herb-tags">
+              <span class="acupoint-tag">外關</span>
+              <span class="acupoint-tag">AC joint</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.2rem; border-top: 1px solid var(--border);">
+          <div class="col-label">手撐地常見傷害鑑別</div>
+          <p>橈側受傷多見：遠端橈骨骨折（Colles' fracture）、<strong>舟狀骨骨折</strong>（若骨折千萬不要做手法！舟狀骨壞死賠不完！）。骨折徵象：骨叉音、外觀變形、腫脹嚴重、瘀斑 → 先照 X 光並記載於病歷。</p>
+          <div class="tip-box warn">案例：月狀骨按壓疼痛 → 真正診斷是<strong>腱鞘囊腫</strong>（偏硬，不一定是軟的一顆），火針戳破即不痛。常活動的關節容易長，不要忘記觸診！</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 板機指 -->
+    <div id="trigger" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">6</div>
+        <div class="card-title-group">
+          <div class="card-title">板機指</div>
+          <div class="card-subtitle">A1 pulley 狹窄 → 肌腱卡住</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">病理機轉</div>
+            <p>手指過度使用 → 滑車（pulley）與屈指肌肌腱過度摩擦 → 滑車發炎狹窄。A1 pulley 在掌指關節下方，旁邊有 tendon nodule（肌腱增生），使肌腱無法通過。最常見 1–3 指。</p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p>觸診：屈指，感受肌腱在滑車下的滑動！</p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <div class="tip-box warn">
+              不能扎 tendon nodule！正確做法是<strong>破壞 A1 pulley</strong>，把它劃開。
+            </div>
+            <div class="tip-box">
+              將患者手繃緊，露出 A1 pulley，<strong>斜 15 度進針</strong>，只進 <strong>1–2 分</strong>（滑車位置），避開血管，否則會針到肌腱（患者動手指就很痛）。<br>
+              破壞完不要馬上出針，幫患者動手指看有無順，若沒順再破壞一次。取針後請患者屈伸該手指。
+            </div>
+            <p>初期（手指仍可動但緊繃感）：用遠端放鬆<strong>屈肌 trigger point（前臂內側上 1/3）</strong>。<br>
+            局部發炎嚴重：可用<strong>倒地蜈蚣、四妙勇安湯</strong>和活血化瘀藥。</p>
+            <div class="herb-tags">
+              <span class="herb-tag">四妙勇安湯</span>
+              <span class="herb-tag">倒地蜈蚣</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 韌帶關節囊扭傷 -->
+    <div id="sprain" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">7</div>
+        <div class="card-title-group">
+          <div class="card-title">韌帶關節囊扭傷（吃蘿蔔）</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p>先確認韌帶有無斷裂（斷裂者手指外觀改變，請患者頂醫師手，無法頂 = 斷）。斷裂者建議縫合。</p>
+          </div>
+          <div class="col-section">
+            <div class="col-label">治療</div>
+            <p>輕輕捻動關節 → 關節<strong>轉</strong>（不痛那側）、<strong>頂</strong>（指橫紋上），增加血循 → 兩側各進一針（韌帶附近，增加循環）。急性期冰敷。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 手腕總結 -->
+    <div id="wrist-summary" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">★</div>
+        <div class="card-title-group">
+          <div class="card-title">手腕常見疾病總結</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="summary-grid">
+          <div class="summary-item">① 媽媽手</div>
+          <div class="summary-item">② 舟狀骨</div>
+          <div class="summary-item">③ CMC joint</div>
+          <div class="summary-item">④ 間隔症候群</div>
+          <div class="summary-item">⑤ TFCC</div>
+          <div class="summary-item">⑥ 月狀骨</div>
+          <div class="summary-item">⑦ 腱鞘囊腫</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part 2 肩膀 -->
+    <div id="shoulder" class="section-heading">Part 2 · 肩膀</div>
+
+    <div class="note-box">
+      <strong>肩關節空間牽涉：</strong>肩胛骨、肱骨、鎖骨外 1/3<br>
+      <strong>旋轉肌袖：</strong>棘上肌、棘下肌、小圓肌、肩胛下肌<br>
+      <strong>技巧：</strong>手臂伸直旋前拇指朝下上舉 → 二頭肌長頭受限；改拇指朝上上舉 → 二頭肌長頭已滑過肩峰下，可順利上舉。
+    </div>
+
+    <!-- 肩夾擠症候群 -->
+    <div id="impingement" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">1</div>
+        <div class="card-title-group">
+          <div class="card-title">肩夾擠症候群（Shoulder Impingement）</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="four-cols">
+          <div class="col-section">
+            <div class="col-label">需考慮結構</div>
+            <ul style="font-size:0.84rem; color:var(--ink-mid); padding-left:1rem; line-height:2;">
+              <li>棘上肌肌腱</li>
+              <li>肱二頭肌長頭肌腱</li>
+              <li>三角肌下滑囊（肩峰下滑液囊炎）</li>
+              <li>肩鎖關節 AC joint</li>
+              <li>頸椎 SCM</li>
+            </ul>
+          </div>
+          <div class="col-section">
+            <div class="col-label">診斷</div>
+            <p><strong>疼痛弧（Painful Arc）：</strong></p>
+            <ul style="font-size:0.83rem; color:var(--ink-mid); padding-left:1rem; line-height:2;">
+              <li>60° 以下：二頭肌長頭肌腱</li>
+              <li>60–120°：肩峰下夾擠 → 棘上肌</li>
+              <li>120° 以上：三角肌</li>
+              <li>170–180°：AC joint</li>
+            </ul>
+            <p><strong>Neer test (+)：</strong>痛在偏前 = 三角肌下滑囊炎；偏後 = 肌腱發炎</p>
+            <p><strong>Hawkins test (+)</strong></p>
+            <p>★ Empty can test：外展旋前阻抗無法抵抗 → <strong>棘上肌肌腱斷裂</strong></p>
+          </div>
+          <div class="col-section" style="grid-column: 1/-1;">
+            <div class="col-label">治療</div>
+            <div class="tip-box">
+              <strong>棘上肌：</strong>針平行肩胛棘由外向內進針（trigger point）；針肱骨大結節上（insertion）<br>
+              <strong>肱二頭肌長頭：</strong>摸肱骨頭最痠位置進針（origin）；尺澤（insertion）；請患者屈肘找 taut band（trigger point）<br>
+              <strong>解剖列車：</strong>三角肌、斜方肌（捏起進針）、菱形肌、提肩胛肌（滑罐）
+            </div>
+            <div class="tip-box">
+              <strong>三角肌下滑囊炎治療：</strong><br>
+              ① 放鬆三角肌後緣 trigger point → 針到三角肌下滑囊<br>
+              ② AC joint 針到關節腔（肩峰鎖骨關節凹陷處）<br>
+              ③ SCM origin：乳突下，推最痠位置，進針 2 分
+            </div>
+            <div class="herb-tags">
+              <span class="acupoint-tag">尺澤</span>
+              <span class="acupoint-tag">AC joint</span>
+              <span class="acupoint-tag">棘上肌 TP</span>
+              <span class="acupoint-tag">三角肌 TP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 五十肩 -->
+    <div id="frozen" class="disease-card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">2</div>
+        <div class="card-title-group">
+          <div class="card-title">五十肩（Frozen Shoulder）</div>
+          <div class="card-subtitle">capsulitis，發炎產生沾黏</div>
+        </div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="card-body">
+        <div style="padding: 1rem 1.2rem;">
+          <p>Frozen shoulder 是關節囊炎（capsulitis），發炎產生沾黏，活動時<strong>肩胛骨會被往外扯出來</strong>。正常手上舉時，肩胛骨只會輕微向外打開。</p>
+          <div class="tip-box info" style="margin-top:0.8rem;">
+            Part 3（足部、腳踝、膝）、Part 4（腰、臀）、Part 5（頸椎）待補充。
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+function toggleCard(header) {
+  const card = header.closest('.disease-card');
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
