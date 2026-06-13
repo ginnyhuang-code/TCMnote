@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高尚德院長治療思路 · 習醫手帖</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #2D5A3D;
+    --green-mid: #4A7C59;
+    --green-light: #E8F3EC;
+    --green-pale: #F2F8F4;
+    --gold: #8B6914;
+    --gold-light: #F5EDD6;
+    --ink: #1C2B22;
+    --ink-mid: #3D4F44;
+    --ink-soft: #6B7D70;
+    --border: #C5D9C9;
+    --white: #FDFFFE;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--green-pale);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* ── Nav ── */
+  .site-nav {
+    background: var(--green-dark);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 52px;
+    font-size: 0.85rem;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .site-nav a {
+    color: #A8CEB4;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: white; }
+  .site-nav .sep { color: #5A8A6A; }
+  .site-nav .current { color: white; }
+
+  /* ── Header ── */
+  header {
+    background: var(--green-dark);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+  header .label {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: #A8CEB4;
+    margin-bottom: 0.6rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+  }
+  header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  header .meta {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: #8BB89A;
+  }
+
+  /* ── Main ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* ── Cards ── */
+  .note-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .note-card:hover { box-shadow: 0 4px 16px rgba(45,90,61,0.1); }
+
+  .card-header {
+    background: linear-gradient(90deg, var(--green-light), var(--white));
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-num {
+    width: 32px; height: 32px;
+    background: var(--green-dark);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+
+  .card-body {
+    padding: 1.3rem 1.5rem;
+  }
+
+  /* 段落處理 */
+  .card-body p {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    line-height: 2;
+    margin-bottom: 0.8rem;
+  }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  /* 重點關鍵字標示 */
+  .card-body strong {
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+
+  /* 要點區塊 */
+  .point-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+  .point-list li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed #E0EBE4;
+  }
+  .point-list li:last-child { border-bottom: none; }
+  .point-list li::before {
+    content: '▸';
+    color: var(--green-mid);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* 藥方標籤 */
+  .herb-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+  .herb-tag {
+    background: var(--gold-light);
+    border: 1px solid #D4B86A;
+    color: var(--gold);
+    font-size: 0.78rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  /* 病機框 */
+  .mechanism-box {
+    background: var(--green-light);
+    border-left: 3px solid var(--green-mid);
+    border-radius: 0 6px 6px 0;
+    padding: 0.7rem 1rem;
+    margin: 0.8rem 0;
+    font-size: 0.87rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+  .mechanism-box .box-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--green-mid);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="site-nav">
+  <a href="index.html">習醫手帖</a>
+  <span class="sep">›</span>
+  <a href="jenzhen.html">跟診筆記</a>
+  <span class="sep">›</span>
+  <span class="current">高尚德院長治療思路</span>
+</nav>
+
+<!-- Header -->
+<header>
+  <div class="label">跟診筆記</div>
+  <h1>高尚德院長 · 治療思路</h1>
+  <div class="meta">高尚德醫師</div>
+</header>
+
+<div class="container">
+
+  <!-- 1. 膀胱過動症 -->
+  <div class="note-card">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">膀胱過動症</div>
+    </div>
+    <div class="card-body">
+      <div class="mechanism-box">
+        <div class="box-label">病機辨別</div>
+        <strong>退化性</strong>（攝護腺肥大、停經後尿道萎縮）→ 與<strong>腎</strong>較相關<br>
+        <strong>神經性</strong>（逼尿肌神經過敏）→ 與<strong>肝</strong>較相關
+      </div>
+      <ul class="point-list">
+        <li><strong>肝</strong>主氣機升降、疏泄，和全身神經調節緊密相關。許多疾病若就單一臟腑治療久無效，可往肝主疏泄思考。</li>
+        <li>膀胱過動症基本病機為腎與膀胱功能失調，應酌加<strong>縮泉丸</strong>收澀治標。</li>
+      </ul>
+      <div class="herb-tags">
+        <span class="herb-tag">縮泉丸</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 頭皮屑及頭皮搔癢 -->
+  <div class="note-card">
+    <div class="card-header">
+      <div class="card-num">2</div>
+      <div class="card-title">頭皮屑及頭皮搔癢</div>
+    </div>
+    <div class="card-body">
+      <div class="mechanism-box">
+        <div class="box-label">病因病機</div>
+        臨床多包含於<strong>脂漏性皮膚炎及乾癬</strong>。素體血燥、嗜食辛辣甜膩，胃腸肝膽積熱感受風邪，風邪鬱久不散耗傷陰血。病性多為<strong>風、熱、燥、濕</strong>。
+      </div>
+      <ul class="point-list">
+        <li>治則：<strong>祛除風熱濕邪，同時養陰潤燥</strong>，兩者需同時兼顧。</li>
+        <li>外治法十分有效，配製藥材製作頭皮外洗液療效顯著，可納入考量。</li>
+        <li>結合<strong>肺主皮毛</strong>概念，針對<strong>肺經瀉熱</strong>是可考量的治療手段。</li>
+        <li>治療頭面部疾病時（面皰、搔癢、脫屑），可加<strong>川芎茶調散、清上防風湯</strong>引藥上行頭面部。</li>
+      </ul>
+      <div class="herb-tags">
+        <span class="herb-tag">消風散</span>
+        <span class="herb-tag">龍膽瀉肝湯</span>
+        <span class="herb-tag">川芎茶調散</span>
+        <span class="herb-tag">清上防風湯</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 全身性硬化症 -->
+  <div class="note-card">
+    <div class="card-header">
+      <div class="card-num">3</div>
+      <div class="card-title">全身性硬化症（SSc）</div>
+    </div>
+    <div class="card-body">
+      <div class="mechanism-box">
+        <div class="box-label">病理機轉與治則</div>
+        病理機轉：細胞外基質沉積 → 治則為<strong>活血化瘀、化痰通絡</strong>
+      </div>
+      <ul class="point-list">
+        <li>雖然本虛，疾病活動期、免疫亢進時以<strong>熱象為主，需清熱</strong>，不可一味補養。</li>
+        <li><strong>當歸四逆湯</strong>：運用在營血不足、血虛寒凝。</li>
+        <li><strong>皂角刺</strong>通絡，清除不良組織；<strong>白芥子</strong>化痰阻經絡，對應鈣質沉積。</li>
+        <li>肢體繃緊僵硬治法為<strong>疏經活血</strong>。</li>
+        <li><strong>補陽還五湯</strong>一般走頭部，要用於全身性硬化症氣虛血瘀需加引藥入四肢。</li>
+        <li><strong>黃耆桂枝五物湯</strong>應用在<strong>寒痹</strong>，以補氣為主。</li>
+        <li>注意出現哪些症狀才可使用<strong>龜鹿二仙膠</strong>，不是每個病人都適合。</li>
+      </ul>
+      <div class="herb-tags">
+        <span class="herb-tag">當歸四逆湯</span>
+        <span class="herb-tag">補陽還五湯</span>
+        <span class="herb-tag">黃耆桂枝五物湯</span>
+        <span class="herb-tag">龜鹿二仙膠</span>
+        <span class="herb-tag">皂角刺</span>
+        <span class="herb-tag">白芥子</span>
+        <span class="herb-tag">左金丸</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 腎性貧血 -->
+  <div class="note-card">
+    <div class="card-header">
+      <div class="card-num">4</div>
+      <div class="card-title">腎性貧血</div>
+    </div>
+    <div class="card-body">
+      <div class="mechanism-box">
+        <div class="box-label">病機</div>
+        貧血源頭在腎（對應西醫 EPO 減少）。病機一般為<strong>濕熱</strong>造成腎臟損傷，濕熱既是病理產物也是病因。
+      </div>
+      <ul class="point-list">
+        <li>治療重點：減少腎損傷，以<strong>補腎</strong>與<strong>去濕濁痰瘀</strong>為主，補腎為主、補脾為次。</li>
+        <li><strong>清補兼施</strong>，不能一直補腎。</li>
+        <li>黃芩的思路：少陽膽熱下絡<strong>大腸</strong>，熱可藉由大便出（腎病後期小便減少，故從大便排熱）。</li>
+        <li><strong>炒白芍</strong>柔肝；<strong>生白芍</strong>平肝。臨床較常用炒白芍，平肝多用鉤藤。</li>
+      </ul>
+      <div class="herb-tags">
+        <span class="herb-tag">黃芩湯</span>
+        <span class="herb-tag">白頭翁湯</span>
+        <span class="herb-tag">葛芩連湯</span>
+        <span class="herb-tag">炒白芍</span>
+        <span class="herb-tag">鉤藤</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 骨髓化生不良症候群 -->
+  <div class="note-card">
+    <div class="card-header">
+      <div class="card-num">5</div>
+      <div class="card-title">骨髓化生不良症候群（MDS）</div>
+    </div>
+    <div class="card-body">
+      <div class="mechanism-box">
+        <div class="box-label">病機</div>
+        腫瘤細胞侵犯骨髓，導致血小板、血紅素、白血球下降。本身生成功能尚可，故治療目標為「<strong>減少那隻破壞的手</strong>」，兇手是<strong>火邪熱毒</strong>，而非一昧補益。
+      </div>
+      <ul class="point-list">
+        <li>產生的組織變化與病理產物為<strong>痰瘀</strong>。</li>
+        <li>治則：<strong>清熱解毒 + 健脾益腎</strong>。</li>
+        <li>清熱解毒藥：<strong>半枝蓮、梔子、白花蛇舌草、蒲公英、丹皮</strong>（芩連柏較弱）。</li>
+        <li>毒熱與一般熱不同，毒熱需用<strong>清熱解毒藥</strong>，非一般清熱藥可替代。</li>
+        <li>後期虛證可用補，但活動期越補越糟，會補到邪熱（虛實夾雜，需辨清階段）。</li>
+      </ul>
+      <div class="herb-tags">
+        <span class="herb-tag">半枝蓮</span>
+        <span class="herb-tag">白花蛇舌草</span>
+        <span class="herb-tag">蒲公英</span>
+        <span class="herb-tag">丹皮</span>
+        <span class="herb-tag">梔子</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
