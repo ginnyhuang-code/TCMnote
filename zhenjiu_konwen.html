@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>呂孔文老師課堂筆記 — 習醫手帖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-dark:#2D5A3D; --green-mid:#3D7A52; --green-light:#5A9E6F;
+  --green-pale:#E8F2EC; --parchment:#FAF7F2; --warm:#F2ECE0;
+  --ink:#1E2A1E; --ink-light:#6E7A6E; --rule:#D8D0C2;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Serif TC',serif;background:var(--parchment);color:var(--ink);line-height:1.85;}
+
+.site-nav{background:var(--green-dark);padding:0 1.6rem;display:flex;align-items:center;gap:1.4rem;height:52px;flex-wrap:wrap;}
+.site-nav .site-title{color:var(--green-pale);font-size:1.05rem;font-weight:500;letter-spacing:.06em;}
+.site-nav a{color:#cfe3d6;text-decoration:none;font-family:'Noto Sans TC',sans-serif;font-size:.9rem;}
+.site-nav a:hover{color:#fff;}
+.site-nav .nav-current{color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:.9rem;}
+
+.breadcrumb{max-width:1080px;margin:0 auto;padding:1.1rem 1.6rem .3rem;font-family:'Noto Sans TC',sans-serif;font-size:.84rem;color:var(--ink-light);}
+.breadcrumb a{color:var(--green-light);text-decoration:none;}
+.breadcrumb span{margin:0 .4rem;}
+
+.page-header{max-width:1080px;margin:0 auto;padding:.6rem 1.6rem 1rem;}
+.page-header .eyebrow{font-family:'Noto Sans TC',sans-serif;font-size:.82rem;letter-spacing:.18em;color:var(--green-light);margin-bottom:.5rem;}
+.page-header h1{font-size:2rem;font-weight:700;letter-spacing:.05em;}
+.page-header .sub{font-family:'Noto Sans TC',sans-serif;font-size:.9rem;color:var(--ink-light);margin-top:.5rem;}
+
+.layout{max-width:1080px;margin:0 auto;padding:0 1.6rem 3rem;display:flex;gap:1.6rem;align-items:flex-start;}
+.sidebar{flex:0 0 190px;position:sticky;top:1rem;}
+.sidebar nav{display:flex;flex-direction:column;gap:.3rem;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:.6rem;}
+.sidebar nav button{font-family:'Noto Sans TC',sans-serif;font-size:.92rem;text-align:left;background:none;border:none;color:var(--ink);padding:.5rem .7rem;border-radius:7px;cursor:pointer;transition:.15s;}
+.sidebar nav button:hover{background:var(--green-pale);}
+.sidebar nav button.active{background:var(--green-dark);color:#fff;font-weight:500;}
+
+.main{flex:1 1 auto;min-width:0;}
+.section{display:none;}
+.section.active{display:block;}
+.section-header{border-bottom:2px solid var(--green-dark);padding-bottom:.5rem;margin-bottom:1.2rem;}
+.section-header h2{font-size:1.5rem;font-weight:700;color:var(--green-dark);letter-spacing:.04em;}
+.section-header .meta{font-family:'Noto Sans TC',sans-serif;font-size:.82rem;color:var(--ink-light);margin-top:.3rem;}
+
+.point{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem;}
+.point-name{font-family:'Noto Serif TC',serif;font-size:1.18rem;font-weight:700;color:var(--green-dark);margin-bottom:.5rem;}
+.point-name .tag{display:inline-block;font-family:'Noto Sans TC',sans-serif;font-size:.72rem;font-weight:500;color:#fff;background:var(--green-mid);border-radius:4px;padding:.1rem .5rem;margin-left:.4rem;vertical-align:middle;}
+.point-name .star{color:#C7912B;font-size:.95rem;margin-left:.3rem;}
+.loc{font-family:'Noto Sans TC',sans-serif;font-size:.95rem;background:var(--warm);border-radius:7px;padding:.5rem .8rem;margin-bottom:.6rem;}
+.loc b{color:var(--green-dark);}
+.notes{font-family:'Noto Sans TC',sans-serif;font-size:.95rem;padding-left:1.2rem;}
+.notes li{margin-bottom:.45rem;}
+.box-green{background:var(--green-pale);border-left:4px solid var(--green-dark);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0;font-family:'Noto Sans TC',sans-serif;font-size:.93rem;}
+.note-block{font-family:'Noto Sans TC',sans-serif;font-size:.95rem;margin:.8rem 0;padding:.8rem 1rem;background:#fff;border:1px dashed var(--rule);border-radius:8px;}
+.note-block .nb-title{font-weight:700;color:var(--green-dark);margin-bottom:.4rem;}
+
+.site-footer{text-align:center;padding:1.6rem;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;color:var(--ink-light);border-top:1px solid var(--rule);}
+
+@media(max-width:760px){
+  .layout{flex-direction:column;}
+  .sidebar{position:static;flex:1 1 auto;width:100%;}
+  .sidebar nav{flex-direction:row;flex-wrap:wrap;}
+  .sidebar nav button{flex:1 1 auto;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <a href="zhenjiu.html">針灸學筆記</a>
+  <span class="nav-current">呂孔文老師課堂筆記</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span>
+  <a href="reading.html">讀書筆記</a><span>›</span>
+  <a href="zhenjiu.html">針灸學筆記</a><span>›</span>
+  呂孔文老師課堂筆記
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">針灸學筆記</div>
+  <h1>呂孔文老師課堂筆記</h1>
+  <div class="sub">孔文針灸・千容編著　｜　十二經絡逐穴定位、進針要領與臨床應用</div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav>
+      <button class="active" onclick="show('s1',this)">手太陰肺經</button>
+      <button onclick="show('s2',this)">手陽明大腸經</button>
+      <button onclick="show('s3',this)">足陽明胃經</button>
+      <button onclick="show('s4',this)">足太陰脾經</button>
+      <button onclick="show('s5',this)">手少陰心經</button>
+      <button onclick="show('s6',this)">手太陽小腸經</button>
+      <button onclick="show('s7',this)">足太陽膀胱經</button>
+      <button onclick="show('s8',this)">足少陰腎經</button>
+      <button onclick="show('s9',this)">手厥陰心包經</button>
+      <button onclick="show('s10',this)">手少陽三焦經</button>
+      <button onclick="show('s11',this)">足少陽膽經</button>
+      <button onclick="show('s12',this)">足厥陰肝經</button>
+    </nav>
+  </aside>
+
+  <main class="main">
+<!-- ===== s1 手太陰肺經 ===== -->
+<section class="section active" id="s1">
+  <div class="section-header"><h2>手太陰肺經</h2><div class="meta">中府・雲門・天府・俠白・尺澤・孔最・列缺・經渠・太淵・魚際・少商</div></div>
+
+  <div class="point">
+    <div class="point-name">中府／雲門 <span class="tag">中府＝會穴</span></div>
+    <div class="loc"><b>取穴：</b>先找喙突 → 喙突正下方是中府、喙突正上方是雲門。</div>
+    <ul class="notes">
+      <li>喙突怎麼找？先找腋橫紋，直接往上劃，左右不到一寸的地方會有兩顆小突起。橫紋內側是喙突，橫紋外側是肱骨小結節，兩者差不多在水平線上。</li>
+      <li>垂直皮膚表面進針，一般不會氣胸；但若肺較大有可能，所以進 5–7 分就好，確保安全。貼著喙突、貼骨較安全。</li>
+      <li>肱骨小結節正下方有一個經外奇穴「抬肩穴」。肩三針指肩髃、肩髎、臑俞，前面（肱二頭肌這邊）沒有穴道，就用抬肩穴取代。</li>
+      <li>喙突是肱二頭肌短頭的附著點，是五十肩最容易好發的地方，所以五十肩可以扎中府。</li>
+      <li>中府是會穴（經絡平行交會點），肺經會脾經的周榮。任脈拉到腋窩橫紋直下 8 寸、拉到乳頭 4 寸，四寸旁開兩寸是脾經；脾經上來，在中府下兩指幅（1.5 寸；在肋骨上叫 1.6 寸）就是周榮。所以扎中府可通肺經，也可通脾經。肺氣虛又拉肚子，扎中府。</li>
+      <li class="box-green"><b>【中府常用】</b>治療二頭肌肌腱損傷、五十肩、當會穴通肺經和脾經。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">天府／俠白</div>
+    <div class="loc"><b>取穴：</b>腋窩橫紋盡頭劃水平線，到肘橫紋是 9 寸，天府在上 1/3；往下 1 寸是俠白。</div>
+    <ul class="notes">
+      <li>手臂以二頭肌為主。二頭肌下緣還有一層肱肌貼在肱骨上：肱骨上緣是肱肌，肱肌上面才是肱二頭肌。天府、俠白夾在肱二頭肌與肱肌之間，並非貼在肱骨上。</li>
+      <li>手水平伸直、掌向上：二頭肌橈側緣走肺經，尺側緣走心經，中間分界線走心包經。扎針要沿二頭肌與肱肌交界的凹陷處。</li>
+      <li>垂直皮膚表面，進針 5–7 分即可；此處安全，1.5 寸也沒關係。（前胸、後背、肩頸較危險，不要插過 7 分，提插要小心。）</li>
+      <li>少用。只有二頭肌肌腱斷掉（不出力就有一球肌肉）才用，通常是太用力造成，絕對不要幫他扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">尺澤 <span class="tag">合穴</span></div>
+    <div class="loc"><b>取穴：</b>肘橫紋上、二頭肌肌腱的橈側緣（肺經）。</div>
+    <ul class="notes">
+      <li>手不過肘、腳不過膝，五俞穴的合穴都在手肘處。合穴可開捷徑進到所屬臟腑，治肺內科問題尺澤一定要扎；即使非內科，經氣強也可扎。</li>
+      <li>肘橫紋上二頭肌腱橈側緣是尺澤，尺側緣（心包經）是曲澤。</li>
+      <li>裡面是大條血管，進針快、行針慢，空的就放進去，最底扎到肱骨頭，旁邊有大小血管。貼著二頭肌腱邊緣進針效果最好。摸不到肌腱時，請病人稍彎曲、摸到後再放下進針。</li>
+      <li class="box-green"><b>【尺澤常用】</b>治療肺內科問題（合穴）。</li>
+      <li>Q：何時直接扎肌腱上？阿基里斯腱受傷可直接穿過跟腱（穿 2–3 支、每隔 1 寸），不會斷；髕前韌帶拉傷、小孩生長痛（脛骨粗隆處）亦同。成長痛兩週一定好，是骨頭長太快、肌腱韌帶來不及。</li>
+      <li>局部可扎與否取決於有無痛、紅腫；急性扭拉傷不要針。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">孔最 <span class="tag">郄穴</span></div>
+    <div class="loc"><b>取穴：</b>手肘以下 5 寸，肱橈肌的邊緣。</div>
+    <ul class="notes">
+      <li>定義有二：① 尺澤到太淵連線（肘橫紋到腕橫紋 12 寸），一半 6 寸往上 1 寸；② 手肘以下 5 寸、肱橈肌邊緣。要找肱橈肌邊緣的分肉之間，不見得在尺澤太淵連線上。</li>
+      <li>找分肉之間不要橫向掐，要跟肌肉平行左右推一下，分肉就出現。垂直皮膚在分肉之間進針，針感很強。</li>
+      <li class="box-green"><b>【孔最常用】</b>急性期或肺經很虛時用，轉一轉拉起來，補法加強肺經經氣（郄穴）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">列缺 <span class="tag">絡穴</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋上 2 指幅（1.5 寸），橈骨莖突後緣；伸拇短肌與外展拇長肌中間，陰陽面交界處。</div>
+    <ul class="notes">
+      <li>屈肘側立沒有腕橫紋時，以陽谿、陽谷連線構成腕橫紋。陽谿在拇指翹起時兩條肌腱（伸拇長、伸拇短）中間夾的凹槽（大腸經）。伸拇短與外展拇長夾的就是列缺。</li>
+      <li>列缺在寬度一半（陰陽面交界），因是絡穴，肺經絡大腸。</li>
+      <li>斜扎，退後 3 分，戳在莖突下緣；順其經是卡住、逆其經會飛過去，要順其經方向戳進去卡住，較痠、效果較強。</li>
+      <li class="box-green"><b>【列缺常用】</b>頭項尋列缺；列缺又通任脈、接督脈，所以正中間頭痛（前額、巔頂、後枕、頸部）針列缺，顳側頭痛沒用。</li>
+      <li>Q：頭痛扎同名經可以嗎？可以，足太陽膀胱經頭痛可扎足太陽、手太陽。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">經渠</div>
+    <div class="loc"><b>取穴：</b>太淵直上 1 指幅（1 寸），貼肱橈肌肌腱尺側邊緣。</div>
+    <ul class="notes">
+      <li>少用，難經五俞穴才會用到。斜扎，有時經渠透太淵（一針從經渠進、扎到太淵）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">太淵 <span class="tag">原穴</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋與肱橈肌肌腱交界處（寸口的位置）。</div>
+    <ul class="notes">
+      <li>腕橫紋選哪條？第一條太接近腕骨，可選下五分這一條，或取兩條中間。太淵是外展拇長肌與肱橈肌肌腱的交會處（肌腱邊緣）。底下是橈動脈，把脈寸的位置即此。</li>
+      <li>斜扎：針尖貼骨頭下緣、水平幅角 15 度進去。直接進針會扎到手腕裡面，最好太淵穴退後 3–5 分進針，針尖到太淵或超過一點點沒關係。直刺一定中血管，要斜刺貼血管，有時針還會跳。</li>
+      <li>太淵是肺經原穴。三條陰經在手腕陰面都是原穴（陰經原穴都在腕橫紋上，陽經沒有）。諸病取其原，但一般太淵少扎，除非用難經補母瀉子法。</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">補充：腕橫紋上的三個穴道</div>
+    手腕內側三條肌腱：中指對下來是掌長肌、近拇指側是橈側屈腕肌、小指側是尺側屈腕肌（最外是肱橈肌與外展拇長肌交界）。<br>
+    ・<b>大陵</b>（心包經）：掌長肌與橈側屈腕肌中間、腕橫紋上。<br>
+    ・<b>神門</b>（心經）：尺側屈腕肌與腕橫紋交界處的內側緣。<br>
+    大陵跟神門很常扎，太淵還好。<b>【神門常用】</b>鎮靜安神，治心神渙散、中醫精神病、助睡眠。<b>【大陵常用】</b>治正中神經、腕隧道症候群（麻三指半，兩掌對壓會痛即是），超級好用。
+  </div>
+
+  <div class="point">
+    <div class="point-name">魚際</div>
+    <div class="loc"><b>取穴：</b>第一掌骨中間一半的下緣。</div>
+    <ul class="notes">
+      <li>扎針方向要注意（合谷也是）：拇指指腹朝下時，魚際要扎在骨頭下緣，即與指腹方向垂直、水平進針。不管魚際或合谷都要貼骨邊，不要離骨頭太遠。</li>
+      <li>（合谷）第二掌骨一半（從本節開始算，不含腕骨），摸到一個切痕就是合谷。食指朝下水平進針，側立則垂直進針，總之針要與指腹方向垂直。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">少商</div>
+    <div class="loc"><b>取穴：</b>拇指橈側下緣。指甲最下緣與側邊各劃一線，交界處，離指甲約 1 分。</div>
+    <ul class="notes">
+      <li>拍針較易偏離，建議徒手進針。</li>
+      <li>瀉熱用，很少留針，戳下去壓個幾滴血。喉嚨痛、感冒發炎、肺經有熱，瀉熱。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== s2 手陽明大腸經 ===== -->
+<section class="section" id="s2">
+  <div class="section-header"><h2>手陽明大腸經</h2><div class="meta">商陽・二間・三間・合谷・陽谿・偏厲・溫溜・曲池・手三里・上廉・下廉・肩髃・肘髎・手五里・臂臑・巨骨・扶突・天鼎・口禾髎・迎香</div></div>
+
+  <div class="point">
+    <div class="point-name">商陽</div>
+    <div class="loc"><b>取穴：</b>食指橈側下緣。</div>
+    <ul class="notes">
+      <li>找法和少商一樣，側邊和水平指甲邊緣切線的交點。</li>
+      <li>記法：少商接商陽（商對商）；中指叫中衝、後面接的就是衝；無名指是關衝（衝對衝）；小指是少衝、少澤（少對少）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">二間／三間</div>
+    <div class="loc"><b>取穴：</b>本節往前 5 分是二間，本節往後 5 分是三間。</div>
+    <ul class="notes">
+      <li>少扎，也不太好扎，這裡沒什麼肉。本節（指掌關節）的寬度剛好 1 寸；二間在指骨後凹陷處，三間在掌骨前凹陷處。三間稍好扎，卡在凹陷處、骨頭邊緣。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">合谷 <span class="tag">原穴</span><span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>第二掌骨的一半，在切跡下緣。</div>
+    <ul class="notes">
+      <li>第二掌骨中間一半有一明顯垂直切跡，就在切跡下緣是合谷，掐下去會電到食指（切跡是神經血管走出來的地方）。食指朝下水平進針，側立垂直進針，針與指腹方向垂直。</li>
+      <li>面口合谷收：左側鼻塞扎右側合谷（大腸經左之右、右之左到鼻子），其實兩邊都可扎。臉的上面、後面、側邊都沒用，只有正面環口附近有用。</li>
+      <li>（補充）上八邪＝第一、第二掌骨起縫處上來；八邪＝本節連線前 5 分，一手四個。上八邪 2、3 推到盡頭叫腰腿點 1，4、5 推到盡頭叫腰腿點 2（經外奇穴），扎下去腰可彎下。八邪直刺 5–7 分；扎板機指從八邪往本節內側緣方向戳（兩支針尖對本節）。手是八邪／上八邪，腳是八風／上八風。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陽谿</div>
+    <div class="loc"><b>取穴：</b>拇指翹起，兩筋之間、腕橫紋上。</div>
+    <ul class="notes">
+      <li>拇指翹起時中間有凹槽，由伸拇長、伸拇短兩肌腱構成，中間夾的就是陽谿（在腕橫紋上）。</li>
+      <li>手上兩筋之間凹陷有三個：陽谿、陽池、陽谷，陽谿的洞最大、最好進針。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">偏厲</div>
+    <div class="loc"><b>取穴：</b>腕橫紋上 4 指幅（3 寸），貼橈骨的橈側緣。</div>
+    <ul class="notes">
+      <li>掌心向上時橈尺骨平行，手背在上時橈骨會跨過來（橈骨旋轉），所以大腸經走在橈骨橈側緣上來；上面是橈骨（斜的），尺骨在下面。</li>
+      <li>陽谿與曲池連線上有偏厲、溫溜、下廉、上廉、手三里，但偏厲、溫溜不需用連線找；下廉、上廉才用連線找。</li>
+      <li>找法同列缺（側立、掌心立起面向自己），要不要屈肘沒關係。斜扎，尖端方向哪邊都可以，不像列缺要順其經。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">溫溜 <span class="tag">郄穴</span><span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋上 5 寸，貼橈骨的尺側緣（腕橫紋到肘橫紋 12 寸，一半 6 寸再下 1 寸）。</div>
+    <ul class="notes">
+      <li>一定要貼著橈骨（橈骨尺側緣）。</li>
+      <li class="box-green"><b>【溫溜常用】</b>治腹部脹氣、便祕（專治便祕）、拉肚子，實證虛證皆可用。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">曲池 <span class="tag">合穴</span><span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>肱骨外上髁、橈骨小頭交界處，骨頭接縫處。</div>
+    <ul class="notes">
+      <li>要摸到這個縫，垂直皮膚進針，貼著骨頭內緣。屈肘、側立、掌心向自己很好找。</li>
+      <li class="box-green"><b>【曲池常用】</b>治療網球肘。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">手三里 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>曲池前斜下 3 指 2 寸，在伸指肌群的上緣。<br>扭傷穴：曲池前斜下 4 指 3 寸，伸指肌群下緣。</div>
+    <ul class="notes">
+      <li>手三里沒有在連線上（連線上是上廉、下廉）。伸指肌群是伸 234 指。屈肘、側立、掌心向下很好找；是讓歹徒手軟的穴，很痠。</li>
+      <li>網球肘＝橈骨與肱骨外上髁交界處疼痛。★治網球肘：曲池、手三里、扭傷穴（經外奇穴）、肘髎。</li>
+      <li>（補充）扭傷穴與手三里差約 2 指幅（1.5 寸）。筋會陽陵泉（下肢用），上肢肌腱韌帶扭拉傷用扭傷穴：肩關節損傷（棘上肌症候群、二頭肌腱五十肩）、網球肘、高爾夫球肘、腱鞘囊腫、手腕手指吃蘿蔔、板機指、尺／橈／正中神經症候群等，垂直皮膚進針很痠。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">下廉／上廉</div>
+    <div class="loc"><b>取穴：</b>拉線。上廉＝手三里下 1 寸（連線上）；下廉＝上廉再下 1 寸（連線上）。</div>
+    <ul class="notes">
+      <li>手三里與扭傷在分肉之間、溫溜在骨縫旁，但上廉下廉在伸指肌群正上方，所以比較不痠。</li>
+      <li>找陽谿、曲池連線，手三里下 1 寸是上廉，再下 1 寸是下廉。少扎，除非手指彎曲很痛、整條伸指肌群拉傷才扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">肩髃</div>
+    <div class="loc"><b>取穴：</b>肩峰轉角與肱骨小結節連線的一半，在肩峰下緣。</div>
+    <ul class="notes">
+      <li>手臂平舉是一個凹陷處。三指掐住肩峰轉角與肱骨小結節，中間那指即是。</li>
+      <li>兩個扎法：垂直進去進到關節腔，治肩關節發炎、五十肩；斜向三角肌則治三角肌疼痛（可肩髃斜向三角肌＋垂直臂臑兩支加電）。7 分會卡到骨頭。</li>
+      <li>肩三針：肩髃（大腸）、肩髎（三焦）、臑俞（小腸）；不含小腸經肩貞（已離開關節腔）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">肘髎 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>曲池後上 1 指幅（1 寸），在肱骨內側緣。</div>
+    <ul class="notes">
+      <li>不可扎到肱骨後面（那裡是三焦經）。</li>
+      <li class="box-green"><b>【肘髎常用】</b>治網球肘，初期效果較好，兩個禮拜可能就好。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">手五里</div>
+    <div class="loc"><b>取穴：</b>肩髃和曲池連線，曲池上 4 指 3 寸。</div>
+    <ul class="notes">
+      <li>沒貼骨頭、也不在分肉之間，所以很少扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">臂臑</div>
+    <div class="loc"><b>取穴：</b>三角肌最下緣、在肱骨的附著點；腋窩橫紋水平線下三指 2 寸。</div>
+    <ul class="notes">
+      <li>有機會扎。附著點前 1 分。垂直皮膚進針。治療五十肩：肩髃＋臂臑加電。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">巨骨</div>
+    <div class="loc"><b>取穴：</b>肩胛嵴與鎖骨交界處的凹陷處。</div>
+    <ul class="notes">
+      <li>摸到凹陷後要退後 5 分才扎得到。不要垂直、也不要斜向裡面（怕扎到肺），要斜向手臂往外側進針，可治棘上肌問題。</li>
+      <li>棘上肌症候群（手舉 60–120 度會痛）：巨骨和肩髃加電。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">扶突／天鼎</div>
+    <div class="loc"><b>取穴：</b>正中喉結水平旁開 4 指幅（3 寸），落在 SCM 正上方是扶突；扶突往後下 1 寸、落在 SCM 後緣是天鼎。</div>
+    <ul class="notes">
+      <li>先找喉結：正坐直視前方，下巴（下頷骨）到胸骨柄的上 1/4 是喉結。SCM：耳後乳突一條肌肉拉到前面。</li>
+      <li>正中喉結旁開 2 指幅（1.5 寸）落在 SCM 邊緣是胃經人迎；旁開 4 指（3 寸）落 SCM 正上方是扶突。人迎與扶突同水平。扶突水平拉到後緣只剩 0.5 寸是小腸經天窗。</li>
+      <li>最危險是 SCM 前緣（都是頸動脈），後緣都沒事，包括扶突還好。落枕一般是斜方肌、提肩胛肌，八成在 SCM 中後段。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">口禾髎</div>
+    <div class="loc"><b>取穴：</b>鼻唇溝上 1/3 與鼻子內圈外側緣垂線的交界處。</div>
+    <ul class="notes">
+      <li>鼻唇溝上 1/3 叫人中。人中水平線與鼻子內圈外側緣垂線的交界處即是。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">迎香 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>鼻翼水平與法令紋的交界。</div>
+    <ul class="notes">
+      <li>直扎 2–3 分：治顏面神經痛、顏面偏癱。</li>
+      <li>斜扎治鼻子：針尖指向鼻中膈、戳到下鼻甲（鼻子下 1/3）。寒性鼻塞＝過敏性鼻炎（鼻鼽），扎 2 支迎香；熱性＝鼻竇炎（鼻淵），扎 2 支迎香＋1 支印堂透山根（蝶竇區，易感染，要消毒乾淨）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== s3 足陽明胃經 ===== -->
+<section class="section" id="s3">
+  <div class="section-header"><h2>足陽明胃經</h2><div class="meta">承泣・四白・巨髎・地倉・大迎・頰車・下關・頭維・人迎・水突・氣舍・缺盆・胸腹部諸穴・髀關～梁丘・犢鼻・足三里・上巨虛～豐隆・解溪～厲兌</div></div>
+
+  <div class="point">
+    <div class="point-name">承泣</div>
+    <div class="loc"><b>取穴：</b>下眼瞼下 7 分是眼眶骨，眼眶骨最下緣正中間一半是承泣。</div>
+    <ul class="notes">
+      <li>7 分是國考會考的，實際扎時用手指摸眼眶骨即可。這支針是從眼眶骨裡面爬進去的。</li>
+      <li>扎到眼眶骨裡面的有三支：承泣、球後（下眼眶骨外 1/4，經外奇穴）、上睛明（眼內眥往內 1 分再往上 2 分），扎在眼眶骨與眼球之間；其他都在眼球外圍。</li>
+      <li>治眼球裡面問題（神經、視網膜、六條肌肉、眼球前後徑）都要扎進去才有效。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">四白</div>
+    <div class="loc"><b>取穴：</b>承泣下 3 寸（即下眼瞼下 1 寸）是眶下孔（一個洞），就是四白。</div>
+    <ul class="notes">
+      <li>進針方向由上往下或由下往上皆可，但要扎進那個洞裡面。拿 1 寸針進 3 分即可。很少扎，因為洞只有一點點。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">巨髎</div>
+    <div class="loc"><b>取穴：</b>瞳孔直下、鼻翼水平拉開的交界點，距鼻翼旁開 8 分，直扎。</div>
+    <ul class="notes">
+      <li>鼻翼水平拉開三個穴：5 分迎香（大腸）、8 分巨髎（胃）、2 寸顴髎（小腸，眼外眥直下）。</li>
+      <li>顏面神經中斷損傷、法令紋消失時，一字拉開扎一排：迎香、巨髎、顴髎，拉到最旁邊下關、再到耳後三焦經翳風，全扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">地倉</div>
+    <div class="loc"><b>取穴：</b>嘴角旁開 4 分。</div>
+    <ul class="notes">
+      <li>往頰車方向扎，扎在臉皮夾層（肌肉層）中間，由前往後，不要穿到口腔。用在口眼歪斜、顏面偏癱。</li>
+      <li>判斷患側：微笑嘴角下歪那邊、眉毛上頂無抬頭紋那邊、眼睛閉不起來那邊、嘟嘴吹氣漏風那邊，即患側。</li>
+      <li>大陸扎健側（不加電），韓國扎患側斜扎（肌肉紋理、經外奇穴），孔文扎患側直扎正經穴道、針扎患側一定加電。兩周到三個月一定要好，但仍約 20% 不會好；韓式＋台式效果更快，三周到一個月會好。</li>
+      <li>周邊型（末梢神經）較好治；中樞型（腦部血管損傷）較難治，與周邊型唯一差異是抬頭紋（中樞型抬頭紋還在）。臉上問題用經絡循行去治，不用上中下焦分法；半邊臉幾乎都是胃經，痘痘也用經絡看、開藥；臉上最多大腸經和胃經。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">大迎</div>
+    <div class="loc"><b>取穴：</b>下頷骨轉角往前斜下 1.3 寸（不是頰車），有一條垂直切跡、走神經血管的地方。</div>
+    <ul class="notes">
+      <li>可沿下頷骨方向由後往前扎、扎在凹槽上。很少扎，一般都扎頰車。過皮可快，行針要慢（下面有血管）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">頰車</div>
+    <div class="loc"><b>取穴：</b>下頷骨轉角斜上 45 度，進 0.5 寸。</div>
+    <ul class="notes">
+      <li>此處上下都是咬肌，用力咬會鼓起來；放鬆後上下咬肌正中間即頰車。斜上進去不要超過 1 寸（會到口腔），下頷骨寬度約 5 分。</li>
+      <li>直扎：治顏面神經痛、三叉神經痛（單純神經痛、肌肉正常）。對地倉方向斜扎兩支透針（針鋒相對）：治口眼歪斜、顏面偏癱、沒表情（肌肉問題）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">下關</div>
+    <div class="loc"><b>取穴：</b>嘴巴打開時下頷骨後腳往前卡住那點；V 字形直上、顴骨弓最下緣。距耳屏前 8 分最凹陷處。</div>
+    <ul class="notes">
+      <li>治下巴脫臼、咬肌拉傷、開合兩段式叩叩。脫軌要先復位（下拉、出去、推回，直角三角形），復位後再扎下關。顴骨弓裡面是骨頭，不會到口腔，最深 1.5 寸，一般扎 7 分。</li>
+      <li>復位兩法：拇指放進嘴巴大臼齒往前拉出去、下壓、再拉回；或站後面直接下壓、出去、拉回（一定被咬，要壓兩根下頷腳，壓顴骨弓無效）。</li>
+      <li>下關垂直皮膚直扎。頭維跟下關幾乎一直線下來，但用耳屏前 8 分凹陷處較準。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">頭維</div>
+    <div class="loc"><b>取穴：</b>正中督脈旁開 4.5 寸（4 指 3 寸＋2 指 1.5 寸）；眉毛直上四指幅 3 寸。</div>
+    <ul class="notes">
+      <li>督脈到瞳孔距離 2.25 寸，兩倍 4.5 寸。</li>
+      <li>髮際線上的點叫髮際（經外奇穴），用在植物人提升辨識能力。所有正經穴都是髮際線倒退 5 分：正中是神庭、旁開 3 寸是本神（膽）。把腦神拉回來、阿茲海默、前額葉退化（髮際或正經皆可），最少三支：中間神庭、兩邊本神。</li>
+      <li>針尖由上而下或由下而上皆可，沒有橫扎；臥床通常由前往後扎。額五針（經外奇穴）：髮際線正中＋旁開 4.5 寸（2 支）＋旁開 2.25 寸（2 支）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">人迎／水突／氣舍／缺盆</div>
+    <div class="loc"><b>取穴：</b>人迎＝喉結水平旁開 1.5 寸、SCM 前緣；氣舍＝SCM 前腳（胸骨柄支）與鎖骨交界處；水突＝人迎與氣舍連線中點（SCM 前緣）；缺盆＝SCM 後腳、斜方肌、鎖骨三角形正中間。</div>
+    <ul class="notes">
+      <li>SCM 前面要很小心（下面動脈、氣管）；SCM 上或後面算安全。人迎、水突、氣舍幾乎一直線（旁開 1.5 寸）。三個突：另一個是胸骨柄正上方的任脈天突。</li>
+      <li>正中任脈到乳頭 4 寸、到腋窩直下也 4 寸（共 8 寸）。缺盆按下去貼鎖骨正上方，缺盆到乳頭連線即旁開 4 寸線。缺盆扎超過 7 分會氣胸（肺尖在此），直扎進 3 分就好，通常不扎或斜扎。</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">胸部旁開 4 寸：氣戶・庫房・屋翳・鷹窗・乳中・乳根</div>
+    這裡的穴直扎一定氣胸，千萬不要直扎。橫膈以上叫上焦（旁開 4 寸），橫膈到肚臍是中焦、肚臍到恥骨聯合是下焦（往內縮，旁開 2 寸）。乳頭在四五肋之間即乳中穴（不能扎）。起始穴在鎖骨與一肋之間是氣戶，一、二肋之間是庫房，往下類推，兩肋之間共六個穴；中焦、下焦也各 6 個，共 18 個。斜扎可豐胸（底下脂肪、胸大肌、肋骨，一根肋骨厚約 5 分，斜扎不易中獎）。
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">腹部旁開 2 寸：不容・承滿・梁門・關門・太乙・滑肉門（中焦）</div>
+    兩乳之間中點是膻中；膻中下 1.6 寸是中庭（兩肋間 1.6 寸）。任脈：中庭到肚臍 8 寸，一半中脘，上面再一半是心經募穴巨闕。巨闕旁開 2 寸即中焦第一個不容（肚臍上 6 寸、旁開 2 寸），每隔 1 寸一穴到滑肉門共 6 個。臨床上中脘旁開的梁門較重要。<br>
+    <b>五柱穴</b>：治腸胃不適，虛（痞證、瀉心湯）實（結胸、陷胸湯）寒熱皆可，寒證可加灸：巨闕、中脘、下脘、兩側梁門（即中脘上、下、旁開都 2 寸）。
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">下腹旁開 2 寸：天樞・外陵・大巨・水道・歸來・氣衝</div>
+    天樞＝肚臍旁開 2 寸，是大腸經募穴（後面大腸俞 L4 下旁開 1.5 寸）。扎天樞刺激腸胃蠕動、腸胃炎、虛性便祕，醫美用於減肥。<b>減肥 5 支</b>：天樞 ×2、大橫（脾，旁開 4 寸）×2、水分（任脈，肚臍上 1 寸）×1（神闕不能扎，用灸）；氣虛肥胖加氣海、關元。<br>
+    肚臍到恥骨聯合 5 寸，一般只扎到肚臍下 3 寸。恥骨聯合上緣正中旁開 2 寸是氣衝（最後一個）。最重要的是水道：肚臍下 3 寸是關元，關元旁開 2 寸是水道（胃經利水穴）。關元練丹田，下焦氣虛可扎氣海（肚臍下 1.5 寸）、關元，二者合稱丹田。
+  </div>
+
+  <div class="point">
+    <div class="point-name">髀關／伏兔／陰市／梁丘</div>
+    <div class="loc"><b>尺度：</b>髕骨上緣到恥骨聯合水平 16 寸，恥骨聯合水平到 ASIS 2 寸，髕骨上緣到下緣 2 寸。</div>
+    <ul class="notes">
+      <li>ASIS 是男生皮帶卡住的位置。胃經從髕骨外上角到 ASIS 拉線，18 寸分三等份：上面髀關、下面伏兔（壓下去在分肉之間）。髀關沒跟恥骨聯合水平。</li>
+      <li>脾經是髕骨內上角到恥骨聯合水平 16 寸，中間一半是箕門。</li>
+      <li>伏兔到髕骨外上角 6 寸，一半是陰市，陰市下 1 寸是梁丘（胃經郄穴）。梁丘重要，陰市較少扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">犢鼻／足三里 <span class="star">★足三里</span></div>
+    <div class="loc"><b>取穴：</b>足三里＝脛骨平台下四指 3 寸、旁開 1 寸；犢鼻＝外膝眼。</div>
+    <ul class="notes">
+      <li>犢鼻（胃經）跟膝眼（經外奇穴）都扎到脛骨平台。股骨往內削、膝內側受力大，所以脛骨內側較粗；內側側副韌帶受傷較慢好（一個月，外側兩週）。退化性關節炎一般摸內側（半月板先掛掉）。</li>
+      <li>脛骨平台由脛骨貢獻、腓骨沒貢獻。腓骨下段 1/4 最重要（與腳踝共構力學結構），此處骨折要轉西醫、不要針。</li>
+      <li>正坐 90 度屈膝最凹陷點做記號 X；扎針都扎到脛骨平台（髕骨最下緣那條水平線），上兩點是膝眼、下兩點是犢鼻。脛骨平台兩個尖尖的山是十字韌帶附著處；X 光中間糊糊可能骨裂、十字韌帶斷，請做關節鏡、不要扎。</li>
+      <li>脛骨平台往外踝尖 16 寸、往內踝 15 寸（內踝較高）。<b>足三里</b>是胃經合穴一定要會；找完上巨虛、與平台中間一半即足三里，距上巨虛 3 寸。</li>
+      <li class="box-green">口訣：梁丘犢鼻足三里，上巨虛連條口胃，下巨虛跳上豐隆。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">上巨虛／條口／下巨虛／豐隆 <span class="tag">會考</span></div>
+    <div class="loc"><b>取穴：</b>脛骨往外旁開 1 寸全是胃經（脛前肌鼓起，多氣多血）。脛骨平台往外踝尖 16 寸，一半 8 寸（＝承山水平）。</div>
+    <ul class="notes">
+      <li>貼腓骨前緣是膽經、後緣是膀胱經。一半（上下各 8 寸）、脛骨外旁 1 寸是條口；條口上 3 指 2 寸是上巨虛、下 1 寸是下巨虛、往外 1 寸是豐隆。</li>
+      <li>上巨虛是大腸的合穴（六腑合穴），下巨虛是小腸的合穴，豐隆是胃經利水。會診時這三支必扎：改善後天消化、顧大腸排便、顧小腸、利水，基本針數之後再加減（腦傷再加強腦部等）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">解溪／衝陽／陷谷／內庭／厲兌</div>
+    <div class="loc"><b>取穴：</b>由內到外：脛前肌、伸拇趾肌、伸趾肌群。</div>
+    <ul class="notes">
+      <li>踝橫紋＝內踝下緣到外踝下緣連線（申脈到照海連線）。踝橫紋上，脛前肌與伸拇趾肌中間是肝經中封；伸拇趾肌與伸趾肌群中間是胃經解溪（對第 2、3 趾中間，伸拇趾肌陷進去不好摸）。</li>
+      <li>第 1、2 趾齊縫是肝經太衝；第 2、3 趾齊縫爬上去是胃經衝陽（足背最高點，有趺陽脈動脈，由上往下斜扎插在骨縫處）。腳每個齊縫處叫上八風（手叫上八邪），太衝是其中之一。</li>
+      <li>第 2、3 趾本節連線上 5 分是陷谷、下 5 分是內庭。第 2 趾小趾側是厲兌。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== s4 足太陰脾經 ===== -->
+<section class="section" id="s4">
+  <div class="section-header"><h2>足太陰脾經</h2><div class="meta">隱白・大都・太白・公孫・商丘・三陰交・漏谷・地機・陰陵泉・血海・箕門・衝門・府舍～腹哀・食竇～周榮・大包</div></div>
+
+  <div class="point">
+    <div class="point-name">隱白／大都／太白／公孫／商丘 <span class="star">★太白・公孫・商丘</span></div>
+    <div class="loc"><b>取穴：</b>脾經走內側赤白肉際。隱白＝足大趾去爪甲如韭葉；大都＝本節前 5 分、赤白肉際、蹠骨後凹陷處；太白＝第一蹠骨前凹陷處下緣（貼骨）；公孫＝第一蹠骨後凹陷處下緣；商丘＝內踝尖水平斜下 30~45 度最凹陷處。</div>
+    <ul class="notes">
+      <li>太白是俞穴，1 寸針可全進，往湧泉方向扎。</li>
+      <li><b>公孫</b>最重要：在第一蹠骨與楔狀骨接縫處前 5 分，還不到交界。是脾經絡穴又通衝脈（衝脈心胸胃），第二線急救穴道。然谷在楔狀骨與舟狀骨接縫處（腎經，足弓最高點）；足弓最高點往前兩指幅 1.5 寸就是公孫（會考！）。</li>
+      <li>商丘不貼脛前肌腱。可找內踝尖水平斜下 30~45 度最凹陷處，請病人腳內彎或動一下即可找到。拿 1 寸針垂直進針，2 分就到底。</li>
+      <li class="box-green"><b>腳踝扭傷：</b>內側韌帶三條 —— 商丘（脾）、照海、太谿/水泉（腎）。理學檢查按哪條痛就扎哪條。外側韌帶三條 —— 丘墟（膽）、申脈（膀胱）、崑崙/僕參（膀胱）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">三陰交 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>小腿內側，內踝尖（不是腳踝下緣）往上四指 3 寸，脛骨內側緣（後緣）。</div>
+    <ul class="notes">
+      <li>脛骨平台到內踝尖 15 寸；脾經與肝經穴道都貼脛骨內側（後）緣，只是穿插。</li>
+      <li>三陰交可通脾、肝、腎。婦科三陰交（婦科最重要是肝經，再來衝任脈；脾經跟血有關、腎經跟天癸有關），月經、胎產、更年期皆可用。陰虛陽亢、潮熱也用三陰交。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">漏谷</div>
+    <div class="loc"><b>取穴：</b>小腿內側，內踝尖往上 6 寸。</div>
+    <ul class="notes">
+      <li>找法：小腿肚一半是膀胱經承山（脛骨平台下 8 寸、外踝尖上 8 寸），往前內側對過來是肝經中都（脛骨平台下 8 寸、內踝尖上 7 寸，肝經郄穴，老師喜歡扎）。漏谷是中都水平再下 1 寸（內踝尖上 6 寸）。</li>
+      <li>漏谷較少用，三陰交、地機、陰陵泉都很常用。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">地機 <span class="star">★</span>／陰陵泉 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>陰陵泉＝脛骨平台往下三指 2 寸、到骨頭轉彎處（脾經合穴，脾統血）；地機＝陰陵泉下四指 3 寸（脾經郄穴）。</div>
+    <ul class="notes">
+      <li class="box-green"><b>膝蓋問題：</b>骨頭→轉西醫；滑液囊→針筒抽；韌帶：內側側副韌帶（最難好）扎陰陵泉＋血海、外側側副韌帶扎陽陵泉＋膝陽關、髕前韌帶直接貫穿、十字韌帶扎膝眼/犢鼻；後面囊腫拿針筒抽（抽完綁護膝一兩天）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">血海 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>髕骨內上角做直角、斜上 45 度，三指 2 寸。垂直皮膚進針。</div>
+    <ul class="notes">
+      <li>鍾永祥：血海類比四物湯、三陽絡類比四君子湯，各扎一針類比八珍湯。</li>
+      <li>臨床與血有關：肝藏血、脾統血、心主血、腎生血（EPO）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">箕門／衝門</div>
+    <div class="loc"><b>取穴：</b>衝門＝腹股溝盡頭、恥骨聯合上緣中點旁開 3.5 寸；箕門＝衝門對髕骨內上角連線（16 寸）的中間一半。</div>
+    <ul class="notes">
+      <li>箕門貼縫匠肌內側緣，分肉之間在縫匠肌下緣進針。大腿內側拉傷可局部當阿是穴。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">府舍／腹結／大橫／腹哀</div>
+    <div class="loc"><b>取穴：</b>先找大橫＝肚臍水平拉開 4 寸（2 寸是天樞）。</div>
+    <ul class="notes">
+      <li>大橫下 1.3 寸是腹結（男子積疝、女子瘕聚、子宮肌瘤、巧克力囊腫；寒用灸、熱證針瀉）。恥骨聯合水平正中旁開 4 寸再往上 0.7 寸是府舍（少扎，治盆腔）。</li>
+      <li>大橫直上 3 寸是腹哀；腹哀上 1.6 寸是膽經募穴日月，再上 1.6 寸是肝經募穴期門（乳頭下兩肋間＝3 寸）。兩穴聚離兩指幅是交會（肝膽交會、脾膽交會）；經絡靠近會互相影響，氣不平衡時有生剋關係。</li>
+      <li>任脈旁開 2 寸腎經、4 寸乳頭（胃）、5 寸心包、6 寸脾、7 寸膽、8 寸（腋窩直下）也是膽。第 4、5 肋間弧線到腋窩直下：膻中（中點）、神封（腎）、乳中（胃）、天池（心包）、天谿（脾）、輒筋（膽）、淵腋（膽，腋窩直下）。腹部直扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">食竇／天谿／胸鄉／周榮</div>
+    <div class="loc"><b>取穴：</b>先找天谿＝第 4、5 肋間，正中旁開 6 寸（乳頭向外三指 2 寸）。</div>
+    <ul class="notes">
+      <li>天谿往下 1.6 寸是食竇；往上 1.6 寸是胸鄉；胸鄉再上 1.6 寸是周榮。周榮跟喙突下中府（肺經）只差兩指幅，是脾經和肺經交接處。</li>
+      <li>拿 1 寸針扎 5 分就好，由前往外或由外往內斜扎皆可。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">大包</div>
+    <div class="loc"><b>取穴：</b>腋窩直下 6 寸。大包上 3 寸是淵腋。</div>
+  </div>
+</section>
+
+<!-- ===== s5 手少陰心經 ===== -->
+<section class="section" id="s5">
+  <div class="section-header"><h2>手少陰心經</h2><div class="meta">極泉・青靈・少海・靈道・通里・陰郄・神門・少府・少衝</div></div>
+
+  <div class="point">
+    <div class="point-name">極泉</div>
+    <div class="loc"><b>取穴：</b>腋窩正中間。</div>
+    <ul class="notes">
+      <li>進去是臂神經叢，扎針要很小心，老師不喜歡扎（裡面都是神經）。頂進去是心經，可刺激腦袋清楚但會很痛；醒腦開竅不是從這裡，平常沒在扎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">青靈</div>
+    <div class="loc"><b>取穴：</b>二頭肌邊界（尺側緣）、肘橫紋上來四指 3 寸；或腋窩到肘橫紋（9 寸）下 1/3，肌肉下緣。</div>
+    <ul class="notes">
+      <li>二頭肌橈側緣肺經、尺側緣心經、中間心包經。青靈在二頭肌邊界尺側緣，扎在肌肉下緣 5–7 分。偶爾扎，治二頭肌腱問題。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">少海</div>
+    <div class="loc"><b>取穴：</b>肘橫紋延長拉開與肱骨內上髁內側緣、骨頭交界處，扎在骨頭內側緣。</div>
+    <ul class="notes">
+      <li>心經少海（陰面）、小腸經小海（陽面）。二頭肌肌腱與肘橫紋交界是心包曲澤（尺側）、肺經尺澤（橈側）皆陰面；肱骨外上髁與橈骨頭交界是曲池（大腸，陽面）。</li>
+      <li>高爾夫球肘可用少海，也可針小腸經小海、局部阿是穴。肱骨內上髁是陰面肌肉群附著點，外上髁是陽面肌肉附著點。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">靈道／通里／陰郄／神門 <span class="tag">通里=絡・陰郄=郄・神門=原</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋與尺側屈腕肌肌腱交界是神門，上 5 分陰郄、再上 5 分通里、再上 5 分靈道。</div>
+    <ul class="notes">
+      <li>四個穴三個間隔共 2 指幅（1.5 寸），底下 3 個較重要。通常斜扎、不要直扎：可陰郄透神門（較常），或通里透陰郄透神門，不從神門直接挖進去。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">少府 <span class="tag">滎火</span></div>
+    <div class="loc"><b>取穴：</b>第 4、5 本節內側緣連線中點，往上 5 分。</div>
+    <ul class="notes">
+      <li>本節內側緣是板機指的發源地（發炎），遠端肌腱拉扯受限就兩段式；治板機指要治本節內側緣，不治末端指關節。</li>
+      <li>少府剛好在感情線前緣（約差 1 分），感情線是局部纖維化、扎到會痛要避開。第 3、4 指本節內側緣連線中點上 5 分是勞宮（心包），剛好在少府旁邊（孔文老師常用 3、4 指）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">少衝</div>
+    <div class="loc"><b>取穴：</b>第 5 指指甲橈側緣。</div>
+  </div>
+</section>
+
+<!-- ===== s6 手太陽小腸經 ===== -->
+<section class="section" id="s6">
+  <div class="section-header"><h2>手太陽小腸經</h2><div class="meta">少澤・前谷・後谿・腕骨・陽谷・養老・支正・小海・臑俞・肩貞・秉風・天宗・曲垣・肩外俞・肩中俞・天窗・天容・顴髎・聽宮</div></div>
+
+  <div class="point">
+    <div class="point-name">少澤</div>
+    <div class="loc"><b>取穴：</b>小指尺側緣。</div>
+    <ul class="notes">
+      <li>所有井穴都瀉熱。通乳腺：治乳腺炎、懷孕乳腺塞、嬰兒咬破皮感染（放血瀉熱），脹奶可扎針刺激。不是豐胸（豐胸是豐脂肪、不是乳腺）。</li>
+      <li>瀉小腸經熱：心火下移小腸到膀胱（經三焦）造成小便疼痛，可瀉熱。小便問題兩條路：腎司二便走膀胱經；小腸經由三焦到膀胱（心火下移小腸），可同時扎小腸經與三焦經。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">前谷／後谿 <span class="star">★後谿</span></div>
+    <div class="loc"><b>取穴：</b>前谷＝本節前 5 分凹陷處（指骨下緣）；後谿＝本節後 5 分凹陷處（掌骨下緣、赤白肉際）。</div>
+    <ul class="notes">
+      <li>貼骨緣，扎骨頭下緣；手心向下水平進針，進 5 分就好。前谷少扎（滎穴、瀉熱）。</li>
+      <li><b>後谿通督脈</b>，好用、一穴多用。落枕：小腸經往上到背部、接近膀胱經與督脈，落枕在頸部後面可扎後谿（拉斜方肌、處理督脈）。</li>
+      <li>腰扭傷：痛在膀胱經、完全彎不下去，叫病人趴床扎委中會起不來（趴著腰收緊更痛）。用同名經療法扎後谿（小腸通膀胱，同名經）。後谿又通督脈，可處理棘後、棘間韌帶、椎體棘突間；督脈又通頭頂，正中頭頂痛也可用。</li>
+      <li>督脈接任脈，列缺通任脈，所以扎列缺也可治背後正中疼痛；可後谿配列缺，中間通來通去（走外面）。若脾氣暴怒屬肝經（肝經到巔頂），要扎肝經從裡面通上來才有用。經絡循行很重要。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">腕骨 <span class="star">★</span>／陽谷</div>
+    <div class="loc"><b>取穴：</b>腕骨＝三角骨與第五掌骨之間；陽谷＝三角骨與尺骨莖突（尺骨小頭）之間。赤白肉際上、扎骨縫進 5 分。</div>
+    <ul class="notes">
+      <li>腕骨較常扎；陽谷少扎、很淺，有時用腕骨取代。手腕關節問題（跌倒撐地）會扎，陽谷不好扎就扎腕骨、再來後谿。</li>
+      <li>第五掌骨、第五蹠骨特別脆弱：腳內翻腓短肌肌腱拉到第五蹠骨會裂（骨折）。骨折疼痛治一個月沒好就去照 X 光。小孩骨頭不易斷但會痛腫，一定要拍 X 光；成人若斷可整個拉開。手腕扭傷韌帶拉傷一定先用傷科手法復位再扎針才有效。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">養老 <span class="tag">郄穴</span><span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>找尺骨小頭，做下緣與內側緣的切線交點。</div>
+    <ul class="notes">
+      <li>標準找法：屈肘、側立、掌心向下，另手拇指斜向上壓住尺骨小頭，掌心向內轉，拇指間壓到的骨縫處即養老（即屈肘側立掌心向內時的骨縫）。</li>
+      <li>第二找法：找尺骨小頭下緣與內側緣切線交點（斜向內 45 度），垂直皮膚直扎、要貼骨緣（有磨骨頭感），不貼骨易扎到三焦經。</li>
+      <li>郄穴很強，處理小腸經一定用到。小腸經走背部、肩胛骨 2/3 是小腸經，上班族肩頸痠痛、電腦肩，養老一定要扎。古代養身可扎足三里（胃）和養老（小腸），平時也可貼磁石。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">支正 <span class="tag">絡穴</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋到肘橫紋（12 寸）一半再往前 1 寸，尺骨的下緣。</div>
+    <ul class="notes">
+      <li>少扎。為何是絡穴？小腸經走陽面下緣，接近陰面下緣（心經），心與小腸絡在此：心到小腸的絡穴從通里過來，小腸到心的絡穴從支正過來。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">小海</div>
+    <div class="loc"><b>取穴：</b>掌心向上，鷹嘴突與內上髁連線中點，往前（往末梢）5 分。</div>
+    <ul class="notes">
+      <li>掌心向上、橈尺骨平行時，小腸經走鷹嘴突與內上髁之間（翻過來則走鷹嘴與外上髁之間，掌心向上才對）。小海底下是尺神經，扎下去會電到小指頭。</li>
+      <li>尺神經症候群：影響第 4、5 指麻；麻痺久肌肉萎縮、手收進來像猿形手（表示三個月以上），若還能伸直但 4、5 指麻表示三個月以內。</li>
+      <li>鑑別診斷（頸椎壓迫 vs 尺神經）：① 正坐、醫師十指緊扣下壓頭部，更麻則 50% 機率頸椎壓迫；② 離開測試：醫師中指跨大迎穴（不壓頸動脈）、拇指靠枕骨，直拉 10 秒若麻減輕即確定頸椎壓迫。</li>
+      <li>頸椎問題旁開 5 分斜刺椎間孔治療；尺神經症候群扎小海＋養老、腕骨或後谿，小海必扎。水平拉上 45 度角 5–7 分、由後往前扎命中尺神經，要慢慢電、不要一下戳，不可劃到髓鞘（除了電還會熱，10 天才好、要一直熱敷）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">臑俞 <span class="star">★</span>／肩貞</div>
+    <div class="loc"><b>取穴：</b>臑俞＝肩峰轉角往內兩指幅 1.5 寸，貼肩胛嵴下緣；肩貞＝臑俞與腋橫紋連線、腋橫紋往上 1.5 寸（三角肌下緣）。</div>
+    <ul class="notes">
+      <li>肩峰轉角下凹陷是三焦肩髎；往內 1.5 寸貼肩胛嵴下緣淺凹槽是臑俞。臑俞常用，在關節腔裡不會氣胸，很痠，肩頸痠痛必扎。</li>
+      <li>肩貞不在肩關節腔。肩關節腔的肩三針＝肩髃（大腸）、肩髎（三焦）、臑俞（小腸），肩貞不屬肩三針（考試愛考）。肩頸四條經：最前膽經肩井、其次大腸肩髃巨骨、再三焦肩髎天髎、最後小腸經（背、肩胛骨幾乎都小腸經）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">秉風／天宗／曲垣 <span class="star">★曲垣</span></div>
+    <div class="loc"><b>取穴：</b>秉風＝肩峰轉角到肩胛骨內側緣整個寬度一半、肩胛嵴上緣；天宗＝肩胛嵴下緣到肩胛骨最下緣的上 1/3 凹陷處；曲垣＝肩胛嵴最內側緣（肩胛骨邊緣往內 5 分）凹陷處。</div>
+    <ul class="notes">
+      <li>秉風扎肩胛嵴上緣、垂直地球表面較穩（坐著則平行脊椎），貼肩胛嵴邊緣進針扎在嵴上（棘上肌）；超過正中一半前會氣胸。</li>
+      <li>天宗是肩胛骨附近最痠的點，安全；肩胛骨透明、2 寸針會刺穿，扎到骨頭就停，扎 7 分到 1 寸即可，可垂直皮膚進針。</li>
+      <li>曲垣一定要摸清楚凹陷，差 5 分就氣胸要小心。孔文老師對肩膀第一針扎曲垣（中控中心），再扎臑俞，再扎天髎（三焦）。<b>天髎找法：</b>肩峰到棘突連線中間最高點是肩井，肩井到曲垣連線中間一半是天髎★，平行脊椎直扎或稍往後較安全，最深 1.5 寸、通常 7 分。穿領口不便時可只扎肩井（直扎只 5 分、或斜後 5 分，肩井很強能不扎就不扎）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">肩外俞／肩中俞</div>
+    <div class="loc"><b>取穴：</b>肩中俞＝C7 下旁開三指 2 寸；肩外俞＝T1 下旁開四指 3 寸。</div>
+    <ul class="notes">
+      <li>判斷 C7/T1：椎體與椎體中間水平線往旁對到肩膀中外 2/3 寬、終止在肩膀最高點，這條即 C7、T1 所夾。C7、T1 中間是督脈大椎穴（瀉熱、梳理頭面氣，與百會成對穴；大椎＋百會通六陽經，百會只梳理頭面氣無瀉熱）。頭部發燒先大椎瀉熱放血、再扎百會；百會還能提氣。</li>
+      <li>這兩支有機會氣胸，5–7 分就好，垂直皮膚（斜進要小心），不然平行脊椎也可。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">天窗／天容</div>
+    <div class="loc"><b>取穴：</b>天窗＝喉結水平旁開 3.5 寸（SCM 後緣）；天容＝下頷骨轉角、下頷骨與 SCM 中間。</div>
+    <ul class="notes">
+      <li>扶突水平往後拉 5 分是天窗（SCM 後緣）。天容在骨頭與肌肉層之間，斜上 45 度進 5 分就是頰車（胃經）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">顴髎</div>
+    <div class="loc"><b>取穴：</b>鼻翼水平拉開、眼外眥直下交界處，距鼻翼三指 2 寸，在顴骨弓下方。</div>
+    <ul class="notes">
+      <li>旁開 8 分巨髎、旁開 2 寸顴髎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">聽宮</div>
+    <div class="loc"><b>取穴：</b>耳屏中間耳珠前面凹陷處（嘴巴打開會凹陷）。</div>
+    <ul class="notes">
+      <li>耳屏上切跡是三焦（耳門）、中間耳珠對過去是小腸（聽宮）、最下緣對過去凹槽是膽（聽會）—— 三、小、膽。</li>
+      <li>經絡循行：到顴髎治顏面神經、三叉神經，到耳朵治外耳道；小腸經經絡有經過眼睛且前後都有（目內眥、目銳眥），隱藏版要小心。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== s7 足太陽膀胱經 ===== -->
+<section class="section" id="s7">
+  <div class="section-header"><h2>足太陽膀胱經</h2><div class="meta">睛明・攢竹・眉衝・曲差・五處・承光・通天・絡卻・玉枕・天柱・背俞穴・承扶～委中・胞肓～至陰</div></div>
+
+  <div class="point">
+    <div class="point-name">睛明 <span class="star">★</span>／上睛明（經外奇穴）</div>
+    <div class="loc"><b>取穴：</b>睛明＝眼內眥往鼻樑方向 1 分；上睛明＝睛明往上 2 分，介在眼球與眼眶骨之間。</div>
+    <ul class="notes">
+      <li>睛明：貼鼻樑，針尖進 1–2 分，直扎裡面會出血。</li>
+      <li>上睛明：手放上去一邊眼眶骨、一邊眼球，指尖所指即進針處（眼球自然被卡住不會扎到）。拿 34 號軟針 1.5 寸穿到眼球後面，擋到東西就停；病人緊張、軟組織夾很緊就不要再針。</li>
+      <li>治眼睛裡面問題（視神經損傷、視網膜病變、黃斑部病變）三支：上睛明、承泣（胃，下眼瞼下 7 分）、球後（下眼眶外 1/4，經外奇穴）。出血量最大是上睛明，若針到血管會變熊貓，10 天會好（外出血輕微；內出血如鞏膜、水晶體滲血都很嚴重）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">攢竹 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>眼內眥直上眉毛頭，約正中旁開 5 分，眉棱骨最突起處（不要太上太下，否則扎到眼眶骨）。</div>
+    <ul class="notes">
+      <li>沿眉毛斜扎進 1/4 深，15–20 分鐘眼睛會很亮（比吃枸杞有效）；怕扎到眼球可把眉毛抓起來扎。用 1 寸針 30 或 32 號（太軟扎不進，此處肌肉硬），出血率高但不會變熊貓。</li>
+      <li>處理眼睛霧霧、看東西不夠亮；刺激眼輪匝肌循環、流目油。眉毛中間是魚腰（經外奇穴），攢竹透魚腰，再加膽經陽白（瞳孔直上、眉上 1 寸）由上往下透魚腰；抬頭紋消失（顏面損傷/神經麻痺/偏癱）時用。</li>
+      <li>第二種扎法：由眉毛頭上來 5 分，斜向山根（鼻樑）扎皺眉肌（縮眉毛）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">眉衝 <span class="star">★</span>／曲差</div>
+    <div class="loc"><b>取穴：</b>眉衝＝髮際線（眉上四指 3 寸）往上 5 分、正中旁開 5 分；曲差＝眉衝再往外旁開 1 寸（正中旁開 1.5 寸）。</div>
+    <ul class="notes">
+      <li>所有正經穴都在髮際線往上 5 分：正中神庭（督脈）、旁開 3 寸本神（膽），與意識形態有關，會刺激到額葉。由前往後或由後往前皆可。</li>
+      <li>加強意識形態，作老人腦部退化（失智）保養：眉衝、神庭、本神，常用於中醫精神科。</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">頭部尺寸</div>
+    兩耳間連線正中是百會，百會距前髮線 5 寸、距後髮際線 7 寸（前 5 後 7）。<br>
+    ・<b>往前 5 寸</b>：1.5、1.5、1、0.5、0.5（前頂→囟會→上星→神庭→前髮際線）。<br>
+    ・百會旁開 1.5 是膀胱經通天，通天再旁開 0.75 是膽經承靈。<br>
+    ・通天往前 4 寸：1.5、1.5、0.5、0.5（承光→五處→曲差→前髮際線）。<br>
+    ・承靈往前 4 寸：1.5、1、1、0.5（正營→目窗→臨泣→前髮際線，往下延伸到眉毛中間魚腰）。<br>
+    ・<b>往後 7 寸</b>：1.5、1.5、1.5（枕後粗隆＝項上線）、1.5（枕骨下緣）、1（後髮際線）（後頂→強間→腦戶→風府→瘂門→後髮際線）；枕骨下緣到後髮際線中間一半是瘂門。<br>
+    <b>▲治療眼睛問題的穴道：</b>前面（眼睛周圍）、頭上承光（膀胱）、頭後腦空（膽）、腳上光明（膽）。
+  </div>
+
+  <div class="point">
+    <div class="point-name">五處／承光 <span class="star">★承光</span>／通天 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>通天＝百會旁開 1.5 寸。承光治療眼睛問題。</div>
+    <ul class="notes">
+      <li>頭部都用 1 寸針徒手進針，很安全（不會穿進頭蓋骨），不過會緩慢出血。</li>
+      <li class="box-green">中風後遺症吃補陽還五湯，相當於 7 支針：百會＋通天 ×2＋承靈 ×2＋率谷（耳尖上 1.5 寸）透角孫 ×2。若左邊偏癱（左手、左臉、左腳）扎右邊腦部，是中樞型右腦損傷造成左偏癱。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">絡卻／玉枕／天柱</div>
+    <div class="loc"><b>取穴：</b>絡卻＝通天往後 1.5（正中旁開 1.5）；玉枕＝腦戶旁開 1.3 寸；天柱＝瘂門旁開 1.3 寸。</div>
+    <ul class="notes">
+      <li>正中督脈枕後粗隆（項上線上緣）是腦戶（基準），旁開 1.3 是膀胱經玉枕、旁開 2 寸是膽經腦空（視覺反射區，敲下去眼冒金星，可處理眼睛問題）。</li>
+      <li>天柱找法：枕骨下緣正中是風府（到髮際線剩 1 寸），風府與髮際線中間一半是瘂門，瘂門旁開 1.3 是天柱（用來標定三焦經天牖穴）。絡卻有爭議、少用。</li>
+      <li>（補充）膽經風池：枕骨下緣、正中旁開 2 寸，SCM 與斜方肌夾角，對著對側眼睛放針，仲景都用風池。</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">背俞穴（正中旁開 1.5 寸／第二側線旁開 3 寸）與定椎</div>
+    <b>定椎：</b>棘突與棘突距離 1.5 寸，穴位都在肋間，進針超過 1.5 寸會氣胸；C7 與 T1 中間水平線在肩膀 2/3；肩胛棘最上緣在 T4（最低不超 T5）；肩胛骨下緣在 T7–8；髖骨最高點在 L4/L5 中間水平線（L4 下督脈是陽關），L4、L5 是坐骨神經拉出來的地方。<br><br>
+    <b>第一側線（旁開 1.5）：</b>大杼 T1、風門 T2、肺俞 T3、厥陰俞 T4、心俞 T5、督俞 T6、膈俞 T7、肝俞 T9、膽俞 T10、脾俞 T11、胃俞 T12、三焦俞 L1、腎俞 L2、氣海俞 L3、大腸俞 L4、關元俞 L5、小腸俞 S1、膀胱俞 S2、中膂俞 S3、白環俞 S4。<br>
+    口訣：大杼風門肺厥陰｜心督膈俞八沒有｜肝膽脾胃俞｜三焦腎氣海大腸｜關元小腸到膀胱｜中膂白環八髎穴。<br><br>
+    <b>第二側線（旁開 3）：</b>附分 T2、魄戶 T3、膏肓 T4、神堂 T5、譩譆 T6、膈關 T7、魂門 T9、陽綱 T10、意舍 T11、胃倉 T12、肓門 L1、志室 L2、胞肓（第 2 薦椎孔水平）、秩邊（第 4 薦椎孔水平）。<br>
+    <b>八髎：</b>上髎 S1（距正中 1 寸）、次髎 S2（9 分）、中髎 S3（8 分）、下髎 S4（6 分）、會陽 S5。<br><br>
+    <b>老師特別說明：</b>風門（內外風皆可，與風池風府、風市同類；風市止癢特效）；肺俞（感冒呼吸咳喘，急熱性下針、虛性可灸，肺募中府）；膈俞（血會膈俞，月經量、淋漓、流鼻血）；肝俞（肝募期門）；脾俞（趴著用，效果不輸足三里）；腎俞（L2 下正中是命門，旁開 1.5 腎俞、再旁開 1.5 志室＝5 個補腎穴，趴著補腎；坐著可用腳上腎經太溪、水泉、大鐘）；大腸俞（大腸募天樞）。<b>膏肓</b>（T4 下旁開 3 寸，直扎危險會氣胸）；<b>上膏肓</b>（T4 椎體正中水平旁開 3 寸，直扎不加電、針在肋骨上可取代膏肓，得氣後拉起斜扎再加電，扎 5–7 分安全）。<b>八髎</b>由外往內斜扎可全進，治下焦濕熱（尾骶骨挫傷發炎、盆腔發炎白帶黃帶、月經痛），扎 1、2 支即可。
+  </div>
+
+  <div class="point">
+    <div class="point-name">承扶／殷門／浮郄／委陽／委中 <span class="star">★委中</span></div>
+    <div class="loc"><b>取穴：</b>承扶＝臀橫紋正中央（約坐骨結節附近）；殷門＝承扶下 6 寸；浮郄＝委陽貼股二頭肌肌腱向上 1 寸；委陽＝膕橫紋上、股二頭肌肌腱內側緣；委中＝膕橫紋上、股二頭肌肌腱與半腱肌連線中點。</div>
+    <ul class="notes">
+      <li>承扶提臀；殷門 1.5 寸全進都 OK（肌肉層）；委陽 7 分即可、全進仍安全；委中裡面是大條動脈、行針要慢、卡住就停（老師少用）。</li>
+      <li class="box-green"><b>膝蓋問題：</b>後膝五（六）針＝委中、委陽、浮郄＋陰谷（腎）＋曲泉（肝）＋〔合陽〕；前膝五針＝梁丘（或膝陽關）、陽陵泉、血海、陰陵泉、鶴頂穴＋〔膝眼或犢鼻〕。</li>
+      <li>腰背委中求：腰背問題扎委中。急性腰痛扎腰腿點 1（2、3 掌骨盡頭）、2（4、5 掌骨盡頭），扎完請病人鞠躬敬禮，腰就好了。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">胞肓／秩邊 <span class="star">★秩邊</span></div>
+    <div class="loc"><b>取穴：</b>胞肓＝第 2 薦椎孔水平、正中旁開 3 寸；秩邊＝第 4 薦椎孔水平、正中旁開 3 寸。</div>
+    <ul class="notes">
+      <li>秩邊與環跳（膽經）都治坐骨神經痛，這兩支扎下去都要電到腳底。秩邊扎太深也會電到膀胱（往前），環跳只往下傳到腳底。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">合陽／承筋／承山 <span class="star">★承山</span>／飛揚</div>
+    <div class="loc"><b>取穴：</b>合陽＝委中往下 2 寸（委中與阿基里斯腱連線上）；承筋＝合陽下 3 寸；承山＝承筋下 3 寸、腓腸肌人字縫處（外踝尖到脛骨平台 16 寸的一半、小腿肚凹陷處）；飛揚＝承山下 1 寸往外 1 寸。</div>
+    <ul class="notes">
+      <li>只有腰問題可扎合陽（穴性比委中弱）。承山理論上在一半的地方（除非阿基里斯腱斷掉腓腸肌往上收）；課本說治便秘（孔文認為溫溜較好用）、條口透承山治五十肩。飛揚是膀胱經絡穴。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">跗陽 <span class="tag">陽蹻脈郄穴</span></div>
+    <div class="loc"><b>取穴：</b>外踝上四指 3 寸，腓骨後緣（外踝上 3 寸腓骨前是膽經懸鐘）。</div>
+    <ul class="notes">
+      <li>貼腓骨進針。腓骨前緣走膽經、後緣走膀胱經；膽經只有一個穴走腓骨後緣＝陽交（陽維脈郄穴），陽交前面是外丘（膽經郄穴）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">崑崙／僕參／申脈／金門 <span class="star">★金門</span></div>
+    <div class="loc"><b>取穴：</b>崑崙＝外踝尖到阿基里斯腱最外側緣連線中間一半；僕參＝崑崙直下 1.5 寸；申脈＝踝尖直下摸到韌帶、韌帶與踝骨前緣交界處；金門＝第五蹠骨末端到申脈連線中點、骨頭下緣凹陷處（膀胱經郄穴）。</div>
+    <ul class="notes">
+      <li>崑崙很貼外踝骨後緣、有神經通過，扎下去會電到腳底，進針快行針慢。（太谿同法：內踝尖到阿基里斯腱最外側緣連線中間一半。太谿下 1 寸是水泉。）僕參由上往下斜扎、戳跟骨凹槽。</li>
+      <li>申脈由前往後、由下往上斜扎，扎到腓骨裡面 6 分左右。腳踝扭傷：內翻造成外踝拉傷，測哪條痛 —— 第一條扎膽經丘墟、第二條扎膀胱申脈、第三條扎崑崙或僕參。最常第一條痛扎丘墟。申脈通陽蹻脈（八脈八法穴，陽蹻郄穴是跗陽），治癲癇（陽蹻、陰蹻入絡腦），癲癇發作扎申脈、照海，中風腦損傷也可。</li>
+      <li>金門貼骨放進去。腓骨短肌拉在第五蹠骨，腳一內翻把肌腱拉起、第五蹠骨末端斷掉（X 光只有淺淺黑線易忽略，針灸都沒用）。腳踝拉傷都壓看看第五蹠骨，會痛去拍 X 光；裂掉石膏固定、10 天不著地會癒合，整個斷轉西醫。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">京骨／束骨／通谷／至陰</div>
+    <div class="loc"><b>取穴：</b>京骨＝第五蹠骨後凹陷處；束骨＝第五蹠骨前凹陷處；通谷＝通過本節、本節前 5 分；至陰＝第五小趾趾甲外側緣。</div>
+  </div>
+</section>
+
+<!-- ===== s8 足少陰腎經 ===== -->
+<section class="section" id="s8">
+  <div class="section-header"><h2>足少陰腎經</h2><div class="meta">湧泉・然谷・太谿・大鍾・水泉・照海・復溜・交信・築賓・陰谷・橫骨～俞府（腹胸部）</div></div>
+
+  <div class="point">
+    <div class="point-name">湧泉</div>
+    <div class="loc"><b>取穴：</b>腳趾往後，腳掌上 1/4 的人字縫處，約對 2、3 趾之間。</div>
+    <ul class="notes"><li>直扎 7 分即可。井穴，唯一不在腳趾、而在腳底的井穴。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">然谷 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>足弓一半的最高點（扁平足不適用）＝楔狀骨與舟狀骨之間＝公孫往後 1.5 寸。</div>
+    <ul class="notes">
+      <li>足底筋膜炎：拿 1.5 寸針，從內側緣肌肉較薄處斜進、針尖穿到公孫、然谷，不要從足底進去。補強腎經、足弓拉傷（長期跑步）、足底筋膜炎。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">太谿</div>
+    <div class="loc"><b>取穴：</b>內踝尖與阿基里斯腱最後緣連線中點，很貼近脛骨邊緣（差 1、2 分）。</div>
+    <ul class="notes"><li>進針慢，有神經經過，扎下去會電到腳底。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">大鍾 <span class="tag">絡穴</span></div>
+    <div class="loc"><b>取穴：</b>太谿、水泉連線中點往後 5 分，很貼近阿基里斯腱前緣。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">水泉 <span class="tag">郄穴</span></div>
+    <div class="loc"><b>取穴：</b>太谿直下 1 寸，扎在跟骨上。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">照海</div>
+    <div class="loc"><b>取穴：</b>脛骨與踝尖下的韌帶後緣交界處。</div>
+    <ul class="notes">
+      <li>由後往前、由下往上斜扎，扎到脛骨裡面，不要直扎（否則 2 分就到底）。照海通陰蹻脈，治陰蹻病（陰急而陽緩）、癲癇發作、腦傷、腳踝外翻（韌帶拉傷）。</li>
+      <li>一般補腎不太用腹部穴道，用腳上穴道或膀胱經腎俞、志室。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">復溜／交信 <span class="star">★交信</span></div>
+    <div class="loc"><b>取穴：</b>復溜＝交信後 0.5 寸（沒貼阿基里斯腱邊緣，會溜的在後）；交信＝內踝尖往上 2 寸畫水平線、貼脛骨後緣（有信用的在前）。</div>
+    <ul class="notes"><li>復溜是腎經利水穴道；交信是陰蹻脈郄穴。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">築賓 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>脛骨平台到內踝尖 15、下 1/3（即內踝尖往上 5 寸）水平往後拉，腓腸肌與比目魚肌交界隱約凹槽（約肝經蠡溝往後 1.2 寸）。</div>
+    <ul class="notes"><li>解毒的穴道（從小便出去）。陰維脈郄穴（內關通陰維，內關心胸胃）。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陰谷 <span class="tag">合穴</span></div>
+    <div class="loc"><b>取穴：</b>膝蓋內側緣，半腱肌、半膜肌之間（腳 90 度彎曲較好找肌腱）。</div>
+    <ul class="notes"><li>垂直皮膚進針，1 寸可全進，不要扎到肌腱會痛。</li></ul>
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">腹胸部：橫骨～俞府（對應任脈穴）</div>
+    <b>下焦（恥骨聯合上線水平到肚臍 5 寸）旁開 0.5 寸：</b>橫骨（對曲骨）、大赫（對中極）、氣穴（對關元）、四滿（對石門）、中注（對陰交）、肓俞（肚臍旁開 0.5，對神闕）。通常肚臍下 3 寸不扎，可用八髎取代曲骨、中極治下焦濕熱。<br>
+    <b>中焦（中庭到肚臍 8 寸）旁開 0.5 寸：</b>商曲（對下脘）、石關（對建里）、陰都（對中脘）、腹通谷（對上脘）、幽門（對巨闕；心募巨闕，治心問題可用巨闕或心俞）。<br>
+    <b>胸部旁開 2 寸：</b>步廊（對中庭）、神封（對膻中）、靈墟（對玉堂）、神藏（對紫宮）、彧中（對華蓋）、俞府（對璇璣），皆隔 1.6 寸。
+  </div>
+</section>
+
+<!-- ===== s9 手厥陰心包經 ===== -->
+<section class="section" id="s9">
+  <div class="section-header"><h2>手厥陰心包經</h2><div class="meta">天池・天泉・曲澤・郄門・間使・內關・大陵・勞宮・中衝</div><div class="meta">只有大陵斜針，其他都直針</div></div>
+
+  <div class="point">
+    <div class="point-name">天池</div>
+    <div class="loc"><b>取穴：</b>乳頭往外旁開 1 寸（即正中旁開 5 寸）。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">天泉</div>
+    <div class="loc"><b>取穴：</b>二頭肌正中間，腋橫紋下 2 寸。</div>
+    <ul class="notes">
+      <li>只有二頭肌損傷會用。腋橫紋下參考：下 1 寸臑會（三焦）、下 2 寸臂臑（大腸，三角肌下緣）、下 3 寸天府（肺）、下 4 寸俠白（肺）、下 2 寸天泉（心包）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">曲澤</div>
+    <div class="loc"><b>取穴：</b>二頭肌肌腱尺側緣。</div>
+    <ul class="notes"><li>行針要慢（有大條血管）。二頭肌損傷可扎。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">郄門 <span class="tag">郄穴</span></div>
+    <div class="loc"><b>取穴：</b>掌長肌、橈側屈腕肌兩筋之間，前臂一半再往下 1 寸（腕橫紋上 5 寸）。</div>
+    <ul class="notes"><li>在肌肉層，不會很痛。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">間使</div>
+    <div class="loc"><b>取穴：</b>兩筋之間，腕橫紋上 3 寸。徒手進針，不常扎。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">內關 <span class="tag">絡穴</span></div>
+    <div class="loc"><b>取穴：</b>兩筋之間，腕橫紋上 2 寸。直扎，徒手進針。</div>
+    <ul class="notes"><li>內關心胸胃；內關通陰維脈。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">大陵</div>
+    <div class="loc"><b>取穴：</b>兩筋之間，腕橫紋上。斜扎，徒手進針。</div>
+    <ul class="notes">
+      <li>腕隧道症候群：麻 1、2、3 及第 4 指一半（三指半），正中神經麻痺。兩掌對折更麻即正中神經症候群，扎大陵、內關兩支加電。症狀：催油門無法放開（輕微，兩周）、拿筷子拿不起來（嚴重，三個月）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">勞宮</div>
+    <div class="loc"><b>取穴：</b>有爭議，有人說 2、3 指之間，有人說 3、4 指之間；國考用書寫 3、4 指之間，感情線上 1 分（本節連線上 5 分）。可拍針。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">中衝</div>
+    <div class="loc"><b>取穴：</b>中指正中間指甲下 1 分。放血用。</div>
+  </div>
+</section>
+
+<!-- ===== s10 手少陽三焦經 ===== -->
+<section class="section" id="s10">
+  <div class="section-header"><h2>手少陽三焦經</h2><div class="meta">關衝・液門・中渚・陽池・外關・支溝・會宗・三陽絡・四瀆・天井・清冷淵・消濼・臑會・肩髎・天髎・天牖・翳風・瘈脈・顱息・角孫・耳門・耳和髎・絲竹空</div></div>
+
+  <div class="point">
+    <div class="point-name">關衝</div>
+    <div class="loc"><b>取穴：</b>第四指指甲尺側緣。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">液門 <span class="star">★</span>／中渚 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>液門＝第 4、5 本節連線前 5 分靠近第四指；中渚＝第 4、5 本節連線後 5 分靠近第四指。</div>
+    <ul class="notes">
+      <li>液門針尖往第四指骨方向（前往後斜 30 度）扎、停在骨頭上，治顳側頭痛。中渚針尖往第四指骨方向（後往前斜 30 度）扎、停在骨頭上。本節前 5 分直直戳是八邪、拉到掌骨盡頭是上八邪。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陽池／〈中泉〉經外奇穴</div>
+    <div class="loc"><b>取穴：</b>陽池＝第 4、5 指對上來、腕橫紋與伸指肌群尺側緣；中泉＝第 2、3 指對上來、腕橫紋與伸指肌群橈側緣。</div>
+    <ul class="notes"><li>中泉：跌倒手腕撐地受傷。</li></ul>
+  </div>
+
+  <div class="note-block">
+    <div class="nb-title">前臂三焦經走行</div>
+    手掌朝上時橈尺骨平行，旋轉時兩骨交叉。三焦經都走橈骨、尺骨之間，只有會宗、四瀆貼尺骨內緣。貼橈骨的：會宗、四瀆、大腸經溫溜（有會穴關係，兩指幅內，臨床可用）。
+  </div>
+
+  <div class="point">
+    <div class="point-name">外關 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋上 2 寸，橈骨尺骨之間。直扎。</div>
+    <ul class="notes">
+      <li>絡穴，絡心包經；外關通陽維、陽維通六陽經。腳踝扭傷外踝丘墟（足少陽膽經）拉傷好用，接經療法（少陽對少陽）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">支溝 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>腕橫紋上 3 寸，橈骨尺骨之間。直扎。</div>
+    <ul class="notes"><li>脇肋循支溝，肋間拉傷很好用（跑步）。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">會宗 <span class="tag">郄穴</span><span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>支溝往外 1 寸，貼尺骨內緣（磨進去）。直扎。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">三陽絡 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>支溝往上 1 寸（腕橫紋上 4 寸）。直扎。</div>
+    <ul class="notes">
+      <li>補三焦氣，氣虛可用（像四君子湯）。血海補血（像四物湯），兩隻一起用像八珍湯，再加灸就十全大補湯。下焦盆腔補氣用氣海、關元，中上焦用膻中。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">四瀆 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>肘橫紋下 5 寸（一半再往上 1），貼尺骨內緣。直扎。</div>
+    <ul class="notes">
+      <li>外上髁、內上髁、鷹嘴在伸肘時一條線、腋橫紋到鷹嘴 9 寸；屈肘時外/內上髁仍一線、鷹嘴往下跑 1 寸、腋橫紋到鷹嘴 10 寸。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">天井／清冷淵／消濼／臑會／肩髎</div>
+    <div class="loc"><b>取穴：</b>天井＝屈肘時內、外上髁連線中點凹窩處（屈肘鷹嘴打開才扎得到），直扎 7–8 分；清冷淵＝天井上 2 寸；消濼＝清冷淵與臑會中點；臑會＝腋窩橫紋下 1 寸；肩髎＝肩峰轉角下緣（天井與肩髎連線上）。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">天髎 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>肩井與曲垣連線中點。</div>
+    <ul class="notes">
+      <li>直扎效果較好：垂直地表、平行脊椎，扎在肩胛棘上緣，要小心氣胸；斜扎效果較差但較安全。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">天牖</div>
+    <div class="loc"><b>取穴：</b>天容與天柱連線中點，落在 SCM 後緣。</div>
+    <ul class="notes"><li>脖子落枕可用。經絡順序：小腸→三焦→大腸→膽。耳側用 1 寸針徒手進針（離三焦經 1.5 寸是膽經，以中耳道為同心圓）。耳後高骨最下緣是乳突（SCM 起始點），三焦經就在耳後高骨正上面。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">翳風 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>耳垂緊貼頭、在下頷骨與 SCM 交界處（耳垂很長則依耳根水平線）。</div>
+    <ul class="notes"><li>斜向對側眼睛扎，很痛，扎 5 分即可。三叉神經、顏面神經出入處，可治三叉神經痛、顏面神經麻痺。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">瘈脈 <span class="star">★</span>／顱息 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>沿外耳廓、耳後高骨上，瘈脈在下 1/3、顱息在上 1/3（以外耳道為中心）。</div>
+    <ul class="notes">
+      <li>瘈脈：下 1/3 斜扎，拿 1 寸針 30 或 32 號，5 分鐘聽覺會來，治耳朵問題（突發性耳聾＝暴聾）。</li>
+      <li>顱息：上 1/3 斜扎，進去貼頭骨滑到耳殼最根部；扎到耳後高骨一定穿過三焦經。1.5 寸針可拉到後面膽經 —— <b>浮白透顱息</b>：治突發性耳聾（暴聾）首選，比耳門、聽宮、聽會好（此處是聽覺反射區，只有三焦經、膽經通到中耳）。感冒、耳下淋巴腫、勞累、吹風、喝酒、水濕凝聚也會形成暴聾、聽力受損。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">角孫 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>耳尖貼顳側。</div>
+    <ul class="notes"><li>率谷透角孫治療偏頭痛。耳屏嘴巴打開有凹槽，上下切跡中間耳珠連線作耳屏切線；上到下是三、小、膽＝耳門、聽宮、聽會。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">耳門／耳和髎／絲竹空</div>
+    <div class="loc"><b>取穴：</b>耳門＝沿凹槽扎、不深但有點痛（治外耳道較多）；耳和髎＝耳門斜上 3 分、跨過顴骨弓、在顴骨弓上緣（由後往前扎，少扎，底下小動脈）；絲竹空＝眉毛尾巴往後 0.5 寸、眼眶骨外側緣。</div>
+    <ul class="notes">
+      <li>（補充）膽經瞳子髎＝眼外眥後 5 分、眼眶骨後緣。太陽穴＝絲竹空與瞳子髎連線中點往後 5 分、凹槽上。</li>
+      <li>唯一同時通眼外眥、眼內眥的是小腸經。穴道：（三）顴髎→聽宮；（小）耳門→耳和髎→絲竹空；（膽）瞳子髎→聽會。</li>
+      <li class="box-green"><b>經過眼睛：</b>上→下膀胱經；下→上胃經；中→上胃經；上→下膽；外：三焦、膽；內外側：小腸經；裡：心、肝。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== s11 足少陽膽經 ===== -->
+<section class="section" id="s11">
+  <div class="section-header"><h2>足少陽膽經</h2><div class="meta">瞳子髎・聽會・上關・頷厭～曲鬢・率谷・天衝・浮白・頭竅陰・完骨・本神・陽白・頭臨泣～承靈・腦空・風池・肩井・淵腋～帶脈・五樞～居髎・環跳・風市～足竅陰</div></div>
+
+  <div class="point">
+    <div class="point-name">瞳子髎</div>
+    <div class="loc"><b>取穴：</b>眼外眥往後拉 5 分，眼眶骨邊緣。</div>
+    <ul class="notes"><li>由後往前扎、卡住眼眶骨，不要直扎，進 3 分到底。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">聽會</div>
+    <div class="loc"><b>取穴：</b>耳屏下切跡往前。</div>
+    <ul class="notes"><li>有一點垂直、斜向後，扎進去空空的。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">上關（＝客主人）</div>
+    <div class="loc"><b>取穴：</b>先找下關（顴骨弓下緣、下頷骨腳之間、顴骨凹陷處最高點，距耳屏前 8 分），上關在下關直上 1 寸。</div>
+    <ul class="notes"><li>上關較淺用 1 寸針、由上往下斜扎卡在顴骨弓上；下關較深用 1.5 寸針、裡面是骨頭，扎 7 分到 1 寸即可。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">頷厭／懸顱／懸釐／曲鬢</div>
+    <div class="loc"><b>取穴：</b>頭維（胃經）～曲鬢作一弧線，都在髮際線後退 5 分，分四等份：頷厭、懸顱、懸釐、曲鬢，兩兩間隔 1 寸（曲鬢＝角孫水平前 1 寸）。</div>
+    <ul class="notes"><li>韓式扎法：讓臉皮緊繃四支全扎、再扎 SCM、下頷骨下緣，繃緊再扎，臉部除皺。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">率谷 <span class="star">★</span>／天衝／浮白</div>
+    <div class="loc"><b>取穴：</b>率谷＝耳尖上 1.5 寸；天衝＝率谷水平往後 3 分、往上 5 分（已上到外耳道 2 寸）；浮白＝天衝～完骨上 1/3（顱息後上斜上 45~60 度，髮際線進 1 寸，以摸到凹槽為主）。</div>
+    <ul class="notes">
+      <li>率谷 1 寸針徒手：貼頭皮 30 度角斜插，可高一點再扎進去。治顳側頭痛：率谷透角孫。天衝老師少用、會用率谷取代。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">頭竅陰／完骨</div>
+    <div class="loc"><b>取穴：</b>頭竅陰＝枕骨下緣水平與乳突的垂直夾角；完骨＝乳突最下緣作水平切線、切點水平往後 1 分（往前 1 分是經外奇穴翳明）。</div>
+    <ul class="notes"><li>皆垂直皮膚表面扎。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">本神</div>
+    <div class="loc"><b>取穴：</b>旁開 3 寸，髮際線後退 5 分。</div>
+    <ul class="notes"><li>由前往後（躺著更適用）斜扎、由後往前皆可。與意識形態有關，阿茲海默症、老人癡呆。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陽白</div>
+    <div class="loc"><b>取穴：</b>眉毛中點（經外奇穴魚腰）直上 1 寸，即旁開 2.25 寸。</div>
+    <ul class="notes"><li>也可陽白透魚腰治失智；治顏面偏癱抬頭紋不見，扎陽白讓額肌回來。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">頭臨泣／目窗／正營／承靈 <span class="star">★承靈</span></div>
+    <div class="loc"><b>取穴：</b>見膀胱經頭部尺寸（承靈往前 4 寸：正營→目窗→臨泣→前髮際線）。</div>
+    <ul class="notes"><li>承靈：中風後遺症。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">腦空／風池 <span class="star">★風池</span></div>
+    <div class="loc"><b>取穴：</b>腦空＝旁開 2 寸、枕後粗隆；風池＝旁開 2 寸、枕骨下緣，後面斜方肌、前面 SCM 夾成三角形的角。</div>
+    <ul class="notes">
+      <li>腦空由上往下放、扎在項上線上緣。風池往對側眼睛扎，可拍針，指尖跟枕骨平、往上推卡在枕骨下緣，延指尖進去可下來 1、2 分。梳理頭面的氣，外風、內風、中風後遺症都可用。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">肩井</div>
+    <div class="loc"><b>取穴：</b>正中～肩峰連線中點，前後拉起來最高點。</div>
+    <ul class="notes">
+      <li>垂直地球表面或稍微往後斜刺，只能 5 分否則氣胸要小心。原地捻針、不可上下提插。易暈針、此穴很強，可治後肩背痛、頭面循環、四通八達，光用手鷹嘴推壓可能就暈倒。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">淵腋／輒筋／日月／京門</div>
+    <div class="loc"><b>取穴：</b>淵腋＝腋窩直下 3 寸、第四五肋間（斜扎 5 分）；輒筋＝淵腋水平往內 1 寸（斜扎、不可直扎 5 分，直扎會氣胸）；日月＝肝經期門再往下一肋間（斜扎）；京門＝腋窩側線直下、髖骨最高點水平切點往後 1.5 寸、往上找第 12 肋端。</div>
+    <ul class="notes">
+      <li>輒筋得氣因肋間神經走肋骨下凹槽。日月是膽的募穴；期門是肝募，俞募穴療法可扎期門＋肝俞（T9 下旁開 1.5），治肝脾腫大、肝濕熱。脾經腹哀＝日月再下一肋間（也是大橫上 3 寸）。</li>
+      <li>京門直扎 5–7 分安全不氣胸，可貼肋骨末端（先戳到髖骨再調整），是腎經募穴，少扎除非此處不舒服。肝經章門＝切點往前 5 分、往上 1.8 寸、第 11 肋端（脾經募穴、臟會章門）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">帶脈／五樞／維道／居髎</div>
+    <div class="loc"><b>取穴：</b>帶脈＝同京門找法、切點往前 5 分（幾乎與肚臍同水平），直扎安全；五樞＝ASIS 前緣（＝肚臍直下 3 寸關元、旁開 5.5 寸）；維道＝五樞前斜下 45 度、距 5 分處；居髎＝股骨大轉子最凸點與 ASIS 連線中點。</div>
+    <ul class="notes">
+      <li>臨泣通帶脈，可扎足臨泣，治皮蛇後期神經痛。維道少扎（扎五樞即可）。居髎安全直扎（肌肉層），治大腿拉傷、爬山隔天痠痛。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">環跳 <span class="star">★★★</span></div>
+    <div class="loc"><b>取穴：</b>臀溝盡頭往上 1 寸到股骨大轉子最凸點連線中點（趴著）或連線外 1/3（側躺）。用 3 寸或 4 寸針。</div>
+    <ul class="notes">
+      <li class="box-green">治療坐骨神經痛：環跳＋秩邊。秩邊＝S4 孔（臀溝盡頭再往上 1 寸）旁開 3 寸，也用 3 寸或 4 寸針（側躺→外 1/3）。</li>
+      <li><b>坐骨神經痛引發點：</b>① L4、L5 附近坐骨神經被壓迫→扎大腸俞、關元俞＋環跳、秩邊；② 梨狀肌症候群（坐骨神經穿過梨狀肌）→扎環跳、秩邊。理學檢查：① 平躺腳抬起下壓覺後面更痛、腳更麻→L4、L5 壓迫；② 側躺腳水平抬起下壓覺後面更痛、腳更麻→梨狀肌症候群。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">風市／中瀆／膝陽關 <span class="star">★膝陽關</span></div>
+    <div class="loc"><b>取穴：</b>風市＝手放下貼褲縫、中指前端水平線與髂脛束後緣交界（脛骨平台上 7 寸）；中瀆＝風市下 2 寸、髂脛束後緣（脛骨平台上 5 寸）；膝陽關＝陽陵泉往上 3 寸、髂脛束後緣（脛骨平台上 2 寸）。</div>
+    <ul class="notes">
+      <li>風市止癢特效穴（內外風皆可，老師覺得還好），外感風寒扎風池。膝外側側副韌帶問題：陽陵泉＋膝陽關加電；內側側副韌帶：陰陵泉＋血海。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陽陵泉 <span class="star">★</span></div>
+    <div class="loc"><b>取穴：</b>課本：脛骨平台下 1 寸、正中往外旁開 2.25 寸＝腓骨小頭最凸點與脛骨外上髁連線中點再往前 5 分凹陷處。</div>
+    <ul class="notes">
+      <li>扎在腓骨和脛骨中間（裡面要空的）。膽經合穴；筋會陽陵泉，肌肉韌帶扭拉傷下肢好用（上肢用扭傷穴經外奇穴）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陽交 <span class="star">★</span>／外丘 <span class="star">★</span>／光明／陽輔／懸鐘</div>
+    <div class="loc"><b>取穴：</b>脛骨平台～外踝尖 16，一半再下 1 寸（外踝尖上 7 寸）腓骨後緣是陽交、腓骨前緣是外丘；光明＝一半再下 3 寸（外踝尖上 5 寸）腓骨前緣；陽輔＝外踝尖上 4 寸腓骨前緣；懸鐘＝外踝尖上 3 寸腓骨前緣。</div>
+    <ul class="notes">
+      <li>陽交是陽維脈郄穴（陽維貫穿 12 條經）；外丘是膽經郄穴；光明與眼睛有關（膽經瞳子髎、腦空、目窗、光明，效果沒到很好）；懸鐘扎起來很痛少用（膀胱經跗陽★＝外踝尖上 3 寸腓骨後緣）。</li>
+    </ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">丘墟 <span class="star">★</span>／足臨泣 <span class="star">★</span>／地五會／俠谿／足竅陰</div>
+    <div class="loc"><b>取穴：</b>丘墟＝外踝尖水平幅角 30 度凹陷處；足臨泣＝第 4、5 蹠骨上推盡頭騎縫處；地五會＝第 4、5 本節連線中點上 5 分（爭議）；俠谿＝第 4、5 本節連線中點下 5 分；足竅陰＝第 4 趾趾側緣。</div>
+    <ul class="notes">
+      <li>丘墟不要戳到韌帶、往最深處扎，治腳踝內翻外翻（急性期腫起不要用，慢性期循經或接經）。足臨泣通帶脈。（經外奇穴）八風＝本節連線中點下 5 分、上八風＝蹠骨上推盡頭騎縫處（如足臨泣、太衝）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== s12 足厥陰肝經 ===== -->
+<section class="section" id="s12">
+  <div class="section-header"><h2>足厥陰肝經</h2><div class="meta">大墩・行間・太衝・中封・蠡溝・中都・膝關・曲泉・陰包・足五里・陰廉・急脈・章門・期門</div></div>
+
+  <div class="point">
+    <div class="point-name">大墩</div>
+    <div class="loc"><b>取穴：</b>足大趾頭趾側緣。瀉熱用。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">行間</div>
+    <div class="loc"><b>取穴：</b>1、2 本節連線中點往下 5 分。</div>
+    <ul class="notes"><li>瀉熱用（但不是很強）；疏肝理氣兼瀉熱（肝氣鬱結化火）。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">太衝</div>
+    <div class="loc"><b>取穴：</b>1、2 蹠骨推到盡頭騎縫處。</div>
+    <ul class="notes"><li>疏肝理氣（肝氣鬱結）。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">中封</div>
+    <div class="loc"><b>取穴：</b>脛前肌肌腱、伸拇趾肌肌腱之間，踝橫紋上。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">蠡溝／中都</div>
+    <div class="loc"><b>取穴：</b>蠡溝＝脛骨內側後緣（與脾經路線重疊），內踝尖上 5 寸（＝脛骨平台～內踝尖 15 的下 1/3）；中都＝脛骨內側後緣，內踝尖上 7 寸。</div>
+    <ul class="notes"><li>蠡溝（脛骨內側面中央，老師年代）用斜扎、很痛。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">膝關／曲泉</div>
+    <div class="loc"><b>取穴：</b>膝關＝陰陵泉（脾經）水平往後 1 寸；曲泉＝膕橫紋內側緣、半膜肌腱前緣。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">陰包／足五里／陰廉</div>
+    <div class="loc"><b>取穴：</b>陰包＝膕橫紋上 3 寸、縫匠肌下緣（繞到盆腔，可治睪丸問題）；足五里＝氣衝直下 3 寸；陰廉＝氣衝直下 2 寸。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">急脈</div>
+    <div class="loc"><b>取穴：</b>正中旁開 2.5 寸，腹股溝中。</div>
+  </div>
+
+  <div class="point">
+    <div class="point-name">章門</div>
+    <div class="loc"><b>取穴：</b>腋窩側線直下、髖骨最高點水平切點往前 5 分、往上 1.8 寸，第 11 肋端。斜扎。</div>
+    <ul class="notes"><li>脾經募穴；臟會章門。</li></ul>
+  </div>
+
+  <div class="point">
+    <div class="point-name">期門</div>
+    <div class="loc"><b>取穴：</b>乳頭下兩肋間。斜扎。</div>
+    <ul class="notes">
+      <li>期門是肝的募穴，俞募穴療法可扎期門、肝俞（T9 下旁開 1.5 寸），治肝脾腫大、肝濕熱等。日月是膽的募穴。</li>
+    </ul>
+  </div>
+</section>
+
+  </main>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記　｜　孔文針灸 千容編著</footer>
+
+<script>
+function show(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
