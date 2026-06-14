@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>傷寒論筆記・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D; --green-mid: #3D7A52; --green-light: #5A9E6F;
+      --green-pale: #E8F2EC; --parchment: #FAF7F2; --ink: #1E2A1E;
+      --ink-light: #4A5A4A; --rule: #C8D8C8; --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: var(--parchment); color: var(--ink); line-height: 1.8; font-size: 17px; }
+    .site-nav { background: var(--green-dark); color: var(--white); padding: .9rem 2rem; display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .site-nav .site-title { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1.15rem; letter-spacing: .05em; }
+    .site-nav a { color: #D7E8DD; text-decoration: none; font-size: .95rem; }
+    .site-nav a:hover { color: var(--white); }
+    .site-nav .nav-current { color: var(--white); font-size: .95rem; font-weight: 500; }
+    .breadcrumb { max-width: 860px; margin: 0 auto; padding: 1.3rem 2rem .4rem; font-size: .85rem; color: var(--ink-light); }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .45rem; color: var(--rule); }
+    .page-header { max-width: 860px; margin: 0 auto; padding: .4rem 2rem 1.4rem; border-bottom: 1px solid var(--rule); }
+    .page-header .eyebrow { font-size: .8rem; letter-spacing: .25em; color: var(--green-mid); font-weight: 700; margin-bottom: .4rem; }
+    .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 2.1rem; color: var(--green-dark); font-weight: 700; }
+    .content { max-width: 860px; margin: 0 auto; padding: 1.6rem 2rem 3rem; }
+    .cards { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .card { display: block; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1.5rem; text-decoration: none; color: var(--ink); transition: box-shadow .2s, transform .2s; }
+    .card:hover { box-shadow: 0 4px 16px rgba(45,90,61,.12); transform: translateY(-2px); }
+    .card-title { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-bottom: .5rem; }
+    .card-desc { font-size: .9rem; color: var(--ink-light); line-height: 1.7; margin-bottom: .8rem; }
+    .card-tag { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: .78rem; padding: .15rem .6rem; border-radius: 4px; font-weight: 500; }
+    .site-footer { text-align: center; padding: 1.6rem; font-size: .82rem; color: var(--ink-light); border-top: 1px solid var(--rule); }
+    @media (max-width: 600px) { .page-header h1 { font-size: 1.7rem; } .content { padding: 1.2rem 1.1rem 2.4rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <span class="nav-current">傷寒論筆記</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span>
+  <a href="reading.html">讀書筆記</a><span>›</span>
+  傷寒論筆記
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">中醫學習筆記</div>
+  <h1>傷寒論筆記</h1>
+</div>
+
+<div class="content">
+  <div class="cards">
+    <a class="card" href="shanghan_suyizhang.html">
+      <div class="card-title">蘇奕彰授傷寒論</div>
+      <div class="card-desc">中醫病理學傷寒論湯方筆記，依「作戰部位（太陽→各部位）」生理框架整理桂枝湯、麻黃湯、五苓散、柴胡、瀉心湯、承氣湯、少陰病等湯方系統。</div>
+      <div class="card-tag">傷寒論</div>
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+
+</body>
+</html>

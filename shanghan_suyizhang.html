@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蘇奕彰授傷寒論・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D; --green-mid: #3D7A52; --green-light: #5A9E6F;
+      --green-pale: #E8F2EC; --parchment: #FAF7F2; --ink: #1E2A1E;
+      --ink-light: #4A5A4A; --rule: #C8D8C8; --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: var(--parchment); color: var(--ink); line-height: 1.85; font-size: 17px; }
+    .site-nav { background: var(--green-dark); color: var(--white); padding: .9rem 2rem; display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .site-nav .site-title { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1.15rem; letter-spacing: .05em; }
+    .site-nav a { color: #D7E8DD; text-decoration: none; font-size: .95rem; }
+    .site-nav a:hover { color: var(--white); }
+    .site-nav .nav-current { color: var(--white); font-size: .95rem; font-weight: 500; }
+    .breadcrumb { max-width: 1100px; margin: 0 auto; padding: 1.3rem 2rem .4rem; font-size: .85rem; color: var(--ink-light); }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .45rem; color: var(--rule); }
+    .page-header { max-width: 1100px; margin: 0 auto; padding: .4rem 2rem 1.4rem; border-bottom: 1px solid var(--rule); }
+    .page-header .eyebrow { font-size: .8rem; letter-spacing: .25em; color: var(--green-mid); font-weight: 700; margin-bottom: .4rem; }
+    .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 2.1rem; color: var(--green-dark); font-weight: 700; }
+    .page-header .teacher { margin-top: .5rem; color: var(--ink-light); font-size: .92rem; }
+
+    .layout { max-width: 1100px; margin: 0 auto; display: flex; gap: 2rem; padding: 1.6rem 2rem 3rem; align-items: flex-start; }
+    .sidebar { flex: 0 0 210px; position: sticky; top: 1.4rem; }
+    .sidebar nav { display: flex; flex-direction: column; gap: .25rem; background: var(--white); border: 1px solid var(--rule); border-radius: 12px; padding: .7rem; max-height: 88vh; overflow-y: auto; }
+    .sidebar nav button { font-family: 'Noto Sans TC', sans-serif; text-align: left; background: none; border: none; cursor: pointer; padding: .55rem .75rem; border-radius: 8px; font-size: .9rem; color: var(--ink-light); transition: background .18s, color .18s; line-height: 1.4; }
+    .sidebar nav button:hover { background: var(--green-pale); color: var(--green-dark); }
+    .sidebar nav button.active { background: var(--green-dark); color: var(--white); font-weight: 500; }
+
+    main { flex: 1 1 auto; min-width: 0; }
+    .section { display: none; }
+    .section.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .section-header { margin-bottom: 1rem; }
+    .section-header h2 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; color: var(--green-dark); padding-bottom: .5rem; border-bottom: 2px solid var(--green-pale); }
+
+    .content p { margin: .6rem 0; }
+    .content h3 { font-family: 'Noto Serif TC', serif; font-size: 1.12rem; color: var(--green-mid); margin: 1.5rem 0 .6rem; }
+    .content ul { margin: .5rem 0 .7rem 1.3rem; }
+    .content li { margin: .3rem 0; }
+
+    .formula { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.15rem; margin: 1.1rem 0; }
+    .formula-head { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; margin-bottom: .6rem; border-bottom: 1px solid var(--green-pale); padding-bottom: .5rem; }
+    .formula-name { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1.18rem; color: var(--green-dark); }
+    .formula-comp { font-size: .85rem; color: var(--green-mid); background: var(--green-pale); padding: .15rem .6rem; border-radius: 5px; }
+    .herb { margin: .3rem 0; padding-left: .2rem; }
+    .herb b { color: var(--green-dark); }
+
+    .box-green { background: var(--green-pale); border-left: 4px solid var(--green-light); border-radius: 0 8px 8px 0; padding: .85rem 1.1rem; margin: 1rem 0; font-size: .93rem; }
+    .box-green p { margin: .25rem 0; }
+    .box-green strong { color: var(--green-dark); }
+    .box-note { background: #FCFAF6; border: 1px dashed var(--rule); border-radius: 8px; padding: .8rem 1.05rem; margin: .9rem 0; font-size: .9rem; color: var(--ink-light); }
+    .box-note strong { color: var(--green-mid); }
+
+    .stable-wrap { margin: 1.2rem 0; overflow-x: auto; }
+    .stable-title { font-family: 'Noto Serif TC', serif; color: var(--green-mid); font-size: .98rem; margin-bottom: .5rem; font-weight: 600; }
+    table.stable { width: 100%; border-collapse: collapse; font-size: .86rem; background: var(--white); border-radius: 8px; overflow: hidden; }
+    table.stable th { background: var(--green-dark); color: var(--white); text-align: left; padding: .55rem .7rem; font-weight: 500; }
+    table.stable td { padding: .55rem .7rem; border-top: 1px solid var(--rule); vertical-align: top; }
+    table.stable td:first-child, table.stable td.k { color: var(--green-dark); font-weight: 600; font-family: 'Noto Serif TC', serif; white-space: nowrap; }
+    table.stable tr:nth-child(even) td { background: #FCFAF6; }
+
+    .site-footer { text-align: center; padding: 1.6rem; font-size: .82rem; color: var(--ink-light); border-top: 1px solid var(--rule); }
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem 1.1rem 2.4rem; gap: 1rem; }
+      .sidebar { position: static; flex: none; width: 100%; }
+      .sidebar nav { flex-direction: row; flex-wrap: wrap; max-height: none; }
+      .sidebar nav button { flex: 1 1 auto; text-align: center; }
+      .page-header h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <a href="shanghan.html">傷寒論筆記</a>
+  <span class="nav-current">蘇奕彰授傷寒論</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span>
+  <a href="reading.html">讀書筆記</a><span>›</span>
+  <a href="shanghan.html">傷寒論筆記</a><span>›</span>
+  蘇奕彰授傷寒論
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">中醫病理學・傷寒論湯方</div>
+  <h1>蘇奕彰授傷寒論</h1>
+  <p class="teacher">授課老師：蘇奕彰老師　｜　筆記整理：千容</p>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav>
+      <button class="active" onclick="show('s1', this)">總論・生理基礎</button>
+      <button onclick="show('s2', this)">太陽中風・桂枝湯</button>
+      <button onclick="show('s3', this)">桂枝湯變方</button>
+      <button onclick="show('s4', this)">太陽傷寒・麻黃湯系統</button>
+      <button onclick="show('s5', this)">飲停胃腑</button>
+      <button onclick="show('s6', this)">三焦・五苓散</button>
+      <button onclick="show('s7', this)">腸腑・上焦停滯</button>
+      <button onclick="show('s8', this)">救急救逆</button>
+      <button onclick="show('s9', this)">少陽中焦・小柴胡湯</button>
+      <button onclick="show('s10', this)">下焦蓄血</button>
+      <button onclick="show('s11', this)">臟結・結胸</button>
+      <button onclick="show('s12', this)">瀉心湯系列</button>
+      <button onclick="show('s13', this)">黃芩湯系列</button>
+      <button onclick="show('s14', this)">陽明便秘・白虎</button>
+      <button onclick="show('s15', this)">潤腸・黃疸・中下焦・少陰</button>
+    </nav>
+  </aside>
+
+  <main>
+
+    <!-- 總論 -->
+    <div class="section active" id="s1">
+      <div class="section-header"><h2>總論・生理基礎</h2></div>
+      <div class="content">
+        <ul>
+          <li>衛氣推動營血以維持生理機能，並對抗邪氣。當正氣虛，則邪氣傳；邪氣的傳遞方向是「逆著」營衛運行的方向。</li>
+          <li>飲食入胃，胃化穀，傳化物到小腸，再傳糟粕到大腸；此段經脾陽運作，將水穀精微轉入中焦，傳到肺脈（也可再到肺）、化赤為血。營血在肺脈中經肺氣宣發，宣發過程需心陽（上焦衛氣）幫忙。中焦到下焦，則透過腎陽氣化而出。</li>
+          <li>中焦送到上焦的調控由肝負責：平時不參與，特殊狀況應急時疏發中焦氣機送到上焦（例如柴胡即助疏發之藥），甚至往體表走（肝氣啟動時胃氣會上逆，故產生嘔逆）。其過程是下焦衛氣（來自腎陽命門）經肝氣調控，輸佈於三焦，增加流量以應急、救命。</li>
+          <li>全身最易受寒處在後頸部，故外感寒邪通常以後頸部為起點，由後往前傳到目內眥、連接鼻竅。所以外感初期會怕冷、脖子僵硬，再來打噴嚏、流鼻水等呼吸道症狀。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 桂枝湯 -->
+    <div class="section" id="s2">
+      <div class="section-header"><h2>太陽中風・桂枝湯</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p><strong>桂枝湯服藥準則：</strong></p>
+          <p>1. 湯劑分三等份，第一次先喝 1/3，並啜熱稀粥一升餘（不可吃太多）。</p>
+          <p>2. 溫覆、使微微出汗（出汗過多則衛氣消散、津液耗損，邪氣會進來）。</p>
+          <p>3. 病好了就不用再喝。</p>
+          <p>4. 沒流汗，依前法再服 1/3。</p>
+          <p>5. 又不流汗，縮短服藥時間，六小時內（半日許）把三服吃完。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">桂枝湯</span><span class="formula-comp">桂3 芍3 甘2 薑3 棗12（桂：芍 ＝ 1：1）</span></div>
+          <p>身體尚有正氣對抗外邪，正邪相爭時衛氣推動營血、把津液送出體表，就會有汗。但表邪（風邪重於寒邪）仍在，須持續補強營衛氣，故給桂枝湯補強營衛、適度發汗以解表。</p>
+          <div class="herb"><b>桂枝</b>：溫陽通脈，增加衛氣去推動營血。和營為其首功 —— 風傷於外，壅遏衛氣，衛中之陽不得不就近拉營氣幫忙，所以營弱衛強；用桂枝湯調和營氣，散陽氣之鬱遏、同時通邪氣。（《本經疏證》）</div>
+          <div class="herb"><b>甘、薑、棗</b>：補中、補營血，讓津液可以進來；額外再啜熱稀粥。用生薑溫胃，讓甘草、大棗、稀飯進到中焦，運輸到上焦、注入肺脈，再用桂枝運送到體表（往上往外）以抗邪。</div>
+          <div class="herb"><b>芍藥</b>：和營斂陰、酸收，讓津液不要出去那麼多。</div>
+          <div class="box-note"><strong>類比：</strong>西醫打點滴就是在調和營衛，前提是心陽夠、推動力充足；若心陽不夠，打點滴會水腫。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 桂枝湯變方 -->
+    <div class="section" id="s3">
+      <div class="section-header"><h2>桂枝湯變方</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p><strong>變方原則：</strong></p>
+          <p>↑芍藥 或 ↓桂枝：不再需要往表走，使經氣留在體內（例：建中湯系列）。</p>
+          <p>↑桂枝 或 ↓芍藥：使經氣往表走、溫陽通脈。</p>
+        </div>
+
+        <h3>變方（一）・虛勞、血痹</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">黃耆建中湯</span><span class="formula-comp">桂3 芍6 甘2 薑3 棗12 ＋黃耆3 ＋飴糖</span></div>
+          <p>桂枝湯加黃耆成黃耆桂枝湯，倍芍藥加飴糖成黃耆建中湯，補後天水穀精氣以治虛勞。倍芍藥是因不再需要體表抗邪，↑芍藥使經氣留在體內，再加飴糖。亦可再加減（如小建中湯：桂芍甘薑棗＋飴糖）。另腎氣丸則補先天之精氣。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">黃耆桂枝五物湯</span><span class="formula-comp">血痹</span></div>
+          <p>痹證的形成是內、外因共同作用：內因為氣虛及陽虛，外因為風、寒、濕邪侵襲，並強調風邪、濕邪致病，首提「風濕」病名。治療以補氣、溫陽、祛風、散寒、除濕為原則，以益氣溫陽、解表散寒、祛風除濕藥為主。尤其重用黃耆益氣、附子溫陽、麻黃桂枝祛風散寒、白朮薏苡仁健脾除濕。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">桂枝加桂湯</span><span class="formula-comp">桂5 芍3 甘2 薑3 棗12（奔豚證）</span></div>
+          <p>桂枝量↑，溫陽通脈↑。</p>
+        </div>
+
+        <h3>變方（二）・項背強几几（項背津液供應不足）</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">桂枝加葛根湯</span><span class="formula-comp">桂2 芍2 甘2 薑3 棗12 ＋葛根4（有汗出）</span></div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">葛根湯</span><span class="formula-comp">桂2 芍2 甘2 薑3 棗12 ＋麻黃3 ＋葛根4（不出汗）</span></div>
+          <div class="herb"><b>葛根</b>：起陰氣 —— 升陽明（胃）清氣，即補津液讓其上行。</div>
+        </div>
+        <div class="box-green">
+          <p><strong>中風與傷寒的差別 ＝ 寒邪的成分多寡：</strong></p>
+          <p>寒少 →→→ 寒多：（中風）桂枝湯 ↔ 桂枝加葛根湯 ↔ 葛根湯 ↔ 麻黃湯（傷寒）</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 麻黃湯系統 -->
+    <div class="section" id="s4">
+      <div class="section-header"><h2>太陽傷寒・麻黃湯系統</h2></div>
+      <div class="content">
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">麻黃湯</span><span class="formula-comp">麻3 桂2 杏70 甘1</span></div>
+          <p>正邪相爭，寒邪束表，衛氣困於體內，不汗出。與桂枝湯證不同的是受寒邪較多、寒邪閉塞汗孔，此時不用芍藥（去芍），因芍藥收斂會使津液更出不去。因無汗，衛氣、津液沒損耗，故熱稀粥、紅棗也不需要（不須啜粥）。</p>
+          <div class="herb"><b>杏仁</b>：用此降氣藥平衡麻黃的宣發，使宣發、肅降平衡。</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">麻杏甘石湯</span><span class="formula-comp">麻4 杏50 甘2 ＋石膏8</span></div>
+          <p>用桂枝湯發汗後，表沒有解，仍汗出、還有喘，但身無大熱，可用本方。因用桂枝通營衛時蓄積一些熱，此熱不強、不致身大熱，但會讓病人持續冒汗（代表衛氣可持續送津液到體外）。</p>
+          <div class="herb"><b>石膏</b>：可很快壓抑身體蓄積的衛氣（陰火），是仲景藥中最有效抑制陰火的藥物。</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">大青龍湯</span><span class="formula-comp">麻6 桂2 杏40 甘2 ＋薑棗、石膏（雞子大）</span></div>
+          <p>當蓄積的內熱更多（會煩躁），又透發不出來（不汗出），此時增加麻黃量、讓透發到體表的力量增強，並用石膏解決蓄積的內熱。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 飲停胃腑 -->
+    <div class="section" id="s5">
+      <div class="section-header"><h2>飲停胃腑</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p><strong>關於飲停：</strong>五臟六腑皆能令人咳，寒飲食入胃，從肺脈上至肺令人咳。</p>
+          <p>「心下有水氣」兩種可能：一是寒飲食入胃；二是喝水／熱稀粥要補，但胃陽運作不行，飲停在心下（胃位）。</p>
+          <p>服桂枝湯後可因肝氣調度增強而乾嘔，也可能因心下有水氣、胃陽不能運化水飲而胃氣上逆而嘔。</p>
+          <p>水飲停胃 → 不能輸佈全身（口渴）；水跑到小腸大腸（下利）；中下焦無津液（小便不利）；胃氣上逆（乾嘔、打嗝、噎）。</p>
+        </div>
+        <h3>表邪內迫腸胃（病位在腸胃）・下利</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">葛根湯</span><span class="formula-comp">桂2 芍2 甘2 薑3 棗12 ＋麻黃3 ＋葛根4</span></div>
+          <p>陽明（胃）是主要受納水穀處，太陽與陽明合病、水送不進體內就會下利，應增加津液輸送使水送得進來。葛根：起陰氣、升陽明清氣。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">葛根加半夏湯</span><span class="formula-comp">葛根湯 ＋半夏半升（不下利但嘔）</span></div>
+          <p>若胃氣上逆、嘔，加半夏。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">小青龍湯</span><span class="formula-comp">桂芍甘 ＋麻 ＋半夏、乾薑、細辛、五味子（胃陽較弱，水飲在胃）</span></div>
+          <p>綜合麻黃與桂枝湯精神（桂芍甘＋麻），另補四藥針對胃中水飲不化。</p>
+          <div class="herb"><b>半夏</b>：降胃氣，同時解決桂枝湯證原有的乾嘔、噎。</div>
+          <div class="herb"><b>乾薑</b>：增加胃中陽氣以運化水飲，運化後就能到中焦、上焦。</div>
+          <div class="herb"><b>細辛</b>：手太陰肺經起於中焦、下絡大腸、循胃口上膈屬肺，此路徑用細辛通脈、行津液。</div>
+          <div class="herb"><b>五味子</b>：送到肺後配合麻桂運送往外，但有些病人肺氣上逆而喘，需五味子收斂肺氣，使宣發肅降平衡。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 三焦 -->
+    <div class="section" id="s6">
+      <div class="section-header"><h2>三焦・五苓散</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p>三焦：水穀之道路、原氣之別使，影響水液輸送。脾主為行其津液，若大汗出、胃腸腑津液離開（胃中乾）即形成燥屎；胃氣和、慢慢補水回來，故要少少與之。脈浮、小便不利、微熱、消渴者，代表三焦通路在外感後氣機還沒上行調整回來，要用五苓散調整水液三焦。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">五苓散</span><span class="formula-comp">白朮 ＋桂枝 ＋澤瀉、茯苓、豬苓（治水總方）</span></div>
+          <p>多飲暖水，勿寒飲入胃（原已胃氣上逆，勿再喝冷水），勿一次喝多（少少與飲之），喝進胃往下排再喝。三焦有各自臟腑，前提是臟腑機能可運作，五苓散才有用；若臟腑有問題，還要加處理臟腑的藥（如人工腎臟要心臟夠強才可用）。水不是食物、不需化穀，只需為行其津液：</p>
+          <div class="herb"><b>白朮</b>：助脾運化。</div>
+          <div class="herb"><b>桂枝</b>：通脈（三焦中都還有脈）。</div>
+          <div class="herb"><b>茯苓、澤瀉、豬苓</b>：助三焦輸佈 —— 茯苓上中焦、澤瀉中下焦、豬苓下焦氣化而出，三者皆淡滲利濕。</div>
+          <p>（有表裡證、渴欲飲水、水入則吐，名曰水逆。）兼表裡證須看病機處理，同時酌加五苓散（如肺炎不是只用五苓散，還要加處理肺炎的藥）。</p>
+        </div>
+        <div class="box-green">
+          <p><strong>五苓散變方：</strong></p>
+          <p>通脈沒問題 → 去桂枝 ＝ 四苓湯（朮＋茯澤豬）。</p>
+          <p>運化沒問題 → 去白朮 ＝ 三苓湯（茯澤豬）。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">豬苓湯</span><span class="formula-comp">澤瀉、茯苓、豬苓 ＋滑石、阿膠</span></div>
+          <p>邪入膀胱腑，鬱熱蓄積在膀胱腑（下焦）。脾胃沒問題，去白朮、桂枝，留三苓湯加滑石、阿膠。陰傷用阿膠預防，清熱利濕用滑石處理。</p>
+        </div>
+        <div class="box-note"><strong>Review：</strong>五苓散 —— 三焦通路受阻；豬苓湯 —— 熱結下焦進膀胱腑。</div>
+      </div>
+    </div>
+
+    <!-- 腸腑、上焦停滯 -->
+    <div class="section" id="s7">
+      <div class="section-header"><h2>腸腑・上焦停滯</h2></div>
+      <div class="content">
+        <h3>腸腑</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">葛根芩連湯</span><span class="formula-comp">葛 ＋芩連 ＋甘</span></div>
+          <p>桂枝湯證反用下藥，不僅表證未除又多拉肚子（津液運送化生出問題），故既要補津液又要控制身體的熱，是中醫治腸胃炎的經典處方。發熱汗出、下利不止可用本方；若表證還在，可同時並用桂枝湯。畢竟虛還在，補中用炙甘草，葛根升陽明清氣、脾為行其津液，讓營衛氣往上輸送。急性病分溫再服、縮短給藥時間（如桂枝湯服法）。師說：不一定是正邪相爭在胃腸腑，只要氣機受影響就可用。</p>
+          <div class="herb"><b>黃連</b>：清心、胃火（心火旺常用）。PS 心氣虛、肝火旺不可用黃連。</div>
+          <div class="herb"><b>黃芩</b>：清肝、肺熱（肝發炎可用）。</div>
+        </div>
+        <h3>到上焦停滯（鬱熱在上焦膜原）</h3>
+        <div class="box-green">
+          <p>邪進肺系、沒到肺（不是咳喘），而是停滯、鬱熱在上焦膜原：煩熱、胸中窒，或身熱不去、心中（膻中）結痛；還可能虛煩不得眠，甚至反覆顛倒、心中懊憹。上焦膜原指肺之外（身體之內）的肋膜腔、心包膜，及食道外的膜原區。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">梔子豉湯</span><span class="formula-comp">梔、豉</span></div>
+          <p>用梔子處理三焦的熱，並用淡豆豉疏通上焦的膜、水穀之道路。台灣不易取得品質好的豆豉，可做變方，如藉宣肺（麻黃）、疏肝（柴胡）的藥來處理。此證型在台灣常見（久坐上焦氣機停滯，或外感上焦氣機停滯）。</p>
+          <div class="herb"><b>梔子</b>：處理三焦熱的首選，但缺點是滑腸。</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">梔子乾薑湯</span><span class="formula-comp">梔、乾薑（若劇者）</span></div>
+          <p>乾薑溫脾胃、增強脾胃陽氣機能，改善發汗吐下後的體虛，用在供應水穀經氣不足的脾虛補強。若吃完吐出來表示沒達到補強精氣功能，就不要再用（得吐者止後服）。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">梔子甘草豉湯</span><span class="formula-comp">若少氣者</span></div>
+          <p>甘草補中。得吐者止後服。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">梔子生薑豉湯</span><span class="formula-comp">若嘔者</span></div>
+          <p>得吐者止後服。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 救急救逆 -->
+    <div class="section" id="s8">
+      <div class="section-header"><h2>救急救逆（上焦・心）</h2></div>
+      <div class="content">
+        <p>心是君主之官，心陽是最重要供應衛氣營血輸送者。</p>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">真武湯</span><span class="formula-comp">炮附 ＋芍 ＋朮茯薑</span></div>
+          <p>老師認為不是腎陽虛的問題；依仲景思考圖像，心下悸是因心陽不足、津液送不出、衛氣營血供應減少，所以頭眩、身瞤動、振振欲擗地，全身症狀都出來。其實也可用灸法。</p>
+          <div class="herb"><b>白朮、茯苓、生薑</b>：中焦水穀精氣的運送、補充（補強營衛）。</div>
+          <div class="herb"><b>芍藥3</b>：桂枝湯精神 —— 去芍則增加經氣、營衛往外送；適當量則調和營衛正常運行（此條）；倍增則把經氣留在體內（補中）。要救病人又不希望陽氣耗散，就用芍藥。</div>
+          <div class="herb"><b>炮附1</b>：強心、溫陽、逐寒濕。（鄭宏足師：炮附1枚溫表陽，2-3枚逐寒濕；真武湯用炮附也是逐寒濕，但因腸胃不太好故只用1枚。）</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">四逆湯〈91條〉</span><span class="formula-comp">生附 ＋乾薑 ＋甘草</span></div>
+          <p>（傷寒，醫下之）體虛嚴重，救裡用四逆湯，之後救表用桂枝湯。先解表後治裡在急證醫學不適用，應是救命醫學。下利清穀不止、身疼痛者中焦水穀經氣不足，應先救裡；清便自調後再用桂枝湯救表。乾薑溫脾胃陽（救脾陽），甘草補中氣，加附子強心、引腎陽救心陽。</p>
+          <div class="herb"><b>生附1</b>（強人可大者一枚）：用藥都針對體質，藉調度臟腑經絡氣血抗邪；臟腑太弱、強心也沒用。附子是引腎陽救心陽（用存款強心），所以命門要夠、心的陰質要夠。外感本來好好的突然改變，認定原本存款夠，故「強人」指腎陽存款很夠；老人非強人，故老人不可用很多附子。</div>
+          <p>再加人參 ＝ 四逆加人參湯（生附、乾薑、甘草＋人參）；再加茯苓 ＝ 茯苓四逆湯。</p>
+        </div>
+        <div class="box-green">
+          <p>桂枝湯、麻黃湯等是「打打仗就會贏」；現在身體虛弱、心陽供應不足，打仗不見得贏，所以先救自己 —— 引用先天陽氣應急，過程仍需補充水穀精氣，故用真武湯（讓身體自動運作恢復）。四逆湯則更積極，是積極補入氣來應急。</p>
+        </div>
+        <div class="stable-wrap">
+          <div class="stable-title">【小整理】太陽經表證 → 外邪入裡 → 救急系統</div>
+          <table class="stable">
+            <thead><tr><th>分類</th><th>病機</th><th>方</th><th>重點</th></tr></thead>
+            <tbody>
+              <tr><td>太陽經表證</td><td>中風</td><td>桂枝湯</td><td>項背強几几衍出桂枝加葛根湯、葛根湯</td></tr>
+              <tr><td></td><td>傷寒</td><td>麻黃湯</td><td>寒邪束表、衛氣困於體內蓄熱，衍方大青龍湯</td></tr>
+              <tr><td></td><td>寒飲食入胃</td><td>小青龍湯</td><td>麻＋桂芍甘加四味，針對胃中水飲不化；半夏去嘔、乾薑溫陽、細辛通脈、五味子斂肺</td></tr>
+              <tr><td></td><td>津液化生輸佈有問題</td><td>五苓散</td><td>白朮運化、桂枝通陽化氣，淡滲利濕：茯苓上中焦、澤瀉中下焦、豬苓氣化膀胱</td></tr>
+              <tr><td>外邪入裡</td><td>入胃腑腸腑（中下焦）</td><td>葛芩連湯</td><td>衛氣津液足而下利，既補津液又控熱</td></tr>
+              <tr><td></td><td>飲停上焦（中上焦）</td><td>梔子豉湯</td><td>梔子清三焦熱、淡豆豉宣肺氣；少氣者梔子甘草豉湯、嘔者梔子生薑豉湯</td></tr>
+              <tr><td>救急系統</td><td>外感＋營衛不足＋心陽不足</td><td>真武湯</td><td>附子引先天陽氣應急，茯芍薑朮令中焦恢復；身體自動運作恢復</td></tr>
+              <tr><td></td><td>更積極補入氣</td><td>四逆湯</td><td>附子引先天陽氣急救心陽，人參甘草乾薑直接補入中焦之氣</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 少陽中焦 -->
+    <div class="section" id="s9">
+      <div class="section-header"><h2>少陽中焦・小柴胡湯系統</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p>作戰部位要從太陽開始轉入其他位置。太陽病可轉往少陽（半表半裡）。少陽主指膽，是邪氣出表入裡的樞紐，膽與肝相表裡。入少陽兩法：①藉體腔從肺系傳入上焦，再借三焦轉入中焦（嚴重可併發肺炎）；②從鼻腔（鼻兩側陽明經），鼻可連中耳（少陽部位），少陽經從耳後入耳中出走耳前（小孩感冒常併發中耳炎）。</p>
+          <p>邪入上焦（肺），抗邪要用營衛氣，但上焦已淪陷，就要用中焦營衛氣對付，主要由肝氣疏發調節，從脾胃運送營衛到上焦，也可引動下焦命門陽氣對抗邪氣 —— 這就是小柴胡湯的機轉。另說（胡希恕）：感冒四五日、胃較虛正氣不足，無法再於表祛邪，故用柴胡、黃芩解邪熱，更應補中益氣（尤其人參）以防傳變。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">小柴胡湯</span><span class="formula-comp">柴8 芩3 ＋參3 半夏半升 ＋甘3 薑3 棗12</span></div>
+          <p>中焦（後勤部隊）營衛氣機藉肝氣抒發調節，往上送到上焦（戰場）抗邪。病機都影響中上焦調控：脾為行其津液靠肝（抒發）脾胃，一進一退就往來（退多不寒、進多就寒 → 往來寒熱）；氣機停滯中焦、脾胃升降有問題就不想吃（默默不欲飲食）；少陽氣機停滯則脇下痞悶；影響小便不利；身有微熱而渴是肺氣不宣。血弱氣虛、腠理開，邪氣因入，與正相摶，最常見結聚在脇下。</p>
+          <div class="herb"><b>柴胡、薑</b>：疏發肝氣，讓營衛氣機到中焦、上焦；配生薑可達體表。</div>
+          <div class="herb"><b>黃芩</b>：蓄積的熱用黃芩處理（非抗邪，而是調整臟腑機能問題產生的熱）。</div>
+          <div class="herb"><b>甘、薑、棗、半夏、(人參)</b>：補中（甘薑棗）、和胃止嘔（半夏）、補中氣（人參）。只有氣機不暢、無中焦問題時，大棗甘草可減；虛得太嚴重加人參（原方有人參）。</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">小建中湯</span><span class="formula-comp">桂3 芍6 甘2 薑3 棗12 ＋飴糖</span></div>
+          <p>陽脈澀（浮澀）、陰脈弦（沉弦），法當腹中急痛，先與小建中湯，不差者再給小柴胡湯（第100條）。因中虛而生寒、寒在內而血不足外，故腹中急痛。此脈證可見於小建中湯與小柴胡湯證：緊急下先救裡再救表，先用小建中湯救裡，未好轉則屬柴胡證、給小柴胡湯。</p>
+        </div>
+        <div class="box-green">
+          <p><strong>小柴胡湯與婦科（熱入血室）：</strong>經水要來必須氣能下行，故體表衛氣會減弱，女生常在月經期外感；若調控力好、月經過了就好，調控力差則月經後外感不去 —— 氣機失常都可用小柴胡湯（病機相同）。月經前外感、氣往上抗邪、血室無法氣化、經水不來、氣停滯在上而形成結胸狀。肝氣抒發有問題影響魂，會神昏顛倒（少見，須伴外感不去）。治療應先治表後治裡，先解外感再用小柴胡湯處理氣機。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">大柴胡湯（兼熱入腸腑）</span><span class="formula-comp">柴8 芩3 ＋半夏半升 ＋甘3 薑5 棗12 ＋大黃2、枳實4（去人參）</span></div>
+          <p>疾病已影響到腸腑、形成熱結。是小柴胡湯與小承氣湯（去厚朴）合方的想法，讓腸胃腑能通，中上焦氣機宣發才正常。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">柴胡加芒硝湯</span><span class="formula-comp">小柴胡湯 ＋芒硝</span></div>
+          <p>芒硝使胃腸黏膜水分轉到腸腔，可處理胃腸乾結（軟化大便），但老師認為芒硝會造成腸黏膜水腫、不太用。胃腸乾結（大便很硬）可改用增液湯（玄參、麥冬、生地）三種滋陰藥。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">柴胡加龍骨牡蠣湯（兼心陽不足）</span><span class="formula-comp">柴芩參茯半 ＋薑棗 ＋桂枝 ＋龍牡 ＋鉛丹</span></div>
+          <p>有鉛丹，老師認為應非仲景原方。中上焦氣機失調，也可能因心陽功能不足，造成心、肝氣機失調，影響魂神運作，故煩驚、失眠。用桂枝溫通心陽，龍骨牡蠣鎮靜安神，小柴胡成分調節氣機。臨床可用小柴胡湯加龍骨牡蠣；若心陽虛又有桂枝湯證，也可用桂枝湯加龍骨牡蠣。</p>
+        </div>
+        <div class="stable-wrap">
+          <div class="stable-title">【小整理】上焦不得通、津液不得下</div>
+          <table class="stable">
+            <thead><tr><th>病機</th><th>方</th><th>說明</th></tr></thead>
+            <tbody>
+              <tr><td>邪入上焦，疏發肝氣以調動中焦營衛抗邪</td><td>小柴胡湯</td><td>太陽病由胃系或肺系轉少陽，邪滯中上焦；婦人經期外感、熱入血室</td></tr>
+              <tr><td>＋熱結在裡</td><td>大柴胡湯</td><td>誤治或傳變，造成熱結腸腑，小柴胡與小承氣之合方</td></tr>
+              <tr><td>＋腸腑中問題</td><td>柴胡加芒硝湯</td><td>讓胃腸黏膜水分轉到腸腔，惟老師提示慎用芒硝</td></tr>
+              <tr><td>＋心陽不足</td><td>柴胡加龍骨牡蠣湯</td><td>桂枝溫通心陽、龍牡重鎮安神，前提是中上焦氣機停滯不能太嚴重</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下焦蓄血 -->
+    <div class="section" id="s10">
+      <div class="section-header"><h2>下焦蓄血</h2></div>
+      <div class="content">
+        <p>二便調控與腎有關：腎氣蒸化與固攝，主司二便排泄。下焦靠腎陰腎陽調控膀胱腑氣化，也和大腸排便有關。</p>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">桃核承氣湯</span><span class="formula-comp">桂甘 ＋芒硝 ＋桃仁、大黃</span></div>
+          <p>外感太陽不解、邪氣下行走到膀胱（熱結膀胱腑之內），造成人如狂。用利尿（淡滲利濕）或通便（降氣）可解膀胱腑問題；自血下（血尿排熱）鬱熱自癒，前提是沒有正邪相爭，若外未解應先解外，否則正邪相爭仍會鬱積熱。氣機停滯少腹（少腹急結）就用下法 —— 腑氣下行的主方是承氣湯，通腑降氣解決。調胃承氣湯是大黃、甘草、芒硝；桃核承氣湯再加桃核、大黃兩味通便降氣藥及桂枝。芒硝處理腸胃乾結、軟化大便。若熱很明顯就不用桂枝湯的想法，可用豬苓湯的方式利尿（把桂枝甘草改成豬苓湯）。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">抵當湯</span><span class="formula-comp">水蛭、虻蟲 ＋桃仁、大黃</span></div>
+          <p>熱跟血結在膀胱腑之脈，只能通脈才有用，故加蟲類通絡藥，再加桃仁、大黃降氣藥解決。</p>
+        </div>
+        <div class="box-note"><strong>比較：</strong>熱與水結在膀胱腑之中 → 桃核承氣湯；熱與血結在脈之中 → 抵當湯。</div>
+      </div>
+    </div>
+
+    <!-- 臟結結胸 -->
+    <div class="section" id="s11">
+      <div class="section-header"><h2>臟結・結胸</h2></div>
+      <div class="content">
+        <div class="stable-wrap">
+          <div class="stable-title">臟結 vs 結胸（不是光看脈就能區別）</div>
+          <table class="stable">
+            <thead><tr><th></th><th>脈象</th><th>按之</th><th>說明</th></tr></thead>
+            <tbody>
+              <tr><td class="k">臟結</td><td>寸浮、關小細沉緊</td><td>—</td><td>氣血停滯、無陽證，虛弱直接病到臟，虛證不可下；飲食如故、時時下利、舌苔白滑（轉換率差，津液停胃腸未經運化即排出）</td></tr>
+              <tr><td class="k">結胸</td><td>寸浮、關沉</td><td>痛</td><td>病發於陽走表，誤下則邪入、氣機停滯在胸（心肺之外）、胸脇肋到胃、橫膈上下中二焦；太早下之則成痞</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box-green">
+          <p><strong>結胸治則：</strong>熱實（脈沉緊實、心下痛、按之石硬）→ 大陷胸湯；無大熱（水結胸肋、心包膜肋膜積水）→ 兼處理水飲；更嚴重（心下到少腹硬滿）→ 大陷胸湯；頭項強如柔痙狀 → 大陷胸丸（緩和用丸劑）；正在心下（在胃）、按之則痛、脈浮滑 → 小陷胸湯。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">大陷胸湯</span><span class="formula-comp">大黃、芒硝、甘遂</span></div>
+          <p>利用降胃氣帶動氣機調控，並處理水停脇肋之間。甘遂是峻下逐水藥，主作用在膈膜與腸腑。為急症的峻下降氣利水藥。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">大陷胸丸</span><span class="formula-comp">大黃、芒硝 ＋葶藶子、杏仁</span></div>
+          <p>將甘遂改為較緩和的葶藶子，加降肺氣的杏仁；用甘遂末蜜製使作用緩和。為較緩和的降氣利水藥。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">小陷胸湯</span><span class="formula-comp">黃連、半夏、栝蔞實</span></div>
+          <p>胃的停滯、熱蓄積在胃，黃連是清胃熱最好的藥；胃氣不和降加半夏；胸膈氣機停滯用栝蔞實。治胃食道發炎、逆流、氣機停滯最好的藥物。</p>
+        </div>
+        <div class="stable-wrap">
+          <div class="stable-title">小陷胸湯 vs 大陷胸湯</div>
+          <table class="stable">
+            <thead><tr><th>方名</th><th>小陷胸湯</th><th>大陷胸湯</th></tr></thead>
+            <tbody>
+              <tr><td class="k">功用</td><td>清熱化痰</td><td>泄熱逐水</td></tr>
+              <tr><td class="k">病機</td><td>痰熱互結</td><td>水熱互結</td></tr>
+              <tr><td class="k">主證</td><td>胸脘痞悶按之則痛</td><td>心下至少腹硬滿而痛</td></tr>
+              <tr><td class="k">組成</td><td>半夏（除痰）、黃連（清熱）、瓜蔞（潤下）</td><td>甘遂（逐水）、大黃（泄熱）、芒硝（瀉下）</td></tr>
+              <tr><td class="k">目標區</td><td>胸腔</td><td>腹腔</td></tr>
+            </tbody>
+          </table>
+          <div class="box-note">補充（台灣醫界雜誌，與老師看法不同）：大結胸病灶在腹腔（疑為腹膜炎，以峻瀉劑治療恐不合理且危險）；小結胸病灶在胸腔（清熱滌痰為呼吸道用藥，常與小柴胡湯或麻杏石甘湯合用，推斷為胸腔系統感染症）；寒實（慢性炎性滲出液）用三物白散。</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">十棗湯</span><span class="formula-comp">芫花、甘遂、大戟</span></div>
+          <p>下利、嘔逆，表解者乃可攻之。其人汗出 → 肺氣宣發、汗能出去；發作有時、頭痛、心下痞滿、引脇下痛、乾嘔短氣 → 似結胸證，病位在脇下脇肋、造成鬱熱、胃氣上逆。汗出不惡寒者表解裡未和。最適合水蓄積在胸肋者，需緩和利水，用散劑、大棗緩和藥力。服法與桂枝湯不同：一天服一次（平旦服），若下少明日更服。以前用在肺炎引起的肋膜積水，但老師建議不要用（現西醫抽水很有效，僅用此方易醫糾，可抽水後再用宣肺解表藥）。十棗湯較適合慢性免疫引起的積水，或腫瘤在肋膜腔形成氣機停滯、西醫無效又太虛弱不能常抽水者，可少量用、並搭配增強心肺功能藥。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 瀉心湯系列 -->
+    <div class="section" id="s12">
+      <div class="section-header"><h2>瀉心湯系列（改善腸胃道環境）</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p>主要用在潰瘍、胃食道逆流。有外感、正邪相爭過程不要用（尤其含補中的大棗）。鬱熱在胃腑用半夏瀉心湯，增加胃腸腑水濕運化用生薑瀉心湯，補中用甘草瀉心湯。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">半夏瀉心湯</span><span class="formula-comp">連芩 ＋參半 ＋甘3 乾棗</span></div>
+          <ul>
+            <li>痞症：滿而不痛為虛，由脾胃補充水穀精氣（溫中）。</li>
+            <li>本方為小柴胡湯中疏發肝氣的柴胡改黃連、生薑改乾薑。邪已衰但身體調節能力差、無水結熱結之結胸，回頭處理腸胃；病機不在三焦而在胃腑，故用黃連而不用柴胡。</li>
+            <li>現代常用於胃潰瘍：胃腑中熱造成潰瘍，則人參、大棗改成養胃陰的山藥、白芨；乾薑量斟酌（多會幫胃陽、溫化水飲，但有潰瘍則去乾薑）。</li>
+            <li>胃氣上逆、乾噫食臭、賁門鬆弛造成胃食道逆流，要用陽藥使胃降氣約束功能存在，需微量乾薑。</li>
+          </ul>
+          <div class="box-note">和胃降氣半夏、清鬱熱黃芩、清胃熱黃連；後代治療通常去人參（現代人營養偏剩，人參、大棗多不用）。</div>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">生薑瀉心湯</span><span class="formula-comp">連芩 ＋參半 ＋甘薑棗</span></div>
+          <ul>
+            <li>胃腸腑中問題、拉得厲害。</li>
+            <li>增加生薑幫助溫化胃腸腑水濕（胃腸腑水多而腹瀉）。</li>
+            <li>若胃氣上逆不厲害、以下利為主，可用葛根湯（把陽明津液送到身體）；但胃氣上逆不可用葛根湯（它使氣上行）。</li>
+          </ul>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">甘草瀉心湯</span><span class="formula-comp">連芩 ＋參半 ＋甘4 乾棗</span></div>
+          <ul>
+            <li>胃陽化穀機能有問題、胃中虛得更厲害、氣不足，代償的肝氣上逆（客氣上逆），心煩不得安。</li>
+            <li>補中藥：增加甘草劑量（甘草補中，與黃耆有類似作用）。</li>
+            <li>若非外感造成、而是真正胃腸腑發炎，應去大棗（正邪相爭就在胃腸腑，不要火上加油）。</li>
+            <li>泛酸厲害、胃氣不降、中滿腹脹者少用此方。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 黃芩湯系列 -->
+    <div class="section" id="s13">
+      <div class="section-header"><h2>黃芩湯系列</h2></div>
+      <div class="content">
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">黃芩湯</span><span class="formula-comp">芍甘棗 ＋芩</span></div>
+          <p>太陽少陽合病、自下利者與黃芩湯，影響到胃腸腑氣機調控。把桂枝湯拿掉桂枝、生薑，再加黃芩。（《湯液經法》陽旦湯是桂枝湯，陰旦湯是黃芩湯。）芍藥可柔肝緩急，但腹脹厲害時芍藥不可用太多。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">黃芩加半夏生薑湯</span><span class="formula-comp">芍甘棗 ＋芩 ＋半、生薑（若嘔者）</span></div>
+          <p>再加和胃的半夏、生薑。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">黃連湯</span><span class="formula-comp">連 ＋參半 ＋甘乾棗 ＋桂枝</span></div>
+          <p>傷寒，胸中有熱（上焦食道）、胃中有邪氣腹中痛（中焦胃到小腸腑）、欲嘔者。類似半夏瀉心湯，只是把傷寒用的桂枝加回來通脈、輸送營衛氣。是半夏瀉心湯去黃芩、再加桂枝。黃連（清胃火）、乾薑（溫中補脾）比例要拿捏（劑量無標準值，要確認藥廠克數）。條文少，由藥方推理。若胃腸正邪相爭在此，大棗要拿掉。</p>
+        </div>
+        <div class="box-green">
+          <p>病人外感後腸胃道有症狀，要評估外感還剩多少、是否加麻黃桂枝等表藥（仲景先解表後治裡）。判斷：胃陽夠不夠、胃停滯是上逆或下行；和降（緩和下行）為正常，下行太快會瀉、上行會痞硬噯氣。判斷寒熱依大便、嘔吐物形狀。腹診熱痛脹通常是氣蓄積（即使虛也是局部氣蓄積、增加局部壓力、按壓會痛），會加抑制胃氣（讓胃氣下降）的藥，但不希望胃腸腑因涼藥而不動，故搭配維持少量陽氣的藥（黃芩黃連配半夏、生薑、乾薑），這也是中藥比西藥強的原因。紅棗在腸胃炎時不要用。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 陽明便秘、白虎 -->
+    <div class="section" id="s14">
+      <div class="section-header"><h2>陽明便秘・白虎（承氣湯系統）</h2></div>
+      <div class="content">
+        <div class="box-green">
+          <p>陽明可以是胃腑中有病（正陽陽明），也可胃腑無病、而由太陽病或少陽病造成津液不足（太陽陽明、少陽陽明）：脾為行其津液後胃腸腑乾燥而成陽明病（胃家實），外證身熱、汗自出、不惡寒、反惡熱。腸胃中積滯、濕熱停滯去不掉，乾脆用通下法（承氣湯系列排腸腑之邪）。但須心陽、心氣足夠，否則下法使氣機往下走、心臟會無力。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">調胃承氣湯</span><span class="formula-comp">甘草、芒硝、大黃</span></div>
+          <p>陽明病不吐不下、心煩者。胃腸腑停滯會造成水穀經氣進不去（尤其很虛弱的病人），所以《內經》說胃腸腑「更虛更滿，更滿更虛」，排空食物才能進來。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">大承氣湯</span><span class="formula-comp">大黃、厚朴、枳實、芒硝</span></div>
+          <p>脈實、有汗排出去、外感可解，但津液減少、大便變硬，可用本方。若外證未解不可攻下，否則邪氣內陷。芒硝適合急性期，慢性便秘不要用。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">小承氣湯</span><span class="formula-comp">大黃、厚朴、枳實（去芒硝）</span></div>
+          <p>初頭硬、後必溏（肛門口大便很硬，大出後腹瀉）：表示脾不能把胃中津液送出，腸蠕動減緩、胃降氣減緩，到直腸在腎陽作用下津液送入下焦，不可攻之！越攻下腸越無力（長期用大黃會使腸麻痺、胃腸不動）；若攻之會脹滿吃不下、喝水也打嗝想吐。</p>
+          <div class="herb"><b>枳實／枳殼</b>：枳殼偏寬中理氣，枳實偏理氣降氣；藥物有限時可互用。</div>
+        </div>
+        <div class="box-note">同樣是一系列病機的偏向程度，不要死記條文、應掌握病機。例：桂枝湯加大黃即表裡雙解；不需清熱瀉下、只需降氣，可用桂枝湯加杏仁厚朴。清代另發明三養陰藥的增液湯、增液承氣湯。</div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">白虎湯</span><span class="formula-comp">知母、石膏、甘草、粳米（熱太厲害，用石膏截斷）</span></div>
+          <p>陽明（胃）是多血多氣系統、脾胃水穀化生供應的源頭。壯火食氣，身體蓄積熱太多會影響臟腑機能，用石膏處理此熱。傷寒、溫病家用生石膏（熟石膏即豆花）；科中製作有煮過。老師經驗臨床用飲片生石膏 1–3 錢就夠。此處講肌肉產熱即發高燒（下視丘產熱機制使肌肉收縮生熱、啟動免疫），適度發燒是好的，過度則用石膏解除。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 潤腸、黃疸、中下焦、少陰 -->
+    <div class="section" id="s15">
+      <div class="section-header"><h2>潤腸・黃疸・中下焦・少陰病</h2></div>
+      <div class="content">
+        <h3>補氣潤腸 / 通腸</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">白蜜煎</span><span class="formula-comp">人參、地黃、麻仁、白蜜</span></div>
+          <p>身體沒什麼問題、大便有點硬，可喝點蜂蜜水；脾胃虛加人參，大便乾加地黃，更嚴重加麻仁。</p>
+        </div>
+        <div class="box-note">通腸只是治標（類似西醫甘油球），可搭配增液承氣湯：蜜煎導方、豬膽汁方。</div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">麻子仁丸</span><span class="formula-comp">麻子仁、芍藥、杏仁、枳實、大黃、厚朴（＝小承氣湯＋杏、麻子仁、芍）</span></div>
+          <p>較緩和的潤腸通便藥。</p>
+        </div>
+
+        <h3>黃疸</h3>
+        <div class="box-green"><p>胃氣降、大腸才能化糟粕；膽液要瀉到胃、小腸、大腸，大便才會變黃褐色，沒進來就是灰大便。膽液要下行，重點是配合胃氣下行；膽汁上逆微量叫口苦、大量叫吐膽汁。</p></div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">茵陳蒿湯</span><span class="formula-comp">茵陳蒿、梔子、大黃</span></div>
+          <p>膽液不降、肝有濕熱淤積，用清熱利濕（茵陳蒿、梔子），降膽液使膽汁下行用大黃。比較：若是急性肝炎造成的瘀積，重點不在降氣而在清熱利濕、瀉肝火，可用龍膽瀉肝湯處理黃疸。</p>
+        </div>
+
+        <h3>複雜中下焦臟腑</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">理中湯</span><span class="formula-comp">乾薑、人參、白朮、甘草</span></div>
+          <p>腹痛繞臍、陽明風冷、穀氣不行，若反下之其氣必衝；不衝者心下則痞，當溫之宜理中湯。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">吳茱萸湯</span><span class="formula-comp">吳茱萸、人參、生薑、大棗</span></div>
+          <p>食穀欲嘔者屬陽明。趺陽脈微而弦、法當腹滿、兩胠疼痛，此為虛寒當溫之。指腸胃功能減弱、肝氣抒發要增強，用吳茱萸溫胃、溫肝（代表胃陽、肝陽受抑制才用），可使經脈氣血增強。日本人常用治癲癇、神經性頭痛（營衛供應減弱後肝氣虛性代償、造成肝經痙攣性抽痛）。也用在腹腔陽氣受抑制、肝氣抒發不正常致腸胃蠕動失常的腹痛；腸沾黏、腹膜腔沾黏（停滯後成瘀、手術損傷）可用補氣溫陽讓腸功能恢復、預防沾黏 —— 老師用吳茱萸湯加四逆散。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">小半夏湯</span><span class="formula-comp">半夏、生薑</span></div>
+          <p>痰較多可加茯苓。</p>
+        </div>
+
+        <h3>柴胡系列補充・四逆散</h3>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">四逆散</span><span class="formula-comp">柴胡、芍藥、枳實、甘草（＝柴胡芍藥枳實甘草湯）</span></div>
+          <p>柴胡疏肝、芍藥緩肝、枳實降氣、加甘草。急性發炎時緩和無效，可改大柴胡湯（結合四逆散與小承氣湯）。四逆散是疏肝降氣（特別降膽氣），同時兼顧腸腑氣下行；桂林古本叫柴胡芍藥枳實甘草湯，宋本叫四逆散。</p>
+        </div>
+
+        <h3>臟有寒當溫之（理中、四逆輩）</h3>
+        <div class="box-green">
+          <p>理中湯不夠用，就引動先天陽氣（命門）透過三焦輸佈到救急臟腑，通常用附子引動腎陽救心陽；其他臟腑救急則以附子為輔、額外加藥：</p>
+        </div>
+        <div class="stable-wrap">
+          <table class="stable">
+            <tbody>
+              <tr><td class="k">附子</td><td>心陽</td></tr>
+              <tr><td class="k">乾薑</td><td>脾陽</td></tr>
+              <tr><td class="k">吳茱萸</td><td>肝陽</td></tr>
+              <tr><td class="k">艾葉</td><td>女子血室</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>少陰病（脈微細、但欲寐）</h3>
+        <div class="box-green"><p>少陰涉及心與腎，可引腎陽救心陽；腎也不足就溫腎陽。腎陽儲備量很少（老人家）須填精補陽（鹿茸），但材料進來仍要經脾胃運化輸佈才有用。少陰病可用灸法（老師認為寒性鼻過敏貼背上俞穴——心俞、肺俞等——效果更好）。</p></div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">麻黃附子細辛湯／麻黃附子甘草湯</span><span class="formula-comp">少陰病、心陽不足之外感</span></div>
+          <p>少陰病造成心陽不足、或心陽不足者外感（太陽病很快影響心陽），可用麻黃附子細辛湯；類似的麻黃附子甘草湯，細辛是通脈（胃到肺），需補中就用甘草。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">附子湯</span><span class="formula-comp">附子、茯苓、人參、白朮、芍藥</span></div>
+          <p>少陰病營衛氣送不到體表、手足寒、骨節痛。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">當歸四逆湯</span><span class="formula-comp">桂、芍、甘、棗 ＋細辛、當歸、木通（生薑換細辛）</span></div>
+          <p>少陰病脈微而弱、身痛如掣，是輸送到體表的營衛不合。以桂枝湯為基礎、生薑換細辛，加當歸、木通。木通指木通科（甘平淡），非川木通（苦寒）或關木通；宋本寫通草有爭議，台灣最接近的是通脫木的通草，老師都用通草。此處營衛不合，不可再用苦寒藥。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">真武湯</span><span class="formula-comp">少陰病心陽輸送有問題、影響水液調控</span></div>
+          <p>用在下焦命門出問題、水液送不出來。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">通脈四逆湯</span><span class="formula-comp">人參、乾薑、甘草、生附</span></div>
+          <p>少陰病下利清穀、裡寒外熱、手足厥逆、脈微欲絕、身反不惡寒、面色赤，或腹痛、乾嘔、咽痛、利止脈不出者。面色赤是救逆系統命門陽氣拿出來用的代償表現，勿見面色赤就說是熱證。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">桃花湯</span><span class="formula-comp">赤石脂、乾薑、粳米</span></div>
+          <p>少陰病下利便膿血。熱往腸腑、便膿血、下利不止，要讓腸腑運作恢復正常、津液能送進身體，則腹痛小便症狀可改善。用收斂的赤石脂加乾薑、粳米使腸胃腑運作正常。看到便膿血就開此方一定出事，必須是慢性且虛證才用；否則回到下利瀉心湯考量（瀉心湯處理腸胃腑鬱熱所成病症）。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">白通湯</span><span class="formula-comp">蔥白、乾薑、生附</span></div>
+          <p>讓身體臟腑陽氣能恢復。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">黃連阿膠湯</span><span class="formula-comp">黃連、黃芩、芍藥、阿膠、雞子黃</span></div>
+          <p>少陰病二三日以上、心中煩不得臥者。與心臟功能有關，是陽氣上浮、心陰不足所致；心陰不足、儲備的陽氣就容易不足。</p>
+        </div>
+        <div class="formula">
+          <div class="formula-head"><span class="formula-name">炙甘草湯</span><span class="formula-comp">炙甘草、人參、地黃、麥門冬、阿膠、桂枝、生薑、大棗、麻仁</span></div>
+          <p>傷寒脈結促、心動悸者。心氣、心陰不足，若有外感先加處理外感的藥，無則直接用炙甘草湯補強心氣、心陰、通心脈。補氣藥人參，養陰藥地黃、麥門冬、阿膠，調和衛氣通心脈用桂枝，配生薑、甘草、大棗。此外心痺可用瓜蔞、薤白通心脈。</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
