@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方劑學總覽・習醫手帖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2D5A3D;
+      --green-mid: #3D7A52;
+      --green-light: #5A9E6F;
+      --green-pale: #E8F2EC;
+      --parchment: #FAF7F2;
+      --ink: #1E2A1E;
+      --ink-light: #4A5A4A;
+      --rule: #C8D8C8;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+    .site-nav {
+      background: var(--green-dark); color: var(--white);
+      padding: .9rem 2rem; display: flex; align-items: center;
+      gap: 1.2rem; flex-wrap: wrap;
+    }
+    .site-nav .site-title { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1.15rem; letter-spacing: .05em; }
+    .site-nav a { color: #D7E8DD; text-decoration: none; font-size: .95rem; }
+    .site-nav a:hover { color: var(--white); }
+    .site-nav .nav-current { color: var(--white); font-size: .95rem; font-weight: 500; }
+
+    .breadcrumb { max-width: 1100px; margin: 0 auto; padding: 1.3rem 2rem .4rem; font-size: .85rem; color: var(--ink-light); }
+    .breadcrumb a { color: var(--green-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .45rem; color: var(--rule); }
+
+    .page-header { max-width: 1100px; margin: 0 auto; padding: .4rem 2rem 1.4rem; border-bottom: 1px solid var(--rule); }
+    .page-header .eyebrow { font-size: .8rem; letter-spacing: .25em; color: var(--green-mid); font-weight: 700; margin-bottom: .4rem; }
+    .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 2.1rem; color: var(--green-dark); font-weight: 700; }
+    .page-header .lead { margin-top: .6rem; color: var(--ink-light); font-size: .95rem; }
+
+    .layout { max-width: 1100px; margin: 0 auto; display: flex; gap: 2rem; padding: 1.6rem 2rem 3rem; align-items: flex-start; }
+    .sidebar { flex: 0 0 200px; position: sticky; top: 1.4rem; }
+    .sidebar nav { display: flex; flex-direction: column; gap: .3rem; background: var(--white); border: 1px solid var(--rule); border-radius: 12px; padding: .8rem; }
+    .sidebar nav button {
+      font-family: 'Noto Sans TC', sans-serif; text-align: left; background: none; border: none; cursor: pointer;
+      padding: .6rem .8rem; border-radius: 8px; font-size: .92rem; color: var(--ink-light); transition: background .18s, color .18s; line-height: 1.4;
+    }
+    .sidebar nav button:hover { background: var(--green-pale); color: var(--green-dark); }
+    .sidebar nav button.active { background: var(--green-dark); color: var(--white); font-weight: 500; }
+
+    main { flex: 1 1 auto; min-width: 0; }
+    .section { display: none; }
+    .section.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .section-header { margin-bottom: 1rem; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .section-header h2 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; color: var(--green-dark); }
+    .detail-link {
+      font-size: .82rem; background: var(--green-dark); color: var(--white) !important;
+      text-decoration: none; padding: .2rem .7rem; border-radius: 6px; font-weight: 500;
+    }
+    .detail-link:hover { background: var(--green-mid); }
+
+    .fx-group { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem 1.1rem; margin: .9rem 0; }
+    .fx-label {
+      font-family: 'Noto Serif TC', serif; font-weight: 700; color: var(--green-dark); font-size: 1.05rem;
+      margin-bottom: .5rem; display: inline-block; border-bottom: 2px solid var(--green-pale); padding-bottom: .15rem;
+    }
+    .fx-row { display: flex; gap: .7rem; padding: .4rem 0; border-top: 1px dashed var(--rule); align-items: baseline; flex-wrap: wrap; }
+    .fx-row:first-of-type { border-top: none; }
+    .fx-zheng { flex: 0 0 160px; color: var(--ink-light); font-size: .9rem; }
+    .fx-fang { flex: 1 1 220px; color: var(--ink); font-weight: 500; }
+    .fx-var { color: var(--green-mid); font-weight: 400; font-size: .9rem; }
+    .fx-note { color: var(--ink-light); font-size: .82rem; }
+    .ai-note { color: #9A6B2F; font-size: .8rem; }
+
+    .box-green { background: var(--green-pale); border-left: 4px solid var(--green-light); border-radius: 0 8px 8px 0; padding: .9rem 1.1rem; margin: 1rem 0; font-size: .92rem; }
+    .box-green p { margin: .2rem 0; }
+    .box-green strong { color: var(--green-dark); }
+
+    .qtable-wrap { margin: 1.2rem 0 .4rem; overflow-x: auto; }
+    .qtable-title { font-family: 'Noto Serif TC', serif; color: var(--green-mid); font-size: .95rem; margin-bottom: .5rem; font-weight: 600; }
+    table.qtable { width: 100%; border-collapse: collapse; font-size: .88rem; background: var(--white); border-radius: 8px; overflow: hidden; }
+    table.qtable th { background: var(--green-dark); color: var(--white); text-align: left; padding: .55rem .7rem; font-weight: 500; }
+    table.qtable td { padding: .55rem .7rem; border-top: 1px solid var(--rule); vertical-align: top; }
+    table.qtable td:first-child { color: var(--green-dark); font-weight: 600; white-space: nowrap; font-family: 'Noto Serif TC', serif; }
+    table.qtable tr:nth-child(even) td { background: #FCFAF6; }
+
+    .site-footer { text-align: center; padding: 1.6rem; font-size: .82rem; color: var(--ink-light); border-top: 1px solid var(--rule); }
+
+    @media (max-width: 820px) {
+      .layout { flex-direction: column; padding: 1rem 1.1rem 2.4rem; gap: 1rem; }
+      .sidebar { position: static; flex: none; width: 100%; }
+      .sidebar nav { flex-direction: row; flex-wrap: wrap; }
+      .sidebar nav button { flex: 1 1 auto; text-align: center; }
+      .page-header h1 { font-size: 1.7rem; }
+      .fx-zheng { flex: 1 1 100%; font-weight: 500; color: var(--green-mid); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="site-title">習醫手帖</span>
+  <a href="index.html">首頁</a>
+  <a href="reading.html">讀書筆記</a>
+  <a href="fangji.html">方劑學筆記</a>
+  <span class="nav-current">方劑學總覽</span>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">首頁</a><span>›</span>
+  <a href="reading.html">讀書筆記</a><span>›</span>
+  <a href="fangji.html">方劑學筆記</a><span>›</span>
+  方劑學總覽
+</div>
+
+<div class="page-header">
+  <div class="eyebrow">方劑學・全局框架地圖</div>
+  <h1>方劑學總覽</h1>
+  <p class="lead">把方劑學依「大類 → 治法 → 適應證/兼證 → 代表方」攤開的一張地圖。【】內為變方，治風劑、補益劑可點右上「看詳解」進入完整章節。</p>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav>
+      <button class="active" onclick="show('s1', this)">解表劑</button>
+      <button onclick="show('s2', this)">清熱劑</button>
+      <button onclick="show('s3', this)">溫裡劑</button>
+      <button onclick="show('s4', this)">補益劑</button>
+      <button onclick="show('s5', this)">固澀劑</button>
+      <button onclick="show('s6', this)">安神劑</button>
+      <button onclick="show('s7', this)">開竅劑</button>
+      <button onclick="show('s8', this)">理氣劑</button>
+      <button onclick="show('s9', this)">理血劑</button>
+      <button onclick="show('s10', this)">治風劑</button>
+      <button onclick="show('s11', this)">治燥劑</button>
+    </nav>
+  </aside>
+
+  <main>
+
+    <!-- 解表劑 -->
+    <div class="section active" id="s1">
+      <div class="section-header"><h2>解表劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">辛溫解表（風寒）</span>
+          <div class="fx-row"><span class="fx-zheng">風寒表實（太陽傷寒）</span><span class="fx-fang">麻黃湯、三拗湯<span class="fx-note">（表證較輕、肺系症狀明顯）</span>、華蓋散<span class="fx-note">（痰氣互結嚴重）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">風寒表虛（太陽中風）</span><span class="fx-fang">桂枝湯系列、葛根湯、玉屏風散</span></div>
+          <div class="fx-row"><span class="fx-zheng">夾濕（肢體痠重）</span><span class="fx-fang">麻黃加朮湯、麻杏苡甘湯、九味羌活湯、羌活勝濕湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">夾暑（外感風寒、內傷濕滯）</span><span class="fx-fang">香薷散<span class="fx-note">（偏表）</span>、藿香正氣散<span class="fx-note">（偏裡）</span>、六和湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">表寒重、入裡化熱</span><span class="fx-fang">大青龍湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">寒飲</span><span class="fx-fang">小青龍湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">夾燥（涼燥）</span><span class="fx-fang">杏蘇散</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">辛涼解表（風熱）</span>
+          <div class="fx-row"><span class="fx-zheng">喉嚨不痛</span><span class="fx-fang">桑菊飲</span></div>
+          <div class="fx-row"><span class="fx-zheng">喉嚨痛</span><span class="fx-fang">銀翹散</span></div>
+          <div class="fx-row"><span class="fx-zheng">肺熱壅盛</span><span class="fx-fang">麻杏甘石湯、越婢湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">其他</span><span class="fx-fang">普濟消毒飲、蒼耳散、辛夷清肺散、升麻葛根湯、清燥救肺湯、麻黃連翹赤小豆湯、柴葛解肌湯、白虎湯、梔子豉湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">扶正解表（兼證・體質）</span>
+          <div class="fx-row"><span class="fx-zheng">氣虛</span><span class="fx-fang">人參敗毒散、參蘇飲</span></div>
+          <div class="fx-row"><span class="fx-zheng">陽虛</span><span class="fx-fang">麻黃細辛附子湯、再造散</span></div>
+          <div class="fx-row"><span class="fx-zheng">血虛</span><span class="fx-fang">蔥白七味飲</span></div>
+          <div class="fx-row"><span class="fx-zheng">陰虛</span><span class="fx-fang">加減葳蕤湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">氣滯、氣鬱</span><span class="fx-fang">香蘇散、加味香蘇散、十神散</span></div>
+        </div>
+        <div class="qtable-wrap">
+          <div class="qtable-title">速查表</div>
+          <table class="qtable"><thead><tr><th>治法</th><th>代表方</th></tr></thead><tbody>
+            <tr><td>辛溫解表</td><td>麻黃湯、桂枝湯、葛根湯、小青龍湯、大青龍湯、九味羌活湯、香薷散</td></tr>
+            <tr><td>辛涼解表</td><td>桑菊飲、銀翹散、麻杏甘石湯、柴葛解肌湯、升麻葛根湯</td></tr>
+            <tr><td>扶正解表</td><td>人參敗毒散、參蘇飲、麻黃細辛附子湯、再造散、加減葳蕤湯</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 清熱劑 -->
+    <div class="section" id="s2">
+      <div class="section-header"><h2>清熱劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">清氣分熱</span>
+          <div class="fx-row"><span class="fx-zheng">熱入氣分</span><span class="fx-fang">白虎湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">病後餘熱未清</span><span class="fx-fang">竹葉石膏湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">清營涼血</span>
+          <div class="fx-row"><span class="fx-zheng">熱入營分</span><span class="fx-fang">清營湯<span class="fx-note">（透熱轉氣）</span>、清宮湯<span class="fx-note">（清心包熱）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">熱入血分</span><span class="fx-fang">犀角地黃湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">氣血兩燔</span><span class="fx-fang">清瘟敗毒散</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">清熱解毒</span>
+          <div class="fx-row"><span class="fx-zheng">熱斥三焦</span><span class="fx-fang">黃連解毒湯、三黃瀉心湯、三黃石膏湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">熱盛上焦</span><span class="fx-fang">普濟消毒飲</span></div>
+          <div class="fx-row"><span class="fx-zheng">熱壅血脈、肌肉（瘡瘍）</span><span class="fx-fang">五味消毒飲、仙方活命飲</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">清臟腑熱</span>
+          <div class="fx-row"><span class="fx-zheng">心火</span><span class="fx-fang">導赤散、清心蓮子飲</span></div>
+          <div class="fx-row"><span class="fx-zheng">肝火</span><span class="fx-fang">龍膽瀉肝湯<span class="fx-note">（熱盛下焦、陰部）</span>、左金丸<span class="fx-note">（肝火犯胃）</span>、瀉青丸、當歸龍薈丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">脾胃火</span><span class="fx-fang">清胃散、瀉黃散、玉女煎<span class="fx-note">（兼陰虛）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">肺火</span><span class="fx-fang">瀉白散、葦莖湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">腸熱</span><span class="fx-fang">白頭翁湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">清虛熱</span>
+          <div class="fx-row"><span class="fx-fang">青蒿鱉甲湯、秦艽鱉甲散、清骨散、當歸六黃湯</span></div>
+        </div>
+        <div class="qtable-wrap">
+          <div class="qtable-title">速查表</div>
+          <table class="qtable"><thead><tr><th>治法</th><th>代表方</th></tr></thead><tbody>
+            <tr><td>清氣分熱</td><td>白虎湯、竹葉石膏湯</td></tr>
+            <tr><td>清營涼血</td><td>清營湯、清宮湯、犀角地黃湯、清瘟敗毒散</td></tr>
+            <tr><td>清熱解毒</td><td>黃連解毒湯、普濟消毒飲、五味消毒飲、仙方活命飲</td></tr>
+            <tr><td>清臟腑熱</td><td>導赤散、龍膽瀉肝湯、左金丸、清胃散、玉女煎、瀉白散、白頭翁湯</td></tr>
+            <tr><td>清虛熱</td><td>青蒿鱉甲湯、清骨散、當歸六黃湯</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 溫裡劑 -->
+    <div class="section" id="s3">
+      <div class="section-header"><h2>溫裡劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">溫中祛寒（中焦虛寒）</span>
+          <div class="fx-row"><span class="fx-zheng">兼正氣虛</span><span class="fx-fang">理中丸、吳茱萸湯、大建中湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">兼營血虛滯（氣血陰陽俱虛）</span><span class="fx-fang">小建中湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">回陽救逆（亡陽厥逆）</span>
+          <div class="fx-row"><span class="fx-zheng">基本方</span><span class="fx-fang">四逆湯、四逆加人參湯、通脈四逆湯、白通湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">兼氣虛</span><span class="fx-fang">參附湯、回陽救急湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">腎不納氣、陽痿</span><span class="fx-fang">黑錫丹</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">溫經散寒（經脈寒凝）</span>
+          <div class="fx-row"><span class="fx-zheng">寒邪入侵經脈、阻滯較重</span><span class="fx-fang">當歸四逆湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">陽氣不足</span><span class="fx-fang">黃耆桂枝五物湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">兼寒痰凝滯肌肉筋骨</span><span class="fx-fang">陽和湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">溫陽化水・祛寒化濕（腎陽虛）</span>
+          <div class="fx-row"><span class="fx-zheng">寒濕在骨節</span><span class="fx-fang">附子湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">脾虛水腫</span><span class="fx-fang">真武湯</span></div>
+        </div>
+        <div class="box-green">
+          <p><strong>傷寒論附子用法：</strong></p>
+          <p>生附 ＋ 乾薑 → 回陽救逆（乾薑附子湯）；炮附 → 逐寒濕；亦有不含附子者。</p>
+          <p>脾陽虛相關方亦見本劑。</p>
+        </div>
+        <div class="qtable-wrap">
+          <div class="qtable-title">速查表</div>
+          <table class="qtable"><thead><tr><th>治法</th><th>代表方</th></tr></thead><tbody>
+            <tr><td>溫中祛寒</td><td>理中丸、吳茱萸湯、大建中湯、小建中湯</td></tr>
+            <tr><td>回陽救逆</td><td>四逆湯、通脈四逆湯、白通湯、參附湯、回陽救急湯</td></tr>
+            <tr><td>溫經散寒</td><td>當歸四逆湯、黃耆桂枝五物湯、陽和湯</td></tr>
+            <tr><td>溫陽化水</td><td>附子湯、真武湯</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 補益劑 -->
+    <div class="section" id="s4">
+      <div class="section-header"><h2>補益劑</h2><a class="detail-link" href="fangji_buyi.html">看詳解 →</a></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">補氣</span>
+          <div class="fx-row"><span class="fx-zheng">脾氣虛</span><span class="fx-fang">四君子湯 <span class="fx-var">【六君子湯（兼痰濕）・香砂六君子湯（兼痰阻氣滯）】</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">脾虛生濕</span><span class="fx-fang">參苓白朮散</span></div>
+          <div class="fx-row"><span class="fx-zheng">氣虛較甚或清陽下陷</span><span class="fx-fang">補中益氣湯 <span class="fx-var">【舉元煎・升陷湯】</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">兼濕熱</span><span class="fx-fang">升陽益胃湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">清陽不升</span><span class="fx-fang">益氣聰明湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">兼陰虧氣耗（氣陰兩虛）</span><span class="fx-fang">生脈散</span></div>
+          <div class="fx-row"><span class="fx-zheng">表衛不固、易感外邪</span><span class="fx-fang">玉屏風散</span></div>
+          <div class="fx-row"><span class="fx-zheng">兼喘咳／肺腎雙虛</span><span class="fx-fang">人參蛤蚧散</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">補血</span>
+          <div class="fx-row"><span class="fx-zheng">肝血虛・養血調血</span><span class="fx-fang">四物湯 <span class="fx-var">【桃紅四物湯（兼血瘀）・膠艾湯（衝任虛寒）・聖愈湯（補氣養血）】</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">兼脾氣虛（心脾兩虛）</span><span class="fx-fang">歸脾湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">血虛氣弱、兼血滯</span><span class="fx-fang">當歸補血湯<span class="fx-note">（補氣生血）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">虛損勞怯、元氣不足</span><span class="fx-fang">保元湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">補陰</span>
+          <div class="fx-row"><span class="fx-zheng">腎陰虛</span><span class="fx-fang">六味地黃丸 <span class="fx-var">【都氣丸（肺腎陰虛）・杞菊地黃丸（肝腎陰虛）・知柏地黃丸（陰虛火旺）】</span>、二至丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">真陰不足、精髓虧損</span><span class="fx-fang">左歸丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">陰虛火旺</span><span class="fx-fang">大補陰丸、虎潛丸<span class="fx-note">（痿證）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">肝腎陰虛兼肝氣鬱結</span><span class="fx-fang">一貫煎</span></div>
+          <div class="fx-row"><span class="fx-zheng">肺陰虛、肺腎陰虛</span><span class="fx-fang">補肺阿膠湯、百合固金湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">胃陰不足</span><span class="fx-fang">益胃湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">補陽</span>
+          <div class="fx-row"><span class="fx-zheng">腎陽虛</span><span class="fx-fang">腎氣丸（＝桂附地黃丸）<span class="fx-var">【加味腎氣丸・十補丸】</span>、右歸丸<span class="fx-var">【右歸飲】</span></span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">氣血雙補（氣血兩虛）</span>
+          <div class="fx-row"><span class="fx-fang">八珍湯 <span class="fx-var">【十全大補湯・人參養榮湯】</span>、泰山磐石散、保產無憂散、炙甘草湯（＝復脈湯）、加減復脈湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">陰陽雙補</span>
+          <div class="fx-row"><span class="fx-fang">補天大造丸、地黃飲子<span class="fx-note">（喑痱<span class="ai-note">〔AI補充：原稿作「喑啡」〕</span>）</span> <span class="fx-var">【還少丹】</span></span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">氣血陰陽雙補</span>
+          <div class="fx-row"><span class="fx-fang">龜鹿二仙膠<span class="fx-note">（真元虛損、精血不足）</span>、七寶美髯丹<span class="fx-note">（肝腎不足、精血虧乏）</span></span></div>
+        </div>
+        <div class="box-green">
+          <p><strong>跨劑提醒：</strong>心血虛、心陰虛（與失眠有關）見補養安神劑；脾陽虛見溫裡劑。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 固澀劑 -->
+    <div class="section" id="s5">
+      <div class="section-header"><h2>固澀劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">固表止汗</span>
+          <div class="fx-row"><span class="fx-zheng">表虛衛外不固、津液外泄</span><span class="fx-fang">玉屏風散、牡蠣散</span></div>
+          <div class="fx-row"><span class="fx-zheng">陰虛火擾之盜汗</span><span class="fx-fang">當歸六黃湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">歛肺止咳</span>
+          <div class="fx-row"><span class="fx-zheng">久咳傷肺、氣陰兩虛</span><span class="fx-fang">九仙散</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">澀腸固脫</span>
+          <div class="fx-row"><span class="fx-zheng">脾腎虛寒、腸失固攝</span><span class="fx-fang">桃花湯、四神丸、真人養臟湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">澀精止遺</span>
+          <div class="fx-row"><span class="fx-zheng">腎虛不固</span><span class="fx-fang">金鎖固精丸 <span class="ai-note">〔AI補充：原稿作「金鎖固金丸」〕</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">心腎兩虛、水火不交</span><span class="fx-fang">桑螵蛸散</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">固崩止帶</span>
+          <div class="fx-row"><span class="fx-zheng">脾腎虧虛、衝脈不固</span><span class="fx-fang">固衝湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">脾虛肝鬱（肝脾不和）之帶下</span><span class="fx-fang">完帶湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">腎虛有熱、濕熱下注（黃帶）</span><span class="fx-fang">易黃湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">陰虛血熱之崩漏（月經過多）</span><span class="fx-fang">桑螵蛸散 <span class="ai-note">〔AI補充：此格原稿亦作桑螵蛸散，臨床此證多用固經丸，請對照原講義確認〕</span></span></div>
+        </div>
+        <div class="qtable-wrap">
+          <div class="qtable-title">速查表</div>
+          <table class="qtable"><thead><tr><th>治法</th><th>代表方</th></tr></thead><tbody>
+            <tr><td>固表止汗</td><td>玉屏風散、牡蠣散、當歸六黃湯</td></tr>
+            <tr><td>歛肺止咳</td><td>九仙散</td></tr>
+            <tr><td>澀腸固脫</td><td>桃花湯、四神丸、真人養臟湯</td></tr>
+            <tr><td>澀精止遺</td><td>金鎖固精丸、桑螵蛸散</td></tr>
+            <tr><td>固崩止帶</td><td>固衝湯、完帶湯、易黃湯</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 安神劑 -->
+    <div class="section" id="s6">
+      <div class="section-header"><h2>安神劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">重鎮安神</span>
+          <div class="fx-row"><span class="fx-zheng">心火內擾</span><span class="fx-fang">硃砂安神丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">心腎不交</span><span class="fx-fang">磁朱丸 <span class="ai-note">〔AI補充：原稿作「磁珠丸」〕</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">陰血不足、心肝陽亢</span><span class="fx-fang">珍珠母丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">痰火上擾之顛狂</span><span class="fx-fang">生鐵落飲</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">補養安神</span>
+          <div class="fx-row"><span class="fx-zheng">肝血不足、虛熱內擾</span><span class="fx-fang">酸棗仁湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">心腎陰虛血少、虛火內動</span><span class="fx-fang">天王補心丹<span class="fx-note">（陰虛內熱為主）</span>、孔聖枕中丹<span class="fx-note">（兼痰火內擾）</span>、交泰丸<span class="fx-note">（心腎不交）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">肝鬱心虛、臟燥</span><span class="fx-fang">甘麥大棗湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">心脾氣血兩虛</span><span class="fx-fang">歸脾湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">其他</span><span class="fx-fang">養心湯、仁熟散</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 開竅劑 -->
+    <div class="section" id="s7">
+      <div class="section-header"><h2>開竅劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">涼開</span>
+          <div class="fx-row"><span class="fx-zheng">熱邪內陷心包之熱閉</span><span class="fx-fang">安宮牛黃丸<span class="fx-note">（熱盛）</span>、紫雪丹<span class="fx-note">（熱盛氣血兩燔、肝風內動）</span>、至寶丹<span class="fx-note">（竅閉神昏甚）</span></span></div>
+          <div class="fx-row"><span class="fx-zheng">痰熱蒙蔽心竅之熱閉</span><span class="fx-fang">小兒回春丹</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">溫開</span>
+          <div class="fx-row"><span class="fx-zheng">寒濕痰濁、蒙蔽心竅</span><span class="fx-fang">蘇合香丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">外邪／食物中毒之噁心嘔吐、腹痛泄瀉</span><span class="fx-fang">紫金錠<span class="fx-note">（含麝香）</span></span></div>
+        </div>
+        <div class="box-green"><p><strong>口訣：</strong>涼開三寶 —— 安宮牛黃丸（最涼，清熱）、紫雪丹（息風止痙）、至寶丹（化濁開竅）。</p></div>
+      </div>
+    </div>
+
+    <!-- 理氣劑 -->
+    <div class="section" id="s8">
+      <div class="section-header"><h2>理氣劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">行氣・疏肝理氣（氣滯在肝脾）</span>
+          <div class="fx-row"><span class="fx-zheng">兼血瘀（脇肋疼痛）</span><span class="fx-fang">柴胡疏肝散</span></div>
+          <div class="fx-row"><span class="fx-zheng">氣滯兼氣逆</span><span class="fx-fang">金鈴子散</span></div>
+          <div class="fx-row"><span class="fx-zheng">肝脾不和（屬和解劑）</span><span class="fx-fang">四逆散、逍遙散、白朮芍藥散</span></div>
+          <div class="fx-row"><span class="fx-zheng">諸鬱（氣血痰火濕食）</span><span class="fx-fang">越鞠丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">思慮過度、脾氣鬱結（梅核氣）</span><span class="fx-fang">半夏厚朴湯、七氣湯、四七湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">行氣・寒凝氣滯（寒侵肝經）</span>
+          <div class="fx-row"><span class="fx-fang">天台烏藥散、暖肝煎、橘核丸、導氣湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">行氣・通陽散結（胸痺、胸陽不振）</span>
+          <div class="fx-row"><span class="fx-fang">瓜蔞薤白白酒湯、瓜蔞薤白半夏湯、枳實薤白桂枝湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">行氣・和胃理氣</span>
+          <div class="fx-row"><span class="fx-zheng">肝氣鬱滯、中焦寒凝</span><span class="fx-fang">良附丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">脾胃鬱滯、中焦寒濕</span><span class="fx-fang">厚朴溫中湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">脾胃鬱滯、中焦濕與食積</span><span class="fx-fang">枳朮丸</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">降氣・降逆平喘（肺）</span>
+          <div class="fx-row"><span class="fx-zheng">氣滯兼氣逆</span><span class="fx-fang">四磨湯、六磨湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">兼腎不納氣</span><span class="fx-fang">蘇子降氣湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">痰熱內蘊兼表邪（風寒外束）</span><span class="fx-fang">定喘湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">老年中虛、氣壅痰盛（屬祛痰劑）</span><span class="fx-fang">三子養親湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">降氣・降逆止嘔（胃）</span>
+          <div class="fx-row"><span class="fx-zheng">中陽不振、寒從中生</span><span class="fx-fang">丁香柿蒂湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">胃熱氣逆不降</span><span class="fx-fang">橘皮竹茹湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">久病胃虛、氣逆不降</span><span class="fx-fang">旋覆代赭石湯</span></div>
+        </div>
+        <div class="qtable-wrap">
+          <div class="qtable-title">速查表</div>
+          <table class="qtable"><thead><tr><th>治法</th><th>代表方</th></tr></thead><tbody>
+            <tr><td>疏肝理氣</td><td>柴胡疏肝散、金鈴子散、四逆散、逍遙散、越鞠丸、半夏厚朴湯</td></tr>
+            <tr><td>寒凝氣滯</td><td>天台烏藥散、暖肝煎、橘核丸、導氣湯</td></tr>
+            <tr><td>通陽散結</td><td>瓜蔞薤白白酒湯、瓜蔞薤白半夏湯、枳實薤白桂枝湯</td></tr>
+            <tr><td>和胃理氣</td><td>良附丸、厚朴溫中湯、枳朮丸</td></tr>
+            <tr><td>降逆平喘</td><td>四磨湯、蘇子降氣湯、定喘湯、三子養親湯</td></tr>
+            <tr><td>降逆止嘔</td><td>丁香柿蒂湯、橘皮竹茹湯、旋覆代赭石湯</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 理血劑 -->
+    <div class="section" id="s9">
+      <div class="section-header"><h2>理血劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">活血劑・活血祛瘀</span>
+          <div class="fx-row"><span class="fx-zheng">氣滯則血瘀</span><span class="fx-fang">血府逐瘀湯<span class="fx-note">（胸）</span>、身痛逐瘀湯、少腹逐瘀湯、膈下逐瘀湯、丹參飲<span class="fx-note">（心胃）</span>、活絡效靈丹</span></div>
+          <div class="fx-row"><span class="fx-zheng">血瘀日久成癥積腫塊</span><span class="fx-fang">鱉甲煎丸、大黃蟄蟲丸</span></div>
+          <div class="fx-row"><span class="fx-zheng">瘀停胸脇、肝氣不舒</span><span class="fx-fang">復元活血湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">跌打損傷、瘀滯作痛</span><span class="fx-fang">七厘散</span></div>
+          <div class="fx-row"><span class="fx-zheng">瘀血停滯、脈道阻滯（心腹少腹痛）</span><span class="fx-fang">失笑散</span></div>
+          <div class="fx-row"><span class="fx-zheng">瘀阻胞宮</span><span class="fx-fang">桂枝茯苓丸</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">活血劑・清熱活血</span>
+          <div class="fx-row"><span class="fx-zheng">瘀熱互結、血蓄下焦</span><span class="fx-fang">桃核承氣湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">活血劑・溫經祛瘀</span>
+          <div class="fx-row"><span class="fx-zheng">衝任虛寒而瘀血阻滯</span><span class="fx-fang">溫經湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">血虛寒凝、瘀阻胞宮</span><span class="fx-fang">生化湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">活血劑・扶正祛瘀</span>
+          <div class="fx-row"><span class="fx-zheng">氣虛則血瘀</span><span class="fx-fang">補陽還五湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">止血劑・清熱止血</span>
+          <div class="fx-row"><span class="fx-zheng">血熱妄行之上部出血</span><span class="fx-fang">十灰散</span></div>
+          <div class="fx-row"><span class="fx-zheng">風熱濕毒壅遏腸道（熱證便血）</span><span class="fx-fang">槐花散</span></div>
+          <div class="fx-row"><span class="fx-zheng">肝火犯肺、灼傷肺絡</span><span class="fx-fang">咳血方</span></div>
+          <div class="fx-row"><span class="fx-zheng">熱結下焦之血淋、尿血</span><span class="fx-fang">小薊飲子</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">止血劑・溫補止血</span>
+          <div class="fx-row"><span class="fx-zheng">脾陽不足、脾不統血</span><span class="fx-fang">黃土湯</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 治風劑 -->
+    <div class="section" id="s10">
+      <div class="section-header"><h2>治風劑</h2><a class="detail-link" href="fangji_zhifeng.html">看詳解 →</a></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">疏散外風（外感風邪）</span>
+          <div class="fx-row"><span class="fx-zheng">外感風邪頭痛</span><span class="fx-fang">川芎茶調散</span></div>
+          <div class="fx-row"><span class="fx-zheng">外風挾熱</span><span class="fx-fang">大秦艽湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">風疹、濕疹</span><span class="fx-fang">消風散</span></div>
+          <div class="fx-row"><span class="fx-zheng">風邪竄絡、氣血津液運行不利</span><span class="fx-fang">大活絡丹、小活絡丹</span></div>
+          <div class="fx-row"><span class="fx-zheng">風阻經絡、造成痙病</span><span class="fx-fang">牽正散、玉真散</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">平息內風（風從內生、主指肝風）</span>
+          <div class="fx-row"><span class="fx-zheng">內風實證：肝腎陰虛、肝陽上亢動風</span><span class="fx-fang">鎮肝息風湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">內風實證：肝陽上亢兼熱</span><span class="fx-fang">天麻鉤藤飲</span></div>
+          <div class="fx-row"><span class="fx-zheng">內風實證：肝經熱盛動風（熱極生風）</span><span class="fx-fang">羚角鉤藤湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">內風虛證：真陰大虧／血虛、水不涵木（虛風內動）</span><span class="fx-fang">大定風珠</span></div>
+        </div>
+        <div class="box-green">
+          <p><strong>風病鑑別（運動功能異常須區分中風、痹證、痙證）：</strong></p>
+          <p>頭痛 → 川芎茶調散；皮膚濕疹 → 消風散。</p>
+          <p>中風入經絡（風邪初中經絡）→ 大秦艽湯；外風入中為「真中風」、內風自發為「類中風」。</p>
+          <p>中風後遺症、痹證 → 內風實證：鎮肝息風湯、天麻鉤藤飲、羚角鉤藤湯、大活絡丹（邪實正衰）、小活絡丹（邪實正不衰）；內風虛證：大定風珠。</p>
+          <p>痙證（四肢抽搐、角弓反張）→ 牽正散（風痰阻絡、主頭面部）、玉真散。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 治燥劑 -->
+    <div class="section" id="s11">
+      <div class="section-header"><h2>治燥劑</h2></div>
+      <div class="content">
+        <div class="fx-group">
+          <span class="fx-label">清宣外燥（秋天燥邪）</span>
+          <div class="fx-row"><span class="fx-zheng">涼燥（深秋；外感風寒夾燥、津液佈散不良）</span><span class="fx-fang">杏蘇散</span></div>
+          <div class="fx-row"><span class="fx-zheng">溫燥（初秋；外感風熱夾燥、熱灼傷津）</span><span class="fx-fang">桑杏湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">燥熱重者</span><span class="fx-fang">清燥救肺湯、沙參麥冬湯</span></div>
+        </div>
+        <div class="fx-group">
+          <span class="fx-label">滋陰潤燥（內燥）</span>
+          <div class="fx-row"><span class="fx-zheng">燥在上（肺燥）</span><span class="fx-fang">養陰清肺湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">燥在中（胃燥）</span><span class="fx-fang">麥門冬湯</span></div>
+          <div class="fx-row"><span class="fx-zheng">燥在下（腎燥）</span><span class="fx-fang">增液湯 <span class="fx-note">（參見補陰劑）</span></span></div>
+        </div>
+        <div class="qtable-wrap">
+          <div class="qtable-title">速查表</div>
+          <table class="qtable"><thead><tr><th>治法</th><th>代表方</th></tr></thead><tbody>
+            <tr><td>清宣外燥</td><td>杏蘇散（涼燥）、桑杏湯（溫燥）、清燥救肺湯、沙參麥冬湯</td></tr>
+            <tr><td>滋陰潤燥</td><td>養陰清肺湯、麥門冬湯、增液湯</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">習醫手帖・中醫學習筆記</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
